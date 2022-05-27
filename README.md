@@ -68,6 +68,26 @@ The persistence layer shall use Hibernate ORM to translate between the database 
     - As a User, I should be able to choose other users that I want to see first in my feed. Their posts should show before others.
     - Integrate a profanity filter api to ensure that no posts can be submitted with profanity in them to ensure a professional social media environment.
     
+## Research Stretch Goals:
+### Security
+    - Add extra security to all passwords by encrypting them via password hashing.
+    - Implement Two-Factor Authentication into your extended security measures. This two-factor auth can use email or SMS.
+    - Implement Spring Security in your application to help manage authentication per request.
+    - Implement Identity Server in your application to help manage authentication per request.
+    - Integrate with and rely on Firebase for user management and authentication.
+        This will allow us to pass the responsibility of managing and securing user credentials to an external system.
+    - Integrate with and rely on Auth0 for user management and authentication.
+        This will allow us to pass the responsibility of managing and securing user credentials to an external system.
+### Testing
+    - (Testing team fill please)
+### Deployment
+    - (DevOps team fill please)
+### Database
+    - (Backend team fill please)
+    - Leverage an H2 database in the dev environment and a cloud managed database for the production/hosted environment.
+        H2 is an in memory database which offers some quality of life functionality for local development.
+
+
 # Submission
 ## Due Date: Thursday 6/16/2022 at 9:00 AM CST
 

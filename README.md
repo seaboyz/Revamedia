@@ -39,7 +39,8 @@ Functional Requirements
 The persistence layer shall use Hibernate ORM to translate between the database and the application server. The API layer shall abstract away the low-level servlets with Spring Web MVC. The client shall use Angular to produce an SPA which is styled to be functional and readable. The server should follow a proper layered architecture, and have adequate unit testing of the service layer. The client and server should communicate in a RESTful manner, and the server should be stateless.
 
 # Entity Relation Diagram
-- (need to fill)
+- (https://www.figma.com/file/c92vLAv3SncE2s9uDAKtlW/P2-DB-MODEL-DESIGN?node-id=205%3A2
+)
 
 # User Stories
 ## Requirements:

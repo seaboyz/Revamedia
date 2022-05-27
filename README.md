@@ -47,15 +47,16 @@ The persistence layer shall use Hibernate ORM to translate between the database 
     - As a guest, I can register for an account.
     - As a guest, I can log in to my account.
 ### User:
-    - As a user, I have a profile which I can view.
-    - As a user, I can browse posts on my feed 
-    - As a user, I can make posts.
-    - As a user, I can edit posts on my home page.
-    - As a user, I can remove posts on my home page.
-
+    - As a User, I should be able to create a post with text and images.
+    - As a User, I should be able to like another user's post.
+    - As a User, I should be able to comment on posts or reply to comments on posts.
+    - As a User, I should have a post feed that displays other user's posts.
 
 ## Stretch Goals:
-    -As a User, (fill)
+    - As a user, I have a profile which I can view.
+    - As a User, I should be able to create and maintain a profile page that is visible to other users.
+    - As a User, I should be able to follow another user to see their posts on my feed. My feed should only displays posts from user that I follow.
+    - As a User, I should be able to reset my password.
     
 # Submission
 ## Due Date: Thursday 6/16/2022 at 9:00 AM CST

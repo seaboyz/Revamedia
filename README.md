@@ -57,6 +57,8 @@ The persistence layer shall use Hibernate ORM to translate between the database 
     - As a User, I should be able to create and maintain a profile page that is visible to other users.
     - As a User, I should be able to follow another user to see their posts on my feed. My feed should only displays posts from user that I follow.
     - As a User, I should be able to reset my password.
+    - As a User, I should be able to change the color scheme from the normal mode to a dark mode option.
+    - As a User, I should be able to join a live chatroom with others and only see messages when I am in the room.
     
 # Submission
 ## Due Date: Thursday 6/16/2022 at 9:00 AM CST

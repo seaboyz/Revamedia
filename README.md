@@ -59,6 +59,14 @@ The persistence layer shall use Hibernate ORM to translate between the database 
     - As a User, I should be able to reset my password.
     - As a User, I should be able to change the color scheme from the normal mode to a dark mode option.
     - As a User, I should be able to join a live chatroom with others and only see messages when I am in the room.
+    - As a User, I should be able to upload an image as a profile picture.
+    - As a User, I should be able to bookmark or save specific posts in order to reference them later.
+    - As a User, I should be able to add YouTube links to my posts.
+    - As a User, I should be able to host or join events on the social media platform. 
+    - As a User, I should receive notifications when another user interacts with my post or follows me.
+    - As a User, I should be able to create or join a group/team where there can be collaborative posts only for the group/team to view.
+    - As a User, I should be able to choose other users that I want to see first in my feed. Their posts should show before others.
+    - Integrate a profanity filter api to ensure that no posts can be submitted with profanity in them to ensure a professional social media environment.
     
 # Submission
 ## Due Date: Thursday 6/16/2022 at 9:00 AM CST

@@ -69,7 +69,7 @@ The persistence layer shall use Hibernate ORM to translate between the database 
     - As a User, I should be able to choose other users that I want to see first in my feed. Their posts should show before others.
     - Integrate a profanity filter api to ensure that no posts can be submitted with profanity in them to ensure a professional social media environment.
     
-## Research Stretch Goals:
+## Research Goals(Minimum 4 features required):
 ### Security
     - Add extra security to all passwords by encrypting them via password hashing.
     - Implement Two-Factor Authentication into your extended security measures. This two-factor auth can use email or SMS.

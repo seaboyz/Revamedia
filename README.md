@@ -80,7 +80,13 @@ The persistence layer shall use Hibernate ORM to translate between the database 
     - Integrate with and rely on Auth0 for user management and authentication.
         This will allow us to pass the responsibility of managing and securing user credentials to an external system.
 ### Testing
-    - (Testing team fill please)
+    - Achieve a minimum of 70% unit test code coverage across your frontend and backend applications.
+    - Write unit tests before writing application logic then write application logic to pass your tests.
+        This should produce code with fewer bugs and errors as well as higher code coverage.
+    - Using Selenium and Cucumber define the behavior you expect the application to follow and write application logic to fulfill that.
+        This should help you reduce unnecessary code and wasted effort.
+    - Integration testing is the next testing step after unit testing, where we test the software with the units working together. Basically expand the concept of unit testing with no need to mock or intercept method calls
+    - Run Penetration Testing against your application to probe for security risks, then refactor the application to be more secure.
 ### Deployment
     - (DevOps team fill please)
 ### Database

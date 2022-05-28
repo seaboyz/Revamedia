@@ -89,10 +89,18 @@ The persistence layer shall use Hibernate ORM to translate between the database 
     - Run Penetration Testing against your application to probe for security risks, then refactor the application to be more secure.
 ### Deployment
     - (DevOps team fill please)
+    - Jenkins
+    - GitHub Actions
+    - Implement and leverage a pipeline to Continuously Integrate and Continuously Deploy your project as you develop throughout the sprint, using AWS/Azure/GCP Services.
+    - Integrate Sonarcloud for static code analysis in your CI Pipeline and leverage this analysis for higher quality code.
+    - Host your frontend web application via static web hosting.
 ### Database
     - (Backend team fill please)
     - Leverage an H2 database in the dev environment and a cloud managed database for the production/hosted environment.
         H2 is an in memory database which offers some quality of life functionality for local development.
+    - Utilize Mockaroo to generate realistic mock data to populate your database for development.
+    - Deploy your application using a Kubernetes cluster.
+    - Design or refactor the application into a microservice architecture.
 
 
 # Submission

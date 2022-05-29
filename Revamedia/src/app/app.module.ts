@@ -13,6 +13,7 @@ import { HomeComponent } from './Components/home/home.component';
 import { MessagesComponent } from './Components/messages/messages.component';
 import { LoginComponent } from './Components/login/login.component';
 import { RegisterComponent } from './Components/register/register.component';
+import { ErrorPageComponent } from './Components/error-page/error-page.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { RegisterComponent } from './Components/register/register.component';
     MessagesComponent,
     LoginComponent,
     RegisterComponent,
+    ErrorPageComponent,
   ],
   imports: [
     BrowserModule,

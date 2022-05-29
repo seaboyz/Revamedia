@@ -7,6 +7,7 @@ import { HomeComponent } from './Components/home/home.component';
 import { MessagesComponent } from './Components/messages/messages.component';
 import { LoginComponent } from './Components/login/login.component';
 import { RegisterComponent } from './Components/register/register.component';
+import { ErrorPageComponent } from './Components/error-page/error-page.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,8 @@ const routes: Routes = [
   { path: 'events', component: EventsComponent },
   { path: 'groups', component: GroupsComponent },
   { path: 'settings', component: SettingsComponent },
+  { path: '',   redirectTo: '/login', pathMatch: 'full' },
+  { path: '**', component: ErrorPageComponent },
 ];
 
 @NgModule({

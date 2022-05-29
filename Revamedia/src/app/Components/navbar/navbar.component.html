@@ -1,4 +1,4 @@
-<div class="navbar">
+<div class="navbar" *ngIf="auth.loggedIn.value === true">
   <ul>
     <li>
       <a routerLink="/home" routerLinkActive="active">
@@ -26,9 +26,7 @@
       </a>
     </li>
     <li>
-      <a>
-        <fa-icon title="Log Out" id="icon" [icon]="faDoorOpen"></fa-icon>
-      </a>
+        <fa-icon (click)="LogOut()" title="Log Out" id="icon" [icon]="faDoorOpen"></fa-icon>
     </li>
   </ul>
 </div>

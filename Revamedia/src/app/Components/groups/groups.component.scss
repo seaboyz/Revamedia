@@ -1,4 +1,5 @@
 .groups-page{
+  margin-left: 6%;
   padding: 2rem 1rem;
   .page-title{
     width: 100%;
@@ -9,5 +10,12 @@
     span{
       font-size: .9rem;
     }
+  }
+}
+
+// Media Queries
+@media screen and (max-width: 800px) {
+  .groups-page{
+    margin-left: 10%;
   }
 }

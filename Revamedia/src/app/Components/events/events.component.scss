@@ -1,4 +1,5 @@
 .events-page{
+  margin-left: 6%;
   padding: 2rem 1rem;
   .page-title{
     width: 100%;
@@ -9,5 +10,10 @@
     span{
       font-size: .9rem;
     }
+  }
+}
+@media screen and (max-width: 800px) {
+  .events-page{
+    margin-left: 10%;
   }
 }

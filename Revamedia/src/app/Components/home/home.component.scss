@@ -1,5 +1,6 @@
 .home-page{
   padding: 2rem 1rem;
+  margin-left: 6%;
   .page-title{
     width: 100%;
     h3{
@@ -9,5 +10,10 @@
     span{
       font-size: .9rem;
     }
+  }
+}
+@media screen and (max-width: 800px) {
+  .home-page{
+    margin-left: 10%;
   }
 }

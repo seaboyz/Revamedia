@@ -23,13 +23,15 @@ public class UserGroups {
     @OneToMany(mappedBy = "userId")
     private Set<User> usersJoined;
 
-    @OneToMany(mappedBy = "postId")
+    @OneToMany(mappedBy = "groupId")
     private Set<UserPosts> posts;
 
     @Column(name = "date_created")
     private String dateCreated;
 
     public UserGroups() {
+        this.usersJoined = new HashSet<>();
+        this.posts = new HashSet<>();
     }
 
     public UserGroups(User ownerId, String title, Set<User> usersJoined, Set<UserPosts> posts, String dateCreated) {
@@ -39,8 +41,6 @@ public class UserGroups {
         this.posts = posts;
         this.dateCreated = dateCreated;
 
-        this.usersJoined = new HashSet<>();
-        this.posts = new HashSet<>();
     }
 
     public Integer getGroupId() {

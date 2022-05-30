@@ -82,7 +82,6 @@ public class UserReplies implements Serializable {
         return "UserReplies{" +
                 "replyId=" + replyId +
                 ", ownerId=" + ownerId +
-                ", commentId=" + commentId +
                 ", message='" + message + '\'' +
                 ", dateCreated='" + dateCreated + '\'' +
                 '}';

@@ -2,6 +2,7 @@ package com.revature.Revamedia.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -20,7 +21,7 @@ public class UserComments implements Serializable {
     @JoinColumn(name = "post_id", referencedColumnName = "post_id")
     private UserPosts postId;
 
-    @OneToMany(mappedBy = "commentId")
+    @OneToMany(mappedBy = "commentId", cascade=CascadeType.ALL)
     @Column(name = "comment_replies")
     private List<UserReplies> replies;
 
@@ -31,6 +32,7 @@ public class UserComments implements Serializable {
     private String dateCreated;
 
     public UserComments() {
+        this.replies = new ArrayList<>();
     }
 
     public UserComments(Integer commentId, User ownerId, UserPosts postId, List<UserReplies> replies, String message, String dateCreated) {
@@ -40,6 +42,7 @@ public class UserComments implements Serializable {
         this.replies = replies;
         this.message = message;
         this.dateCreated = dateCreated;
+
     }
 
     public Integer getCommentId() {
@@ -90,11 +93,12 @@ public class UserComments implements Serializable {
         this.replies = replies;
     }
 
-    private void addReply (UserReplies reply){
+    public void addReply (UserReplies reply){
         this.replies.add(reply);
     }
 
-    private void removeReply (UserReplies reply) {
+
+    public void removeReply (UserReplies reply) {
         this.replies.remove(reply);
     }
 

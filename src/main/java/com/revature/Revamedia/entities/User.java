@@ -2,7 +2,8 @@ package com.revature.Revamedia.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Objects;
+import java.util.*;
+
 @Entity
 @Table(name = "users", schema = "public")
 public class User implements Serializable {
@@ -24,6 +25,23 @@ public class User implements Serializable {
     @Column(name = "date_created")
     private String dateCreated;
 
+    @OneToMany(mappedBy = "followedId")
+    private Set<UserFollows> followers;
+    @OneToMany(mappedBy = "followerId")
+    private Set<UserFollows> following;
+    @OneToMany(mappedBy = "postId")
+    private List<UserPosts> posts;
+
+    @OneToMany(mappedBy = "groupId")
+    private Set<UserGroups> groupsJoined;
+    @OneToMany(mappedBy = "ownerId")
+    private Set<UserGroups> groupsOwned;
+
+    @OneToMany(mappedBy = "eventId")
+    private Set<UserEvents> eventsJoined;
+    @OneToMany(mappedBy = "ownerId")
+    private Set<UserEvents> eventsOwned;
+
 
     public User() {}
 
@@ -35,6 +53,16 @@ public class User implements Serializable {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateCreated = dateCreated;
+
+        this.followers = new HashSet<>();
+        this.following = new HashSet<>();
+        this.posts = new ArrayList<>();
+
+        this.groupsJoined = new HashSet<>();
+        this.groupsOwned = new HashSet<>();
+
+        this.eventsJoined = new HashSet<>();
+        this.eventsOwned = new HashSet<>();
     }
 
     public Integer getUserId() {
@@ -91,6 +119,66 @@ public class User implements Serializable {
 
     public void setDateCreated(String dateCreated) {
         this.dateCreated = dateCreated;
+    }
+
+    /*
+    private Set<UserFollows> followers;
+    private Set<UserFollows> following;
+    private List<UserPosts> posts;
+
+    private Set<UserGroups> groupsJoined;
+    private Set<UserGroups> groupsOwned;
+
+    private Set<UserEvents> eventsJoined;
+    private Set<UserEvents> eventsOwned;
+     */
+
+    public void addFollower(UserFollows follower) {
+        this.followers.add(follower);
+    }
+
+    public void removeFollower(UserFollows follower) {
+        this.followers.remove(follower);
+    }
+
+    public void addPost(UserPosts post) {
+        this.posts.add(post);
+    }
+
+    public void removePost(UserPosts post) {
+        this.posts.add(post);
+    }
+
+    public void joinGroup(UserGroups group) {
+        this.groupsJoined.add(group);
+    }
+
+    public void leaveGroup(UserGroups group) {
+        this.groupsJoined.remove(group);
+    }
+
+    public void createGroup(UserGroups group) {
+        this.groupsOwned.add(group);
+    }
+
+    public void leaveOwnedGroup(UserGroups group) {
+        this.groupsOwned.remove(group);
+    }
+
+    public void joinEvent(UserEvents event) {
+        this.eventsJoined.add(event);
+    }
+
+    public void leaveEvent(UserEvents event) {
+        this.eventsJoined.remove(event);
+    }
+
+    public void createEvent(UserEvents event) {
+        this.eventsOwned.add(event);
+    }
+
+    public void leaveOwnedEvent(UserEvents event) {
+        this.eventsOwned.remove(event);
     }
 
     @Override

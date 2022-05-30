@@ -20,7 +20,7 @@ public class UserEvents implements Serializable {
     @Column
     private String title;
 
-    @OneToMany(mappedBy = "userId")
+    @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL)
     private Set<User> usersJoined;
 
     @Column

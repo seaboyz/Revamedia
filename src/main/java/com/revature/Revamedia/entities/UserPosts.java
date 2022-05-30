@@ -16,7 +16,7 @@ public class UserPosts implements Serializable {
     @JoinColumn(name = "owner_id", referencedColumnName = "user_id")
     private User ownerId;
 
-    @OneToMany(mappedBy = "postId")
+    @OneToMany(mappedBy = "postId", cascade = CascadeType.ALL)
     @Column(name = "post_comments")
     private List<UserComments> comments;
 

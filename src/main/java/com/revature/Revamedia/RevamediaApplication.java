@@ -6,6 +6,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @SpringBootApplication(scanBasePackages = "com.revature.Revamedia.beans")
 public class RevamediaApplication {
     public static void main(String[] args) {
@@ -17,6 +20,8 @@ public class RevamediaApplication {
         UserPostsService userPostsService = context.getBean(UserPostsService.class);
         UserCommentsService userCommentsService = context.getBean(UserCommentsService.class);
         UserRepliesService userRepliesService = context.getBean(UserRepliesService.class);
+        UserEventsService userEventsService = context.getBean(UserEventsService.class);
+        UserGroupsService userGroupsService = context.getBean(UserGroupsService.class);
 
 
         User user1 = new User();
@@ -63,22 +68,36 @@ public class RevamediaApplication {
         reply1.setOwnerId(user1);
         reply1.setCommentId(comment1);
         reply1.setMessage("reply1 message by user1");
-        userRepliesService.save(reply1);
+        comment1.addReply(reply1);
 
         UserReplies reply2 = new UserReplies();
         reply2.setOwnerId(user2);
         reply2.setCommentId(comment1);
         reply2.setMessage("reply2 message by user2");
-        userRepliesService.save(reply2);
+        comment1.addReply(reply2);
 
         UserReplies reply3 = new UserReplies();
         reply3.setOwnerId(user3);
         reply3.setCommentId(comment1);
         reply3.setMessage("reply3 message by user3");
-        userRepliesService.save(reply3);
+        comment1.addReply(reply3);
 
+        userCommentsService.save(comment1);
 
+        for (UserReplies reply : comment1.getReplies()) {
+            System.out.println(reply);
+        }
 
+/*        List<UserReplies> repliesList = new ArrayList<>();
+        for (UserReplies reply : userRepliesService.getAllReplies()) {
+            repliesList.add(reply);
+        }
+
+        comment1.setReplies(repliesList);
+        userCommentsService.save(comment1);*/
+
+        UserGroups group1 = new UserGroups();
+        group1.setOwnerId(user1);
 
     }
 }

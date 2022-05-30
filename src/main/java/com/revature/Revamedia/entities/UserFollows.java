@@ -23,7 +23,7 @@ public class UserFollows implements Serializable {
     private User followerId;
 
     @Column(name = "bookmarked")
-    private String bookmarked;
+    private boolean bookmarked;
 
     @CreatedDate
     @Column(name = "date_followed")
@@ -32,7 +32,7 @@ public class UserFollows implements Serializable {
     public UserFollows() {
     }
 
-    public UserFollows(Integer id, User followedId, User followerId, String bookmarked, Date dateFollowed) {
+    public UserFollows(Integer id, User followedId, User followerId, boolean bookmarked, Date dateFollowed) {
         this.followId = id;
         this.followedId = followedId;
         this.followerId = followerId;
@@ -64,11 +64,11 @@ public class UserFollows implements Serializable {
         this.followerId = followerId;
     }
 
-    public String getBookmarked() {
+    public boolean getBookmarked() {
         return bookmarked;
     }
 
-    public void setBookmarked(String bookmarked) {
+    public void setBookmarked(boolean bookmarked) {
         this.bookmarked = bookmarked;
     }
 

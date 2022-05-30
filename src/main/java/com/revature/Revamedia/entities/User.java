@@ -22,6 +22,8 @@ public class User implements Serializable {
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
+    @Column(name = "profile_picture")
+    private String profilePicture;
     @Column(name = "date_created")
     private String dateCreated;
 
@@ -43,9 +45,19 @@ public class User implements Serializable {
     private Set<UserEvents> eventsOwned;
 
 
-    public User() {}
+    public User() {
+        this.followers = new HashSet<>();
+        this.following = new HashSet<>();
+        this.posts = new ArrayList<>();
 
-    public User(Integer userId, String username, String email, String password, String firstName, String lastName, String dateCreated) {
+        this.groupsJoined = new HashSet<>();
+        this.groupsOwned = new HashSet<>();
+
+        this.eventsJoined = new HashSet<>();
+        this.eventsOwned = new HashSet<>();
+    }
+
+    public User(Integer userId, String username, String email, String password, String firstName, String lastName, String dateCreated, String profilePicture) {
         this.userId = userId;
         this.username = username;
         this.email = email;
@@ -53,6 +65,7 @@ public class User implements Serializable {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateCreated = dateCreated;
+        this.profilePicture = profilePicture;
 
         this.followers = new HashSet<>();
         this.following = new HashSet<>();
@@ -121,17 +134,61 @@ public class User implements Serializable {
         this.dateCreated = dateCreated;
     }
 
-    /*
-    private Set<UserFollows> followers;
-    private Set<UserFollows> following;
-    private List<UserPosts> posts;
+    public Set<UserFollows> getFollowers() {
+        return followers;
+    }
 
-    private Set<UserGroups> groupsJoined;
-    private Set<UserGroups> groupsOwned;
+    public void setFollowers(Set<UserFollows> followers) {
+        this.followers = followers;
+    }
 
-    private Set<UserEvents> eventsJoined;
-    private Set<UserEvents> eventsOwned;
-     */
+    public Set<UserFollows> getFollowing() {
+        return following;
+    }
+
+    public void setFollowing(Set<UserFollows> following) {
+        this.following = following;
+    }
+
+    public List<UserPosts> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<UserPosts> posts) {
+        this.posts = posts;
+    }
+
+    public Set<UserGroups> getGroupsJoined() {
+        return groupsJoined;
+    }
+
+    public void setGroupsJoined(Set<UserGroups> groupsJoined) {
+        this.groupsJoined = groupsJoined;
+    }
+
+    public Set<UserGroups> getGroupsOwned() {
+        return groupsOwned;
+    }
+
+    public void setGroupsOwned(Set<UserGroups> groupsOwned) {
+        this.groupsOwned = groupsOwned;
+    }
+
+    public Set<UserEvents> getEventsJoined() {
+        return eventsJoined;
+    }
+
+    public void setEventsJoined(Set<UserEvents> eventsJoined) {
+        this.eventsJoined = eventsJoined;
+    }
+
+    public Set<UserEvents> getEventsOwned() {
+        return eventsOwned;
+    }
+
+    public void setEventsOwned(Set<UserEvents> eventsOwned) {
+        this.eventsOwned = eventsOwned;
+    }
 
     public void addFollower(UserFollows follower) {
         this.followers.add(follower);
@@ -187,6 +244,14 @@ public class User implements Serializable {
 
     public void leaveOwnedEvent(UserEvents event) {
         this.eventsOwned.remove(event);
+    }
+
+    public String getProfilePicture() {
+        return profilePicture;
+    }
+
+    public void setProfilePicture(String profilePicture) {
+        this.profilePicture = profilePicture;
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.revature.Revamedia.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -16,9 +17,14 @@ public class UserPosts implements Serializable {
     @JoinColumn(name = "owner_id", referencedColumnName = "user_id")
     private User ownerId;
 
+
     @OneToMany(mappedBy = "postId", cascade = CascadeType.ALL)
     @Column(name = "post_comments")
     private List<UserComments> comments;
+
+    @ManyToOne
+    @JoinColumn(name = "group_id")
+    private UserGroups groupId;
 
 
     @Column(name ="message", length=500)
@@ -31,7 +37,7 @@ public class UserPosts implements Serializable {
     private String image;
 
     @Column(name ="likes")
-    private int likes;
+    private Integer likes;
 
     @Column(name ="post_lifetime", nullable = true)
     private String postLifetime;
@@ -40,9 +46,10 @@ public class UserPosts implements Serializable {
     private String dateCreated;
 
     public UserPosts() {
+        this.comments = new ArrayList<>();
     }
 
-    public UserPosts(Integer postId, User ownerId, List<UserComments> comments, String message, String youtubeLink, String image, int likes, String postLifetime, String dateCreated) {
+    public UserPosts(Integer postId, User ownerId, List<UserComments> comments, String message, String youtubeLink, String image, int likes, String postLifetime, String dateCreated, UserGroups groupId) {
         this.postId = postId;
         this.ownerId = ownerId;
         this.comments = comments;
@@ -52,6 +59,7 @@ public class UserPosts implements Serializable {
         this.likes = likes;
         this.postLifetime = postLifetime;
         this.dateCreated = dateCreated;
+        this.groupId = groupId;
     }
 
     public Integer getPostId() {
@@ -126,12 +134,20 @@ public class UserPosts implements Serializable {
         this.comments = comments;
     }
 
-    private void addComment (UserComments comment){
+    public void addComment (UserComments comment){
         this.comments.add(comment);
     }
 
-    private void removeComment (UserComments comment) {
+    public void removeComment (UserComments comment) {
         this.comments.remove(comment);
+    }
+
+    public UserGroups getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(UserGroups groupId) {
+        this.groupId = groupId;
     }
 
     @Override
@@ -140,6 +156,7 @@ public class UserPosts implements Serializable {
                 "postId=" + postId +
                 ", ownerId=" + ownerId +
                 ", comments=" + comments +
+                ", groupId=" + groupId +
                 ", message='" + message + '\'' +
                 ", youtubeLink='" + youtubeLink + '\'' +
                 ", image='" + image + '\'' +

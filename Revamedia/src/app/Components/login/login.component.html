@@ -1,3 +1,27 @@
-<p>login works!</p>
-<button (click)="TEMPLogIn()">Login</button>
-<span>Not Registered?<a routerLink="/register" routerLinkActive="active">Register Here</a></span>
+<div class="login-page">
+  <div class="login-nav">
+    <h1>Revamedia</h1>
+  </div>
+
+  <div class="login">
+    <h2>Login</h2>
+    <form>
+      <div class="form-row">
+        <label for="username">Username</label>
+        <input type="text" id="username" placeholder="Username..." required>
+      </div>
+      <div class="form-row">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Password..." required>
+        <span>View Password</span>
+      </div>
+      <div class="submit">
+        <button (click)="TEMPLogIn()">Login</button>
+      </div>
+    </form>
+    <div class="login-help">
+      <span>Not Registered?<a routerLink="/register" routerLinkActive="active">Register Here</a></span>
+      <span>Forgot Password?</span>
+    </div>
+  </div>
+</div>

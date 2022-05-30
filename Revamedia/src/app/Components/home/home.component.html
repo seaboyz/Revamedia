@@ -22,10 +22,9 @@
             <fa-icon id="icon" [icon]="faEllipsis" size="lg"></fa-icon>
           </div>
           <div class="post-body">
-            <img src="https://avatars.githubusercontent.com/u/77355023?v=4" alt="User">
+            <img src="https://images.theconversation.com/files/453091/original/file-20220318-23-2ehppm.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=900.0&fit=crop" alt="User">
             <div class="post-description">
-              <a routerLink="/profile" routerLinkActive="active">leobarrientos02</a>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, dolore animi consequuntur laudantium, atque at ex voluptas perspiciatis ut quod quasi officiis. Eum, delectus. Porro laboriosam nihil dolor corporis minima?</p>
+              <p><a routerLink="/profile" routerLinkActive="active">leobarrientos02</a>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, dolore animi consequuntur laudantium, atque at ex voluptas perspiciatis ut quod quasi officiis. Eum, delectus. Porro laboriosam nihil dolor corporis minima?</p>
             </div>
             <div class="post-options">
               <div class="container">
@@ -36,9 +35,6 @@
                 <div class="comment">
                   <fa-icon id="icon" title="Comment" [icon]="faComment" size="lg"></fa-icon>
                 </div>
-                <div class="share">
-                  <fa-icon id="icon" title="Share" [icon]="faShareFromSquare" size="lg"></fa-icon>
-                </div>
               </div>
               <div class="bookmark">
                 <fa-icon id="icon" title="Bookmark" [icon]="faBookmark" size="lg"></fa-icon>
@@ -47,7 +43,11 @@
           </div>
         </div>
 
+        <span>Hide Comments</span>
+
         <div class="post-comments-section">
+
+          <!-- comment start -->
           <div class="comment">
             <div class="comment-author">
               <img src="https://avatars.githubusercontent.com/u/77355023?v=4" alt="User">
@@ -56,6 +56,9 @@
             <div class="comment-content">
               <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestiae quae iusto at optio corrupti voluptatem nihil aliquam explicabo assumenda aliquid eius labore fugiat quam commodi fugit, doloremque ad quos nisi.</p>
             </div>
+            <!-- comment end -->
+
+            <!-- Replies Start -->
             <div class="reply">
               <div class="reply-author">
                 <img src="https://avatars.githubusercontent.com/u/77355023?v=4" alt="User">
@@ -65,6 +68,8 @@
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, fuga, eaque eos alias laboriosam quis sapiente, illum provident accusantium odio minima aspernatur nihil deleniti? Dicta odit tempore aspernatur cum quis!</p>
               </div>
             </div>
+            <!-- Replies End -->
+
           </div>
         </div>
       </div>

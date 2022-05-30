@@ -119,4 +119,18 @@ public class UserEvents implements Serializable {
     public void setDateCreated(String dateCreated) {
         this.dateCreated = dateCreated;
     }
+
+    @Override
+    public String toString() {
+        return "UserEvents{" +
+                "eventId=" + eventId +
+                ", ownerId=" + ownerId +
+                ", title='" + title + '\'' +
+                ", usersJoined=" + usersJoined +
+                ", image='" + image + '\'' +
+                ", body='" + body + '\'' +
+                ", date='" + date + '\'' +
+                ", dateCreated='" + dateCreated + '\'' +
+                '}';
+    }
 }

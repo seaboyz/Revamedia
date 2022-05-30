@@ -1,6 +1,7 @@
 package com.revature.Revamedia.entities;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -37,6 +38,9 @@ public class UserGroups {
         this.usersJoined = usersJoined;
         this.posts = posts;
         this.dateCreated = dateCreated;
+
+        this.usersJoined = new HashSet<>();
+        this.posts = new HashSet<>();
     }
 
     public Integer getGroupId() {
@@ -71,14 +75,6 @@ public class UserGroups {
         this.usersJoined = usersJoined;
     }
 
-    public Set<UserPosts> getPosts() {
-        return posts;
-    }
-
-    public void setPosts(Set<UserPosts> posts) {
-        this.posts = posts;
-    }
-
     public void addJoinedUser(User user) {
         this.usersJoined.add(user);
     }
@@ -87,11 +83,39 @@ public class UserGroups {
         this.usersJoined.remove(user);
     }
 
+    public Set<UserPosts> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(Set<UserPosts> posts) {
+        this.posts = posts;
+    }
+
+    public void addPost(UserPosts post) {
+        this.posts.add(post);
+    }
+
+    public void removePost(UserPosts post) {
+        this.posts.remove(post);
+    }
+
     public String getDateCreated() {
         return dateCreated;
     }
 
     public void setDateCreated(String dateCreated) {
         this.dateCreated = dateCreated;
+    }
+
+    @Override
+    public String toString() {
+        return "UserGroups{" +
+                "groupId=" + groupId +
+                ", ownerId=" + ownerId +
+                ", title='" + title + '\'' +
+                ", usersJoined=" + usersJoined +
+                ", posts=" + posts +
+                ", dateCreated='" + dateCreated + '\'' +
+                '}';
     }
 }

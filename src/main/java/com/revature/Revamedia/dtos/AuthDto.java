@@ -1,4 +1,4 @@
-package com.revature.RevSocial.dtos;
+package com.revature.Revamedia.dtos;
 
 public class AuthDto {
     private String username;

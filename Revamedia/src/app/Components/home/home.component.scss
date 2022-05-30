@@ -246,6 +246,7 @@ $darkgrey: rgb(61,66,74);
       #viewComments{
         cursor: pointer;
         color: $darkgrey;
+        margin: .5rem 0;
         &:hover{
           text-decoration: underline
         }
@@ -264,6 +265,8 @@ $darkgrey: rgb(61,66,74);
           text-decoration:underline;
         }
         .comment{
+          border-bottom: 1px solid $lightgrey;
+          padding-bottom: .5rem;
           .comment-author{
             display: flex;
             flex-direction: row;
@@ -288,9 +291,123 @@ $darkgrey: rgb(61,66,74);
             margin-left: 2rem;
             font-size: .9rem;
           }
+          .reply-card{
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            button{
+              border: none;
+              padding: .4rem;
+              border-radius: 4px;
+              background: $lightgrey;
+              font-size: .7rem;
+              color: $darkgrey;
+              cursor: pointer;
+              &:hover{
+                background: $grey;
+              }
+            }
+          }
+
+          .add-reply{
+            margin: .5rem 0;
+            width: 100%;
+            background: white;
+            border-radius: 8px;
+            box-shadow: rgba(0, 0, 0, 0.075) 0px 3px 8px;
+            padding: 1rem;
+            .add-reply-header{
+              width: 100%;
+              display: flex;
+              flex-direction: row;
+              justify-content: space-between;
+              margin-bottom: .5rem;
+              h5{
+                font-size: 1rem;
+                color: $darkgrey;
+                text-decoration: underline
+              }
+              button{
+                background: none;
+                border: none;
+                font-size: 1.3rem;
+                color: grey;
+                cursor: pointer;
+                &:hover{
+                  color: $darkgrey;
+                }
+              }
+            }
+            Form{
+              display: flex;
+              flex-direction: column;
+              width: 100%;
+              textarea{
+                resize: vertical;
+                font-size: 1rem;
+                color: $darkgrey;
+                padding: .4rem;
+              }
+
+              .file {
+                opacity: 0;
+                width: 0.1px;
+                height: 0.1px;
+                position: absolute;
+              }
+              .file-input label {
+                margin: .5rem 0;
+                display: block;
+                position: relative;
+                height: 2rem;
+                width: 7rem;
+                border-radius: 8px;
+                background: $lightgrey;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                font-size: .9rem;
+                color: $darkgrey;
+                cursor: pointer;
+                transition: transform .2s ease-out;
+              }
+
+              .file-name {
+                font-size: 0.85rem;
+                color: #555;
+              }
+
+              input:hover + label,
+              input:focus + label {
+                transform: scale(1.02);
+              }
+
+              /* Adding an outline to the label on focus */
+              input:focus + label {
+                outline: 1px solid #000;
+                outline: -webkit-focus-ring-color auto 2px;
+              }
+
+              button{
+                align-self: flex-end;
+                width: 20%;
+                border: none;
+                padding: .4rem;
+                border-radius: 4px;
+                background: $lightgrey;
+                font-size: .9rem;
+                color: $darkgrey;
+                cursor: pointer;
+                &:hover{
+                  background: $grey;
+                }
+              }
+            }
+          }
+
         }
         .reply{
-          margin-top: 1rem;
           margin-left: 2rem;
           .reply-author{
             display: flex;

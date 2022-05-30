@@ -15,7 +15,7 @@
       <div class="post-data">
         <div class="post">
           <div class="post-title">
-            <div routerLink="/profile" routerLinkActive="active" class="post-author">
+            <div class="post-author">
               <img src="https://avatars.githubusercontent.com/u/77355023?v=4" alt="User">
               <a routerLink="/profile" routerLinkActive="active">leobarrientos02</a>
             </div>
@@ -69,12 +69,33 @@
           <div class="comment">
             <div class="comment-author">
               <img src="https://avatars.githubusercontent.com/u/77355023?v=4" alt="User">
-              <a routerLink="/profile" routerLinkActive="active" >leobarrientos02</a>
+              <a routerLink="/profile" routerLinkActive="active" title="View Profile" >leobarrientos02</a>
             </div>
             <div class="comment-content">
               <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestiae quae iusto at optio corrupti voluptatem nihil aliquam explicabo assumenda aliquid eius labore fugiat quam commodi fugit, doloremque ad quos nisi.</p>
             </div>
+            <div class="reply-card">
+              <button (click)="openAddReply()">Reply</button>
+            </div>
             <!-- comment end -->
+
+            <div class="add-reply" *ngIf="addReply">
+              <div class="add-reply-header">
+                <h5>Add Reply</h5>
+                <button title="Close" (click)="closeAddReply()">X</button>
+              </div>
+              <form enctype="multipart/form-data" id="add-comment-form">
+                <textarea name="comment" id="comment" rows="5"></textarea>
+                <div class="file-input">
+                  <input type="file" id="file" class="file" (change)="fileName($event)">
+                  <label for="file">
+                    Add Image
+                  </label>
+                  <p class="file-name" id="file-name"></p>
+                </div>
+                <button>Reply</button>
+              </form>
+            </div>
 
             <!-- Replies Start -->
             <div class="reply">

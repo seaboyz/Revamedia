@@ -42,4 +42,13 @@ export class HomeComponent implements OnInit {
     const file = document.getElementById('file-name');
     file!.textContent = fileName.name;
   }
+
+  // Add Reply
+  addReply = false;
+  public openAddReply(){
+    this.addReply = true;
+  }
+  public closeAddReply(){
+    this.addReply = false;
+  }
 }

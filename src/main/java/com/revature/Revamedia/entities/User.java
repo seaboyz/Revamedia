@@ -44,6 +44,9 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "ownerId", cascade = CascadeType.ALL)
     private Set<UserEvents> eventsOwned;
 
+    @OneToMany(mappedBy = "conversationId", cascade = CascadeType.ALL)
+    private Set<UserConversations> conversations;
+
 
     public User() {
         this.followers = new HashSet<>();
@@ -55,27 +58,27 @@ public class User implements Serializable {
 
         this.eventsJoined = new HashSet<>();
         this.eventsOwned = new HashSet<>();
+
+        this.conversations = new HashSet<>();
     }
 
-    public User(Integer userId, String username, String email, String password, String firstName, String lastName, String dateCreated, String profilePicture) {
+    public User(Integer userId, String username, String email, String password, String firstName, String lastName, String profilePicture, String dateCreated, Set<UserFollows> followers, Set<UserFollows> following, List<UserPosts> posts, Set<UserGroups> groupsJoined, Set<UserGroups> groupsOwned, Set<UserEvents> eventsJoined, Set<UserEvents> eventsOwned, Set<UserConversations> conversations) {
         this.userId = userId;
         this.username = username;
         this.email = email;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.dateCreated = dateCreated;
         this.profilePicture = profilePicture;
-
-        this.followers = new HashSet<>();
-        this.following = new HashSet<>();
-        this.posts = new ArrayList<>();
-
-        this.groupsJoined = new HashSet<>();
-        this.groupsOwned = new HashSet<>();
-
-        this.eventsJoined = new HashSet<>();
-        this.eventsOwned = new HashSet<>();
+        this.dateCreated = dateCreated;
+        this.followers = followers;
+        this.following = following;
+        this.posts = posts;
+        this.groupsJoined = groupsJoined;
+        this.groupsOwned = groupsOwned;
+        this.eventsJoined = eventsJoined;
+        this.eventsOwned = eventsOwned;
+        this.conversations = conversations;
     }
 
     public Integer getUserId() {
@@ -211,7 +214,7 @@ public class User implements Serializable {
     }
 
     public void removePost(UserPosts post) {
-        this.posts.add(post);
+        this.posts.remove(post);
     }
 
     public void joinGroup(UserGroups group) {
@@ -254,17 +257,20 @@ public class User implements Serializable {
         this.profilePicture = profilePicture;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(userId, user.userId) && Objects.equals(username, user.username) && Objects.equals(email, user.email) && Objects.equals(password, user.password) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(dateCreated, user.dateCreated);
+    public void addConversation(UserConversations conversation) {
+        this.conversations.add(conversation);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(userId, username, email, password, firstName, lastName, dateCreated);
+    public void removeConversation(UserConversations conversation) {
+        this.conversations.remove(conversation);
+    }
+
+    public Set<UserConversations> getConversations() {
+        return conversations;
+    }
+
+    public void setConversations(Set<UserConversations> conversations) {
+        this.conversations = conversations;
     }
 
     @Override
@@ -276,6 +282,7 @@ public class User implements Serializable {
                 ", password='" + password + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
+                ", profilePicture='" + profilePicture + '\'' +
                 ", dateCreated='" + dateCreated + '\'' +
                 '}';
     }

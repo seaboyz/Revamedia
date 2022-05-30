@@ -3,7 +3,7 @@ $Blue: #57BEE6;
 $grey: rgb(192,192,190);
 $lightgrey: rgb(230,229,222);
 $darkgrey: rgb(61,66,74);
-.settings-page{
+.add-post-page{
   padding: 2rem 1rem;
   margin-left: 6%;
   min-height: 100vh;
@@ -26,8 +26,9 @@ $darkgrey: rgb(61,66,74);
     padding-bottom: .5rem;
   }
 }
+
 @media screen and (max-width: 800px) {
-  .settings-page{
+  .add-post-page{
     margin-left: 10%;
   }
 }

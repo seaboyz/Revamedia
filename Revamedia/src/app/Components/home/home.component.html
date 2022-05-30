@@ -1,10 +1,13 @@
 <div class="home-page">
   <!-- Page title Start -->
   <div class="page-title">
-    <h3>Revamedia</h3>
-    <div class="page-subTitle">
-      <span>Main Feed</span>
+    <div class="card">
+      <h3>Revamedia</h3>
+      <div class="page-subTitle">
+        <span>Main Feed</span>
+      </div>
     </div>
+    <a routerLink="/post" routerLinkActive="active">Add Post</a>
   </div>
   <!-- Page title End -->
 
@@ -73,6 +76,7 @@
             </div>
             <div class="comment-content">
               <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestiae quae iusto at optio corrupti voluptatem nihil aliquam explicabo assumenda aliquid eius labore fugiat quam commodi fugit, doloremque ad quos nisi.</p>
+              <img src="https://cdn.discordapp.com/attachments/959893537355350073/969003426094661692/76289-1650787315-1611918496.png" alt="Comment">
             </div>
             <div class="reply-card">
               <button (click)="openAddReply()">Reply</button>
@@ -105,6 +109,7 @@
               </div>
               <div class="reply-content">
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, fuga, eaque eos alias laboriosam quis sapiente, illum provident accusantium odio minima aspernatur nihil deleniti? Dicta odit tempore aspernatur cum quis!</p>
+                <img src="https://media3.giphy.com/media/3EuAsjZDUJefK/giphy.gif?cid=ecf05e47baab3e1b6e1451e393cae03f17f5fd0f114af892&rid=giphy.gif&ct=g" alt="reply">
               </div>
             </div>
             <!-- Replies End -->
@@ -118,3 +123,22 @@
   <!-- main feed end -->
 
 </div>
+
+
+<!-- MODALS or Pop-ups Start -->
+<!-- <div class="modal">
+  <div class="user-profile-modal">
+    <ul>
+      <li>Profile</li>
+      <li>Send Message</li>
+    </ul>
+  </div>
+</div> -->
+
+<div class="modal">
+  <div class="post-modal">
+    <ul>Edit Post</ul>
+    <ul>Delete Post</ul>
+  </div>
+</div>
+<!-- MODALS or Pop-ups End -->

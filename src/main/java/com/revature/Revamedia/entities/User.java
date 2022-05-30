@@ -25,21 +25,21 @@ public class User implements Serializable {
     @Column(name = "date_created")
     private String dateCreated;
 
-    @OneToMany(mappedBy = "followedId")
+    @OneToMany(mappedBy = "followedId", cascade = CascadeType.ALL)
     private Set<UserFollows> followers;
-    @OneToMany(mappedBy = "followerId")
+    @OneToMany(mappedBy = "followerId", cascade = CascadeType.ALL)
     private Set<UserFollows> following;
-    @OneToMany(mappedBy = "postId")
+    @OneToMany(mappedBy = "postId", cascade = CascadeType.ALL)
     private List<UserPosts> posts;
 
-    @OneToMany(mappedBy = "groupId")
+    @OneToMany(mappedBy = "groupId", cascade = CascadeType.ALL)
     private Set<UserGroups> groupsJoined;
-    @OneToMany(mappedBy = "ownerId")
+    @OneToMany(mappedBy = "ownerId", cascade = CascadeType.ALL)
     private Set<UserGroups> groupsOwned;
 
-    @OneToMany(mappedBy = "eventId")
+    @OneToMany(mappedBy = "eventId", cascade = CascadeType.ALL)
     private Set<UserEvents> eventsJoined;
-    @OneToMany(mappedBy = "ownerId")
+    @OneToMany(mappedBy = "ownerId", cascade = CascadeType.ALL)
     private Set<UserEvents> eventsOwned;
 
 
@@ -139,6 +139,14 @@ public class User implements Serializable {
 
     public void removeFollower(UserFollows follower) {
         this.followers.remove(follower);
+    }
+
+    public void follow(UserFollows followee) {
+        this.following.add(followee);
+    }
+
+    public void unFollow(UserFollows followee) {
+        this.following.remove(followee);
     }
 
     public void addPost(UserPosts post) {

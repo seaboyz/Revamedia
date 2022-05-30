@@ -3,7 +3,7 @@
   <div class="page-title">
     <h3>Revamedia</h3>
     <div class="page-subTitle">
-      <span>Home</span>
+      <span>Main Feed</span>
     </div>
   </div>
   <!-- Page title End -->
@@ -33,7 +33,7 @@
                   <span>100 likes</span>
                 </div>
                 <div class="comment">
-                  <fa-icon id="icon" title="Comment" [icon]="faComment" size="lg"></fa-icon>
+                  <fa-icon id="icon" (click)="openAddComment()" title="Comment" [icon]="faComment" size="lg"></fa-icon>
                 </div>
               </div>
               <div class="bookmark">
@@ -43,11 +43,29 @@
           </div>
         </div>
 
-        <span>Hide Comments</span>
+        <div class="add-comment" *ngIf="addComment">
+          <div class="add-comment-header">
+            <h5>Add Comment</h5>
+            <button title="Close" (click)="closeAddComment()">X</button>
+          </div>
+          <form enctype="multipart/form-data" id="add-comment-form">
+            <textarea name="comment" id="comment" rows="5"></textarea>
+            <div class="file-input">
+              <input type="file" id="file" class="file" (change)="fileName($event)">
+              <label for="file">
+                Add Image
+              </label>
+              <p class="file-name" id="file-name"></p>
+            </div>
+            <button>Comment</button>
+          </form>
+        </div>
 
-        <div class="post-comments-section">
+        <span (click)=" toggleHideComments()" id="viewComments">{{hideComments ? 'Hide Comments' : 'View Comments' }}</span>
 
-          <!-- comment start -->
+        <div class="post-comments-section" *ngIf="hideComments">
+          <!-- comments start -->
+          <h5>Comments</h5>
           <div class="comment">
             <div class="comment-author">
               <img src="https://avatars.githubusercontent.com/u/77355023?v=4" alt="User">

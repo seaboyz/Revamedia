@@ -21,4 +21,25 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
+  // hide Comments
+  hideComments = true;
+  public toggleHideComments() : void {
+    this.hideComments = !this.hideComments;
+  }
+
+  // Add comment
+  addComment = false;
+  public openAddComment() {
+    this.addComment = true;
+  }
+  public closeAddComment(): void {
+    this.addComment = false;
+  }
+
+  public fileName(event: any): void {
+    var fileName = event.target.files[0];
+    const file = document.getElementById('file-name');
+    file!.textContent = fileName.name;
+  }
 }

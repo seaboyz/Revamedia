@@ -11,7 +11,8 @@ import java.util.Date;
 public class UserFollows implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @Column(name = "follow_id")
+    private Integer followId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "followed_id", referencedColumnName = "user_id")
@@ -32,7 +33,7 @@ public class UserFollows implements Serializable {
     }
 
     public UserFollows(Integer id, User followedId, User followerId, String bookmarked, Date dateFollowed) {
-        this.id = id;
+        this.followId = id;
         this.followedId = followedId;
         this.followerId = followerId;
         this.bookmarked = bookmarked;
@@ -40,11 +41,11 @@ public class UserFollows implements Serializable {
     }
 
     public Integer getId() {
-        return id;
+        return followId;
     }
 
     public void setId(Integer id) {
-        this.id = id;
+        this.followId = id;
     }
 
     public User getFollowedId() {
@@ -82,7 +83,7 @@ public class UserFollows implements Serializable {
     @Override
     public String toString() {
         return "UserFollows{" +
-                "id=" + id +
+                "id=" + followId +
                 ", followedId=" + followedId +
                 ", followerId=" + followerId +
                 ", bookmarked='" + bookmarked + '\'' +

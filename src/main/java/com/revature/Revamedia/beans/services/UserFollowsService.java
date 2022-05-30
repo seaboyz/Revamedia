@@ -16,19 +16,19 @@ public class UserFollowsService {
         this.userFollowsRepository = userFollowsRepository;
     }
 
-    public UserFollows getUserById(Integer id) {
+    public UserFollows getFollowById(Integer id) {
         return userFollowsRepository.getById(id);
     }
 
-    public UserFollows save(UserFollows user) {
-        return userFollowsRepository.save(user);
+    public UserFollows save(UserFollows follow) {
+        return userFollowsRepository.save(follow);
     }
 
-    public UserFollows update(UserFollows user) {
-        return userFollowsRepository.save(user);
+    public UserFollows update(UserFollows follow) {
+        return userFollowsRepository.save(follow);
     }
 
-    public List<UserFollows> getAllUsers() {
+    public List<UserFollows> getAllFollows() {
         return userFollowsRepository.findAll();
     }
 

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 // Icons
 import { faHome, faEnvelope, faUserGear, faCalendarDays, faUsers, faDoorOpen } from '@fortawesome/free-solid-svg-icons';
-import { Observable } from 'rxjs/internal/Observable';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 @Component({
   selector: 'app-navbar',

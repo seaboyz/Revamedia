@@ -8,6 +8,69 @@
   </div>
   <!-- Page title End -->
 
-  <!-- stories start -->
-  <!-- stories end -->
+  <!-- main feed start -->
+  <div class="main">
+
+      <!-- post start -->
+      <div class="post-data">
+        <div class="post">
+          <div class="post-title">
+            <div routerLink="/profile" routerLinkActive="active" class="post-author">
+              <img src="https://avatars.githubusercontent.com/u/77355023?v=4" alt="User">
+              <a routerLink="/profile" routerLinkActive="active">leobarrientos02</a>
+            </div>
+            <fa-icon id="icon" [icon]="faEllipsis" size="lg"></fa-icon>
+          </div>
+          <div class="post-body">
+            <img src="https://avatars.githubusercontent.com/u/77355023?v=4" alt="User">
+            <div class="post-description">
+              <a routerLink="/profile" routerLinkActive="active">leobarrientos02</a>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, dolore animi consequuntur laudantium, atque at ex voluptas perspiciatis ut quod quasi officiis. Eum, delectus. Porro laboriosam nihil dolor corporis minima?</p>
+            </div>
+            <div class="post-options">
+              <div class="container">
+                <div class="likes">
+                  <fa-icon id="icon" title="Like" [icon]="faHeart" size="lg"></fa-icon>
+                  <span>100 likes</span>
+                </div>
+                <div class="comment">
+                  <fa-icon id="icon" title="Comment" [icon]="faComment" size="lg"></fa-icon>
+                </div>
+                <div class="share">
+                  <fa-icon id="icon" title="Share" [icon]="faShareFromSquare" size="lg"></fa-icon>
+                </div>
+              </div>
+              <div class="bookmark">
+                <fa-icon id="icon" title="Bookmark" [icon]="faBookmark" size="lg"></fa-icon>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="post-comments-section">
+          <div class="comment">
+            <div class="comment-author">
+              <img src="https://avatars.githubusercontent.com/u/77355023?v=4" alt="User">
+              <a routerLink="/profile" routerLinkActive="active" >leobarrientos02</a>
+            </div>
+            <div class="comment-content">
+              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestiae quae iusto at optio corrupti voluptatem nihil aliquam explicabo assumenda aliquid eius labore fugiat quam commodi fugit, doloremque ad quos nisi.</p>
+            </div>
+            <div class="reply">
+              <div class="reply-author">
+                <img src="https://avatars.githubusercontent.com/u/77355023?v=4" alt="User">
+                <a routerLink="/profile" routerLinkActive="active" title="View Profile" >leobarrientos02</a>
+              </div>
+              <div class="reply-content">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, fuga, eaque eos alias laboriosam quis sapiente, illum provident accusantium odio minima aspernatur nihil deleniti? Dicta odit tempore aspernatur cum quis!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- post end -->
+
+  </div>
+  <!-- main feed end -->
+
 </div>

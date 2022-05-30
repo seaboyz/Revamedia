@@ -20,10 +20,11 @@ public class UserGroups {
     @Column
     private String title;
 
-    @OneToMany(mappedBy = "userId")
+    @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL)
     private Set<User> usersJoined;
 
-    @OneToMany(mappedBy = "groupId")
+
+    @OneToMany(mappedBy = "groupId", cascade = CascadeType.ALL)
     private Set<UserPosts> posts;
 
     @Column(name = "date_created")

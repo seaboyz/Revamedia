@@ -23,7 +23,6 @@ public class UserComments implements Serializable {
 
 
     @OneToMany(mappedBy = "commentId", cascade = CascadeType.ALL)
-    @Column(name = "comment_replies")
     private List<UserReplies> replies;
 
     @Column(name ="message", length=500)
@@ -108,7 +107,6 @@ public class UserComments implements Serializable {
         return "UserComments{" +
                 "commentId=" + commentId +
                 ", ownerId=" + ownerId +
-                ", postId=" + postId +
                 ", replies=" + replies +
                 ", message='" + message + '\'' +
                 ", dateCreated='" + dateCreated + '\'' +

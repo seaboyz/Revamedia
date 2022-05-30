@@ -3,10 +3,9 @@ $Blue: #57BEE6;
 $grey: rgb(192,192,190);
 $lightgrey: rgb(230,229,222);
 $darkgrey: rgb(61,66,74);
-.home-page{
+.profile-page{
   padding: 2rem 1rem;
   margin-left: 6%;
-  // page title start
   .page-title{
     width: 100%;
     h3{
@@ -19,12 +18,9 @@ $darkgrey: rgb(61,66,74);
     border-bottom: .7px solid $lightgrey;
     padding-bottom: .5rem;
   }
-  // page title end
 }
-
-// media queries
 @media screen and (max-width: 800px) {
-  .home-page{
+  .profile-page{
     margin-left: 10%;
   }
 }

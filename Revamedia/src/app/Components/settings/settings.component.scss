@@ -1,3 +1,8 @@
+$Orange: #FEAE49;
+$Blue: #57BEE6;
+$grey: rgb(192,192,190);
+$lightgrey: rgb(230,229,222);
+$darkgrey: rgb(61,66,74);
 .settings-page{
   padding: 2rem 1rem;
   margin-left: 6%;
@@ -10,6 +15,8 @@
     span{
       font-size: .9rem;
     }
+    border-bottom: .7px solid $lightgrey;
+    padding-bottom: .5rem;
   }
 }
 @media screen and (max-width: 800px) {

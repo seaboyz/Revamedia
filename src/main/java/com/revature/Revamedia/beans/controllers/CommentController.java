@@ -50,7 +50,7 @@ public class CommentController {
             return new HttpResponseDto(400, "Failed to save comment", comment);
         } else {
             res.setStatus(200);
-            return new HttpResponseDto(200, "Successfully saved comment" + comment.getMessage(), comment);
+            return new HttpResponseDto(200, "Successfully saved comment" + comment.getMessage(), newComment);
         }
     }
 

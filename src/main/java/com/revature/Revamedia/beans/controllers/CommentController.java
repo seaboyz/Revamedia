@@ -43,7 +43,14 @@ public class CommentController {
     @ResponseStatus(HttpStatus.OK)
     public HttpResponseDto saveComment(@RequestBody UserComments comment, HttpServletResponse res){
         UserComments newComment = userCommentsService.save(comment);
-        return new HttpResponseDto(200, "Successfully saved comment " + comment.getMessage(), comment);
+
+        if(comment.getMessage() != comment.getMessage()) {
+            res.setStatus(400);
+            return new HttpResponseDto(400, "Failed to save comment", comment);
+        } else {
+            res.setStatus(200);
+            return new HttpResponseDto(200, "Successfully saved comment" + comment.getMessage(), comment);
+        }
     }
 
 

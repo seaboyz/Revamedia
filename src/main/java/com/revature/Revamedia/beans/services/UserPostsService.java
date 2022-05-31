@@ -32,4 +32,5 @@ public class UserPostsService {
     public List<UserPosts> getAllPosts() {
         return userPostsRepository.findAll();
     }
+
 }

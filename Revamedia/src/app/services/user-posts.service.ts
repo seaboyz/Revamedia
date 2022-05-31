@@ -1,0 +1,32 @@
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class UserPostsService {
+  userPostURL: string = "http://localhost:8080/posts"
+
+  //array of posts
+  //behavior value of inital value of array of posts
+
+  //update post function sends put requests and updates 
+
+
+
+  updatePostLikes(updatePostLikesDto: UpdatePostLikesDto) : Observable<any> {
+
+    //after 
+    return this.http.put<any>(`${this.userPostURL}/likes`, updatePostLikesDto, {observe : `response`})
+  }
+
+
+  constructor(private http:HttpClient) { }
+}
+
+interface UpdatePostLikesDto {
+  userId: number,
+  postId: number,
+  likes: number
+}

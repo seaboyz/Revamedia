@@ -1,10 +1,15 @@
+/**
+ *  Author(s): @Brandon Le, @Tony Henderson
+ *  Contributor(s):
+ *  Purpose:
+ */
 package com.revature.Revamedia.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "user_replies", schema = "public")
+@Table(name = "user_replies", schema = _SchemaName.schemaName)
 public class UserReplies implements Serializable {
 
     @Id

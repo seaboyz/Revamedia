@@ -1,3 +1,8 @@
+/**
+ *  Author(s): @Brandon Le, @Tony Henderson
+ *  Contributor(s):
+ *  Purpose:
+ */
 package com.revature.Revamedia.entities;
 
 import javax.persistence.*;
@@ -5,7 +10,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name = "user_messages", schema = "public")
+@Table(name = "user_messages", schema = _SchemaName.schemaName)
 public class UserMessages implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

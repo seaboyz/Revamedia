@@ -1,3 +1,8 @@
+/**
+ *  Author(s): @Brandon Le, @Tony Henderson
+ *  Contributor(s):
+ *  Purpose:
+ */
 package com.revature.Revamedia.entities;
 
 import javax.persistence.*;
@@ -6,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "user_posts", schema = "public")
+@Table(name = "user_posts", schema = _SchemaName.schemaName)
 public class UserPosts implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

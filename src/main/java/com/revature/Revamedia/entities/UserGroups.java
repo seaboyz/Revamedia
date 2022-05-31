@@ -1,3 +1,8 @@
+/**
+ *  Author(s): @Brandon Le, @Tony Henderson
+ *  Contributor(s):
+ *  Purpose:
+ */
 package com.revature.Revamedia.entities;
 
 import javax.persistence.*;
@@ -5,7 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "user_groups", schema = "public")
+@Table(name = "user_groups", schema = _SchemaName.schemaName)
 public class UserGroups {
 
     @Id

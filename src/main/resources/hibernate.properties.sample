@@ -1,9 +1,0 @@
-hibernate.dialect=
-hibernate.connection.driver_class=
-hibernate.connection.url=
-hibernate.connection.username=
-hibernate.connection.password=
-hibernate.show_sql=
-hibernate.hbm2ddl.auto=
-#hibernate.connection.autocommit=true
-#hibernate.allow_update_outside_transaction=false

@@ -1,3 +1,9 @@
+/**
+ *  Author(s): @Brandon Le, @Tony Henderson
+ *  Contributor(s):
+ *  Purpose:
+ */
+
 package com.revature.Revamedia.entities;
 
 import org.springframework.data.annotation.CreatedDate;
@@ -7,7 +13,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Table(name = "user_follows", schema = "public")
+@Table(name = "user_follows", schema = _SchemaName.schemaName)
 public class UserFollows implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,3 +1,10 @@
+/**
+ *  Author(s): @Brandon Le, @Tony Henderson
+ *  Contributor(s):
+ *  Purpose:
+ */
+
+
 package com.revature.Revamedia.entities;
 
 import javax.persistence.*;
@@ -5,7 +12,7 @@ import java.io.Serializable;
 import java.util.*;
 
 @Entity
-@Table(name = "users", schema = "public")
+@Table(name = "users", schema = _SchemaName.schemaName)
 public class User implements Serializable {
 
     @Id

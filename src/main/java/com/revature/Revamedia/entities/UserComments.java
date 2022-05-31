@@ -1,12 +1,16 @@
 package com.revature.Revamedia.entities;
-
+/**
+ *  Author(s): @Brandon Le, @Tony Henderson
+ *  Contributor(s):
+ *  Purpose:
+ */
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="user_comments", schema = "public")
+@Table(name="user_comments", schema = _SchemaName.schemaName)
 public class UserComments implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

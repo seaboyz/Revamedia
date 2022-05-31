@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserPostsRepository extends JpaRepository<UserPosts, Integer> {
+    //need an update
+
 }

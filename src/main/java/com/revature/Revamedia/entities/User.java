@@ -34,6 +34,14 @@ public class User implements Serializable {
     @Column(name = "date_created")
     private String dateCreated;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "liked_posts",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "post_id")
+    )
+    private List<UserPosts> likedPosts;
+
     @OneToMany(mappedBy = "followedId", cascade = CascadeType.ALL)
     private Set<UserFollows> followers;
     @OneToMany(mappedBy = "followerId", cascade = CascadeType.ALL)
@@ -67,9 +75,11 @@ public class User implements Serializable {
         this.eventsOwned = new HashSet<>();
 
         this.conversations = new HashSet<>();
+
+        this.likedPosts = new ArrayList<>();
     }
 
-    public User(Integer userId, String username, String email, String password, String firstName, String lastName, String profilePicture, String dateCreated, Set<UserFollows> followers, Set<UserFollows> following, List<UserPosts> posts, Set<UserGroups> groupsJoined, Set<UserGroups> groupsOwned, Set<UserEvents> eventsJoined, Set<UserEvents> eventsOwned, Set<UserConversations> conversations) {
+    public User(Integer userId, String username, String email, String password, String firstName, String lastName, String profilePicture, String dateCreated, List<UserPosts> likedPosts, Set<UserFollows> followers, Set<UserFollows> following, List<UserPosts> posts, Set<UserGroups> groupsJoined, Set<UserGroups> groupsOwned, Set<UserEvents> eventsJoined, Set<UserEvents> eventsOwned, Set<UserConversations> conversations) {
         this.userId = userId;
         this.username = username;
         this.email = email;
@@ -78,6 +88,7 @@ public class User implements Serializable {
         this.lastName = lastName;
         this.profilePicture = profilePicture;
         this.dateCreated = dateCreated;
+        this.likedPosts = likedPosts;
         this.followers = followers;
         this.following = following;
         this.posts = posts;
@@ -278,6 +289,14 @@ public class User implements Serializable {
 
     public void setConversations(Set<UserConversations> conversations) {
         this.conversations = conversations;
+    }
+
+    public void addLikedPost(UserPosts post) {
+        this.likedPosts.add(post);
+    }
+
+    public void removeLikedPost(UserPosts post) {
+        this.likedPosts.remove(post);
     }
 
     @Override

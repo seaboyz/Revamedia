@@ -8,7 +8,9 @@ package com.revature.Revamedia.entities;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "user_posts", schema = _SchemaName.schemaName)
@@ -40,8 +42,11 @@ public class UserPosts implements Serializable {
     @Column(name ="image")
     private String image;
 
-    @Column(name ="likes")
-    private Integer likes;
+    @ManyToMany(mappedBy = "likedPosts", cascade = CascadeType.ALL)
+    private Set<User> likes;
+
+/*    @Column(name ="likes")
+    private Integer likes;*/
 
     @Column(name ="post_lifetime", nullable = true)
     private String postLifetime;
@@ -51,19 +56,20 @@ public class UserPosts implements Serializable {
 
     public UserPosts() {
         this.comments = new ArrayList<>();
+        this.likes = new HashSet<>();
     }
 
-    public UserPosts(Integer postId, User ownerId, List<UserComments> comments, String message, String youtubeLink, String image, int likes, String postLifetime, String dateCreated, UserGroups groupId) {
+    public UserPosts(Integer postId, User ownerId, List<UserComments> comments, UserGroups groupId, String message, String youtubeLink, String image, Set<User> likes, String postLifetime, String dateCreated) {
         this.postId = postId;
         this.ownerId = ownerId;
         this.comments = comments;
+        this.groupId = groupId;
         this.message = message;
         this.youtubeLink = youtubeLink;
         this.image = image;
         this.likes = likes;
         this.postLifetime = postLifetime;
         this.dateCreated = dateCreated;
-        this.groupId = groupId;
     }
 
     public Integer getPostId() {
@@ -106,11 +112,11 @@ public class UserPosts implements Serializable {
         this.image = image;
     }
 
-    public int getLikes() {
+    public Set<User> getLikes() {
         return likes;
     }
 
-    public void setLikes(int likes) {
+    public void setLikes(Set<User> likes) {
         this.likes = likes;
     }
 
@@ -152,6 +158,14 @@ public class UserPosts implements Serializable {
 
     public void setGroupId(UserGroups groupId) {
         this.groupId = groupId;
+    }
+
+    public void addLikes (User user) {
+        likes.add(user);
+    }
+
+    public void removeLikes (User user) {
+        likes.remove(user);
     }
 
     @Override

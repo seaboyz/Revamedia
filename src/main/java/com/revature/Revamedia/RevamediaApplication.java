@@ -14,7 +14,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import java.util.ArrayList;
 import java.util.List;
 
-@SpringBootApplication(scanBasePackages = "com.revature.Revamedia.beans")
+@SpringBootApplication(scanBasePackages = "com.revature.Revamedia")
 public class RevamediaApplication {
     public static void main(String[] args) {
 
@@ -29,6 +29,7 @@ public class RevamediaApplication {
         UserGroupsService userGroupsService = context.getBean(UserGroupsService.class);
         UserConversationsService userConversationsService = context.getBean(UserConversationsService.class);
         UserMessagesService userMessagesService = context.getBean(UserMessagesService.class);
+
 
 
 

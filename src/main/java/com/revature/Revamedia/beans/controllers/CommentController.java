@@ -34,10 +34,10 @@ public class CommentController {
 
         if(comment.getMessage() != comment.getMessage()) {
             res.setStatus(400);
-            return new HttpResponseDto(400, "Failed to update category", comment);
+            return new HttpResponseDto(400, "Failed to update comment", comment);
         } else {
             res.setStatus(200);
-            return new HttpResponseDto(200, "Successfully updated category" + comment.getMessage(), comment);
+            return new HttpResponseDto(200, "Successfully updated comment" + comment.getMessage(), comment);
         }
     }
 

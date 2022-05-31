@@ -58,8 +58,9 @@
             <h5>Add Comment</h5>
             <button title="Close" (click)="closeAddComment()">X</button>
           </div>
-          <form enctype="multipart/form-data" id="add-comment-form">
-            <textarea name="comment" id="comment" rows="5"></textarea>
+          <form #addCommentForm="ngForm" (ngSubmit)="onAddComment(addCommentForm)" ngNativeValidate enctype="multipart/form-data" id="add-comment-form">
+            <input type="hidden" name="dateCreated" ngModel="{{currentDate}}">
+            <textarea ngModel name="message" id="comment" rows="5"></textarea>
             <div class="file-input">
               <input type="file" id="file" class="file" (change)="fileName($event)">
               <label for="file">

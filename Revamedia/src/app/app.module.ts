@@ -18,6 +18,7 @@ import { ProfileComponent } from './Components/profile/profile.component';
 import { AddPostComponent } from './Components/add-post/add-post.component';
 import { CommentService } from './services/comment.service';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     BrowserAnimationsModule,
     FontAwesomeModule,
+    FormsModule,
     HttpClientModule,
   ],
   providers: [CommentService],

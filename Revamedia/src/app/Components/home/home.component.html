@@ -1,0 +1,132 @@
+<div class="home-page">
+  <!-- Page title Start -->
+  <div class="page-title">
+    <div class="card">
+      <h3>Revamedia</h3>
+      <div class="page-subTitle">
+        <span>Main Feed</span>
+      </div>
+    </div>
+    <a routerLink="/post" routerLinkActive="active">Add Post</a>
+  </div>
+  <!-- Page title End -->
+
+  <!-- main feed start -->
+  <div class="main">
+
+      <!-- post start -->
+      <div class="post-data">
+
+        <div class="post">
+          <div class="post-title">
+            <div class="post-author">
+              <img routerLink="/profile" routerLinkActive="active" src="https://avatars.githubusercontent.com/u/77355023?v=4" alt="User">
+              <a routerLink="/profile" routerLinkActive="active">leobarrientos02</a>
+            </div>
+            <div class="post-options">
+              <fa-icon (click)="togglePostsOptions()" id="icon" [icon]="faEllipsis"></fa-icon>
+              <ul *ngIf="postsOptionsClicked" >
+                <li>Edit Post</li>
+                <li>Delete Post</li>
+              </ul>
+            </div>
+          </div>
+          <div class="post-body">
+            <img src="https://images.theconversation.com/files/453091/original/file-20220318-23-2ehppm.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=900.0&fit=crop" alt="User">
+            <div class="post-description">
+              <p><a routerLink="/profile" routerLinkActive="active">leobarrientos02</a>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, dolore animi consequuntur laudantium, atque at ex voluptas perspiciatis ut quod quasi officiis. Eum, delectus. Porro laboriosam nihil dolor corporis minima?</p>
+            </div>
+            <div class="post-options">
+              <div class="container">
+                <div class="likes">
+                  <fa-icon id="icon" title="Like" [icon]="faHeart" size="lg"></fa-icon>
+                  <span>100 likes</span>
+                </div>
+                <div class="comment">
+                  <fa-icon id="icon" (click)="openAddComment()" title="Comment" [icon]="faComment" size="lg"></fa-icon>
+                </div>
+              </div>
+              <div class="bookmark">
+                <fa-icon id="icon" title="Bookmark" [icon]="faBookmark" size="lg"></fa-icon>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="add-comment" *ngIf="addComment">
+          <div class="add-comment-header">
+            <h5>Add Comment</h5>
+            <button title="Close" (click)="closeAddComment()">X</button>
+          </div>
+          <form enctype="multipart/form-data" id="add-comment-form">
+            <textarea name="comment" id="comment" rows="5"></textarea>
+            <div class="file-input">
+              <input type="file" id="file" class="file" (change)="fileName($event)">
+              <label for="file">
+                Add Image
+              </label>
+              <p class="file-name" id="file-name"></p>
+            </div>
+            <button>Comment</button>
+          </form>
+        </div>
+
+        <span (click)=" toggleHideComments()" id="viewComments">{{hideComments ? 'Hide Comments' : 'View Comments' }}</span>
+
+        <div class="post-comments-section" *ngIf="hideComments">
+          <!-- comments start -->
+          <h5>Comments</h5>
+          <div class="comment">
+            <div class="comment-author">
+              <img routerLink="/profile" routerLinkActive="active" src="https://avatars.githubusercontent.com/u/77355023?v=4" alt="User">
+              <a routerLink="/profile" routerLinkActive="active" title="View Profile" >leobarrientos02</a>
+            </div>
+            <div class="comment-content">
+              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestiae quae iusto at optio corrupti voluptatem nihil aliquam explicabo assumenda aliquid eius labore fugiat quam commodi fugit, doloremque ad quos nisi.</p>
+              <img src="https://cdn.discordapp.com/attachments/959893537355350073/969003426094661692/76289-1650787315-1611918496.png" alt="Comment">
+            </div>
+            <div class="reply-card">
+              <button (click)="openAddReply()">Reply</button>
+            </div>
+            <!-- comment end -->
+
+            <div class="add-reply" *ngIf="addReply">
+              <div class="add-reply-header">
+                <h5>Add Reply</h5>
+                <button title="Close" (click)="closeAddReply()">X</button>
+              </div>
+              <form enctype="multipart/form-data" id="add-comment-form">
+                <textarea name="comment" id="comment" rows="5"></textarea>
+                <div class="file-input">
+                  <input type="file" id="file" class="file" (change)="fileName($event)">
+                  <label for="file">
+                    Add Image
+                  </label>
+                  <p class="file-name" id="file-name"></p>
+                </div>
+                <button>Reply</button>
+              </form>
+            </div>
+
+            <!-- Replies Start -->
+            <div class="reply">
+              <div class="reply-author">
+                <img routerLink="/profile" routerLinkActive="active" src="https://avatars.githubusercontent.com/u/77355023?v=4" alt="User">
+                <a routerLink="/profile" routerLinkActive="active" title="View Profile" >leobarrientos02</a>
+              </div>
+              <div class="reply-content">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, fuga, eaque eos alias laboriosam quis sapiente, illum provident accusantium odio minima aspernatur nihil deleniti? Dicta odit tempore aspernatur cum quis!</p>
+                <img src="https://media3.giphy.com/media/3EuAsjZDUJefK/giphy.gif?cid=ecf05e47baab3e1b6e1451e393cae03f17f5fd0f114af892&rid=giphy.gif&ct=g" alt="reply">
+              </div>
+            </div>
+            <!-- Replies End -->
+
+          </div>
+        </div>
+      </div>
+      <!-- post end -->
+
+  </div>
+  <!-- main feed end -->
+
+</div>

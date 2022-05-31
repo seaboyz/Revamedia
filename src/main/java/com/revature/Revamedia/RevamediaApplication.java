@@ -1,3 +1,8 @@
+/**
+ *  Author(s): @Everyone
+ *  Contributor(s):
+ *  Purpose: Main Driver for Revamedia Application. Starts up spring boot application.
+ */
 package com.revature.Revamedia;
 
 import com.revature.Revamedia.beans.services.*;
@@ -172,8 +177,10 @@ public class RevamediaApplication {
 //
 //        user1.addConversation(conversations1);
 
-
-
-
+        //UserClass: class names are pascal case
+        //userClass: variable names camel case
+        //user_id : database
+        //all caps and underscore for constant variables
     }
 }
+

@@ -1,3 +1,8 @@
+/**
+ *  Author(s): @Brandon Le, @Tony Henderson
+ *  Contributor(s):
+ *  Purpose:
+ */
 package com.revature.Revamedia.entities;
 
 
@@ -7,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "user_conversations", schema = "public")
+@Table(name = "user_conversations", schema = _SchemaName.schemaName)
 public class UserConversations implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

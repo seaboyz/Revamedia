@@ -1,6 +1,8 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 //icons
 import { faHeart, faEllipsis, faBookmark, faComment, faShareFromSquare } from '@fortawesome/free-solid-svg-icons';
+import { CommentService } from '../../services/comment.service';
 
 @Component({
   selector: 'app-home',
@@ -9,9 +11,26 @@ import { faHeart, faEllipsis, faBookmark, faComment, faShareFromSquare } from '@
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(public CommentService: CommentService) { }
 
   ngOnInit(): void {
+    this.getCommentById(2);
+  }
+
+
+  public comment: any = {};
+
+  // Back End Work
+  public getCommentById(id: number){
+    this.CommentService.getCommentById(id).subscribe(
+      (response: any) => {
+        this.comment = response.data;
+        console.log(this.comment);
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error.message)
+      }
+    )
   }
 
   // Front End Work

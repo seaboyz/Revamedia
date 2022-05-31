@@ -16,6 +16,8 @@ import { RegisterComponent } from './Components/register/register.component';
 import { ErrorPageComponent } from './Components/error-page/error-page.component';
 import { ProfileComponent } from './Components/profile/profile.component';
 import { AddPostComponent } from './Components/add-post/add-post.component';
+import { CommentService } from './services/comment.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -37,8 +39,9 @@ import { AddPostComponent } from './Components/add-post/add-post.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     FontAwesomeModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [CommentService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

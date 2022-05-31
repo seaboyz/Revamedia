@@ -41,7 +41,7 @@ public class CommentController {
         }
     }
 
-    /*
+
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
     public HttpResponseDto getById(HttpServletResponse res) {
@@ -49,7 +49,7 @@ public class CommentController {
         res.setStatus(200);
         return new HttpResponseDto(200, "Successfully retrieved all comments.", comments);
     }
-*/
+
 
 
     @PostMapping("/add")

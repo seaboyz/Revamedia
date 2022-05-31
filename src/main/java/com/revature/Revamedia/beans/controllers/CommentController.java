@@ -4,6 +4,7 @@ import com.revature.Revamedia.beans.services.UserCommentsService;
 import com.revature.Revamedia.dtos.HttpResponseDto;
 import com.revature.Revamedia.entities.UserComments;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +18,13 @@ public class CommentController {
 
     public CommentController(UserCommentsService userCommentsService) {
         this.userCommentsService = userCommentsService;
+    }
+
+    @PostMapping("/add")
+    @ResponseStatus(HttpStatus.OK)
+    public HttpResponseDto saveComment(@RequestBody UserComments comment, HttpServletResponse res){
+        UserComments newComment = userCommentsService.save(comment);
+        return new HttpResponseDto(200, "Successfully saved comment " + comment.getMessage(), comment);
     }
 
     @PutMapping("/update")

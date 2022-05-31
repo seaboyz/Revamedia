@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 // Icons
-import { faFaceRollingEyes } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-register',
@@ -15,7 +15,8 @@ export class RegisterComponent implements OnInit {
   }
 
   // Front End Work
-  public faFaceRollingEyes = faFaceRollingEyes;   // icons
+  public faEye = faEye; // icons
+  public faEyeSlash = faEyeSlash; // icons
 
   // Show Password
   public showPassword = false;

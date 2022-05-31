@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 // Icons
-import { faFaceRollingEyes } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +19,8 @@ export class LoginComponent implements OnInit {
   }
 
   // Front End Work
-  public faFaceRollingEyes = faFaceRollingEyes; //icon
+  public faEye = faEye; //icon
+  public faEyeSlash = faEyeSlash; // icons
 
   // Show Password
   public showPassword = false;

@@ -31,7 +31,8 @@
           <label for="password">Password</label>
           <input type="password" name="password" id="password" placeholder="Password..." required>
           <span (click)="toggleShowPassword()">
-            <fa-icon [icon]="faFaceRollingEyes"></fa-icon>
+            <fa-icon *ngIf="showPassword === false" [icon]="faEye"></fa-icon>
+            <fa-icon *ngIf="showPassword === true" [icon]="faEyeSlash"></fa-icon>
             {{showPassword ? 'Hide Password' : 'Show Password' }}
           </span>
         </div>
@@ -39,7 +40,8 @@
           <label for="confirm_password">Confirm Password</label>
           <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm password..." required>
           <span (click)="toggleShowConfirmPassword()">
-            <fa-icon [icon]="faFaceRollingEyes"></fa-icon>
+            <fa-icon *ngIf="showConfirmPassword === false" [icon]="faEye"></fa-icon>
+            <fa-icon *ngIf="showConfirmPassword === true" [icon]="faEyeSlash"></fa-icon>
             {{showConfirmPassword ? 'Hide Password' : 'Show Password' }}
           </span>
         </div>

@@ -22,13 +22,13 @@ export class HomeComponent implements OnInit {
   public faShareFromSquare = faShareFromSquare; //icon
 
   // hide Comments
-  hideComments = true;
+  public hideComments = true;
   public toggleHideComments() : void {
     this.hideComments = !this.hideComments;
   }
 
   // Add comment
-  addComment = false;
+  public addComment = false;
   public openAddComment() {
     this.addComment = true;
   }
@@ -43,11 +43,18 @@ export class HomeComponent implements OnInit {
   }
 
   // Add Reply
-  addReply = false;
+  public addReply = false;
   public openAddReply(){
     this.addReply = true;
   }
   public closeAddReply(){
     this.addReply = false;
   }
+
+  // post optional
+  public postsOptionsClicked = false;
+  public togglePostsOptions(){
+    this.postsOptionsClicked = !this.postsOptionsClicked;
+  }
+
 }

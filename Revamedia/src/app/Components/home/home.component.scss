@@ -68,8 +68,8 @@ $darkgrey: rgb(61,66,74);
         .post-title{
           display: flex;
           flex-direction: row;
-          align-items: center;
           justify-content: space-between;
+          align-items: center;
           border-bottom: 1px solid $lightgrey;
           padding:1rem;
           .post-author{
@@ -90,9 +90,34 @@ $darkgrey: rgb(61,66,74);
               font-weight: 500;
             }
           }
-          #icon{
-            color: $darkgrey;
-            cursor: pointer;
+          .post-options{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            #icon{
+              color: $darkgrey;
+              font-size: 1.5rem;
+              cursor: pointer;
+            }
+            ul{
+              position: absolute;
+              transform:translate(80%, 28%);
+              list-style: none;
+              background-color: $lightgrey;
+              border-radius: 6px;
+              li{
+                background-color: $lightgrey;
+                margin: .5rem 0;
+                width: 100%;
+                padding: .25rem;
+                text-align: center;
+                color: #000;
+                cursor: pointer;
+                &:hover{
+                  background-color: $grey;
+                }
+              }
+            }
           }
         }
         .post-body{

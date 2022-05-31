@@ -1,4 +1,4 @@
-package com.revature.RevSocial.exceptions;
+package com.revature.Revamedia.exceptions;
 
 public class UnauthorizedUserException extends RuntimeException {
     public UnauthorizedUserException() {

@@ -4,10 +4,13 @@ package com.revature.Revamedia.entities;
  *  Contributor(s):
  *  Purpose:
  */
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 
 @Entity
 @Table(name="user_comments", schema = _SchemaName.schemaName)
@@ -17,15 +20,17 @@ public class UserComments implements Serializable {
     @Column(name = "comment_id")
     private Integer commentId;
 
+    @JsonIgnore
     @ManyToOne()
     @JoinColumn(name = "owner_id", referencedColumnName = "user_id")
     private User ownerId;
 
+    @JsonIgnore
     @ManyToOne()
     @JoinColumn(name = "post_id", referencedColumnName = "post_id")
     private UserPosts postId;
 
-
+    @JsonIgnore
     @OneToMany(mappedBy = "commentId", cascade = CascadeType.ALL)
     private List<UserReplies> replies;
 

@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/comment")
@@ -40,11 +42,20 @@ public class CommentController {
     }
 
 
+    @GetMapping("/all")
+    @ResponseStatus(HttpStatus.OK)
+    public HttpResponseDto getById(HttpServletResponse res) {
+        List<UserComments> comments = userCommentsService.getAllComment();
+        res.setStatus(200);
+        return new HttpResponseDto(200, "Successfully retrieved all comments.", comments);
+    }
+
+
+
     @PostMapping("/add")
     @ResponseStatus(HttpStatus.OK)
     public HttpResponseDto saveComment(@RequestBody UserComments comment, HttpServletResponse res){
         UserComments newComment = userCommentsService.save(comment);
-
         if(comment.getMessage() != comment.getMessage()) {
             res.setStatus(400);
             return new HttpResponseDto(400, "Failed to save comment", comment);

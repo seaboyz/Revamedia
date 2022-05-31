@@ -171,16 +171,16 @@ public class RevamediaApplication {
         group1.setOwnerId(user1);
 
         //testing conversations and messages
-//        UserConversations conversations1 = new UserConversations();
-//
-//        UserMessages message1 = new UserMessages();
-//        message1.setOwnerId(user1);
-//        message1.setMessage("user1 sending message to user2");
-//
-//        conversations1.setRecipientId(user2);
-//        conversations1.addMessage(message1);
-//
-//        user1.addConversation(conversations1);
+        UserConversations conversations1 = new UserConversations();
+
+        UserMessages message1 = new UserMessages();
+        message1.setOwnerId(user1);
+        message1.setMessage("user1 sending message to user2");
+
+        conversations1.setRecipientId(user2);
+        conversations1.addMessage(message1);
+
+        user1.addConversation(conversations1);
 
         //UserClass: class names are pascal case
         //userClass: variable names camel case

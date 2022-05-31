@@ -25,7 +25,7 @@ $darkgrey: rgb(61,66,74);
   .register{
     width: 50%;
     position: fixed;
-    top: 21%;
+    top: 20%;
     left: 25%;
     background: white;
     box-shadow: rgba(0, 0, 0, 0.227) 0px 3px 8px;
@@ -50,7 +50,7 @@ $darkgrey: rgb(61,66,74);
 
       .form-row{
         width: 100%;
-        margin-bottom: 1rem;
+        margin-bottom: .6rem;
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -71,8 +71,19 @@ $darkgrey: rgb(61,66,74);
             padding: .3rem;
             width: 100%;
             outline: none;
-            &:hover,&:focus{
-              border: solid 1.5px $blue;
+            &:focus{
+              border: solid 1.2px $blue;
+            }
+          }
+          span{
+            margin-top: .2rem;
+            width: 100%;
+            text-align: right;
+            font-size: .9rem;
+            color: #3fb3e1;
+            cursor: pointer;
+            &:hover{
+              text-decoration: underline;
             }
           }
         }

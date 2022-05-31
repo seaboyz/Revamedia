@@ -9,18 +9,17 @@ import { faHeart, faEllipsis, faBookmark, faComment, faShareFromSquare } from '@
 })
 export class HomeComponent implements OnInit {
 
-  //icons
-  public faHeart = faHeart;
-  public faEllipsis = faEllipsis;
-  public faBookmark = faBookmark;
-  public faComment = faComment;
-  public faShareFromSquare = faShareFromSquare;
-
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  // Front End Work
+  public faHeart = faHeart; //icon
+  public faEllipsis = faEllipsis; //icon
+  public faBookmark = faBookmark; //icon
+  public faComment = faComment; //icon
+  public faShareFromSquare = faShareFromSquare; //icon
 
   // hide Comments
   hideComments = true;

@@ -9,13 +9,6 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 })
 export class NavbarComponent implements OnInit {
 
-  //Icons
-  public faHome = faHome;
-  public faEnvelope = faEnvelope;
-  public faUserGear = faUserGear;
-  public faCalendarDays = faCalendarDays;
-  public faUsers = faUsers;
-  public faDoorOpen = faDoorOpen;
 
   constructor(public auth: AuthenticationService) { }
 
@@ -25,5 +18,13 @@ export class NavbarComponent implements OnInit {
   public LogOut(){
     this.auth.logout();
   }
+
+  // Front End Work
+  public faHome = faHome; //Icon
+  public faEnvelope = faEnvelope; //Icon
+  public faUserGear = faUserGear; //Icon
+  public faCalendarDays = faCalendarDays; //Icon
+  public faUsers = faUsers; //Icon
+  public faDoorOpen = faDoorOpen;  //Icon
 
 }

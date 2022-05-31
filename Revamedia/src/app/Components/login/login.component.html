@@ -12,8 +12,11 @@
       </div>
       <div class="form-row">
         <label for="password">Password</label>
-        <input type="password" id="password" placeholder="Password..." required>
-        <span>View Password</span>
+        <input [type]="showPassword ? 'text' : 'password'" id="password" placeholder="Password..." required>
+        <span (click)="toggleShowPassword()">
+          <fa-icon [icon]="faFaceRollingEyes"></fa-icon>
+          {{showPassword ? 'Hide Password' : 'Show Password' }}
+        </span>
       </div>
       <div class="submit">
         <button (click)="TEMPLogIn()">Login</button>

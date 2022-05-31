@@ -61,16 +61,20 @@ $darkgrey: rgb(61,66,74);
           border: solid 1px $grey;
           padding: .3rem;
           width: 100%;
-          &:hover,&:focus{
-            border: solid 1.5px $blue;
+          &:focus{
+            border: solid 1.2px $blue;
           }
         }
         span{
           margin-top: .3rem;
           width: 100%;
           text-align: right;
-          font-size: .8rem;
+          font-size: .9rem;
+          color: #3fb3e1;
           cursor: pointer;
+          &:hover{
+            text-decoration: underline;
+          }
         }
       }
       .submit{

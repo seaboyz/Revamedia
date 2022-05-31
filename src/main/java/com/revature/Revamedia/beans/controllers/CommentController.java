@@ -29,12 +29,13 @@ public class CommentController {
     public HttpResponseDto getById(HttpServletResponse res, @PathVariable("id") int id) {
         UserComments comment = userCommentsService.getCommentById(id);
 
+
         if(comment.getCommentId() != id) {
             res.setStatus(400);
             return new HttpResponseDto(400, "Failed to get comment.", comment);
         } else {
             res.setStatus(200);
-            return new HttpResponseDto(200, "Successfully retrieved comment." + comment.getMessage(), comment);
+            return new HttpResponseDto(200, "Successfully retrieved comment.", comment);
         }
     }
 

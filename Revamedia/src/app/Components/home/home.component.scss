@@ -77,10 +77,14 @@ $darkgrey: rgb(61,66,74);
             flex-direction: row;
             align-items: center;
             img{
+              cursor: pointer;
               border-radius:50%;
               width: 1.5rem;
               height: 1.5rem;
               border: 1.5px solid $Blue;
+              &:hover{
+                border: 1.5px solid $Orange;
+              }
             }
             a{
               text-decoration: none;
@@ -104,10 +108,10 @@ $darkgrey: rgb(61,66,74);
               transform:translate(80%, 28%);
               list-style: none;
               background-color: $lightgrey;
-              border-radius: 6px;
+              border-radius: 3px;
               li{
                 background-color: $lightgrey;
-                margin: .5rem 0;
+                margin: .75rem 0;
                 width: 100%;
                 padding: .25rem;
                 text-align: center;
@@ -322,6 +326,10 @@ $darkgrey: rgb(61,66,74);
               width: 1.5rem;
               height: 1.5rem;
               border: 1.5px solid $Blue;
+              cursor: pointer;
+              &:hover{
+                border: 1.5px solid $Orange;
+              }
             }
             a{
               text-decoration: none;
@@ -473,6 +481,10 @@ $darkgrey: rgb(61,66,74);
               width: 1.5rem;
               height: 1.5rem;
               border: 1.5px solid $Orange;
+              cursor: pointer;
+              &:hover{
+                border: 1.5px solid $Blue;
+              }
             }
             a{
               text-decoration: none;

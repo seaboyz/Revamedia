@@ -522,6 +522,12 @@ $darkgrey: rgb(61,66,74);
 @media screen and (max-width: 800px) {
   .home-page{
     margin-left: 10%;
+    .main{
+      .post-data{
+        max-width: 90%;
+        margin: 2rem 0;
+      }
+    }
   }
 }
 

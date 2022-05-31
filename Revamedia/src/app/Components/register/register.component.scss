@@ -18,7 +18,7 @@ $darkgrey: rgb(61,66,74);
     h1{
       font-size: 1.5rem;
       font-weight: bold;
-      color: $darkgrey;
+      color: #F26925;
     }
   }
 
@@ -126,6 +126,15 @@ $darkgrey: rgb(61,66,74);
           text-decoration: underline;
         }
       }
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .register-page{
+    .register{
+      left: 10%;
+      width: 80%;
     }
   }
 }

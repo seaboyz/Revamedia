@@ -75,4 +75,15 @@ public class UserCommentsServiceTest {
 
         assertEquals(commentToCreate, comment);
     }
+
+    @Test
+    public void updateCallsRepoAndReturnsComment(@Autowired UserCommentsService userCommentsService) {
+        UserComments commentToUpdate = COMMENT_1;
+        when(userCommentsRepositoryMock.save(commentToUpdate)).thenReturn(commentToUpdate);
+
+        UserComments updatedComment = userCommentsService.save(commentToUpdate);
+        assertEquals(commentToUpdate, updatedComment);
+        verify(userCommentsRepositoryMock, times(1)).save(commentToUpdate);
+
+    }
 }

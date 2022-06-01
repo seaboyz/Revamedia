@@ -58,15 +58,21 @@
             <h5>Add Comment</h5>
             <button title="Close" (click)="closeAddComment()">X</button>
           </div>
-          <form #addCommentForm="ngForm" (ngSubmit)="onAddComment(addCommentForm)" ngNativeValidate enctype="multipart/form-data" id="add-comment-form">
+          <form #addCommentForm="ngForm" (ngSubmit)="onAddComment(addCommentForm)" ngNativeValidate id="add-comment-form">
             <input type="hidden" name="dateCreated" ngModel="{{currentDate}}">
             <textarea ngModel name="message" id="comment" rows="5"></textarea>
-            <div class="file-input">
-              <input type="file" id="file" class="file" (change)="fileName($event,'add-comment')">
-              <label for="file">
-                Add Image
-              </label>
-              <p class="file-name" id="add-comment-fileName"></p>
+            <div class="reactions">
+              <span>Reactions</span>
+              <div class="search">
+                <input type="text" id="giphySearch" placeholder="Search GIPHY">
+                <span (click)="searchGiphy()">Search</span>
+              </div>
+              <div class="gifs">
+                <div class="gif" *ngFor="let gif of gifs">
+                  <img (click)="selectGiphy(gif.images.downsized.url)" src="{{ gif.images.downsized.url }}" alt="{{ gif.title }}">
+                </div>
+                <input type="hidden" name="giphyUrl" ngModel="{{selectedGiphy}}">
+              </div>
             </div>
             <button>Comment</button>
           </form>
@@ -96,14 +102,20 @@
                 <h5>Add Reply</h5>
                 <button title="Close" (click)="closeAddReply()">X</button>
               </div>
-              <form enctype="multipart/form-data" id="add-comment-form">
+              <form id="add-comment-form">
                 <textarea name="comment" id="comment" rows="5"></textarea>
-                <div class="file-input">
-                  <input type="file" id="file" class="file" (change)="fileName($event,'add-reply')">
-                  <label for="file">
-                    Add Image
-                  </label>
-                  <p class="file-name" id="add-reply-fileName"></p>
+                <div class="reactions">
+                  <span>Reactions</span>
+                  <div class="search">
+                    <input type="text" id="giphySearch" placeholder="Search GIPHY">
+                    <span (click)="searchGiphy()">Search</span>
+                  </div>
+                  <div class="gifs">
+                    <div class="gif" *ngFor="let gif of gifs">
+                      <img (click)="selectGiphy(gif.images.downsized.url)" src="{{ gif.images.downsized.url }}" alt="{{ gif.title }}">
+                    </div>
+                    <input type="hidden" name="giphyUrl" ngModel="{{selectedGiphy}}">
+                  </div>
                 </div>
                 <button>Reply</button>
               </form>
@@ -206,28 +218,3 @@
   </form>
 </div>
 <!-- ADD POST FORM END -->
-
-<!-- <div class="reactions">
-  <ul>
-    <li>Emojis</li>
-    <li>GIFS</li>
-    <li>Pics</li>
-  </ul>
-  <div class="emojis">
-  </div>
-  <div class="gifs">
-    <!-- funny gifs -->
-    <!-- <img src="https://giphy.com/gifs/hallmarkecards-cute-hallmark-shoebox-2A75RyXVzzSI2bx4Gj" alt="Funny1">
-    <img src="https://giphy.com/gifs/moodman-funny-lol-laughing-fUYhyT9IjftxrxJXcE" alt="Funny2">
-    <img src="https://giphy.com/gifs/lol-laugh-laughing-gj0QdZ9FgqGhOBNlFS" alt="Funny3">
-    <img src="https://giphy.com/gifs/lol-laugh-laughing-gj0QdZ9FgqGhOBNlFS" alt="Funny4">
-    <!-- mad gifs -->
-    <!-- <img src="https://giphy.com/gifs/disneypixar-disney-pixar-11tTNkNy1SdXGg" alt="Mad1">
-    <img src="https://giphy.com/gifs/mad-arthur-fist-WoF3yfYupTt8mHc7va" alt="Mad2">
-    <img src="https://giphy.com/gifs/KhliiAkDFP9YY" alt="Mad3">
-    <img src="https://giphy.com/gifs/KhliiAkDFP9YY" alt="Mad3"> --> -->
-  <!-- </div>
-  <div class="pics">
-
-  </div>
-</div> --> -->

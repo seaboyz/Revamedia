@@ -37,6 +37,9 @@ public class UserComments implements Serializable {
     @Column(name ="message", length=500)
     private String message;
 
+    @Column(name = "giphyUrl")
+    private String giphyUrl;
+
     @Column(name ="date_created")
     private String dateCreated;
 
@@ -44,14 +47,14 @@ public class UserComments implements Serializable {
         this.replies = new ArrayList<>();
     }
 
-    public UserComments(Integer commentId, User ownerId, UserPosts postId, List<UserReplies> replies, String message, String dateCreated) {
+    public UserComments(Integer commentId, User ownerId, UserPosts postId, List<UserReplies> replies, String message, String dateCreated, String giphyUrl) {
         this.commentId = commentId;
         this.ownerId = ownerId;
         this.postId = postId;
         this.replies = replies;
         this.message = message;
         this.dateCreated = dateCreated;
-
+        this.giphyUrl = giphyUrl;
     }
 
     public Integer getCommentId() {
@@ -111,6 +114,14 @@ public class UserComments implements Serializable {
         this.replies.remove(reply);
     }
 
+    public String getGiphyUrl() {
+        return giphyUrl;
+    }
+
+    public void setGiphyUrl(String giphyUrl) {
+        this.giphyUrl = giphyUrl;
+    }
+
     @Override
     public String toString() {
         return "UserComments{" +
@@ -118,6 +129,7 @@ public class UserComments implements Serializable {
                 ", ownerId=" + ownerId +
                 ", replies=" + replies +
                 ", message='" + message + '\'' +
+                ", giphyUrl=" + giphyUrl +
                 ", dateCreated='" + dateCreated + '\'' +
                 '}';
     }

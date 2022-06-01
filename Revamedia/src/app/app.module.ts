@@ -18,6 +18,7 @@ import { ProfileComponent } from './Components/profile/profile.component';
 import { CommentService } from './services/comment.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { GiphyServiceService } from './services/giphy-service.service';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,7 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
     HttpClientModule,
   ],
-  providers: [CommentService],
+  providers: [CommentService, GiphyServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

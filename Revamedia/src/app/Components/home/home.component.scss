@@ -236,47 +236,65 @@ $darkgrey: rgb(61,66,74);
             color: $darkgrey;
             padding: .4rem;
           }
-
-          .file {
-            opacity: 0;
-            width: 0.1px;
-            height: 0.1px;
-            position: absolute;
-          }
-          .file-input label {
+          .reactions{
             margin: .5rem 0;
-            display: block;
-            position: relative;
-            height: 2rem;
-            width: 7rem;
-            border-radius: 8px;
-            background: $lightgrey;
+            width: 100%;
             display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-            font-size: .9rem;
-            color: $darkgrey;
-            cursor: pointer;
-            transition: transform .2s ease-out;
+            flex-direction: column;
+            span{
+              font-size: 1.7rem;
+            }
+            .search{
+              width: 100%;
+              display: flex;
+              flex-direction: row;
+              input{
+                width: 80%;
+                font-size: 1rem;
+                color: $darkgrey;
+                padding: .2rem;
+                border: none;
+                border: 1px solid $grey;
+                outline: none;
+                &:focus{
+                  border: 1px solid $blue;
+                }
+              }
+              span{
+                background: $blue;
+                font-size: 1rem;
+                cursor: pointer;
+                color: $darkgrey;
+                padding: .2rem .5rem;
+                transition: all .3s ease-in-out;
+                &:hover{
+                  background: $orange;
+                }
+              }
+            }
+            .gifs{
+              margin: .5rem 0;
+              width: 100%;
+              display: grid;
+              grid-template-columns: repeat(4, 1fr);
+              grid-template-rows: repeat(3, 1fr);
+              grid-column-gap: .5rem;
+              grid-row-gap: .5rem;
+              .gif{
+                img{
+                  object-fit: cover;
+                  width: 6rem;
+                  height: 6rem;
+                  border-radius: 3px;
+                  cursor: pointer;
+                  border: 2px solid $blue;
+                  &:hover{
+                    border: 2px solid $orange;
+                  }
+                }
+              }
+            }
           }
-
-          .file-name {
-            font-size: 0.85rem;
-            color: #555;
-          }
-
-          input:hover + label,
-          input:focus + label {
-            transform: scale(1.02);
-          }
-
-          /* Adding an outline to the label on focus */
-          input:focus + label {
-            outline: 1px solid #000;
-            outline: -webkit-focus-ring-color auto 2px;
-          }
-
           button{
             align-self: flex-end;
             width: 20%;
@@ -413,47 +431,65 @@ $darkgrey: rgb(61,66,74);
                 color: $darkgrey;
                 padding: .4rem;
               }
-
-              .file {
-                opacity: 0;
-                width: 0.1px;
-                height: 0.1px;
-                position: absolute;
-              }
-              .file-input label {
+              .reactions{
                 margin: .5rem 0;
-                display: block;
-                position: relative;
-                height: 2rem;
-                width: 7rem;
-                border-radius: 8px;
-                background: $lightgrey;
+                width: 100%;
                 display: flex;
-                flex-direction: row;
-                align-items: center;
-                justify-content: center;
-                font-size: .9rem;
-                color: $darkgrey;
-                cursor: pointer;
-                transition: transform .2s ease-out;
+                flex-direction: column;
+                span{
+                  font-size: 1.7rem;
+                }
+                .search{
+                  width: 100%;
+                  display: flex;
+                  flex-direction: row;
+                  input{
+                    width: 80%;
+                    font-size: 1rem;
+                    color: $darkgrey;
+                    padding: .2rem;
+                    border: none;
+                    border: 1px solid $grey;
+                    outline: none;
+                    &:focus{
+                      border: 1px solid $blue;
+                    }
+                  }
+                  span{
+                    background: $blue;
+                    font-size: 1rem;
+                    cursor: pointer;
+                    color: $darkgrey;
+                    padding: .2rem .5rem;
+                    transition: all .3s ease-in-out;
+                    &:hover{
+                      background: $orange;
+                    }
+                  }
+                }
+                .gifs{
+                  margin: .5rem 0;
+                  width: 100%;
+                  display: grid;
+                  grid-template-columns: repeat(4, 1fr);
+                  grid-template-rows: repeat(3, 1fr);
+                  grid-column-gap: .5rem;
+                  grid-row-gap: .5rem;
+                  .gif{
+                    img{
+                      object-fit: cover;
+                      width: 6rem;
+                      height: 6rem;
+                      border-radius: 3px;
+                      cursor: pointer;
+                      border: 2px solid $blue;
+                      &:hover{
+                        border: 2px solid $orange;
+                      }
+                    }
+                  }
+                }
               }
-
-              .file-name {
-                font-size: 0.85rem;
-                color: #555;
-              }
-
-              input:hover + label,
-              input:focus + label {
-                transform: scale(1.02);
-              }
-
-              /* Adding an outline to the label on focus */
-              input:focus + label {
-                outline: 1px solid #000;
-                outline: -webkit-focus-ring-color auto 2px;
-              }
-
               button{
                 align-self: flex-end;
                 width: 20%;

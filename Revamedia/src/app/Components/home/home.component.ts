@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 //icons
 import { faHeart, faEllipsis, faBookmark, faComment, faShareFromSquare } from '@fortawesome/free-solid-svg-icons';
+import { GiphyServiceService } from 'src/app/services/giphy-service.service';
 import { CommentService } from '../../services/comment.service';
 
 @Component({
@@ -12,10 +13,11 @@ import { CommentService } from '../../services/comment.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(public CommentService: CommentService) { }
+  constructor(public CommentService: CommentService, public gifService: GiphyServiceService) { }
 
   ngOnInit(): void {
-    this.getAllComments();
+    // this.getAllComments();
+    this.getGifs('funny');
   }
 
   // Variables Used In Home Component
@@ -139,5 +141,33 @@ export class HomeComponent implements OnInit {
     // Form
     const form = document.getElementById(`${modalType}-post-modal`);
     form?.classList.remove('openModal');
+  }
+
+  // gifs
+  public gifs: any[] = [];
+  public getGifs(search: string): void {
+    this.gifService.getGIFS(search).subscribe(
+      (response: any) => {
+        this.gifs = response.data;
+        // console.log(this.gifs);
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error.message)
+      }
+    )
+  }
+  public searchGiphy(){
+    const search = document.getElementById('giphySearch') as HTMLInputElement;
+    let query = search?.value;
+    let cleanQuery = query.trim();
+    let cleanQuery2 = cleanQuery.replace(" ", "+");
+    this.getGifs(cleanQuery2);
+    if(query === ""){
+      this.getGifs("Code");
+    }
+  }
+  public selectedGiphy = "";
+  public selectGiphy(url: any){
+    this.selectedGiphy = url;
   }
 }

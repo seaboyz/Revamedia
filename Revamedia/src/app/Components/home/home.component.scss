@@ -603,20 +603,65 @@ $darkgrey: rgb(61,66,74);
         color: $darkgrey;
         margin-bottom: .5rem;
       }
-      .image-container{
-        width: 100%;
+      .file {
+        opacity: 0;
+        width: 0.1px;
+        height: 0.1px;
+        position: absolute;
+      }
+      .file-input label {
+        margin: .5rem 0;
+        display: block;
+        position: relative;
+        height: 2rem;
+        width: 7rem;
+        border-radius: 8px;
+        background: $lightgrey;
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
         justify-content: center;
-        img{
-          width: 100%;
-          height: 20rem;
+        font-size: .9rem;
+        color: $darkgrey;
+        cursor: pointer;
+        transition: transform .2s ease-out;
+      }
+
+      .file-name {
+        font-size: 0.85rem;
+        color: #555;
+      }
+
+      input:hover + label,
+      input:focus + label {
+        transform: scale(1.02);
+      }
+
+      /* Adding an outline to the label on focus */
+      input:focus + label {
+        outline: 1px solid #000;
+        outline: -webkit-focus-ring-color auto 2px;
+      }
+
+      button{
+        align-self: flex-end;
+        width: 20%;
+        border: none;
+        padding: .4rem;
+        border-radius: 4px;
+        background: $lightgrey;
+        font-size: .9rem;
+        color: $darkgrey;
+        cursor: pointer;
+        &:hover{
+          background: $grey;
         }
       }
       textarea{
         width: 100%;
-        resize: vertical;
+        resize: none;
+        overflow: auto;
+        height: 20vh;
         font-size: 1rem;
         padding: .5rem;
         color: $darkgrey;

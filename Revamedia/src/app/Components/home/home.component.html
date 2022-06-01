@@ -62,11 +62,11 @@
             <input type="hidden" name="dateCreated" ngModel="{{currentDate}}">
             <textarea ngModel name="message" id="comment" rows="5"></textarea>
             <div class="file-input">
-              <input type="file" id="file" class="file" (change)="fileName($event)">
+              <input type="file" id="file" class="file" (change)="fileName($event,'add-comment')">
               <label for="file">
                 Add Image
               </label>
-              <p class="file-name" id="file-name"></p>
+              <p class="file-name" id="add-comment-fileName"></p>
             </div>
             <button>Comment</button>
           </form>
@@ -99,11 +99,11 @@
               <form enctype="multipart/form-data" id="add-comment-form">
                 <textarea name="comment" id="comment" rows="5"></textarea>
                 <div class="file-input">
-                  <input type="file" id="file" class="file" (change)="fileName($event)">
+                  <input type="file" id="file" class="file" (change)="fileName($event,'add-reply')">
                   <label for="file">
                     Add Image
                   </label>
-                  <p class="file-name" id="file-name"></p>
+                  <p class="file-name" id="add-reply-fileName"></p>
                 </div>
                 <button>Reply</button>
               </form>
@@ -145,9 +145,12 @@
   <form>
     <div class="form-data">
       <h4>Add Image or Video</h4>
-      <div class="image-container">
-        <img src="../../../assets/no-image-box.png" alt="Image">
-        <input type="file" name="" id="">
+      <div class="file-input">
+        <input type="file" id="file" class="file" (change)="fileName($event, 'add-post')">
+        <label for="file">
+          Select File
+        </label>
+        <p class="file-name" id="add-post-fileName"></p>
       </div>
     </div>
     <div class="form-data">
@@ -170,9 +173,12 @@
   <form>
     <div class="form-data">
       <h4>Edit Image or Video</h4>
-      <div class="image-container">
-        <img src="../../../assets/no-image-box.png" alt="Image">
-        <input type="file" name="" id="">
+      <div class="file-input">
+        <input type="file" id="file" class="file" (change)="fileName($event, 'edit-post')">
+        <label for="file">
+          Select File
+        </label>
+        <p class="file-name" id="edit-post-fileName"></p>
       </div>
     </div>
     <div class="form-data">

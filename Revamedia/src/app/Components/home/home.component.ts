@@ -94,10 +94,12 @@ export class HomeComponent implements OnInit {
     this.addComment = false;
   }
 
-  public fileName(event: any): void {
-    var fileName = event.target.files[0];
-    const file = document.getElementById('file-name');
-    file!.textContent = fileName.name;
+  public fileName(event: any, target: string): void {
+    var fileNames: any[] = event.target.files;
+    const file = document.getElementById(`${target}-fileName`);
+    for(let i = 0; i< fileNames.length; i++){
+      file!.textContent = fileNames[i].name;
+    }
   }
 
   // Add Reply

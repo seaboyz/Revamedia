@@ -64,6 +64,20 @@ $darkgrey: rgb(61,66,74);
       .right-card{
         display: flex;
         flex-direction: row;
+        button{
+          border: none;
+          outline: none;
+          background: $blue;
+          color: black;
+          font-size: 1.1rem;
+          padding: .25rem .75rem;
+          border-radius: 4px;
+          cursor: pointer;
+          transition: all .3s ease-in-out;
+          &:hover{
+            background: $orange;
+          }
+        }
         h5{
           margin-left: 2rem;
           font-size: 1.25rem;
@@ -292,7 +306,8 @@ $darkgrey: rgb(61,66,74);
         }
         .right-card{
           display: flex;
-          flex-direction: column;
+          flex-direction:column-reverse;
+          align-items:center;
           h5{
             margin-left: 0;
             margin-bottom: .3rem;

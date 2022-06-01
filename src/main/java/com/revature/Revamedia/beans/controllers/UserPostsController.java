@@ -1,3 +1,9 @@
+/**
+ *  Author(s): @Brandon Le, @Tony Henderson
+ *  Contributor(s):@Stan Savelev, @William Bjerke
+ *  Purpose: CRUD functionality for user posts
+ */
+
 package com.revature.Revamedia.beans.controllers;
 
 import com.revature.Revamedia.beans.services.UserPostsService;
@@ -22,6 +28,7 @@ public class UserPostsController {
     }
 
     //Controller Methods
+    //Postman works!
     @GetMapping("/getAllPosts")
     @ResponseStatus(HttpStatus.OK)
     public List<UserPosts> getAllPosts(){
@@ -30,6 +37,7 @@ public class UserPostsController {
     }
 
     //TODO: Include exception handling if post does not exist.
+    //Postman works!
     @GetMapping("/getPostByPostId/{id}")
     @ResponseStatus(HttpStatus.OK)
     public UserPosts getPostByPostId(@PathVariable Integer id){
@@ -42,11 +50,19 @@ public class UserPostsController {
         return userPostsService.save(post);
     }
 
-//    @PutMapping
-//    @ResponseStatus(HttpStatus.OK)
-//    public UserPosts updatePost(@RequestBody UserPosts post){
-//        return UserPostsService.update(post);
-//    }
+    //Postman works
+    @PutMapping("/updatePost")
+    @ResponseStatus(HttpStatus.OK)
+    public UserPosts updatePost(@RequestBody UserPosts post){
+        return userPostsService.update(post);
+    }
 
-//    @DeleteMapping("/deleteById/")
+    @DeleteMapping("/deletePost")
+    @ResponseStatus(HttpStatus.OK)
+    public void deletePost(@RequestBody UserPosts post){
+         userPostsService.delete(post);
+    }
+    //TODO: Create delete all by user id.
+//    @DeleteMapping("/deleteAll")
+//    @ResponseStatus(HttpStatus.OK)
 }

@@ -12,4 +12,7 @@ export class SettingsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  public changeTheme() {
+    document.body.classList.add('darkMode');
+  }
 }

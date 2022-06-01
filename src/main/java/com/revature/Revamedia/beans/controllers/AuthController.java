@@ -37,23 +37,8 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Object> login(@Valid @RequestBody AuthDto authDto, @CookieValue (name = "user_session", required = false) String userSession
-    ){
-        if(userSession==null){
-            return authService.login(authDto);
-        }else {
-            CookieDto userCookie = new CookieDto();
-            try {
-                userCookie = jwt.verify(userSession);
-                System.out.println(userCookie.getUserId() + " " + userCookie.getUsername());
-                //return authService.login(authDto);
-                return ResponseEntity.status(HttpStatus.OK).build();
-            } catch (UnauthorizedUserException u) {
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-            }
-        }
-
-
+    public ResponseEntity<Object> login(@Valid @RequestBody AuthDto authDto) {
+        return authService.login(authDto);
     }
 
 

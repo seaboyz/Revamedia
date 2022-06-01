@@ -2,7 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 //icons
-import { faHeart, faEllipsis, faBookmark, faComment, faShareFromSquare } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faEllipsis, faBookmark, faComment, faShareFromSquare, faFaceGrinTongueSquint, faFaceGrinStars } from '@fortawesome/free-solid-svg-icons';
 import { GiphyServiceService } from 'src/app/services/giphy-service.service';
 import { CommentService } from '../../services/comment.service';
 
@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     // this.getAllComments();
     this.getGifs('funny');
+    this.getStickers('funny');
   }
 
   // Variables Used In Home Component
@@ -80,6 +81,8 @@ export class HomeComponent implements OnInit {
   public faBookmark = faBookmark; //icon
   public faComment = faComment; //icon
   public faShareFromSquare = faShareFromSquare; //icon
+  public faFaceGrinTongueSquint = faFaceGrinTongueSquint; //icon
+  public faFaceGrinStars = faFaceGrinStars; //icon
 
   // hide Comments
   public hideComments = true;
@@ -162,12 +165,28 @@ export class HomeComponent implements OnInit {
     let cleanQuery = query.trim();
     let cleanQuery2 = cleanQuery.replace(" ", "+");
     this.getGifs(cleanQuery2);
+    this.getStickers(cleanQuery2);
     if(query === ""){
       this.getGifs("Code");
+      this.getStickers("Code");
     }
   }
   public selectedGiphy = "";
   public selectGiphy(url: any){
     this.selectedGiphy = url;
+  }
+
+  // stickers
+  public stickers: any[] = [];
+  public getStickers(search: string): void {
+    this.gifService.getStickers(search).subscribe(
+      (response: any) => {
+        this.stickers = response.data;
+        // console.log(this.stickers);
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error.message)
+      }
+    )
   }
 }

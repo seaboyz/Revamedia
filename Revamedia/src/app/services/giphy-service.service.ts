@@ -9,10 +9,15 @@ import { environment } from 'src/environments/environment';
 export class GiphyServiceService {
 
   constructor(private http: HttpClient) { }
-  private apiBaseUrl = 'http://api.giphy.com/v1/gifs/search';
+  private apiBaseUrl = 'http://api.giphy.com/v1/';
 
   public getGIFS(search: string): Observable<any[]> {
     return this.http.get<any[]>(
-      `${this.apiBaseUrl}?q=${search}&api_key=${environment.apiKey}&limit=12`)
+      `${this.apiBaseUrl}gifs/search?q=${search}&api_key=${environment.apiKey}&limit=12`)
+  }
+
+  public getStickers(search: string): Observable<any[]> {
+    return this.http.get<any[]>(
+      `${this.apiBaseUrl}stickers/search?q=${search}&api_key=${environment.apiKey}&limit=12&lang=en`)
   }
 }

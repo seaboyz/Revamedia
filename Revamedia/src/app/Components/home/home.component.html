@@ -67,9 +67,24 @@
                 <input type="text" id="giphySearch" placeholder="Search GIPHY">
                 <span (click)="searchGiphy()">Search</span>
               </div>
+              <span id="reaction-title">
+                <fa-icon [icon]="faFaceGrinTongueSquint"></fa-icon>
+                gifs
+              </span>
               <div class="gifs">
                 <div class="gif" *ngFor="let gif of gifs">
                   <img (click)="selectGiphy(gif.images.downsized.url)" src="{{ gif.images.downsized.url }}" alt="{{ gif.title }}">
+                </div>
+
+                <input type="hidden" name="giphyUrl" ngModel="{{selectedGiphy}}">
+              </div>
+              <span id="reaction-title">
+                <fa-icon [icon]="faFaceGrinStars"></fa-icon>
+                gifs
+              </span>
+              <div class="stickers">
+                <div class="sticker" *ngFor="let sticker of stickers">
+                  <img (click)="selectGiphy(sticker.images.downsized.url)" src="{{ sticker.images.downsized.url }}" alt="{{ sticker.title }}">
                 </div>
                 <input type="hidden" name="giphyUrl" ngModel="{{selectedGiphy}}">
               </div>
@@ -110,9 +125,24 @@
                     <input type="text" id="giphySearch" placeholder="Search GIPHY">
                     <span (click)="searchGiphy()">Search</span>
                   </div>
+                  <span id="reaction-title">
+                    <fa-icon [icon]="faFaceGrinTongueSquint"></fa-icon>
+                    gifs
+                  </span>
                   <div class="gifs">
                     <div class="gif" *ngFor="let gif of gifs">
                       <img (click)="selectGiphy(gif.images.downsized.url)" src="{{ gif.images.downsized.url }}" alt="{{ gif.title }}">
+                    </div>
+
+                    <input type="hidden" name="giphyUrl" ngModel="{{selectedGiphy}}">
+                  </div>
+                  <span id="reaction-title">
+                    <fa-icon [icon]="faFaceGrinStars"></fa-icon>
+                    gifs
+                  </span>
+                  <div class="stickers">
+                    <div class="sticker" *ngFor="let sticker of stickers">
+                      <img (click)="selectGiphy(sticker.images.downsized.url)" src="{{ sticker.images.downsized.url }}" alt="{{ sticker.title }}">
                     </div>
                     <input type="hidden" name="giphyUrl" ngModel="{{selectedGiphy}}">
                   </div>

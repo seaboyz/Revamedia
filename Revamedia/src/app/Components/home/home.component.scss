@@ -272,7 +272,12 @@ $darkgrey: rgb(61,66,74);
                 }
               }
             }
-            .gifs{
+            #reaction-title{
+              font-size: 1.5rem;
+              color: $blue;
+              margin-top: .5rem;
+            }
+            .gifs,.stickers{
               margin: .5rem 0;
               width: 100%;
               display: grid;
@@ -280,7 +285,7 @@ $darkgrey: rgb(61,66,74);
               grid-template-rows: repeat(3, 1fr);
               grid-column-gap: .5rem;
               grid-row-gap: .5rem;
-              .gif{
+              .gif,.sticker{
                 img{
                   object-fit: cover;
                   width: 6rem;
@@ -467,7 +472,12 @@ $darkgrey: rgb(61,66,74);
                     }
                   }
                 }
-                .gifs{
+                #reaction-title{
+                  font-size: 1.5rem;
+                  color: $blue;
+                  margin-top: .5rem;
+                }
+                .gifs, .stickers{
                   margin: .5rem 0;
                   width: 100%;
                   display: grid;
@@ -475,7 +485,7 @@ $darkgrey: rgb(61,66,74);
                   grid-template-rows: repeat(3, 1fr);
                   grid-column-gap: .5rem;
                   grid-row-gap: .5rem;
-                  .gif{
+                  .gif,.sticker{
                     img{
                       object-fit: cover;
                       width: 6rem;

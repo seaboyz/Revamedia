@@ -1,6 +1,7 @@
 package com.revature.Revamedia.beans.controllers;
 
 import com.revature.Revamedia.beans.services.AuthService;
+import com.revature.Revamedia.dtos.UserRegisterDto;
 import com.revature.Revamedia.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,9 +25,10 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<User> register(@Valid @RequestBody User user) throws Exception{
-        return ResponseEntity.ok(authService.register(user));
+    public User register(@Valid @RequestBody UserRegisterDto userRegisterDto) {
+        return authService.register(userRegisterDto);
     }
+
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -40,5 +42,6 @@ public class AuthController {
         });
         return errors;
     }
+
 
 }

@@ -5,6 +5,7 @@ import com.revature.Revamedia.dtos.UserRegisterDto;
 import com.revature.Revamedia.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import javax.validation.Valid;
 
 @Service
 public class AuthService {
@@ -17,16 +18,15 @@ public class AuthService {
     }
 
 
-    public User register(User user){
+    public User register(UserRegisterDto userRegisterDto){
 
-//        User user = new User();
-//        user.setUsername(userRegisterDto.getUsername());
-//        //BCrypt
-//        user.setPassword(userRegisterDto.getPassword());
-//        user.setFirstName(userRegisterDto.getFirstName());
-//        user.setLastName(userRegisterDto.getLastName());
-//        user.setEmail(userRegisterDto.getEmail());
-
+        User user = new User();
+        user.setUsername(userRegisterDto.getUsername());
+        //BCrypt
+        user.setPassword(userRegisterDto.getPassword());
+        user.setFirstName(userRegisterDto.getFirstName());
+        user.setLastName(userRegisterDto.getLastName());
+        user.setEmail(userRegisterDto.getEmail());
 
         return userRepository.save(user);
     }

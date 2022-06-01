@@ -28,6 +28,9 @@ public class UserPostsService {
     public UserPosts update(UserPosts post) {
         return userPostsRepository.save(post);
     }
+    public List<UserPosts> getPostsByUser(Integer userId){
+        return userPostsRepository.getUserPostsByUser(userId);
+    }
 
     public List<UserPosts> getAllPosts() {
         return userPostsRepository.findAll();

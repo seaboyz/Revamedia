@@ -60,4 +60,10 @@ public class UserPostsController {
     public List<UserPosts> getAllPosts(){
         return userPostsService.getAllPosts();
     }
+
+    @GetMapping("/postsByUser/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<UserPosts> getPostsByUserId(@PathVariable Integer id){
+        return userPostsService.getPostsByUser(id);
+    }
 }

@@ -46,6 +46,7 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "followerId", cascade = CascadeType.ALL)
     private Set<UserFollows> following;
 
+    @Transient
     @JsonManagedReference
     @OneToMany(mappedBy = "ownerId")
     private Set<UserPosts> postsOwned;

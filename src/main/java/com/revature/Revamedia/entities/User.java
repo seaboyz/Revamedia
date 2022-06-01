@@ -7,11 +7,15 @@
 
 package com.revature.Revamedia.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.*;
 
 @Entity
+@JsonIgnoreProperties
 @Table(name = "users", schema = _SchemaName.schemaName)
 public class User implements Serializable {
 
@@ -36,18 +40,23 @@ public class User implements Serializable {
 
     @OneToMany(mappedBy = "followedId", cascade = CascadeType.ALL)
     private Set<UserFollows> followers;
+
     @OneToMany(mappedBy = "followerId", cascade = CascadeType.ALL)
     private Set<UserFollows> following;
+
+    @JsonManagedReference
     @OneToMany(mappedBy = "postId", cascade = CascadeType.ALL)
     private List<UserPosts> posts;
 
     @OneToMany(mappedBy = "groupId", cascade = CascadeType.ALL)
     private Set<UserGroups> groupsJoined;
+
     @OneToMany(mappedBy = "ownerId", cascade = CascadeType.ALL)
     private Set<UserGroups> groupsOwned;
 
     @OneToMany(mappedBy = "eventId", cascade = CascadeType.ALL)
     private Set<UserEvents> eventsJoined;
+
     @OneToMany(mappedBy = "ownerId", cascade = CascadeType.ALL)
     private Set<UserEvents> eventsOwned;
 

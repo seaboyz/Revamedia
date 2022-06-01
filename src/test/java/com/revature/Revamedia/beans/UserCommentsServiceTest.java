@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -32,6 +34,8 @@ public class UserCommentsServiceTest {
     User USER_1;
     UserPosts POST_1;
     UserComments COMMENT_1;
+    UserComments COMMENT_2;
+
 
     @BeforeEach
     public void beforeEach() {
@@ -40,6 +44,8 @@ public class UserCommentsServiceTest {
         USER_1 = new User(1, "test", "test@aol.com", "pass", "test", "name", null, null, null, null, null, null, null, null, null, null);
         POST_1 = new UserPosts(1, USER_1, null, "test message", null, null, 1, null, null, null);
         COMMENT_1 = new UserComments(1, USER_1, POST_1,null, "test comment", null);
+        COMMENT_2 = new UserComments(2, USER_1, POST_1,null, "test comment number 2", null);
+
     }
 
 
@@ -52,14 +58,29 @@ public class UserCommentsServiceTest {
         comment.setCommentId(15);
         comment.setMessage("The Test Comment");
 
-         //given(userCommentsRepository.findById(15)).willReturn(Optional.of(comment));
+        //given(userCommentsRepository.findById(15)).willReturn(Optional.of(comment));
 
-         when(userCommentsRepositoryMock.getById(15)).thenReturn(comment);
+        when(userCommentsRepositoryMock.getById(15)).thenReturn(comment);
 
-         UserComments searchedComment = userCommentsService.getCommentById(15);
+        UserComments searchedComment = userCommentsService.getCommentById(15);
 
-         assertEquals(comment, searchedComment);
+        assertEquals(comment, searchedComment);
+    }
 
+    @Test
+    @DisplayName("Test that all comments are retrieved")
+    public void getAllCommentsSuccessfully(@Autowired UserCommentsService userCommentsService){
+        List<UserComments> commentList = new ArrayList<>();
+        commentList.add(COMMENT_1);
+        commentList.add(COMMENT_2);
+
+
+        when(userCommentsRepositoryMock.findAll()).thenReturn(commentList);
+
+        List<UserComments> returnedList = userCommentsService.getAllComment();
+
+        assertEquals(commentList, returnedList);
+        verify(userCommentsRepositoryMock, times(1)).findAll();
 
     }
 

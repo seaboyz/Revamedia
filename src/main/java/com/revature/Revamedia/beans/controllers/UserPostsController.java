@@ -12,8 +12,11 @@ import com.revature.Revamedia.entities.UserPosts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
+
 
 @RestController
 @RequestMapping(value = "/post" , produces = "application/json")
@@ -37,10 +40,14 @@ public class UserPostsController {
     }
 
     //TODO: Include exception handling if post does not exist.
+    //TODO: Make more efficent(Make one call to database instead of two.
     //Postman works!
     @GetMapping("/getPostByPostId/{id}")
     @ResponseStatus(HttpStatus.OK)
     public UserPosts getPostByPostId(@PathVariable Integer id){
+        if(userPostsService.getPostById(id) == null){
+            throw new RuntimeException("Something went wrong");
+        }
         return userPostsService.getPostById(id);
     }
 
@@ -62,7 +69,4 @@ public class UserPostsController {
     public void deletePost(@RequestBody UserPosts post){
          userPostsService.delete(post);
     }
-    //TODO: Create delete all by user id.
-//    @DeleteMapping("/deleteAll")
-//    @ResponseStatus(HttpStatus.OK)
 }

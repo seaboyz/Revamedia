@@ -7,11 +7,14 @@
 
 package com.revature.Revamedia.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.*;
 
 @Entity
+@JsonIgnoreProperties
 @Table(name = "users", schema = _SchemaName.schemaName)
 public class User implements Serializable {
 
@@ -46,7 +49,7 @@ public class User implements Serializable {
     private Set<UserFollows> followers;
     @OneToMany(mappedBy = "followerId", cascade = CascadeType.ALL)
     private Set<UserFollows> following;
-    @OneToMany(mappedBy = "postId", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "ownerId", cascade = CascadeType.ALL)
     private List<UserPosts> posts;
 
     @OneToMany(mappedBy = "groupId", cascade = CascadeType.ALL)

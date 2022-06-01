@@ -1,9 +1,13 @@
 /**
- *  Author(s): @Brandon Le, @Tony Henderson
- *  Contributor(s):
- *  Purpose:
+ * Author(s): @Brandon Le, @Tony Henderson
+ * Contributor(s):
+ * Purpose:
  */
 package com.revature.Revamedia.entities;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -18,6 +22,7 @@ public class UserGroups {
     @Column(name = "group_id")
     private Integer groupId;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User ownerId;
@@ -25,10 +30,11 @@ public class UserGroups {
     @Column
     private String title;
 
-    @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("groupsJoined")
+    @ManyToMany(mappedBy = "groupsJoined")
     private Set<User> usersJoined;
 
-
+    @JsonManagedReference
     @OneToMany(mappedBy = "groupId", cascade = CascadeType.ALL)
     private Set<UserPosts> posts;
 

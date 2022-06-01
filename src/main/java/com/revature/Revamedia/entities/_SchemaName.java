@@ -1,7 +1,7 @@
 /**
- *  Author(s): @Brandon Le, @Jarod Heng
- *  Contributor(s):
- *  Purpose:
+ * Author(s): @Brandon Le, @Jarod Heng
+ * Contributor(s):
+ * Purpose:
  */
 package com.revature.Revamedia.entities;
 
@@ -13,6 +13,6 @@ public class _SchemaName {
     /**
      *  Variable to change schemas for database.
      */
-    public static final String schemaName = mainSchema;
+    public static final String schemaName = publicSchema;
 
 }

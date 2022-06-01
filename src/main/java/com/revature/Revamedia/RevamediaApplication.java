@@ -36,7 +36,7 @@ public class RevamediaApplication {
         UserMessagesService userMessagesService = context.getBean(UserMessagesService.class);
 
 
-        User user1 = new User();
+        /*User user1 = new User();
         user1.setFirstName("Brandon");
         user1.setUsername("b1");
         user1.setPassword("password");
@@ -77,18 +77,16 @@ public class RevamediaApplication {
         UserPosts post1 = new UserPosts();
         post1.setOwnerId(user1);
         post1.setMessage("post1 message by user1");
-        post1.setLikes(20);
         userPostsService.save(post1);
 
         UserPosts post2 = new UserPosts();
         post2.setOwnerId(user1);
         post2.setMessage("post2 message by user1");
-        post2.setLikes(5);
+
 
         UserPosts post3 = new UserPosts();
         post3.setOwnerId(user1);
         post3.setMessage("post3 message by user1");
-        post3.setLikes(11);
 
         user1.addPost(post1);
         user1.addPost(post2);
@@ -157,17 +155,17 @@ public class RevamediaApplication {
             System.out.println(follows);
         }
 
-/*        List<UserReplies> repliesList = new ArrayList<>();
+*//*        List<UserReplies> repliesList = new ArrayList<>();
         for (UserReplies reply : userRepliesService.getAllReplies()) {
             repliesList.add(reply);
         }
 
         comment1.setReplies(repliesList);
-        userCommentsService.save(comment1);*/
+        userCommentsService.save(comment1);*//*
 
         //testing groups
         UserGroups group1 = new UserGroups();
-        group1.setOwnerId(user1);
+        group1.setOwnerId(user1);*/
 
         //testing conversations and messages
 //        UserConversations conversations1 = new UserConversations();

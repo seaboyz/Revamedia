@@ -2,6 +2,10 @@ package com.revature.Revamedia.dtos;
 
 import javax.validation.constraints.*;
 
+/**
+ * @Author: Giorgi Amirajibi, Mohammad Foroutanyazdian, Fatemeh Goudarzi, Tony Henderson
+ * @Contributor: Kenneth Strohm, Randall Hale
+ */
 public class UserRegisterDto {
 
     @NotEmpty(message = "Username can't be empty")
@@ -14,11 +18,11 @@ public class UserRegisterDto {
     private String password;
 
     @NotEmpty(message = "First name can't be empty")
-    @Pattern(regexp = "\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+", message = "First name should consist of letters only")
+    @Pattern(regexp = "([a-zA-ZÀ-ÿ][-,a-z. ']+[ ]*)+", message = "First name should consist of letters only")
     private String firstName;
 
     @NotEmpty(message = "Last name can't be empty")
-    @Pattern(regexp = "\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+", message = "Last name should consist of letters only")
+    @Pattern(regexp = "([a-zA-ZÀ-ÿ][-,a-z. ']+[ ]*)+", message = "Last name should consist of letters only")
     private String lastName;
     @NotEmpty(message = "Email can't be empty")
     @Email(message = "Not a valid email")

@@ -6,6 +6,7 @@
 package com.revature.Revamedia.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -28,7 +29,8 @@ public class UserGroups {
     @Column
     private String title;
 
-    @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("groupsJoined")
+    @ManyToMany(mappedBy = "groupsJoined")
     private Set<User> usersJoined;
 
 

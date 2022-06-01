@@ -6,11 +6,13 @@
 package com.revature.Revamedia.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "user_posts", schema = _SchemaName.schemaName)
@@ -44,8 +46,10 @@ public class UserPosts implements Serializable {
     @Column(name = "image")
     private String image;
 
-    @Column(name = "likes")
-    private Integer likes;
+    @JsonIgnoreProperties("likedPosts")
+    @ManyToMany(mappedBy = "likedPosts", cascade = CascadeType.ALL)
+    private Set<User> likes;
+
 
     @Column(name = "post_lifetime", nullable = true)
     private String postLifetime;
@@ -57,7 +61,7 @@ public class UserPosts implements Serializable {
         this.comments = new ArrayList<>();
     }
 
-    public UserPosts(Integer postId, User ownerId, List<UserComments> comments, String message, String youtubeLink, String image, int likes, String postLifetime, String dateCreated, UserGroups groupId) {
+    public UserPosts(Integer postId, User ownerId, List<UserComments> comments, String message, String youtubeLink, String image, Set<User> likes, String postLifetime, String dateCreated, UserGroups groupId) {
         this.postId = postId;
         this.ownerId = ownerId;
         this.comments = comments;
@@ -110,12 +114,12 @@ public class UserPosts implements Serializable {
         this.image = image;
     }
 
-    public int getLikes() {
-        return likes;
+    public void addLikes(User user) {
+        likes.add(user);
     }
 
-    public void setLikes(int likes) {
-        this.likes = likes;
+    public void removeLikes(User user) {
+        likes.remove(user);
     }
 
     public String getPostLifetime() {

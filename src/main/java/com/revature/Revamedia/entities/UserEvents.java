@@ -6,6 +6,7 @@
 package com.revature.Revamedia.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -28,6 +29,7 @@ public class UserEvents implements Serializable {
     @Column
     private String title;
 
+    @JsonIgnoreProperties("eventsJoined")
     @ManyToMany(mappedBy = "eventsJoined")
     private Set<User> usersJoined;
 

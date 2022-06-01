@@ -1,7 +1,0 @@
-spring.jpa.database-platform=
-spring.datasource.driver-class-name=
-spring.datasource.url=
-spring.datasource.username=
-spring.datasource.password=
-spring.jpa.generate-ddl=
-spring.jpa.hibernate.ddl-auto=

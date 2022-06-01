@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@SpringBootApplication(scanBasePackages = "com.revature.Revamedia.beans")
+@SpringBootApplication(scanBasePackages = "com.revature.Revamedia")
 public class RevamediaApplication {
     public static void main(String[] args) {
 
@@ -34,6 +34,8 @@ public class RevamediaApplication {
         UserGroupsService userGroupsService = context.getBean(UserGroupsService.class);
         UserConversationsService userConversationsService = context.getBean(UserConversationsService.class);
         UserMessagesService userMessagesService = context.getBean(UserMessagesService.class);
+
+        context.start();
 
 
         User user1 = new User();
@@ -185,6 +187,8 @@ public class RevamediaApplication {
         //userClass: variable names camel case
         //user_id : database
         //all caps and underscore for constant variables
+
+
     }
 
 

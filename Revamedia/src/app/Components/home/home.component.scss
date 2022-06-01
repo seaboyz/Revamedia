@@ -546,7 +546,7 @@ $darkgrey: rgb(61,66,74);
 }
 
 .modal{
-  position: absolute;
+  position: fixed;
   z-index: 15;
   top: -100%;
   left: -100%;
@@ -661,7 +661,7 @@ $darkgrey: rgb(61,66,74);
         width: 100%;
         resize: none;
         overflow: auto;
-        height: 20vh;
+        height: 30vh;
         font-size: 1rem;
         padding: .5rem;
         color: $darkgrey;

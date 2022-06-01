@@ -4,6 +4,7 @@ import com.revature.Revamedia.beans.services.AuthService;
 import com.revature.Revamedia.dtos.UserRegisterDto;
 import com.revature.Revamedia.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
@@ -24,7 +25,7 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public User register(@Valid @RequestBody UserRegisterDto userRegisterDto) {
+    public ResponseEntity<Object> register(@Valid @RequestBody UserRegisterDto userRegisterDto) {
         return authService.register(userRegisterDto);
     }
 

@@ -87,7 +87,7 @@ public class UserCommentsServiceTest {
 
     //test that comment gets created
     @Test
-    public void cartGetsReturnedAfterCreation(@Autowired UserCommentsService userCommentsService) {
+    public void commentGetsReturnedAfterCreation(@Autowired UserCommentsService userCommentsService) {
 
         UserComments commentToCreate = COMMENT_1;
 
@@ -95,5 +95,16 @@ public class UserCommentsServiceTest {
         UserComments comment = userCommentsService.save(commentToCreate);
 
         assertEquals(commentToCreate, comment);
+    }
+
+    @Test
+    public void updateCallsRepoAndReturnsComment(@Autowired UserCommentsService userCommentsService) {
+        UserComments commentToUpdate = COMMENT_1;
+        when(userCommentsRepositoryMock.save(commentToUpdate)).thenReturn(commentToUpdate);
+
+        UserComments updatedComment = userCommentsService.save(commentToUpdate);
+        assertEquals(commentToUpdate, updatedComment);
+        verify(userCommentsRepositoryMock, times(1)).save(commentToUpdate);
+
     }
 }

@@ -47,9 +47,7 @@ public class AuthService {
     }
 
     /**
-     * @Author: Terrell
-     *
-     *
+     * @Author: Terrell Crawford
      */
     public ResponseEntity<Object> login(AuthDto authDto) {
         //If user exists check stored password hash against given password else respond with code 404

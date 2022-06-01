@@ -1,11 +1,14 @@
 /**
- *  Author(s): @Brandon Le, @Tony Henderson
- *  Contributor(s):
- *  Purpose:
+ * Author(s): @Brandon Le, @Tony Henderson
+ * Contributor(s):
+ * Purpose:
  */
 
 
 package com.revature.Revamedia.entities;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -34,22 +37,43 @@ public class User implements Serializable {
     @Column(name = "date_created")
     private String dateCreated;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "followedId", cascade = CascadeType.ALL)
     private Set<UserFollows> followers;
+    @JsonManagedReference
     @OneToMany(mappedBy = "followerId", cascade = CascadeType.ALL)
     private Set<UserFollows> following;
-    @OneToMany(mappedBy = "postId", cascade = CascadeType.ALL)
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "ownerId", cascade = CascadeType.ALL)
     private List<UserPosts> posts;
 
-    @OneToMany(mappedBy = "groupId", cascade = CascadeType.ALL)
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "users_in_groups",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "group_id")}
+    )
     private Set<UserGroups> groupsJoined;
+    
+    @JsonManagedReference
     @OneToMany(mappedBy = "ownerId", cascade = CascadeType.ALL)
     private Set<UserGroups> groupsOwned;
 
-    @OneToMany(mappedBy = "eventId", cascade = CascadeType.ALL)
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "users_in_events",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "event_id")}
+    )
     private Set<UserEvents> eventsJoined;
+
+    @JsonManagedReference
     @OneToMany(mappedBy = "ownerId", cascade = CascadeType.ALL)
     private Set<UserEvents> eventsOwned;
+
 
     @OneToMany(mappedBy = "conversationId", cascade = CascadeType.ALL)
     private Set<UserConversations> conversations;

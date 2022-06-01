@@ -1,9 +1,11 @@
 /**
- *  Author(s): @Brandon Le, @Tony Henderson
- *  Contributor(s):
- *  Purpose:
+ * Author(s): @Brandon Le, @Tony Henderson
+ * Contributor(s):
+ * Purpose:
  */
 package com.revature.Revamedia.entities;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -18,6 +20,7 @@ public class UserGroups {
     @Column(name = "group_id")
     private Integer groupId;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User ownerId;

@@ -1,9 +1,11 @@
 /**
- *  Author(s): @Brandon Le, @Tony Henderson
- *  Contributor(s):
- *  Purpose:
+ * Author(s): @Brandon Le, @Tony Henderson
+ * Contributor(s):
+ * Purpose:
  */
 package com.revature.Revamedia.entities;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -18,6 +20,8 @@ public class UserPosts implements Serializable {
     @Column(name = "post_id")
     private Integer postId;
 
+
+    @JsonBackReference
     @ManyToOne()
     @JoinColumn(name = "owner_id", referencedColumnName = "user_id")
     private User ownerId;
@@ -31,22 +35,22 @@ public class UserPosts implements Serializable {
     private UserGroups groupId;
 
 
-    @Column(name ="message", length=500)
+    @Column(name = "message", length = 500)
     private String message;
 
-    @Column(name ="youtube_link")
+    @Column(name = "youtube_link")
     private String youtubeLink;
 
-    @Column(name ="image")
+    @Column(name = "image")
     private String image;
 
-    @Column(name ="likes")
+    @Column(name = "likes")
     private Integer likes;
 
-    @Column(name ="post_lifetime", nullable = true)
+    @Column(name = "post_lifetime", nullable = true)
     private String postLifetime;
 
-    @Column(name ="date_created")
+    @Column(name = "date_created")
     private String dateCreated;
 
     public UserPosts() {
@@ -138,11 +142,11 @@ public class UserPosts implements Serializable {
         this.comments = comments;
     }
 
-    public void addComment (UserComments comment){
+    public void addComment(UserComments comment) {
         this.comments.add(comment);
     }
 
-    public void removeComment (UserComments comment) {
+    public void removeComment(UserComments comment) {
         this.comments.remove(comment);
     }
 

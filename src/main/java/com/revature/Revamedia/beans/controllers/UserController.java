@@ -2,8 +2,15 @@ package com.revature.Revamedia.beans.controllers;
 
 
 import com.revature.Revamedia.beans.services.UserService;
+import com.revature.Revamedia.dtos.AuthDto;
+import com.revature.Revamedia.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletResponse;
 
 @RestController
 public class UserController {
@@ -17,5 +24,12 @@ public class UserController {
     }
 
     //Controller Methods
+
+    @PostMapping("/login")
+    public User login(@RequestBody User user, HttpServletResponse response) {
+        AuthDto auth = new AuthDto(user.getUsername(), user.getPassword());
+        return userService.login(auth);
+        
+    }
 
 }

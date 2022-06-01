@@ -1,7 +1,7 @@
 /**
- *  Author(s): @Everyone
- *  Contributor(s):
- *  Purpose: Main Driver for Revamedia Application. Starts up spring boot application.
+ * Author(s): @Everyone
+ * Contributor(s):
+ * Purpose: Main Driver for Revamedia Application. Starts up spring boot application.
  */
 package com.revature.Revamedia;
 
@@ -10,8 +10,13 @@ import com.revature.Revamedia.entities.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @SpringBootApplication(scanBasePackages = "com.revature.Revamedia.beans")
@@ -29,7 +34,6 @@ public class RevamediaApplication {
         UserGroupsService userGroupsService = context.getBean(UserGroupsService.class);
         UserConversationsService userConversationsService = context.getBean(UserConversationsService.class);
         UserMessagesService userMessagesService = context.getBean(UserMessagesService.class);
-
 
 
         User user1 = new User();
@@ -181,6 +185,22 @@ public class RevamediaApplication {
         //userClass: variable names camel case
         //user_id : database
         //all caps and underscore for constant variables
+    }
+
+    @Bean
+    public CorsFilter corsFilter() {
+        CorsConfiguration corsConfiguration = new CorsConfiguration();
+        corsConfiguration.setAllowCredentials(true);
+        corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:4200", "http://localhost:4200/%22"));
+        corsConfiguration.setAllowedHeaders(Arrays.asList("Origin", "Access-Control-Allow-Origin", "Content-Type",
+                "Accept", "Authorization", "Origin, Accept", "X-Requested-With",
+                "Access-Control-Request-Method", "Access-Control-Request-Headers", "mode", "user_id"));
+        corsConfiguration.setExposedHeaders(Arrays.asList("Origin", "Content-Type", "Accept", "Authorization",
+                "Access-Control-Allow-Origin", "Access-Control-Allow-Origin", "Access-Control-Allow-Credentials", "mode"));
+        corsConfiguration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
+        urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
+        return new CorsFilter(urlBasedCorsConfigurationSource);
     }
 }
 

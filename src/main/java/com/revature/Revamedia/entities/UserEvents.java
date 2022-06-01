@@ -1,9 +1,11 @@
 /**
- *  Author(s): @Brandon Le, @Tony Henderson
- *  Contributor(s):
- *  Purpose:
+ * Author(s): @Brandon Le, @Tony Henderson
+ * Contributor(s):
+ * Purpose:
  */
 package com.revature.Revamedia.entities;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -18,6 +20,7 @@ public class UserEvents implements Serializable {
     @Column(name = "event_id")
     private Integer eventId;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User ownerId;
@@ -25,7 +28,7 @@ public class UserEvents implements Serializable {
     @Column
     private String title;
 
-    @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "eventsJoined")
     private Set<User> usersJoined;
 
     @Column

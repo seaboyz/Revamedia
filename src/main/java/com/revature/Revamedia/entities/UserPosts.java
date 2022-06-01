@@ -6,6 +6,7 @@
 package com.revature.Revamedia.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -51,7 +52,7 @@ public class UserPosts implements Serializable {
     private String image;
 
 
-    @JsonIgnoreProperties("likedPosts")
+    @JsonIgnoreProperties({"likedPosts", "postsOwned"})
     @ManyToMany(mappedBy = "likedPosts", cascade = CascadeType.ALL)
     private Set<User> likes;
 

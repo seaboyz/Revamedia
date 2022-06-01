@@ -33,15 +33,19 @@ public class UserPostsController {
         UserPosts post = userPostsService.getPostById(dto.getPostId());
         User user = userService.getUserById(dto.getUserId());
         if(user.getLikedPosts().contains(post)){
-//            Set<User> usersLiked = post.getLikes();
-//            usersLiked.remove(user);
-//            post.setLikes(usersLiked);
-//            userPostsService.update(post);
+            Set<User> usersLiked = post.getLikes();
+            usersLiked.remove(user);
+            post.setLikes(usersLiked);
+            userPostsService.update(post);
             List<UserPosts> postsLiked = user.getLikedPosts();
             postsLiked.remove(post);
             user.setLikedPosts(postsLiked);
             userService.update(user);
         } else {
+            Set<User> usersLiked = post.getLikes();
+            usersLiked.add(user);
+            post.setLikes(usersLiked);
+            userPostsService.update(post);
             List<UserPosts> postsLiked = user.getLikedPosts();
             postsLiked.add(post);
             user.setLikedPosts(postsLiked);

@@ -34,10 +34,10 @@ phases:
       # - ls -al
       # - ls -al target/
       # - ls -al dist/rev-tech
-      - cd RevTech/dist/rev-tech # move to the location of the ui build artifacts
+      - cd Revamedia/dist/revamedia # move to the location of the ui build artifacts
       - aws s3 cp "./" "s3://revamedia-ui/" --recursive # copying all files in location to the s3 bucket
       - cd ../../..
-      - mv target/RevTech-*.*.war ROOT.war
+      - mv target/Revamedia-*.*.war ROOT.war
 artifacts:
   files: # codebuild hand off
     - ROOT.war

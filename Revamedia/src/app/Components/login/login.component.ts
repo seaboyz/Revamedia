@@ -14,7 +14,10 @@ export class LoginComponent implements OnInit {
   constructor(public auth: AuthenticationService) { }
 
   ngOnInit(): void {
+
   }
+
+
   public TEMPLogIn(loginForm: NgForm) {
     this.auth.login(loginForm);
   }

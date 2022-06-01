@@ -66,7 +66,7 @@ public class UserCommentsServiceTest {
 
     //test that comment gets created
     @Test
-    public void cartGetsReturnedAfterCreation(@Autowired UserCommentsService userCommentsService) {
+    public void commentGetsReturnedAfterCreation(@Autowired UserCommentsService userCommentsService) {
 
         UserComments commentToCreate = COMMENT_1;
 

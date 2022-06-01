@@ -10,8 +10,13 @@ import com.revature.Revamedia.entities.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @SpringBootApplication(scanBasePackages = "com.revature.Revamedia.beans")
@@ -197,21 +202,36 @@ public class RevamediaApplication {
 //        group1.setOwnerId(user1);
 
         //testing conversations and messages
-//        UserConversations conversations1 = new UserConversations();
-//
-//        UserMessages message1 = new UserMessages();
-//        message1.setOwnerId(user1);
-//        message1.setMessage("user1 sending message to user2");
-//
-//        conversations1.setRecipientId(user2);
-//        conversations1.addMessage(message1);
-//
-//        user1.addConversation(conversations1);
+        UserConversations conversations1 = new UserConversations();
+
+        UserMessages message1 = new UserMessages();
+        message1.setOwnerId(user1);
+        message1.setMessage("user1 sending message to user2");
+
+        conversations1.setRecipientId(user2);
+        conversations1.addMessage(message1);
+
+        user1.addConversation(conversations1);
 
         //UserClass: class names are pascal case
         //userClass: variable names camel case
         //user_id : database
         //all caps and underscore for constant variables
+    }
+    @Bean
+    public CorsFilter corsFilter() {
+        CorsConfiguration corsConfiguration = new CorsConfiguration();
+        corsConfiguration.setAllowCredentials(true);
+        corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:4200","http://localhost:4200/%22"));
+        corsConfiguration.setAllowedHeaders(Arrays.asList("Origin", "Access-Control-Allow-Origin", "Content-Type",
+                "Accept", "Authorization", "Origin, Accept", "X-Requested-With",
+                "Access-Control-Request-Method", "Access-Control-Request-Headers", "mode", "user_id"));
+        corsConfiguration.setExposedHeaders(Arrays.asList("Origin", "Content-Type", "Accept", "Authorization",
+                "Access-Control-Allow-Origin", "Access-Control-Allow-Origin", "Access-Control-Allow-Credentials", "mode"));
+        corsConfiguration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
+        urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
+        return new CorsFilter(urlBasedCorsConfigurationSource);
     }
 }
 

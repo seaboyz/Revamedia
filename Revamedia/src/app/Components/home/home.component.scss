@@ -1,5 +1,5 @@
-$Orange: #FEAE49;
-$Blue: #57BEE6;
+$orange: #FEAE49;
+$blue: #57BEE6;
 $grey: rgb(192,192,190);
 $lightgrey: #e6e5de;
 $darkgrey: rgb(61,66,74);
@@ -32,17 +32,29 @@ $darkgrey: rgb(61,66,74);
         font-size: .9rem;
       }
     }
-    a{
-      text-decoration: none;
+    button{
       border: none;
-      background: $Orange;
+      background: $orange;
       font-size: 1rem;
       border-radius: 10px;
+      border: none;
+      outline: none;
       padding: .5rem 1rem;
       cursor: pointer;
       color: black;
+      transition: all .3s ease-in-out;
       &:hover{
-        background: #fca843;
+        background: $blue;
+      }
+    }
+  }
+  @media screen and (max-width: 800px){
+    .page-title{
+      padding: .5rem 1rem;
+      button{
+        font-size: .9rem;
+        border-radius: 7px;
+        padding: .4rem .8rem;
       }
     }
   }
@@ -65,6 +77,8 @@ $darkgrey: rgb(61,66,74);
         margin-bottom: .5rem;
         background: white;
         box-shadow: rgba(0, 0, 0, 0.075) 0px 3px 8px;
+
+        // POST TITLE START
         .post-title{
           display: flex;
           flex-direction: row;
@@ -81,9 +95,9 @@ $darkgrey: rgb(61,66,74);
               border-radius:50%;
               width: 1.5rem;
               height: 1.5rem;
-              border: 1.5px solid $Blue;
+              border: 1.5px solid $blue;
               &:hover{
-                border: 1.5px solid $Orange;
+                border: 1.5px solid $orange;
               }
             }
             a{
@@ -124,6 +138,21 @@ $darkgrey: rgb(61,66,74);
             }
           }
         }
+        @media screen and (max-width: 800px){
+          .post-title{
+            .post-options{
+              #icon{
+                font-size: 1.2rem;
+              }
+              ul{
+                width: 20%;
+                transform:translate(40%, 24%);
+              }
+            }
+          }
+        }
+        // POST TITLE END
+
         .post-body{
           img{
             width: 100%;
@@ -177,7 +206,7 @@ $darkgrey: rgb(61,66,74);
                   cursor: pointer;
                   transition: all .3s ease-in-out;
                   &:hover{
-                    color: $Blue;
+                    color: $blue;
                   }
                 }
               }
@@ -196,6 +225,7 @@ $darkgrey: rgb(61,66,74);
         }
       }
 
+      //  ADD COMMENT START
       .add-comment{
         margin: .5rem 0;
         width: 100%;
@@ -235,47 +265,70 @@ $darkgrey: rgb(61,66,74);
             color: $darkgrey;
             padding: .4rem;
           }
-
-          .file {
-            opacity: 0;
-            width: 0.1px;
-            height: 0.1px;
-            position: absolute;
-          }
-          .file-input label {
+          .reactions{
             margin: .5rem 0;
-            display: block;
-            position: relative;
-            height: 2rem;
-            width: 7rem;
-            border-radius: 8px;
-            background: $lightgrey;
+            width: 100%;
             display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-            font-size: .9rem;
-            color: $darkgrey;
-            cursor: pointer;
-            transition: transform .2s ease-out;
+            flex-direction: column;
+            span{
+              font-size: 1.7rem;
+            }
+            .search{
+              width: 100%;
+              display: flex;
+              flex-direction: row;
+              input{
+                width: 80%;
+                font-size: 1rem;
+                color: $darkgrey;
+                padding: .2rem;
+                border: none;
+                border: 1px solid $grey;
+                outline: none;
+                &:focus{
+                  border: 1px solid $blue;
+                }
+              }
+              span{
+                background: $blue;
+                font-size: 1rem;
+                cursor: pointer;
+                color: $darkgrey;
+                padding: .2rem .5rem;
+                transition: all .3s ease-in-out;
+                &:hover{
+                  background: $orange;
+                }
+              }
+            }
+            #reaction-title{
+              font-size: 1.25rem;
+              color: $blue;
+              margin-top: .5rem;
+            }
+            .gifs,.stickers{
+              margin: .5rem 0;
+              width: 100%;
+              display: grid;
+              grid-template-columns: repeat(4, 1fr);
+              grid-template-rows: repeat(3, 1fr);
+              grid-column-gap: .5rem;
+              grid-row-gap: .5rem;
+              .gif,.sticker{
+                img{
+                  object-fit: cover;
+                  width: 6rem;
+                  height: 6rem;
+                  border-radius: 3px;
+                  cursor: pointer;
+                  border: 2px solid $blue;
+                  &:hover{
+                    border: 2px solid $orange;
+                  }
+                }
+              }
+            }
           }
-
-          .file-name {
-            font-size: 0.85rem;
-            color: #555;
-          }
-
-          input:hover + label,
-          input:focus + label {
-            transform: scale(1.02);
-          }
-
-          /* Adding an outline to the label on focus */
-          input:focus + label {
-            outline: 1px solid #000;
-            outline: -webkit-focus-ring-color auto 2px;
-          }
-
           button{
             align-self: flex-end;
             width: 20%;
@@ -292,6 +345,26 @@ $darkgrey: rgb(61,66,74);
           }
         }
       }
+      @media screen and (max-width: 800px) {
+        .add-comment{
+          Form{
+            .reactions{
+              .gifs, .stickers{
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: repeat(4, 1fr);
+                .gif,.sticker{
+                  img{
+                    object-fit: cover;
+                    width: 5rem;
+                    height: 5rem;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      // ADD COMMENT END
 
       #viewComments{
         cursor: pointer;
@@ -301,6 +374,8 @@ $darkgrey: rgb(61,66,74);
           text-decoration: underline
         }
       }
+
+      // COMMENTS DISPLAY
       .post-comments-section{
         margin-top: .5rem;
         background: white;
@@ -325,10 +400,10 @@ $darkgrey: rgb(61,66,74);
               border-radius:50%;
               width: 1.5rem;
               height: 1.5rem;
-              border: 1.5px solid $Blue;
+              border: 1.5px solid $blue;
               cursor: pointer;
               &:hover{
-                border: 1.5px solid $Orange;
+                border: 1.5px solid $orange;
               }
             }
             a{
@@ -373,6 +448,7 @@ $darkgrey: rgb(61,66,74);
             }
           }
 
+          // ADD REPLY FORM START
           .add-reply{
             margin: .5rem 0;
             width: 100%;
@@ -412,47 +488,76 @@ $darkgrey: rgb(61,66,74);
                 color: $darkgrey;
                 padding: .4rem;
               }
-
-              .file {
-                opacity: 0;
-                width: 0.1px;
-                height: 0.1px;
-                position: absolute;
-              }
-              .file-input label {
+              .reactions{
                 margin: .5rem 0;
-                display: block;
-                position: relative;
-                height: 2rem;
-                width: 7rem;
-                border-radius: 8px;
-                background: $lightgrey;
+                width: 100%;
                 display: flex;
-                flex-direction: row;
-                align-items: center;
-                justify-content: center;
-                font-size: .9rem;
-                color: $darkgrey;
-                cursor: pointer;
-                transition: transform .2s ease-out;
+                flex-direction: column;
+                span{
+                  font-size: 1.7rem;
+                }
+                .search{
+                  width: 100%;
+                  display: flex;
+                  flex-direction: row;
+                  input{
+                    width: 80%;
+                    font-size: 1rem;
+                    color: $darkgrey;
+                    padding: .2rem;
+                    border: none;
+                    border: 1px solid $grey;
+                    outline: none;
+                    &:focus{
+                      border: 1px solid $blue;
+                    }
+                  }
+                  span{
+                    background: $blue;
+                    font-size: 1rem;
+                    cursor: pointer;
+                    color: $darkgrey;
+                    padding: .2rem .5rem;
+                    transition: all .3s ease-in-out;
+                    &:hover{
+                      background: $orange;
+                    }
+                  }
+                }
+                #reaction-title{
+                  font-size: 1.25rem;
+                  color: $blue;
+                  margin-top: .5rem;
+                }
+                .gifs, .stickers{
+                  margin: .5rem 0;
+                  width: 100%;
+                  display: grid;
+                  grid-template-columns: repeat(4, 1fr);
+                  grid-template-rows: repeat(3, 1fr);
+                  grid-column-gap: .5rem;
+                  grid-row-gap: .5rem;
+                  .gif,.sticker{
+                    img{
+                      object-fit: cover;
+                      width: 6rem;
+                      height: 6rem;
+                      border-radius: 3px;
+                      cursor: pointer;
+                      border: 2px solid $blue;
+                      &:hover{
+                        border: 2px solid $orange;
+                      }
+                    }
+                    @media screen and (max-width: 800px){
+                      img{
+                        width: 5rem;
+                        height: 5rem;
+                      }
+                    }
+                  }
+                }
               }
-
-              .file-name {
-                font-size: 0.85rem;
-                color: #555;
-              }
-
-              input:hover + label,
-              input:focus + label {
-                transform: scale(1.02);
-              }
-
-              /* Adding an outline to the label on focus */
-              input:focus + label {
-                outline: 1px solid #000;
-                outline: -webkit-focus-ring-color auto 2px;
-              }
-
               button{
                 align-self: flex-end;
                 width: 20%;
@@ -469,6 +574,26 @@ $darkgrey: rgb(61,66,74);
               }
             }
           }
+          @media screen and (max-width: 800px) {
+            .add-reply{
+              Form{
+                .reactions{
+                  .gifs, .stickers{
+                    grid-template-columns: repeat(3, 1fr);
+                    grid-template-rows: repeat(4, 1fr);
+                    .gif,.sticker{
+                      img{
+                        object-fit: cover;
+                        width: 4rem;
+                        height: 4rem;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+          // ADD REPLY FORM END
 
         }
         .reply{
@@ -481,10 +606,10 @@ $darkgrey: rgb(61,66,74);
               border-radius:50%;
               width: 1.5rem;
               height: 1.5rem;
-              border: 1.5px solid $Orange;
+              border: 1.5px solid $orange;
               cursor: pointer;
               &:hover{
-                border: 1.5px solid $Blue;
+                border: 1.5px solid $blue;
               }
             }
             a{
@@ -513,12 +638,13 @@ $darkgrey: rgb(61,66,74);
           }
         }
       }
+      // COMMENT DISPLAY END
     }
 
   }
   // main end
 }
-// media queries
+// media queries for homepage
 @media screen and (max-width: 800px) {
   .home-page{
     margin-left: 10%;
@@ -531,3 +657,208 @@ $darkgrey: rgb(61,66,74);
   }
 }
 
+// ADD POST FORM
+.screen{
+  position: fixed;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.38);
+  top: -100%;
+  left: -100%;
+  opacity: 0;
+  width: 100vw;
+  height: 100vh;
+  transition: all .6s ease-in-out;
+}
+
+.modal{
+  position: fixed;
+  z-index: 15;
+  top: -100%;
+  left: -100%;
+  transform: scale(0);
+  transition: all .6s ease-in-out;
+  background-color: white;
+  border-right: 3px solid $orange;
+  border-left: 3px solid $orange;
+  border-bottom: 3px solid $blue;
+  border-top: 3px solid $blue;
+  min-height: 30vh;
+  border-radius: 2px;
+  background: white;
+  padding: 2rem;
+  width: 60%;
+  .form-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    h3{
+      font-size: 2.5rem;
+      color: $darkgrey;
+      text-decoration: underline;
+    }
+    span{
+      font-size: 2.5rem;
+      color: $darkgrey;
+      cursor: pointer;
+      transition: all .3s ease-in-out;
+      &:hover{
+       color: $blue;
+      }
+    }
+  }
+  form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: .5rem 0;
+    h2{
+      color: $darkgrey;
+      font-size: 1.5rem;
+      font-weight: 500;
+      margin: .5rem 0;
+    }
+    .form-data{
+      margin-bottom: .5rem;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      h4{
+        font-size: 1.25rem;
+        color: $darkgrey;
+        margin-bottom: .5rem;
+      }
+      .file {
+        opacity: 0;
+        width: 0.1px;
+        height: 0.1px;
+        position: absolute;
+      }
+      .file-input label {
+        margin: .5rem 0;
+        display: block;
+        position: relative;
+        height: 2rem;
+        width: 7rem;
+        border-radius: 8px;
+        background: $lightgrey;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        font-size: .9rem;
+        color: $darkgrey;
+        cursor: pointer;
+        transition: transform .2s ease-out;
+      }
+
+      .file-name {
+        font-size: 0.85rem;
+        color: #555;
+      }
+
+      input:hover + label,
+      input:focus + label {
+        transform: scale(1.02);
+      }
+
+      /* Adding an outline to the label on focus */
+      input:focus + label {
+        outline: 1px solid #000;
+        outline: -webkit-focus-ring-color auto 2px;
+      }
+
+      button{
+        align-self: flex-end;
+        width: 20%;
+        border: none;
+        padding: .4rem;
+        border-radius: 4px;
+        background: $lightgrey;
+        font-size: .9rem;
+        color: $darkgrey;
+        cursor: pointer;
+        &:hover{
+          background: $grey;
+        }
+      }
+      textarea{
+        width: 100%;
+        resize: none;
+        overflow: auto;
+        height: 30vh;
+        font-size: 1rem;
+        padding: .5rem;
+        color: $darkgrey;
+        outline: none;
+        border: none;
+        border: 1px solid $grey;
+        border-radius: 3px;
+        &:focus{
+          border: 1.2px solid $orange;
+        }
+      }
+    }
+    .post-submit{
+      margin-top: 1rem;
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      button{
+        border: none;
+        background: $orange;
+        font-size: 1.25rem;
+        cursor: pointer;
+        color: $darkgrey;
+        padding: .4rem 1rem;
+        border-radius: 3px;
+        transition: all .3s ease-in-out;
+        &:hover{
+          background: #e4993f;
+        }
+      }
+      #deleteBtn{
+        border: none;
+        background: rgb(206, 0, 0);
+        font-size: 1.25rem;
+        cursor: pointer;
+        color: white;
+        padding: .4rem 1rem;
+        border-radius: 3px;
+        transition: all .3s ease-in-out;
+        &:hover{
+          background: rgb(162, 0, 0);
+        }
+      }
+    }
+  }
+}
+// media queries for modals
+@media screen and (max-width: 800px) {
+  .modal{
+    width: 85%;
+    .form-header{
+      h3{
+        font-size: 2rem;
+      }
+    }
+  }
+}
+
+.openScreen{
+  top: 0;
+  left: 0;
+  opacity: 1;
+}
+.openModal{
+  top: 5%;
+  left: 20%;
+  transform: scale(1);
+}
+// media queries for modals
+@media screen and (max-width: 800px) {
+  .openModal{
+    top: 5%;
+    left: 10%;
+  }
+}

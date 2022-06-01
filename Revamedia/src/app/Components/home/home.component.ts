@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit {
   public comment: any = {};
   public comments: any = [];
   public currentDate = new Date();
+  public post: any;
 
   // Back End Work
   public getCommentById(id: number){
@@ -40,6 +41,7 @@ export class HomeComponent implements OnInit {
     this.CommentService.addComment(commentForm.value).subscribe(
       (response: any) => {
         console.log(response);
+        this.getCommentById(response.data.commentId);
       },
       (error: HttpErrorResponse) => {
         console.log(error.message)
@@ -113,4 +115,27 @@ export class HomeComponent implements OnInit {
     this.postsOptionsClicked = !this.postsOptionsClicked;
   }
 
+  public openModal(modalType: string, post: any){
+    // Screen
+    const screen = document.getElementById('screen');
+    screen?.classList.add('openScreen');
+    // Form
+    const form = document.getElementById(`${modalType}-post-modal`);
+    form?.classList.add('openModal');
+    if(modalType === "edit"){
+      this.postsOptionsClicked = false;
+    }
+    if(modalType === "delete"){
+      this.postsOptionsClicked = false;
+    }
+  }
+
+  public closeModal(modalType: string){
+    // Screen
+    const screen = document.getElementById('screen');
+    screen?.classList.remove('openScreen');
+    // Form
+    const form = document.getElementById(`${modalType}-post-modal`);
+    form?.classList.remove('openModal');
+  }
 }

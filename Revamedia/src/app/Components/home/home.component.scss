@@ -42,8 +42,9 @@ $darkgrey: rgb(61,66,74);
       padding: .5rem 1rem;
       cursor: pointer;
       color: black;
+      transition: all .3s ease-in-out;
       &:hover{
-        background: #fca843;
+        background: $blue;
       }
     }
   }
@@ -140,8 +141,11 @@ $darkgrey: rgb(61,66,74);
         @media screen and (max-width: 800px){
           .post-title{
             .post-options{
+              #icon{
+                font-size: 1.2rem;
+              }
               ul{
-                width: 25%;
+                width: 20%;
                 transform:translate(40%, 24%);
               }
             }

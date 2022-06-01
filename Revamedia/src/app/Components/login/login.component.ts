@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 // Icons
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -14,8 +15,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  public TEMPLogIn(){
-    this.auth.login();
+  public TEMPLogIn(loginForm: NgForm) {
+    this.auth.login(loginForm);
   }
 
   // Front End Work
@@ -24,7 +25,7 @@ export class LoginComponent implements OnInit {
 
   // Show Password
   public showPassword = false;
-  public toggleShowPassword(){
+  public toggleShowPassword() {
     this.showPassword = !this.showPassword;
   }
 

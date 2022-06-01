@@ -39,12 +39,5 @@ public class UserService {
         return userRepository.findByUsername(username);
     }
 
-    public User login(AuthDto authDto) {
-        User user = userRepository.findByUsername(authDto.getUsername());
-        if (user != null && user.getPassword().equals(authDto.getPassword())) {
-            return user;
-        } else {
-            throw new UnauthorizedUserException("Unauthorized!");
-        }
-    }
+    public boolean existsByUsername(String username){return userRepository.existsUserByUsername(username);}
 }

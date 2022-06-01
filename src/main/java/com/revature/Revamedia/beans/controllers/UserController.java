@@ -25,11 +25,5 @@ public class UserController {
 
     //Controller Methods
 
-    @PostMapping("/login")
-    public User login(@RequestBody User user, HttpServletResponse response) {
-        AuthDto auth = new AuthDto(user.getUsername(), user.getPassword());
-        return userService.login(auth);
-        
-    }
 
 }

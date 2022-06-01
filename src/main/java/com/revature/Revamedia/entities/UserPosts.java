@@ -5,12 +5,16 @@
  */
 package com.revature.Revamedia.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@JsonIgnoreProperties
 @Table(name = "user_posts", schema = _SchemaName.schemaName)
 public class UserPosts implements Serializable {
     @Id
@@ -18,6 +22,7 @@ public class UserPosts implements Serializable {
     @Column(name = "post_id")
     private Integer postId;
 
+    @JsonBackReference
     @ManyToOne()
     @JoinColumn(name = "owner_id", referencedColumnName = "user_id")
     private User ownerId;

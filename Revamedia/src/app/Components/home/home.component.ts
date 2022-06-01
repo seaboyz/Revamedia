@@ -85,7 +85,7 @@ export class HomeComponent implements OnInit {
   public faFaceGrinStars = faFaceGrinStars; //icon
 
   // hide Comments
-  public hideComments = true;
+  public hideComments = false;
   public toggleHideComments() : void {
     this.hideComments = !this.hideComments;
   }

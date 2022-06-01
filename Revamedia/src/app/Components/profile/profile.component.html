@@ -17,8 +17,8 @@
       </div>
 
       <div class="right-card">
-        <h5>1 Follower</h5>
-        <h5>200 Following</h5>
+        <h5 (click)="openModal('followers', data)">1 Follower</h5>
+        <h5 (click)="openModal('following', data)">1 Following</h5>
       </div>
     </div>
 
@@ -43,3 +43,49 @@
   </div>
   <!-- PROFILE END -->
 </div>
+
+<!-- BLACKOUTSCREEN START-->
+<div class="screen" id="screen"></div>
+<!-- BLACKOUTSCREEN END-->
+
+<!-- FOLLOWERS MODALS START-->
+<div class="modal" id="followers-modal">
+  <div class="modal-header">
+    <h3>Followers</h3>
+    <span (click)="closeModal('followers')">x</span>
+  </div>
+  <div class="modal-body">
+    <div class="follower">
+      <div class="follower-data">
+        <img src="https://avatars.githubusercontent.com/u/77355023?v=4" alt="Name" routerLink="/profile" routerLinkActive="active">
+        <h5 routerLink="/profile" routerLinkActive="active">leobarrientos02</h5>
+      </div>
+      <div class="follow-option">
+        <button id="unfollow">Unfollow</button>
+        <button>Follow Back</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- FOLLOWERS MODALS END-->
+
+<!-- FOLLOWING MODALS START-->
+<div class="modal" id="following-modal">
+  <div class="modal-header">
+    <h3>Following</h3>
+    <span (click)="closeModal('following')">x</span>
+  </div>
+  <div class="modal-body">
+    <div class="following">
+      <div class="following-data">
+        <img src="https://avatars.githubusercontent.com/u/77355023?v=4" alt="Name" routerLink="/profile" routerLinkActive="active">
+        <h5 routerLink="/profile" routerLinkActive="active">leobarrientos02</h5>
+      </div>
+      <div class="follow-option">
+        <button id="unfollow">Unfollow</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- FOLLOWING MODALS END-->
+

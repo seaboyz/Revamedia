@@ -68,6 +68,10 @@ $darkgrey: rgb(61,66,74);
           margin-left: 2rem;
           font-size: 1.25rem;
           color: $darkgrey;
+          cursor: pointer;
+          &:hover{
+            color: $orange;
+          }
         }
       }
     }
@@ -77,6 +81,9 @@ $darkgrey: rgb(61,66,74);
     #profile-posts-title{
       color: $darkgrey;
       font-size: 2.5rem;
+      background: white;
+      padding: .2rem .4rem;
+      border-radius: 2px;
       text-decoration: underline;
     }
     // Posts title End
@@ -109,8 +116,236 @@ $darkgrey: rgb(61,66,74);
 
   }
 }
+
+// MODALS CSS
+.screen{
+  position: fixed;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.38);
+  top: -100%;
+  right: -100%;
+  opacity: 0;
+  width: 100vw;
+  height: 100vh;
+  transition: all .6s ease-in-out;
+}
+
+.modal{
+  position: absolute;
+  z-index: 15;
+  top: -100%;
+  right: -100%;
+  transform: scale(0);
+  transition: all .6s ease-in-out;
+  background-color: white;
+  border-right: 3px solid $orange;
+  border-left: 3px solid $orange;
+  border-bottom: 3px solid $blue;
+  border-top: 3px solid $blue;
+  border-radius: 2px;
+  background: white;
+  padding: 2rem;
+  width: 40%;
+
+  // header
+  .modal-header{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    h3{
+      font-size: 2rem;
+      color:$darkgrey;
+      text-decoration: underline;
+    }
+    span{
+      font-size: 2rem;
+      color: $darkgrey;
+      cursor: pointer;
+      &:hover{
+        color: $blue;
+      }
+    }
+  }
+  .modal-body{
+    margin: .5rem 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    .follower,.following{
+      width: 100%;
+      border-top: 1px solid $lightgrey;
+      border-bottom: 1px solid $lightgrey;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: .5rem;
+      .follower-data,.following-data{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        img{
+          cursor: pointer;
+          width: 2rem;
+          height: 2rem;
+          border-radius: 50%;
+          border: 2px solid $orange;
+          &:hover{
+            border: 2px solid $blue;
+          }
+        }
+        h5{
+          margin-left: .5rem;
+          color: $darkgrey;
+          cursor: pointer;
+          &:hover{
+            color: $blue;
+          }
+        }
+      }
+      .follow-option{
+        button{
+          margin-left: 1rem;
+          border: none;
+          outline: none;
+          background: $blue;
+          color: black;
+          font-size: .9rem;
+          padding: .25rem .5rem;
+          border-radius: 4px;
+          cursor: pointer;
+          transition: all .3s ease-in-out;
+          &:hover{
+            background: $orange;
+          }
+        }
+        #unfollow{
+          border: none;
+          outline: none;
+          background: rgb(184, 0, 0);
+          color: white;
+          font-size: .9rem;
+          padding: .25rem .5rem;
+          border-radius: 4px;
+          cursor: pointer;
+          transition: all .3s ease-in-out;
+          &:hover{
+            background: rgb(146, 0, 0);
+          }
+        }
+      }
+    }
+  }
+}
+
+
+.openScreen{
+  top: 0;
+  right: 0;
+  opacity: 1;
+}
+
+.openModal{
+  top: 20%;
+  right: 27%;
+  transform: scale(1);
+}
+// media queries for modals
+@media screen and (max-width: 800px) {
+  .openModal{
+    top: 10%;
+    right: 5%;
+  }
+}
+// media queries for modals
+@media screen and (max-width: 800px) {
+  .modal{
+    width: 85%;
+    .form-header{
+      h3{
+        font-size: 2rem;
+      }
+    }
+  }
+}
 @media screen and (max-width: 800px) {
   .profile-page{
     margin-left: 10%;
+
+    .profile{
+      width: 100%;
+
+      // Profile header start
+      .profile-header{
+        padding: .5rem;
+        .left-card{
+          img{
+            width: 3rem;
+            height: 3rem;
+          }
+          h5{
+            margin-left: .5rem;
+            font-size: .9rem;
+            color: $darkgrey;
+          }
+        }
+        .right-card{
+          display: flex;
+          flex-direction: column;
+          h5{
+            margin-left: 0;
+            margin-bottom: .3rem;
+            font-size: 1.1rem;
+          }
+        }
+      }
+      // Profile header end
+
+      // Posts title start
+      #profile-posts-title{
+        font-size: 2rem;
+        width: 100%;
+        text-align: center;
+      }
+      // Posts title End
+
+      // USERS POSTS START
+      .users-post{
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        grid-column-gap: 2rem;
+        grid-row-gap: 2rem;
+      }
+      // USERS POSTS END
+
+    }
+  }
+
+  // MODALS
+  .modal{
+    .modal-body{
+      .follower,.following{
+        .follower-data,.following-data{
+          img{
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+          }
+          h5{
+            margin-left: .5rem;
+            color: $darkgrey;
+          }
+        }
+        .follow-option{
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content:  center;
+          button{
+            margin-bottom: .3rem;
+          }
+        }
+      }
+    }
   }
 }

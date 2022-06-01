@@ -19,6 +19,7 @@ import { CommentService } from './services/comment.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { GiphyService } from './services/giphy.service';
+import { PostPageComponent } from './post-page/post-page.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { GiphyService } from './services/giphy.service';
     RegisterComponent,
     ErrorPageComponent,
     ProfileComponent,
+    PostPageComponent,
   ],
   imports: [
     BrowserModule,

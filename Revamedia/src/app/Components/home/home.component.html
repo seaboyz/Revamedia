@@ -53,6 +53,7 @@
           </div>
         </div>
 
+        <!-- ADD COMMENT START -->
         <div class="add-comment" *ngIf="addComment">
           <div class="add-comment-header">
             <h5>Add Comment</h5>
@@ -64,7 +65,7 @@
             <div class="reactions">
               <span>Reactions</span>
               <div class="search">
-                <input type="text" id="giphySearch" placeholder="Search GIPHY">
+                <input type="text" id="giphy-search-comment" placeholder="Search GIPHY">
                 <span (click)="searchGiphy()">Search</span>
               </div>
               <span id="reaction-title">
@@ -80,7 +81,7 @@
               </div>
               <span id="reaction-title">
                 <fa-icon [icon]="faFaceGrinStars"></fa-icon>
-                gifs
+                Stickers
               </span>
               <div class="stickers">
                 <div class="sticker" *ngFor="let sticker of stickers">
@@ -92,6 +93,7 @@
             <button>Comment</button>
           </form>
         </div>
+        <!-- ADD COMMENT END -->
 
         <span (click)=" toggleHideComments()" id="viewComments">{{hideComments ? 'Hide Comments' : 'View Comments' }}</span>
 
@@ -107,23 +109,25 @@
               <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi provident omnis, fugiat quas fuga vero harum beatae quibusdam doloremque sequi voluptates laboriosam hic id modi nisi quo fugit expedita sit!</p>
               <img src="https://cdn.discordapp.com/attachments/959893537355350073/969003426094661692/76289-1650787315-1611918496.png" alt="Comment">
             </div>
+
             <div class="reply-card">
               <button (click)="openAddReply()">Reply</button>
             </div>
             <!-- comment end -->
 
+            <!-- ADD REPLY START-->
             <div class="add-reply" *ngIf="addReply">
               <div class="add-reply-header">
                 <h5>Add Reply</h5>
                 <button title="Close" (click)="closeAddReply()">X</button>
               </div>
-              <form id="add-comment-form">
+              <form id="add-reply-form">
                 <textarea name="comment" id="comment" rows="5"></textarea>
                 <div class="reactions">
                   <span>Reactions</span>
                   <div class="search">
-                    <input type="text" id="giphySearch" placeholder="Search GIPHY">
-                    <span (click)="searchGiphy()">Search</span>
+                    <input type="text" id="giphy-search-reply" placeholder="Search GIPHY">
+                    <span (click)="searchGiphyForReply()">Search</span>
                   </div>
                   <span id="reaction-title">
                     <fa-icon [icon]="faFaceGrinTongueSquint"></fa-icon>
@@ -138,7 +142,7 @@
                   </div>
                   <span id="reaction-title">
                     <fa-icon [icon]="faFaceGrinStars"></fa-icon>
-                    gifs
+                    Stickers
                   </span>
                   <div class="stickers">
                     <div class="sticker" *ngFor="let sticker of stickers">
@@ -150,6 +154,7 @@
                 <button>Reply</button>
               </form>
             </div>
+            <!-- ADD REPLY END-->
 
             <!-- Replies Start -->
             <div class="reply">
@@ -188,7 +193,7 @@
     <div class="form-data">
       <h4>Add Image or Video</h4>
       <div class="file-input">
-        <input type="file" id="file" class="file" (change)="fileName($event, 'add-post')">
+        <input type="file" id="file" class="file" (change)="addPostFileName($event)">
         <label for="file">
           Select File
         </label>
@@ -216,7 +221,7 @@
     <div class="form-data">
       <h4>Edit Image or Video</h4>
       <div class="file-input">
-        <input type="file" id="file" class="file" (change)="fileName($event, 'edit-post')">
+        <input type="file" id="file" class="file">
         <label for="file">
           Select File
         </label>

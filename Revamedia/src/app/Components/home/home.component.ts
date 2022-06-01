@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 //icons
 import { faHeart, faEllipsis, faBookmark, faComment, faShareFromSquare, faFaceGrinTongueSquint, faFaceGrinStars } from '@fortawesome/free-solid-svg-icons';
-import { GiphyServiceService } from 'src/app/services/giphy-service.service';
+import { GiphyService } from 'src/app/services/giphy.service';
 import { CommentService } from '../../services/comment.service';
 
 @Component({
@@ -13,7 +13,7 @@ import { CommentService } from '../../services/comment.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(public CommentService: CommentService, public gifService: GiphyServiceService) { }
+  constructor(public CommentService: CommentService, public gifService: GiphyService) { }
 
   ngOnInit(): void {
     // this.getAllComments();
@@ -99,12 +99,10 @@ export class HomeComponent implements OnInit {
     this.addComment = false;
   }
 
-  public fileName(event: any, target: string): void {
-    var fileNames: any[] = event.target.files;
-    const file = document.getElementById(`${target}-fileName`);
-    for(let i = 0; i< fileNames.length; i++){
-      file!.textContent = fileNames[i].name;
-    }
+  public addPostFileName(event: any): void {
+    var fileName = event.target.files[0];
+    const file = document.getElementById('add-post-fileName');
+    file!.textContent = fileName.name;
   }
 
   // Add Reply
@@ -159,18 +157,33 @@ export class HomeComponent implements OnInit {
       }
     )
   }
+
   public searchGiphy(){
-    const search = document.getElementById('giphySearch') as HTMLInputElement;
+    const search = document.getElementById(`giphy-search-comment`) as HTMLInputElement;
     let query = search?.value;
     let cleanQuery = query.trim();
     let cleanQuery2 = cleanQuery.replace(" ", "+");
     this.getGifs(cleanQuery2);
     this.getStickers(cleanQuery2);
     if(query === ""){
-      this.getGifs("Code");
-      this.getStickers("Code");
+      this.getGifs("happy");
+      this.getStickers("happy");
     }
   }
+
+  public searchGiphyForReply(){
+    const search = document.getElementById(`giphy-search-reply`) as HTMLInputElement;
+    let query = search?.value;
+    let cleanQuery = query.trim();
+    let cleanQuery2 = cleanQuery.replace(" ", "+");
+    this.getGifs(cleanQuery2);
+    this.getStickers(cleanQuery2);
+    if(query === ""){
+      this.getGifs("happy");
+      this.getStickers("happy");
+    }
+  }
+
   public selectedGiphy = "";
   public selectGiphy(url: any){
     this.selectedGiphy = url;

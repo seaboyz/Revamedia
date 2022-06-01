@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { GiphyServiceService } from './giphy-service.service';
+import { GiphyService } from './giphy.service';
 
-describe('GiphyServiceService', () => {
-  let service: GiphyServiceService;
+describe('GiphyService', () => {
+  let service: GiphyService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(GiphyServiceService);
+    service = TestBed.inject(GiphyService);
   });
 
   it('should be created', () => {

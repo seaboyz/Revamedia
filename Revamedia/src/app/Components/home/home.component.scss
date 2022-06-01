@@ -47,6 +47,16 @@ $darkgrey: rgb(61,66,74);
       }
     }
   }
+  @media screen and (max-width: 800px){
+    .page-title{
+      padding: .5rem 1rem;
+      button{
+        font-size: .9rem;
+        border-radius: 7px;
+        padding: .4rem .8rem;
+      }
+    }
+  }
   // page title end
 
   // main start
@@ -66,6 +76,8 @@ $darkgrey: rgb(61,66,74);
         margin-bottom: .5rem;
         background: white;
         box-shadow: rgba(0, 0, 0, 0.075) 0px 3px 8px;
+
+        // POST TITLE START
         .post-title{
           display: flex;
           flex-direction: row;
@@ -125,6 +137,18 @@ $darkgrey: rgb(61,66,74);
             }
           }
         }
+        @media screen and (max-width: 800px){
+          .post-title{
+            .post-options{
+              ul{
+                width: 25%;
+                transform:translate(40%, 24%);
+              }
+            }
+          }
+        }
+        // POST TITLE END
+
         .post-body{
           img{
             width: 100%;
@@ -197,6 +221,7 @@ $darkgrey: rgb(61,66,74);
         }
       }
 
+      //  ADD COMMENT START
       .add-comment{
         margin: .5rem 0;
         width: 100%;
@@ -273,7 +298,7 @@ $darkgrey: rgb(61,66,74);
               }
             }
             #reaction-title{
-              font-size: 1.5rem;
+              font-size: 1.25rem;
               color: $blue;
               margin-top: .5rem;
             }
@@ -316,6 +341,26 @@ $darkgrey: rgb(61,66,74);
           }
         }
       }
+      @media screen and (max-width: 800px) {
+        .add-comment{
+          Form{
+            .reactions{
+              .gifs, .stickers{
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: repeat(4, 1fr);
+                .gif,.sticker{
+                  img{
+                    object-fit: cover;
+                    width: 5rem;
+                    height: 5rem;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      // ADD COMMENT END
 
       #viewComments{
         cursor: pointer;
@@ -325,6 +370,8 @@ $darkgrey: rgb(61,66,74);
           text-decoration: underline
         }
       }
+
+      // COMMENTS DISPLAY
       .post-comments-section{
         margin-top: .5rem;
         background: white;
@@ -397,6 +444,7 @@ $darkgrey: rgb(61,66,74);
             }
           }
 
+          // ADD REPLY FORM START
           .add-reply{
             margin: .5rem 0;
             width: 100%;
@@ -473,7 +521,7 @@ $darkgrey: rgb(61,66,74);
                   }
                 }
                 #reaction-title{
-                  font-size: 1.5rem;
+                  font-size: 1.25rem;
                   color: $blue;
                   margin-top: .5rem;
                 }
@@ -497,6 +545,12 @@ $darkgrey: rgb(61,66,74);
                         border: 2px solid $orange;
                       }
                     }
+                    @media screen and (max-width: 800px){
+                      img{
+                        width: 5rem;
+                        height: 5rem;
+                      }
+                    }
                   }
                 }
               }
@@ -516,6 +570,26 @@ $darkgrey: rgb(61,66,74);
               }
             }
           }
+          @media screen and (max-width: 800px) {
+            .add-reply{
+              Form{
+                .reactions{
+                  .gifs, .stickers{
+                    grid-template-columns: repeat(3, 1fr);
+                    grid-template-rows: repeat(4, 1fr);
+                    .gif,.sticker{
+                      img{
+                        object-fit: cover;
+                        width: 4rem;
+                        height: 4rem;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+          // ADD REPLY FORM END
 
         }
         .reply{
@@ -560,6 +634,7 @@ $darkgrey: rgb(61,66,74);
           }
         }
       }
+      // COMMENT DISPLAY END
     }
 
   }
@@ -754,6 +829,17 @@ $darkgrey: rgb(61,66,74);
     }
   }
 }
+// media queries for modals
+@media screen and (max-width: 800px) {
+  .modal{
+    width: 85%;
+    .form-header{
+      h3{
+        font-size: 2rem;
+      }
+    }
+  }
+}
 
 .openScreen{
   top: 0;
@@ -764,4 +850,11 @@ $darkgrey: rgb(61,66,74);
   top: 5%;
   left: 20%;
   transform: scale(1);
+}
+// media queries for modals
+@media screen and (max-width: 800px) {
+  .openModal{
+    top: 5%;
+    left: 10%;
+  }
 }

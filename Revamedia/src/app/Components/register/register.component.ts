@@ -4,6 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { HttpHeaders } from '@angular/common/http';
 
+import { IUserInterface } from 'src/app/shared/interfaces/IUserInterface';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -11,30 +13,44 @@ import { HttpHeaders } from '@angular/common/http';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private register : RegisterService) { }
+  constructor(private register: RegisterService) { }
   username: string = "";
   password: string = "";
   fName: string = "";
   lName: string = "";
   email: string = "";
 
+  public user: IUserInterface = {
+    username: "",
+    id: undefined,
+    password: '',
+    firstName: '',
+    lastName: '',
+    email: ''
+  };
+
   ngOnInit(): void {
   }
 
-  registerHandler(username: string, password: string, fName: string, lName: string, email: string){
+  registerHandler(username: string, password: string, fName: string, lName: string, email: string) {
 
-
-      let user = new User(username, password, fName, lName, email);
-      console.log(user)
-      let options = {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json'
-        })
-      }
-      this.register.createUser(user, options).subscribe((data) => {
-        console.log(data)
-    })
+    this.user.firstName = fName;
+    this.user.lastName = lName;
+    this.user.username = username;
+    this.user.password = password;
+    this.user.email = email;
+    console.log(this.user);
+    //let user = new User(username, password, fName, lName, email);
+    //console.log(user)
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
     }
+    this.register.createUser(this.user, options).subscribe((data) => {
+      console.log(data)
+    })
+  }
 
 
   // Front End Work
@@ -43,30 +59,12 @@ export class RegisterComponent implements OnInit {
 
   // Show Password
   public showPassword = false;
-  public toggleShowPassword(){
+  public toggleShowPassword() {
     this.showPassword = !this.showPassword;
   }
   public showConfirmPassword = false;
-  public toggleShowConfirmPassword(){
+  public toggleShowConfirmPassword() {
     this.showConfirmPassword = !this.showConfirmPassword;
   }
 }
 
-
-export class User {
-  id: number | undefined;
-  username: string;
-  password: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-
-  constructor(_username: string, _password: string, _fName: string, _lName: string, _email: string) {
-    this.username = _username;
-    this.password = _password;
-    this.firstName = _fName;
-    this.lastName = _lName;
-    this.email = _email;
-
-  }
-}

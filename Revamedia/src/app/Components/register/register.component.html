@@ -5,15 +5,16 @@
 
   <div class="register">
     <h2>Register</h2>
-    <form (ngSubmit)="registerHandler(username,password,fName,lName,email)" #registerForm="ngForm" >
+    <form (ngSubmit)="registerHandler(username,password,fName,lName,email)" #registerForm="ngForm">
       <div class="form-row">
         <div>
           <label for="fName">First Name</label>
-          <input type="text" required="required" name="fName" id="fName" placeholder="First Name..." [(ngModel)]="fName">
+          <input type="text" required="required" name="fName" id="fName" placeholder="First Name..."
+            [(ngModel)]="fName">
         </div>
         <div>
           <label for="lName">Last Name</label>
-          <input type="text" required name="lName" id="lName" placeholder="Last Name..."  [(ngModel)]="lName">
+          <input type="text" required name="lName" id="lName" placeholder="Last Name..." [(ngModel)]="lName">
         </div>
       </div>
       <div class="form-row">
@@ -23,13 +24,14 @@
         </div>
         <div>
           <label for="username">Username</label>
-          <input type="text" required name="username" id="username" placeholder="Username..."  [(ngModel)]="username">
+          <input type="text" required name="username" id="username" placeholder="Username..." [(ngModel)]="username">
         </div>
       </div>
       <div class="form-row">
         <div>
           <label for="password">Password</label>
-          <input type="password" required name="password" id="password" placeholder="Password..."  >
+          <input [type]="showPassword ? 'text' : 'password'" required name="password" id="password"
+            placeholder="Password...">
           <span (click)="toggleShowPassword()">
             <fa-icon *ngIf="showPassword === false" [icon]="faEye"></fa-icon>
             <fa-icon *ngIf="showPassword === true" [icon]="faEyeSlash"></fa-icon>
@@ -38,7 +40,8 @@
         </div>
         <div>
           <label for="confirm_password">Confirm Password</label>
-          <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm password..." required [(ngModel)]="password">
+          <input [type]="showConfirmPassword ? 'text' : 'password'" name="confirm_password" id="confirm_password"
+            placeholder="Confirm password..." required [(ngModel)]="password">
           <span (click)="toggleShowConfirmPassword()">
             <fa-icon *ngIf="showConfirmPassword === false" [icon]="faEye"></fa-icon>
             <fa-icon *ngIf="showConfirmPassword === true" [icon]="faEyeSlash"></fa-icon>
@@ -47,7 +50,7 @@
         </div>
       </div>
       <div class="submit">
-        <button [disabled]="!registerForm.form.valid" >Register</button>
+        <button [disabled]="!registerForm.form.valid">Register</button>
       </div>
     </form>
     <div class="register-help">

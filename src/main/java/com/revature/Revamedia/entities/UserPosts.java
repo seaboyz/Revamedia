@@ -1,6 +1,6 @@
 /**
  * Author(s): @Brandon Le, @Tony Henderson
- * Contributor(s):
+ * Contributor(s): @Arun Mohan, @Anthony Pilletti
  * Purpose:
  */
 package com.revature.Revamedia.entities;
@@ -69,12 +69,7 @@ public class UserPosts implements Serializable {
         this.likes = new HashSet<>();
     }
 
-<<<<<<< HEAD
     public UserPosts(Integer postId, User ownerId, List<UserComments> comments, String message, String youtubeLink, String image, Set<User> likes, String postLifetime, Timestamp dateCreated, UserGroups groupId) {
-=======
-
-    public UserPosts(Integer postId, User ownerId, List<UserComments> comments, String message, String youtubeLink, String image, Set<User> likes, String postLifetime, String dateCreated, UserGroups groupId) {
->>>>>>> 41e4f84822dff391afba1e72a2d79dbe00aaee83
         this.postId = postId;
         this.ownerId = ownerId;
         this.comments = comments;

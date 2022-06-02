@@ -1,6 +1,6 @@
 /**
  * Author(s): @Brandon Le, @Tony Henderson
- * Contributor(s):
+ * Contributor(s): @Arun Mohan, @Anthony Pilletti
  * Purpose:
  */
 
@@ -112,7 +112,7 @@ public class User implements Serializable {
         this.likedPosts = new ArrayList<>();
     }
 
-    public User(Integer userId, String username, String email, String password, String firstName, String lastName, String profilePicture, Timestamp dateCreated, Set<UserFollows> followers, Set<UserFollows> following, Set<UserPosts> posts, Set<UserGroups> groupsJoined, Set<UserGroups> groupsOwned, Set<UserEvents> eventsJoined, Set<UserEvents> eventsOwned, Set<UserConversations> conversations) {
+    public User(Integer userId, String username, String email, String password, String firstName, String lastName, String profilePicture, Timestamp dateCreated, List<UserPosts> likedPosts, Set<UserFollows> followers, Set<UserFollows> following, Set<UserPosts> posts, Set<UserGroups> groupsJoined, Set<UserGroups> groupsOwned, Set<UserEvents> eventsJoined, Set<UserEvents> eventsOwned, Set<UserConversations> conversations) {
         this.userId = userId;
         this.username = username;
         this.email = email;

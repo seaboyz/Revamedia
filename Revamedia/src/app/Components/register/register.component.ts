@@ -1,10 +1,12 @@
-import { RegisterService } from './../../services/register.service';
+
 import { Component, OnInit } from '@angular/core';
 // Icons
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { HttpHeaders } from '@angular/common/http';
 
-import { IUserInterface } from 'src/app/shared/interfaces/IUserInterface';
+
+import {RegisterService} from "../../Shared/services/register-service/register.service";
+import {IUserInterface} from "../../Shared/interfaces/IUserInterface";
 
 @Component({
   selector: 'app-register',

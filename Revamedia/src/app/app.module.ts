@@ -17,7 +17,6 @@ import { LoginComponent } from './Components/login/login.component';
 import { RegisterComponent } from './Components/register/register.component';
 import { ErrorPageComponent } from './Components/error-page/error-page.component';
 import { ProfileComponent } from './Components/profile/profile.component';
-import { AddPostComponent } from './Components/add-post/add-post.component';
 import { ValidateEqualModule } from 'ng-validate-equal';
 import { CookieService } from 'ngx-cookie-service';
 import { CommentService } from './Shared/services/user-comments-service/comment.service';
@@ -37,7 +36,6 @@ import { AuthenticationService } from './Shared/services/auth-service/authentica
     RegisterComponent,
     ErrorPageComponent,
     ProfileComponent,
-    AddPostComponent,
   ],
   imports: [
     BrowserModule,

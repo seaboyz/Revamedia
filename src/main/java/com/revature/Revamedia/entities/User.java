@@ -7,11 +7,13 @@
 
 package com.revature.Revamedia.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.*;
 
 @Entity
@@ -35,7 +37,8 @@ public class User implements Serializable {
     @Column(name = "profile_picture")
     private String profilePicture;
     @Column(name = "date_created")
-    private String dateCreated;
+    private Timestamp dateCreated;
+
 
     @JsonManagedReference
     @OneToMany(mappedBy = "followedId", cascade = CascadeType.ALL)
@@ -45,12 +48,14 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "followerId", cascade = CascadeType.ALL)
     private Set<UserFollows> following;
 
+    //@Transient
     @JsonManagedReference
     @OneToMany(mappedBy = "ownerId")
     private Set<UserPosts> postsOwned;
 
 
     @JsonIgnoreProperties("likes")
+    //@JsonIgnore
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "liked_posts",
@@ -102,10 +107,13 @@ public class User implements Serializable {
         this.eventsJoined = new HashSet<>();
         this.eventsOwned = new HashSet<>();
 
-        //this.conversations = new HashSet<>();
+//        this.conversations = new HashSet<>();
+
+        this.likedPosts = new ArrayList<>();
     }
 
-    public User(Integer userId, String username, String email, String password, String firstName, String lastName, String profilePicture, String dateCreated, Set<UserFollows> followers, Set<UserFollows> following, Set<UserPosts> posts, Set<UserGroups> groupsJoined, Set<UserGroups> groupsOwned, Set<UserEvents> eventsJoined, Set<UserEvents> eventsOwned, Set<UserConversations> conversations) {
+
+    public User(Integer userId, String username, String email, String password, String firstName, String lastName, String profilePicture, Timestamp dateCreated, Set<UserFollows> followers, Set<UserFollows> following, Set<UserPosts> posts, Set<UserGroups> groupsJoined, Set<UserGroups> groupsOwned, Set<UserEvents> eventsJoined, Set<UserEvents> eventsOwned, Set<UserConversations> conversations) {
         this.userId = userId;
         this.username = username;
         this.email = email;
@@ -114,6 +122,7 @@ public class User implements Serializable {
         this.lastName = lastName;
         this.profilePicture = profilePicture;
         this.dateCreated = dateCreated;
+        this.likedPosts = likedPosts;
         this.followers = followers;
         this.following = following;
         this.postsOwned = posts;
@@ -172,11 +181,11 @@ public class User implements Serializable {
         this.lastName = lastName;
     }
 
-    public String getDateCreated() {
+    public Timestamp getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(String dateCreated) {
+    public void setDateCreated(Timestamp dateCreated) {
         this.dateCreated = dateCreated;
     }
 
@@ -323,6 +332,14 @@ public class User implements Serializable {
     public void setConversations(Set<UserConversations> conversations) {
         this.conversations = conversations;
     }*/
+
+    public void addLikedPost(UserPosts post) {
+        this.likedPosts.add(post);
+    }
+
+    public void removeLikedPost(UserPosts post) {
+        this.likedPosts.remove(post);
+    }
 
     @Override
     public String toString() {

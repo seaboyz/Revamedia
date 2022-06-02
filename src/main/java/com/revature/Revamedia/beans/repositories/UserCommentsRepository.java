@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface UserCommentsRepository extends JpaRepository<UserComments, Integer> {
-
+    void deleteById(Integer id);
 }

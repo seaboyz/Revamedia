@@ -1,4 +1,4 @@
-package com.revature.Revamedia;
+package com.revature.Revamedia.beans;
 
 import com.revature.Revamedia.beans.services.UserCommentsService;
 import com.revature.Revamedia.beans.repositories.UserCommentsRepository;
@@ -43,15 +43,15 @@ public class UserCommentsServiceTest {
 
         USER_1 = new User(1, "test", "test@aol.com", "pass", "test", "name", null, null, null, null, null, null, null, null, null, null);
         POST_1 = new UserPosts(1, USER_1, null, "test message", null, null, null, null, null, null);
-        COMMENT_1 = new UserComments(1, USER_1, POST_1,null, "test comment", null);
-        COMMENT_2 = new UserComments(2, USER_1, POST_1,null, "test comment number 2", null);
+        COMMENT_1 = new UserComments(1, USER_1, POST_1, null, "test comment", null);
+        COMMENT_2 = new UserComments(2, USER_1, POST_1, null, "test comment number 2", null);
 
     }
 
 
     @Test
     @DisplayName("Test the comment is retrieved correctly by its ID")
-    public void getCommentByIdSuccessfully(@Autowired UserCommentsService userCommentsService){
+    public void getCommentByIdSuccessfully(@Autowired UserCommentsService userCommentsService) {
 
 
         UserComments comment = new UserComments();
@@ -69,7 +69,7 @@ public class UserCommentsServiceTest {
 
     @Test
     @DisplayName("Test that all comments are retrieved")
-    public void getAllCommentsSuccessfully(@Autowired UserCommentsService userCommentsService){
+    public void getAllCommentsSuccessfully(@Autowired UserCommentsService userCommentsService) {
         List<UserComments> commentList = new ArrayList<>();
         commentList.add(COMMENT_1);
         commentList.add(COMMENT_2);
@@ -109,21 +109,11 @@ public class UserCommentsServiceTest {
 
     @Test
     @DisplayName("Test that a comment is deleted")
-    void delete(@Autowired UserCommentsService userCommentsService)  {
-        UserComments userComments = new UserComments(2, USER_1, POST_1,null,
+    void delete(@Autowired UserCommentsService userCommentsService) {
+        UserComments userComments = new UserComments(2, USER_1, POST_1, null,
                 "test comment number 2", null);
 
         userCommentsService.delete(userComments);
         verify(userCommentsRepositoryMock, times(1)).delete(userComments);
     }
-    //test that comment gets deleted
-//    @Test
-//    public void commentGetsDeleted(@Autowired UserCommentsService userCommentsService) {
-//        UserComments commentToCreate = COMMENT_1;
-//
-//        when(userCommentsRepositoryMock.delete(any())).thenReturn(commentToCreate);
-//        UserComments comment = userCommentsService.save(commentToCreate);
-//
-//        assertEquals(commentToCreate, comment);
-//    }
 }

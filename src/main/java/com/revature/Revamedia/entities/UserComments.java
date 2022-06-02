@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,13 +40,13 @@ public class UserComments implements Serializable {
     private String message;
 
     @Column(name = "date_created")
-    private String dateCreated;
+    private Timestamp dateCreated;
 
     public UserComments() {
         this.replies = new ArrayList<>();
     }
 
-    public UserComments(Integer commentId, User ownerId, UserPosts postId, List<UserReplies> replies, String message, String dateCreated) {
+    public UserComments(Integer commentId, User ownerId, UserPosts postId, List<UserReplies> replies, String message, Timestamp dateCreated) {
         this.commentId = commentId;
         this.ownerId = ownerId;
         this.postId = postId;
@@ -87,11 +88,11 @@ public class UserComments implements Serializable {
         this.message = message;
     }
 
-    public String getDateCreated() {
+    public Timestamp getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(String dateCreated) {
+    public void setDateCreated(Timestamp dateCreated) {
         this.dateCreated = dateCreated;
     }
 

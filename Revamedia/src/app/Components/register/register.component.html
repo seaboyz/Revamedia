@@ -10,7 +10,7 @@
         <div>
           <label for="fName">First Name</label>
           <input type="text" required="required" name="fName" id="fName" placeholder="First Name..."
-            [(ngModel)]="fName">
+                 [(ngModel)]="fName">
         </div>
         <div>
           <label for="lName">Last Name</label>
@@ -30,8 +30,8 @@
       <div class="form-row">
         <div>
           <label for="password">Password</label>
-          <input [type]="showPassword ? 'text' : 'password'" required name="password" id="password"
-            placeholder="Password...">
+          <input [type]="showPassword ? 'text' : 'password'" #modelPassword="ngModel" [(ngModel)]="password" required name="password" id="password"
+                 placeholder="Password...">
           <span (click)="toggleShowPassword()">
             <fa-icon *ngIf="showPassword === false" [icon]="faEye"></fa-icon>
             <fa-icon *ngIf="showPassword === true" [icon]="faEyeSlash"></fa-icon>
@@ -41,7 +41,8 @@
         <div>
           <label for="confirm_password">Confirm Password</label>
           <input [type]="showConfirmPassword ? 'text' : 'password'" name="confirm_password" id="confirm_password"
-            placeholder="Confirm password..." required [(ngModel)]="password">
+                 placeholder="Confirm password..." ngValidateEqual="password" #modelConfirmPassword="ngModel" required [(ngModel)]="confirmPassword">
+
           <span (click)="toggleShowConfirmPassword()">
             <fa-icon *ngIf="showConfirmPassword === false" [icon]="faEye"></fa-icon>
             <fa-icon *ngIf="showConfirmPassword === true" [icon]="faEyeSlash"></fa-icon>
@@ -49,6 +50,13 @@
           </span>
         </div>
       </div>
+
+      <div *ngIf="(modelConfirmPassword.dirty || modelConfirmPassword.touched) && modelConfirmPassword.invalid">
+        <p class="submit" *ngIf="modelConfirmPassword.hasError('notEqual') && modelPassword.valid">
+          Passwords Don't Match
+        </p>
+      </div>
+
       <div class="submit">
         <button [disabled]="!registerForm.form.valid">Register</button>
       </div>

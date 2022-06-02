@@ -16,6 +16,7 @@ export class RegisterComponent implements OnInit {
   constructor(private register: RegisterService) { }
   username: string = "";
   password: string = "";
+  confirmPassword: string = "";
   fName: string = "";
   lName: string = "";
   email: string = "";
@@ -39,9 +40,7 @@ export class RegisterComponent implements OnInit {
     this.user.username = username;
     this.user.password = password;
     this.user.email = email;
-    console.log(this.user);
-    //let user = new User(username, password, fName, lName, email);
-    //console.log(user)
+
     let options = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
@@ -67,4 +66,6 @@ export class RegisterComponent implements OnInit {
     this.showConfirmPassword = !this.showConfirmPassword;
   }
 }
+
+
 

@@ -20,6 +20,7 @@ import { ProfileComponent } from './Components/profile/profile.component';
 import { AddPostComponent } from './Components/add-post/add-post.component';
 import { AuthenticationService } from './services/authentication.service';
 import { ValidateEqualModule } from 'ng-validate-equal';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,7 @@ import { ValidateEqualModule } from 'ng-validate-equal';
     FormsModule,
     ValidateEqualModule
   ],
-  providers: [AuthenticationService],
+  providers: [AuthenticationService, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

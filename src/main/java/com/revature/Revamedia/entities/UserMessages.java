@@ -5,6 +5,8 @@
  */
 package com.revature.Revamedia.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -18,10 +20,12 @@ public class UserMessages implements Serializable {
     @Column(name = "message_id")
     private Integer messageId;
 
+    @JsonBackReference
     @ManyToOne()
     @JoinColumn(name = "owner_id", referencedColumnName = "user_id")
     private User ownerId;
 
+    @JsonBackReference
     @ManyToOne()
     @JoinColumn(name = "conversation_id", referencedColumnName = "conversation_id")
     private UserConversations conversation;

@@ -19,12 +19,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@SpringBootApplication(scanBasePackages = "com.revature.Revamedia.beans")
+@SpringBootApplication(scanBasePackages = "com.revature.Revamedia")
 public class RevamediaApplication {
     public static void main(String[] args) {
 
         ConfigurableApplicationContext context = SpringApplication.run(RevamediaApplication.class, args);
-        context.start();
+
         UserService userService = context.getBean(UserService.class);
         UserFollowsService userFollowsService = context.getBean(UserFollowsService.class);
         UserPostsService userPostsService = context.getBean(UserPostsService.class);
@@ -34,6 +34,8 @@ public class RevamediaApplication {
         UserGroupsService userGroupsService = context.getBean(UserGroupsService.class);
         UserConversationsService userConversationsService = context.getBean(UserConversationsService.class);
         UserMessagesService userMessagesService = context.getBean(UserMessagesService.class);
+
+        context.start();
 
 
         /*User user1 = new User();
@@ -77,6 +79,8 @@ public class RevamediaApplication {
         UserPosts post1 = new UserPosts();
         post1.setOwnerId(user1);
         post1.setMessage("post1 message by user1");
+
+
         userPostsService.save(post1);
 
         UserPosts post2 = new UserPosts();
@@ -84,9 +88,11 @@ public class RevamediaApplication {
         post2.setMessage("post2 message by user1");
 
 
+
         UserPosts post3 = new UserPosts();
         post3.setOwnerId(user1);
         post3.setMessage("post3 message by user1");
+
 
         user1.addPost(post1);
         user1.addPost(post2);
@@ -183,6 +189,8 @@ public class RevamediaApplication {
         //userClass: variable names camel case
         //user_id : database
         //all caps and underscore for constant variables
+
+
     }
 
 

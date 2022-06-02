@@ -1,10 +1,14 @@
 package com.revature.Revamedia.beans.controllers;
 
+
 import com.revature.Revamedia.beans.services.UserService;
+import com.revature.Revamedia.dtos.AuthDto;
 import com.revature.Revamedia.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @RestController
@@ -20,6 +24,7 @@ public class UserController {
     }
 
     //Controller Methods
+
 
 
     @GetMapping("/allUsers")

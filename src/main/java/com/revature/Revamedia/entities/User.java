@@ -16,7 +16,6 @@ import java.sql.Timestamp;
 import java.util.*;
 
 @Entity
-@JsonIgnoreProperties
 @Table(name = "users", schema = _SchemaName.schemaName)
 public class User implements Serializable {
 
@@ -42,7 +41,6 @@ public class User implements Serializable {
     @JsonManagedReference
     @OneToMany(mappedBy = "followedId", cascade = CascadeType.ALL)
     private Set<UserFollows> followers;
-
 
     @JsonManagedReference
     @OneToMany(mappedBy = "followerId", cascade = CascadeType.ALL)
@@ -71,7 +69,6 @@ public class User implements Serializable {
             inverseJoinColumns = {@JoinColumn(name = "group_id")}
     )
     private Set<UserGroups> groupsJoined;
-
 
     @JsonManagedReference
     @OneToMany(mappedBy = "ownerId", cascade = CascadeType.ALL)

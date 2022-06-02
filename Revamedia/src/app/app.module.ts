@@ -17,10 +17,9 @@ import { LoginComponent } from './Components/login/login.component';
 import { RegisterComponent } from './Components/register/register.component';
 import { ErrorPageComponent } from './Components/error-page/error-page.component';
 import { ProfileComponent } from './Components/profile/profile.component';
-import { CommentService } from './services/comment.service';
 import { AddPostComponent } from './Components/add-post/add-post.component';
 import { AuthenticationService } from './services/authentication.service';
-import { PostService } from './services/post.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +32,8 @@ import { PostService } from './services/post.service';
     LoginComponent,
     RegisterComponent,
     ErrorPageComponent,
-    ProfileComponent
+    ProfileComponent,
+    AddPostComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,7 +43,7 @@ import { PostService } from './services/post.service';
     FontAwesomeModule,
     FormsModule
   ],
-  providers: [AuthenticationService,PostService,CommentService],
+  providers: [AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

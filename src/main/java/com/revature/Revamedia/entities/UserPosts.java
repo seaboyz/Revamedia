@@ -8,6 +8,7 @@ package com.revature.Revamedia.entities;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -16,7 +17,6 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@JsonIgnoreProperties
 @Table(name = "user_posts", schema = _SchemaName.schemaName)
 public class UserPosts implements Serializable {
     @Id

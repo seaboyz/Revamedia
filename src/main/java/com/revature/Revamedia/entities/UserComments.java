@@ -7,12 +7,12 @@ package com.revature.Revamedia.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-
 
 @Entity
 @Table(name = "user_comments", schema = _SchemaName.schemaName)
@@ -46,7 +46,6 @@ public class UserComments implements Serializable {
         this.replies = new ArrayList<>();
     }
 
-
     public UserComments(Integer commentId, User ownerId, UserPosts postId, List<UserReplies> replies, String message, Timestamp dateCreated) {
         this.commentId = commentId;
         this.ownerId = ownerId;
@@ -54,6 +53,7 @@ public class UserComments implements Serializable {
         this.replies = replies;
         this.message = message;
         this.dateCreated = dateCreated;
+
     }
 
     public Integer getCommentId() {

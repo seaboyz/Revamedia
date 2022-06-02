@@ -33,9 +33,6 @@ public class UserReplies implements Serializable {
     @Column(name ="message", length=500)
     private String message;
 
-    @Column(name = "giphyUrl")
-    private String giphyUrl;
-
     @Column(name ="date_created")
     private Timestamp dateCreated;
 
@@ -48,7 +45,6 @@ public class UserReplies implements Serializable {
         this.commentId = commentId;
         this.message = message;
         this.dateCreated = dateCreated;
-        this.giphyUrl = giphyUrl;
     }
 
     public Integer getReplyId() {
@@ -91,21 +87,12 @@ public class UserReplies implements Serializable {
         this.dateCreated = dateCreated;
     }
 
-    public String getGiphyUrl() {
-        return giphyUrl;
-    }
-
-    public void setGiphyUrl(String giphyUrl) {
-        this.giphyUrl = giphyUrl;
-    }
-
     @Override
     public String toString() {
         return "UserReplies{" +
                 "replyId=" + replyId +
                 ", ownerId=" + ownerId +
                 ", message='" + message + '\'' +
-                ", giphyUrl=" + giphyUrl +
                 ", dateCreated='" + dateCreated + '\'' +
                 '}';
     }

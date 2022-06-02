@@ -1,5 +1,5 @@
-$orange: #FEAE49;
-$blue: #57BEE6;
+$Orange: #FEAE49;
+$Blue: #57BEE6;
 $grey: rgb(192,192,190);
 $lightgrey: rgb(230,229,222);
 $darkgrey: rgb(61,66,74);
@@ -30,7 +30,6 @@ $darkgrey: rgb(61,66,74);
         cursor: pointer;
         padding: .5rem;
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-        border: 1.5px solid $orange;
         color: #faa63f;
         #icon{
           font-size: 1rem;
@@ -42,7 +41,6 @@ $darkgrey: rgb(61,66,74);
         }
         &:hover{
           color: rgb(87, 189, 229);
-          border: 1.5px solid $blue;
         }
       }
     }

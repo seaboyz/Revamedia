@@ -5,8 +5,11 @@
  */
 package com.revature.Revamedia.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "user_replies", schema = _SchemaName.schemaName)
@@ -17,27 +20,30 @@ public class UserReplies implements Serializable {
     @Column(name = "reply_id")
     private Integer replyId;
 
+    @JsonBackReference
     @ManyToOne()
     @JoinColumn(name = "owner_id", referencedColumnName = "user_id")
     private User ownerId;
 
+    @JsonBackReference
     @ManyToOne()
     @JoinColumn(name = "comment_id", referencedColumnName = "comment_id")
     private UserComments commentId;
 
-    @Column(name ="message", length=500)
+    @Column(name = "message", length = 500)
     private String message;
 
     @Column(name = "giphyUrl")
     private String giphyUrl;
 
-    @Column(name ="date_created")
-    private String dateCreated;
+    @Column(name = "date_created")
+    private Timestamp dateCreated;
 
     public UserReplies() {
     }
 
-    public UserReplies(Integer replyId, User ownerId, UserComments commentId, String message, String dateCreated, String giphyUrl) {
+    public UserReplies(Integer replyId, User ownerId, UserComments commentId, String message, Timestamp dateCreated,
+            String giphyUrl) {
         this.replyId = replyId;
         this.ownerId = ownerId;
         this.commentId = commentId;
@@ -78,11 +84,11 @@ public class UserReplies implements Serializable {
         this.message = message;
     }
 
-    public String getDateCreated() {
+    public Timestamp getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(String dateCreated) {
+    public void setDateCreated(Timestamp dateCreated) {
         this.dateCreated = dateCreated;
     }
 

@@ -7,4 +7,136 @@
 body {
   scroll-behavior: smooth;
   font-family: 'Quicksand', sans-serif;
+  overflow-x: hidden;
+}
+$orange: #FEAE49;
+$blue: #57BEE6;
+$grey: rgb(192,192,190);
+$lightgrey: rgb(230,229,222);
+$darkgrey: rgb(61,66,74);
+.darkMode{
+  transition: all 0.4s ease-in-out;
+  color: white;
+  #home-page,#events-page,#groups-page,#messages-page,#profile-page,#settings-page, #post-page{
+    background-color: rgb(31, 31, 31);
+    transition: all 0.4s ease-in-out;
+  }
+  #page-title{
+    transition: all 0.4s ease-in-out;
+    background-color: rgb(31, 31, 31);
+    color: white;
+    h3{
+      color: white;
+    }
+  }
+  #setBackgroundColor{
+    transition: all 0.4s ease-in-out;
+    background-color: rgb(31, 31, 31);
+    color: white;
+    a{
+      color: white;
+      &:hover{
+        color: $blue;
+      }
+    }
+    h5,h4{
+      color: white;
+    }
+    #icon{
+      color: white;
+      &:hover{
+        color: $blue;
+      }
+    }
+    #heartIcon{
+      color: pink;
+      &:hover{
+        color: red;
+      }
+    }
+    #commentIcon{
+      color: lightblue;
+      &:hover{
+        color: rgb(149, 178, 200);
+      }
+    }
+    button{
+      background: $blue;
+      &:hover{
+        background: $orange;
+      }
+    }
+  }
+  #postOptionMenu{
+    transition: all 0.4s ease-in-out;
+    background-color: rgb(31, 31, 31);
+    color: white;
+    li{
+      background-color: rgb(31, 31, 31);
+      color: white;
+      &:hover{
+        background-color: rgb(19, 19, 19);
+      }
+    }
+  }
+  #addCommentReplyForm{
+    transition: all 0.4s ease-in-out;
+    background-color: rgb(31, 31, 31);
+    color: white;
+    border: 1px solid $lightgrey;
+    h5{
+      color: white;
+    }
+    button{
+      background: $blue;
+      &:hover{
+        background: $orange;
+      }
+    }
+    #closeBtn{
+      color: white;
+      background: none;
+      &:hover{
+        color: $blue;
+      }
+    }
+  }
+  #commentSection{
+    transition: all 0.4s ease-in-out;
+    background-color: rgb(31, 31, 31);
+    color: white;
+    border: 1px solid $lightgrey;
+    h5{
+      color: white;
+    }
+    a{
+      color: white;
+      &:hover{
+        color: $blue;
+      }
+    }
+  }
+  #delete-post-modal,#edit-post-modal,#add-post-modal,#following-modal,#followers-modal{
+    background-color: rgb(31, 31, 31);
+    transition: all 0.4s ease-in-out;
+    color: white;
+    h2,h3,h4,h5{
+      color: white;
+    }
+    span{
+      color: white;
+      &:hover{
+        color: $blue;
+      }
+    }
+    #add-post-fileName,#edit-post-fileName{
+      color: white;
+    }
+  }
+  #navbar{
+    transition: all 0.4s ease-in-out;
+    background-color: rgb(15, 15, 15);
+    color: white;
+    border-right: .5px solid $orange;
+  }
 }

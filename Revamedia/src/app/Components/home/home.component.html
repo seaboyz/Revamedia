@@ -1,6 +1,6 @@
-<div class="home-page">
+<div class="home-page" id="home-page">
   <!-- Page title Start -->
-  <div class="page-title">
+  <div class="page-title" id="page-title">
     <div class="card">
       <h3>Revamedia</h3>
       <div class="page-subTitle">
@@ -18,14 +18,14 @@
       <div class="post-data">
 
         <div class="post">
-          <div class="post-title">
+          <div class="post-title" id="setBackgroundColor">
             <div class="post-author">
               <img routerLink="/profile" routerLinkActive="active" src="https://avatars.githubusercontent.com/u/77355023?v=4" alt="User">
               <a routerLink="/profile" routerLinkActive="active">leobarrientos02</a>
             </div>
             <div class="post-options">
               <fa-icon (click)="togglePostsOptions()" id="icon" [icon]="faEllipsis"></fa-icon>
-              <ul *ngIf="postsOptionsClicked" >
+              <ul *ngIf="postsOptionsClicked" id="postOptionMenu">
                 <li (click)="openModal('edit', post)">Edit Post</li>
                 <li  (click)="openModal('delete', post)">Delete Post</li>
               </ul>
@@ -33,17 +33,17 @@
           </div>
           <div class="post-body">
             <img src="https://images.theconversation.com/files/453091/original/file-20220318-23-2ehppm.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=900.0&fit=crop" alt="User">
-            <div class="post-description">
+            <div class="post-description" id="setBackgroundColor">
               <p><a routerLink="/profile" routerLinkActive="active">leobarrientos02</a>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, dolore animi consequuntur laudantium, atque at ex voluptas perspiciatis ut quod quasi officiis. Eum, delectus. Porro laboriosam nihil dolor corporis minima?</p>
             </div>
-            <div class="post-options">
+            <div class="post-options" id="setBackgroundColor">
               <div class="container">
                 <div class="likes">
-                  <fa-icon id="icon" title="Like" [icon]="faHeart" size="lg"></fa-icon>
-                  <span>100 likes</span>
+                  <fa-icon id="heartIcon" title="Like" [icon]="faHeart" size="lg" (click)="likePost()"></fa-icon>
+                  <span>{{totalLikes}}</span>
                 </div>
                 <div class="comment">
-                  <fa-icon id="icon" (click)="openAddComment()" title="Comment" [icon]="faComment" size="lg"></fa-icon>
+                  <fa-icon id="commentIcon" (click)="openAddComment()" title="Comment" [icon]="faComment" size="lg"></fa-icon>
                 </div>
               </div>
               <div class="bookmark">
@@ -54,10 +54,10 @@
         </div>
 
         <!-- ADD COMMENT START -->
-        <div class="add-comment" *ngIf="addComment">
+        <div class="add-comment" *ngIf="addComment" id="addCommentReplyForm">
           <div class="add-comment-header">
             <h5>Add Comment</h5>
-            <button title="Close" (click)="closeAddComment()">X</button>
+            <button title="Close" id="closeBtn" (click)="closeAddComment()">X</button>
           </div>
           <form #addCommentForm="ngForm" (ngSubmit)="onAddComment(addCommentForm)" ngNativeValidate id="add-comment-form">
             <input type="hidden" name="dateCreated" ngModel="{{currentDate}}">
@@ -95,9 +95,9 @@
         </div>
         <!-- ADD COMMENT END -->
 
-        <span (click)=" toggleHideComments()" id="viewComments">{{hideComments ? 'Hide Comments' : 'View Comments' }}</span>
+        <span (click)="toggleHideComments()" id="viewComments">{{hideComments ? 'Hide Comments' : 'View Comments' }}</span>
 
-        <div class="post-comments-section" *ngIf="hideComments">
+        <div class="post-comments-section" *ngIf="hideComments" id="commentSection">
           <!-- comments start -->
           <h5>Comments</h5>
           <div class="comment">
@@ -116,7 +116,7 @@
             <!-- comment end -->
 
             <!-- ADD REPLY START-->
-            <div class="add-reply" *ngIf="addReply">
+            <div class="add-reply" *ngIf="addReply" id="addCommentReplyForm">
               <div class="add-reply-header">
                 <h5>Add Reply</h5>
                 <button title="Close" (click)="closeAddReply()">X</button>
@@ -181,8 +181,10 @@
 
 
 
-<!-- BLACKOUTSCREEN -->
+<!-- BLACKOUTSCREEN START-->
 <div class="screen" id="screen"></div>
+<!-- BLACKOUTSCREEN END-->
+
 <!-- ADD POST FORM START -->
 <div class="modal" id="add-post-modal">
   <div class="form-header">

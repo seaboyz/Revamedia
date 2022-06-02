@@ -1,18 +1,20 @@
-<div class="login-page">
+<div class="login-page" id="login-page">
   <div class="login-nav">
     <h1>Revamedia</h1>
   </div>
 
   <div class="login">
     <h2>Login</h2>
-    <form>
+    <span id="invalid" class="invalid"><br>Invalid username and/or password<br></span>
+    <form #loginForm="ngForm" (ngSubmit)="TEMPLogIn(loginForm)" ngNativeValidate>
       <div class="form-row">
         <label for="username">Username</label>
-        <input type="text" id="username" placeholder="Username..." required>
+        <input ngModel type="text" name="username" id="username" placeholder="Username..." required>
       </div>
       <div class="form-row">
         <label for="password">Password</label>
-        <input [type]="showPassword ? 'text' : 'password'" id="password" placeholder="Password..." required>
+        <input ngModel [type]="showPassword ? 'text' : 'password'" name="password" id="password"
+          placeholder="Password..." required>
         <span (click)="toggleShowPassword()">
           <fa-icon *ngIf="showPassword === false" [icon]="faEye"></fa-icon>
           <fa-icon *ngIf="showPassword === true" [icon]="faEyeSlash"></fa-icon>
@@ -20,7 +22,7 @@
         </span>
       </div>
       <div class="submit">
-        <button (click)="TEMPLogIn()">Login</button>
+        <button type="submit">Login</button>
       </div>
     </form>
     <div class="login-help">

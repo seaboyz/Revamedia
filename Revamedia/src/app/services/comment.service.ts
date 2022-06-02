@@ -9,7 +9,7 @@ import { Observable } from 'rxjs/internal/Observable';
 export class CommentService {
 
   // API Base Url
-  private baseUrl = `${environment.baseUrl}/comment`;
+  private baseUrl = `${environment.apiBaseUrl}/comment`;
 
   constructor(private httpClient: HttpClient) { }
 

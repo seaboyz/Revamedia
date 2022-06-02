@@ -118,8 +118,9 @@ $darkgrey: rgb(61,66,74);
               cursor: pointer;
             }
             ul{
+              border: 1px solid $grey;
               position: absolute;
-              transform:translate(80%, 28%);
+              transform:translate(45%, 25%);
               list-style: none;
               background-color: $lightgrey;
               border-radius: 3px;
@@ -187,7 +188,7 @@ $darkgrey: rgb(61,66,74);
               flex-direction: row;
               justify-content: space-between;
               .likes{
-                #icon{
+                #heartIcon{
                   color: pink;
                   cursor: pointer;
                   transition: all .3s ease-in-out;
@@ -201,7 +202,7 @@ $darkgrey: rgb(61,66,74);
                 }
               }
               .comment{
-                #icon{
+                #commentIcon{
                   color: lightblue;
                   cursor: pointer;
                   transition: all .3s ease-in-out;
@@ -368,6 +369,9 @@ $darkgrey: rgb(61,66,74);
 
       #viewComments{
         cursor: pointer;
+        background: white;
+        padding: .2rem .5rem;
+        border-radius: 3px;
         color: $darkgrey;
         margin: .5rem 0;
         &:hover{

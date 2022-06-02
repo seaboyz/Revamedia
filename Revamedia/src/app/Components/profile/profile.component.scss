@@ -1,5 +1,5 @@
-$Orange: #FEAE49;
-$Blue: #57BEE6;
+$orange: #FEAE49;
+$blue: #57BEE6;
 $grey: rgb(192,192,190);
 $lightgrey: rgb(230,229,222);
 $darkgrey: rgb(61,66,74);
@@ -11,6 +11,8 @@ $darkgrey: rgb(61,66,74);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'%3E%3Cdefs%3E%3ClinearGradient id='a' x1='0' x2='0' y1='1' y2='0' gradientTransform='rotate(0,0.5,0.5)'%3E%3Cstop offset='0' stop-color='%230FF'/%3E%3Cstop offset='1' stop-color='%23CF6'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' x1='0' x2='0' y1='0' y2='1' gradientTransform='rotate(0,0.5,0.5)'%3E%3Cstop offset='0' stop-color='%23F00'/%3E%3Cstop offset='1' stop-color='%23FC0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg fill='%23FFF' fill-opacity='0' stroke-miterlimit='10'%3E%3Cg stroke='url(%23a)' stroke-width='5.9399999999999995'%3E%3Cpath d='M1409 581 1450.35 511 1490 581z'/%3E%3Ccircle stroke-width='1.9800000000000002' transform='' cx='500' cy='100' r='40'/%3E%3Cpath transform='' d='M400.86 735.5h-83.73c0-23.12 18.74-41.87 41.87-41.87S400.86 712.38 400.86 735.5z'/%3E%3C/g%3E%3Cg stroke='url(%23b)' stroke-width='1.8'%3E%3Cpath transform='' d='M149.8 345.2 118.4 389.8 149.8 434.4 181.2 389.8z'/%3E%3Crect stroke-width='3.9600000000000004' transform='' x='1039' y='709' width='100' height='100'/%3E%3Cpath transform='' d='M1426.8 132.4 1405.7 168.8 1363.7 168.8 1342.7 132.4 1363.7 96 1405.7 96z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   background-attachment: fixed;
   background-size: cover;
+
+  //TITLE START
   .page-title{
     width: 100%;
     background: white;
@@ -25,9 +27,340 @@ $darkgrey: rgb(61,66,74);
     border-bottom: .7px solid $lightgrey;
     padding-bottom: .5rem;
   }
+  //TITLE END
+  .profile{
+    width: 100%;
+
+    // Profile header start
+    .profile-header{
+      margin: 1rem 0;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid $lightgrey;
+      background: white;
+      border-radius: 4px;
+      box-shadow: rgba(0, 0, 0, 0.075) 0px 3px 8px;
+      padding: .5rem 1rem;
+      .left-card{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        img{
+          border-radius: 50%;
+          width: 5rem;
+          height: 5rem;
+          object-fit: cover;
+          border: 2px solid $orange;
+        }
+        h5{
+          margin-left: 1rem;
+          font-size: 1.25rem;
+          color: $darkgrey;
+        }
+      }
+      .right-card{
+        display: flex;
+        flex-direction: row;
+        button{
+          border: none;
+          outline: none;
+          background: $blue;
+          color: black;
+          font-size: 1.1rem;
+          padding: .25rem .75rem;
+          border-radius: 4px;
+          cursor: pointer;
+          transition: all .3s ease-in-out;
+          &:hover{
+            background: $orange;
+          }
+        }
+        h5{
+          margin-left: 2rem;
+          font-size: 1.25rem;
+          color: $darkgrey;
+          cursor: pointer;
+          &:hover{
+            color: $orange;
+          }
+        }
+      }
+    }
+    // Profile header end
+
+    // Posts title start
+    .profile-posts-title{
+      color: $darkgrey;
+      font-size: 2.5rem;
+      background: white;
+      padding: .2rem .4rem;
+      border-radius: 2px;
+      text-decoration: underline;
+    }
+    // Posts title End
+
+    // USERS POSTS START
+    .users-post{
+      margin: 1rem 0;
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-column-gap: 3rem;
+      grid-row-gap: 3rem;
+
+      // POST START
+      .post{
+        img{
+          border-radius: 6px;
+          width: 100%;
+          border: 2px solid $orange;
+          transition: all 0.3s ease-in-out;
+          cursor: pointer;
+          &:hover{
+            border: 2px solid $blue;
+          }
+        }
+      }
+      // POST END
+    }
+    // USERS POSTS END
+
+  }
+}
+
+// MODALS CSS
+.screen{
+  position: fixed;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.38);
+  top: -100%;
+  right: -100%;
+  opacity: 0;
+  width: 100vw;
+  height: 100vh;
+  transition: all .6s ease-in-out;
+}
+
+.modal{
+  position: absolute;
+  z-index: 15;
+  top: -100%;
+  right: -100%;
+  transform: scale(0);
+  transition: all .6s ease-in-out;
+  background-color: white;
+  border-right: 3px solid $orange;
+  border-left: 3px solid $orange;
+  border-bottom: 3px solid $blue;
+  border-top: 3px solid $blue;
+  border-radius: 2px;
+  background: white;
+  padding: 2rem;
+  width: 40%;
+
+  // header
+  .modal-header{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    h3{
+      font-size: 2rem;
+      color:$darkgrey;
+      text-decoration: underline;
+    }
+    span{
+      font-size: 2rem;
+      color: $darkgrey;
+      cursor: pointer;
+      &:hover{
+        color: $blue;
+      }
+    }
+  }
+  .modal-body{
+    margin: .5rem 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    .follower,.following{
+      width: 100%;
+      border-top: 1px solid $lightgrey;
+      border-bottom: 1px solid $lightgrey;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: .5rem;
+      .follower-data,.following-data{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        img{
+          cursor: pointer;
+          width: 2rem;
+          height: 2rem;
+          border-radius: 50%;
+          border: 2px solid $orange;
+          &:hover{
+            border: 2px solid $blue;
+          }
+        }
+        h5{
+          margin-left: .5rem;
+          color: $darkgrey;
+          cursor: pointer;
+          &:hover{
+            color: $blue;
+          }
+        }
+      }
+      .follow-option{
+        button{
+          margin-left: 1rem;
+          border: none;
+          outline: none;
+          background: $blue;
+          color: black;
+          font-size: .9rem;
+          padding: .25rem .5rem;
+          border-radius: 4px;
+          cursor: pointer;
+          transition: all .3s ease-in-out;
+          &:hover{
+            background: $orange;
+          }
+        }
+        #unfollow{
+          border: none;
+          outline: none;
+          background: rgb(184, 0, 0);
+          color: white;
+          font-size: .9rem;
+          padding: .25rem .5rem;
+          border-radius: 4px;
+          cursor: pointer;
+          transition: all .3s ease-in-out;
+          &:hover{
+            background: rgb(146, 0, 0);
+          }
+        }
+      }
+    }
+  }
+}
+
+
+.openScreen{
+  top: 0;
+  right: 0;
+  opacity: 1;
+}
+
+.openModal{
+  top: 20%;
+  right: 27%;
+  transform: scale(1);
+}
+// media queries for modals
+@media screen and (max-width: 800px) {
+  .openModal{
+    top: 10%;
+    right: 5%;
+  }
+}
+// media queries for modals
+@media screen and (max-width: 800px) {
+  .modal{
+    width: 85%;
+    .form-header{
+      h3{
+        font-size: 2rem;
+      }
+    }
+  }
 }
 @media screen and (max-width: 800px) {
   .profile-page{
     margin-left: 10%;
+
+    .profile{
+      width: 100%;
+
+      // Profile header start
+      .profile-header{
+        padding: .5rem;
+        .left-card{
+          img{
+            width: 3rem;
+            height: 3rem;
+          }
+          h5{
+            margin-left: .5rem;
+            font-size: .9rem;
+            color: $darkgrey;
+          }
+        }
+        .right-card{
+          display: flex;
+          flex-direction:column-reverse;
+          align-items:center;
+          h5{
+            margin-left: 0;
+            margin-bottom: .3rem;
+            font-size: 1.1rem;
+          }
+        }
+      }
+      // Profile header end
+
+      // Posts title start
+      #profile-posts-title{
+        font-size: 2rem;
+        width: 100%;
+        text-align: center;
+      }
+      // Posts title End
+
+      // USERS POSTS START
+      .users-post{
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        grid-column-gap: 2rem;
+        grid-row-gap: 2rem;
+      }
+      // USERS POSTS END
+
+    }
+  }
+
+  // MODALS
+  .modal{
+    .modal-body{
+      .follower,.following{
+        .follower-data,.following-data{
+          img{
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+          }
+          h5{
+            margin-left: .5rem;
+            color: $darkgrey;
+          }
+        }
+        .follow-option{
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content:  center;
+          button{
+            margin-bottom: .3rem;
+          }
+        }
+      }
+    }
   }
 }

@@ -1,18 +1,20 @@
 package com.revature.Revamedia.entities;
+
 /**
  * Author(s): @Brandon Le, @Tony Henderson
  * Contributor(s):
  * Purpose:
  */
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-
 
 @Entity
 @Table(name = "user_comments", schema = _SchemaName.schemaName)
@@ -42,12 +44,15 @@ public class UserComments implements Serializable {
     @Column(name = "date_created")
     private Timestamp dateCreated;
 
+    @Column(name = "giphyUrl")
+    private String giphyUrl;
+
     public UserComments() {
         this.replies = new ArrayList<>();
     }
 
-
-    public UserComments(Integer commentId, User ownerId, UserPosts postId, List<UserReplies> replies, String message, Timestamp dateCreated) {
+    public UserComments(Integer commentId, User ownerId, UserPosts postId, List<UserReplies> replies, String message,
+            Timestamp dateCreated, String giphyUrl) {
         this.commentId = commentId;
         this.ownerId = ownerId;
         this.postId = postId;
@@ -107,7 +112,6 @@ public class UserComments implements Serializable {
     public void addReply(UserReplies reply) {
         this.replies.add(reply);
     }
-
 
     public void removeReply(UserReplies reply) {
         this.replies.remove(reply);

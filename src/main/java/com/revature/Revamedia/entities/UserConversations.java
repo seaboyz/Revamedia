@@ -6,6 +6,9 @@
 package com.revature.Revamedia.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -19,10 +22,12 @@ public class UserConversations implements Serializable {
     @Column(name = "conversation_id")
     private Integer conversationId;
 
+    @JsonBackReference
     @ManyToOne()
     @JoinColumn(name = "recipient_id", referencedColumnName = "user_id")
     private User recipientId;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "messageId", cascade = CascadeType.ALL)
     private List<UserMessages> messages;
 

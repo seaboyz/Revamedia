@@ -7,8 +7,10 @@ import com.revature.Revamedia.entities.User;
 import com.revature.Revamedia.entities.UserPosts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashSet;
 import java.util.List;
@@ -28,35 +30,21 @@ public class UserPostsController {
     }
 
     @PutMapping("/likes")
-    @ResponseStatus(HttpStatus.OK)
-    public UserPosts updatePostLikes(@RequestBody UpdatePostLikesDto dto, HttpServletResponse res) {
-        UserPosts post = userPostsService.getPostById(dto.getPostId());
-        User user = userService.getUserById(dto.getUserId());
-        if(user.getLikedPosts().contains(post)){
-            Set<User> usersLiked = post.getLikes();
-            usersLiked.remove(user);
-            post.setLikes(usersLiked);
-            userPostsService.update(post);
-            List<UserPosts> postsLiked = user.getLikedPosts();
-            postsLiked.remove(post);
-            user.setLikedPosts(postsLiked);
-            userService.update(user);
-        } else {
-            Set<User> usersLiked = post.getLikes();
-            usersLiked.add(user);
-            post.setLikes(usersLiked);
-            userPostsService.update(post);
-            List<UserPosts> postsLiked = user.getLikedPosts();
-            postsLiked.add(post);
-            user.setLikedPosts(postsLiked);
-            userService.update(user);
+    public ResponseEntity<UserPosts> updatePostLikes(@RequestBody UpdatePostLikesDto dto) {
+
+        try {
+            UserPosts result = userPostsService.updatePostLikes(dto);
+            return new ResponseEntity<>(result, HttpStatus.OK);
+
+        } catch (EntityNotFoundException e) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
-
-
-        //finish testing for entity -> finishing controller -> finish up service in front end
-
-        res.setStatus(200);
-        return post;
+//
+//        UserPosts result = userPostsService.updatePostLikes(dto);
+//        if (result == null)
+//            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+//        else
+//            return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     @GetMapping("/allPosts")

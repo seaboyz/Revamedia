@@ -1,17 +1,18 @@
 /**
- *  Author(s): @Brandon Le, @Tony Henderson
- *  Contributor(s):
- *  Purpose:
+ * Author(s): @Brandon Le, @Tony Henderson
+ * Contributor(s):
+ * Purpose:
  */
-
 
 package com.revature.Revamedia.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.*;
 
 @Entity
@@ -36,38 +37,58 @@ public class User implements Serializable {
     @Column(name = "profile_picture")
     private String profilePicture;
     @Column(name = "date_created")
-    private String dateCreated;
+    private Timestamp dateCreated;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "followedId", cascade = CascadeType.ALL)
     private Set<UserFollows> followers;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "followerId", cascade = CascadeType.ALL)
     private Set<UserFollows> following;
 
+    // @Transient
     @JsonManagedReference
-    @OneToMany(mappedBy = "postId", cascade = CascadeType.ALL)
-    private List<UserPosts> posts;
+    @OneToMany(mappedBy = "ownerId")
+    private Set<UserPosts> postsOwned;
 
-    @OneToMany(mappedBy = "groupId", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("likes")
+    // @JsonIgnore
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "liked_posts", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "post_id"))
+    private List<UserPosts> likedPosts;
+
+    @JsonIgnoreProperties("usersJoined")
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "users_in_groups", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
+            @JoinColumn(name = "group_id") })
     private Set<UserGroups> groupsJoined;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "ownerId", cascade = CascadeType.ALL)
     private Set<UserGroups> groupsOwned;
 
-    @OneToMany(mappedBy = "eventId", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("usersJoined")
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "users_in_events", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
+            @JoinColumn(name = "event_id") })
     private Set<UserEvents> eventsJoined;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "ownerId", cascade = CascadeType.ALL)
     private Set<UserEvents> eventsOwned;
 
-    @OneToMany(mappedBy = "conversationId", cascade = CascadeType.ALL)
-    private Set<UserConversations> conversations;
-
+    /*
+     * @JsonManagedReference
+     * 
+     * @OneToMany(mappedBy = "conversationId", cascade = CascadeType.ALL)
+     * private Set<UserConversations> conversations;
+     */
 
     public User() {
         this.followers = new HashSet<>();
         this.following = new HashSet<>();
-        this.posts = new ArrayList<>();
+        this.postsOwned = new HashSet<>();
 
         this.groupsJoined = new HashSet<>();
         this.groupsOwned = new HashSet<>();
@@ -75,10 +96,15 @@ public class User implements Serializable {
         this.eventsJoined = new HashSet<>();
         this.eventsOwned = new HashSet<>();
 
-        this.conversations = new HashSet<>();
+        // this.conversations = new HashSet<>();
+
+        this.likedPosts = new ArrayList<>();
     }
 
-    public User(Integer userId, String username, String email, String password, String firstName, String lastName, String profilePicture, String dateCreated, Set<UserFollows> followers, Set<UserFollows> following, List<UserPosts> posts, Set<UserGroups> groupsJoined, Set<UserGroups> groupsOwned, Set<UserEvents> eventsJoined, Set<UserEvents> eventsOwned, Set<UserConversations> conversations) {
+    public User(Integer userId, String username, String email, String password, String firstName, String lastName,
+            String profilePicture, Timestamp dateCreated, Set<UserFollows> followers, Set<UserFollows> following,
+            Set<UserPosts> posts, Set<UserGroups> groupsJoined, Set<UserGroups> groupsOwned,
+            Set<UserEvents> eventsJoined, Set<UserEvents> eventsOwned, Set<UserConversations> conversations) {
         this.userId = userId;
         this.username = username;
         this.email = email;
@@ -87,14 +113,15 @@ public class User implements Serializable {
         this.lastName = lastName;
         this.profilePicture = profilePicture;
         this.dateCreated = dateCreated;
+        this.likedPosts = likedPosts;
         this.followers = followers;
         this.following = following;
-        this.posts = posts;
+        this.postsOwned = posts;
         this.groupsJoined = groupsJoined;
         this.groupsOwned = groupsOwned;
         this.eventsJoined = eventsJoined;
         this.eventsOwned = eventsOwned;
-        this.conversations = conversations;
+        // this.conversations = conversations;
     }
 
     public Integer getUserId() {
@@ -145,11 +172,11 @@ public class User implements Serializable {
         this.lastName = lastName;
     }
 
-    public String getDateCreated() {
+    public Timestamp getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(String dateCreated) {
+    public void setDateCreated(Timestamp dateCreated) {
         this.dateCreated = dateCreated;
     }
 
@@ -169,12 +196,20 @@ public class User implements Serializable {
         this.following = following;
     }
 
-    public List<UserPosts> getPosts() {
-        return posts;
+    public List<UserPosts> getLikedPosts() {
+        return likedPosts;
     }
 
-    public void setPosts(List<UserPosts> posts) {
-        this.posts = posts;
+    public Set<UserPosts> getPostsOwned() {
+        return postsOwned;
+    }
+
+    public void setPostsOwned(Set<UserPosts> postsOwned) {
+        this.postsOwned = postsOwned;
+    }
+
+    public void setLikedPosts(List<UserPosts> likedPosts) {
+        this.likedPosts = likedPosts;
     }
 
     public Set<UserGroups> getGroupsJoined() {
@@ -226,11 +261,11 @@ public class User implements Serializable {
     }
 
     public void addPost(UserPosts post) {
-        this.posts.add(post);
+        this.postsOwned.add(post);
     }
 
     public void removePost(UserPosts post) {
-        this.posts.remove(post);
+        this.postsOwned.remove(post);
     }
 
     public void joinGroup(UserGroups group) {
@@ -273,20 +308,30 @@ public class User implements Serializable {
         this.profilePicture = profilePicture;
     }
 
-    public void addConversation(UserConversations conversation) {
-        this.conversations.add(conversation);
+    /*
+     * public void addConversation(UserConversations conversation) {
+     * this.conversations.add(conversation);
+     * }
+     * 
+     * public void removeConversation(UserConversations conversation) {
+     * this.conversations.remove(conversation);
+     * }
+     * 
+     * public Set<UserConversations> getConversations() {
+     * return conversations;
+     * }
+     * 
+     * public void setConversations(Set<UserConversations> conversations) {
+     * this.conversations = conversations;
+     * }
+     */
+
+    public void addLikedPost(UserPosts post) {
+        this.likedPosts.add(post);
     }
 
-    public void removeConversation(UserConversations conversation) {
-        this.conversations.remove(conversation);
-    }
-
-    public Set<UserConversations> getConversations() {
-        return conversations;
-    }
-
-    public void setConversations(Set<UserConversations> conversations) {
-        this.conversations = conversations;
+    public void removeLikedPost(UserPosts post) {
+        this.likedPosts.remove(post);
     }
 
     @Override

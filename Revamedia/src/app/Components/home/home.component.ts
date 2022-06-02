@@ -6,6 +6,9 @@ import { faHeart, faEllipsis, faBookmark, faComment, faShareFromSquare, faFaceGr
 import { GiphyService } from 'src/app/services/giphy.service';
 import { CommentService } from '../../services/comment.service';
 
+import { UserPostsService } from 'src/app/services/user-posts-service/user-posts.service';
+import { HttpClient } from '@angular/common/http';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -13,7 +16,7 @@ import { CommentService } from '../../services/comment.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(public CommentService: CommentService, public gifService: GiphyService) { }
+  constructor(private userPostsService : UserPostsService, private http : HttpClient, public CommentService: CommentService, public gifService: GiphyService) { }
 
   ngOnInit(): void {
     // this.getAllComments();
@@ -23,9 +26,20 @@ export class HomeComponent implements OnInit {
 
   // Variables Used In Home Component
   public comment: any = {};
-  public comments: any = [];
   public currentDate = new Date();
   public post: any;
+  postToLike : any = {
+    userId : 1,
+    postId : 1
+  }
+
+  users : any[] = [];
+  following : any[] = [];
+  posts : any[] = [];
+  followPosts : any[] = [];
+  comments : any[] = [];
+
+  public totalLikes : number = 0;
 
   // Back End Work
   public getCommentById(id: number){
@@ -73,6 +87,56 @@ export class HomeComponent implements OnInit {
         console.log(error.message)
       }
     )
+  }
+
+  likePost(): void {
+
+    this.userPostsService.updatePostLikes(this.postToLike).subscribe((data) => {
+        console.log(data.body.likes.length);
+        this.totalLikes = data.body.likes.length;
+
+    });
+
+
+
+     // get all comments for given post
+
+        // console.log(data.body.comments);
+        // console.log(data.body.comments[0]);
+        // this.comments = data.body.comments;
+
+        // for (var cur of this.comments) {
+        //   console.log(cur);
+        // }
+
+
+    // get all users -> get all owned posts
+
+    // this.userPostsService.getUsers().subscribe((data) => {
+
+    //   this.users = data.body;
+    //   console.log("all users:");
+    //   console.log(this.users);
+
+    //   // loop through all users
+    //   for (var user of this.users) {
+    //     // loop through all owned posts for each user
+    //     for (var post of user.postsOwned)
+    //       // add post to post array
+    //       this.posts.push(post)
+    //   }
+    //   console.log("all posts:");
+    //   console.log(this.posts);
+
+
+    //   //for (var follow of this.currentuser.following)
+    //       //getuser
+
+    // });
+
+
+
+
   }
 
   // Front End Work

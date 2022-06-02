@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { GiphyService } from './services/giphy.service';
 import { PostPageComponent } from './post-page/post-page.component';
+import { AuthenticationService } from './services/authentication.service';
 
 @NgModule({
   declarations: [
@@ -38,13 +38,14 @@ import { PostPageComponent } from './post-page/post-page.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FontAwesomeModule,
     FormsModule,
     HttpClientModule,
   ],
-  providers: [CommentService, GiphyService],
+  providers: [AuthenticationService, CommentService, GiphyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

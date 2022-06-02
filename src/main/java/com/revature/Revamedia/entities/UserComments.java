@@ -1,53 +1,58 @@
 package com.revature.Revamedia.entities;
+
 /**
- *  Author(s): @Brandon Le, @Tony Henderson
- *  Contributor(s):
- *  Purpose:
+ * Author(s): @Brandon Le, @Tony Henderson
+ * Contributor(s):
+ * Purpose:
  */
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @Entity
-@Table(name="user_comments", schema = _SchemaName.schemaName)
+@Table(name = "user_comments", schema = _SchemaName.schemaName)
 public class UserComments implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "comment_id")
     private Integer commentId;
 
-    @JsonIgnore
+    @JsonBackReference
     @ManyToOne()
     @JoinColumn(name = "owner_id", referencedColumnName = "user_id")
     private User ownerId;
 
-    @JsonIgnore
+    @JsonBackReference
     @ManyToOne()
     @JoinColumn(name = "post_id", referencedColumnName = "post_id")
     private UserPosts postId;
 
-    @JsonIgnore
+    @JsonManagedReference
     @OneToMany(mappedBy = "commentId", cascade = CascadeType.ALL)
     private List<UserReplies> replies;
 
-    @Column(name ="message", length=500)
+    @Column(name = "message", length = 500)
     private String message;
+
+    @Column(name = "date_created")
+    private Timestamp dateCreated;
 
     @Column(name = "giphyUrl")
     private String giphyUrl;
-
-    @Column(name ="date_created")
-    private String dateCreated;
 
     public UserComments() {
         this.replies = new ArrayList<>();
     }
 
-    public UserComments(Integer commentId, User ownerId, UserPosts postId, List<UserReplies> replies, String message, String dateCreated, String giphyUrl) {
+    public UserComments(Integer commentId, User ownerId, UserPosts postId, List<UserReplies> replies, String message,
+            Timestamp dateCreated, String giphyUrl) {
         this.commentId = commentId;
         this.ownerId = ownerId;
         this.postId = postId;
@@ -89,11 +94,11 @@ public class UserComments implements Serializable {
         this.message = message;
     }
 
-    public String getDateCreated() {
+    public Timestamp getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(String dateCreated) {
+    public void setDateCreated(Timestamp dateCreated) {
         this.dateCreated = dateCreated;
     }
 
@@ -105,12 +110,11 @@ public class UserComments implements Serializable {
         this.replies = replies;
     }
 
-    public void addReply (UserReplies reply){
+    public void addReply(UserReplies reply) {
         this.replies.add(reply);
     }
 
-
-    public void removeReply (UserReplies reply) {
+    public void removeReply(UserReplies reply) {
         this.replies.remove(reply);
     }
 

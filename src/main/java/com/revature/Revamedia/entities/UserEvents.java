@@ -1,12 +1,16 @@
 /**
- *  Author(s): @Brandon Le, @Tony Henderson
- *  Contributor(s):
- *  Purpose:
+ * Author(s): @Brandon Le, @Tony Henderson
+ * Contributor(s):
+ * Purpose:
  */
 package com.revature.Revamedia.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Set;
 
 @Entity
@@ -18,6 +22,7 @@ public class UserEvents implements Serializable {
     @Column(name = "event_id")
     private Integer eventId;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User ownerId;
@@ -25,7 +30,8 @@ public class UserEvents implements Serializable {
     @Column
     private String title;
 
-    @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("eventsJoined")
+    @ManyToMany(mappedBy = "eventsJoined")
     private Set<User> usersJoined;
 
     @Column
@@ -35,15 +41,15 @@ public class UserEvents implements Serializable {
     private String body;
 
     @Column
-    private String date;
+    private Timestamp date;
 
     @Column(name = "date_created")
-    private String dateCreated;
+    private Timestamp dateCreated;
 
     public UserEvents() {
     }
 
-    public UserEvents(User ownerId, String title, Set<User> usersJoined, String image, String body, String date, String dateCreated) {
+    public UserEvents(User ownerId, String title, Set<User> usersJoined, String image, String body, Timestamp date, Timestamp dateCreated) {
         this.ownerId = ownerId;
         this.title = title;
         this.usersJoined = usersJoined;
@@ -109,19 +115,19 @@ public class UserEvents implements Serializable {
         this.body = body;
     }
 
-    public String getDate() {
+    public Timestamp getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Timestamp date) {
         this.date = date;
     }
 
-    public String getDateCreated() {
+    public Timestamp getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(String dateCreated) {
+    public void setDateCreated(Timestamp dateCreated) {
         this.dateCreated = dateCreated;
     }
 

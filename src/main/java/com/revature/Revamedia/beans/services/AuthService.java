@@ -9,16 +9,19 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import javax.validation.ConstraintViolationException;
 import javax.validation.constraints.Email;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
+
 /**
- * @Author: Giorgi Amirajibi, Mohammad Foroutanyazdian, Fatemeh Goudarzi, Tony Henderson
- * @Contributor: Kenneth Strohm, Randall Hale
+ * @Author(s): Giorgi Amirajibi, Mohammad Foroutanyazdian, Fatemeh Goudarzi, Tony Henderson
+ * @Contributor(s):  Kenneth Strohm, Randall Hale
+ * Purpose: This is a service class for registering and authenticating a user.
+ *          It uses a UserRepository object, that is injected in a constructor, to invoke CRUD functionality of Spring Data JPA.
  */
+
 @Service
 public class AuthService {
 
@@ -29,6 +32,21 @@ public class AuthService {
         this.userRepository = userRepository;
     }
 
+    /**
+     * Method register: It returns a ResponseEntity object because we want to customize our response for frontend;
+     *
+     *                  Check we perform: if a user who is trying to register is already in the database.
+     *                  Response we generate: http status 409 (conflict) and a response body stating that username is not unique.
+     *
+     *                  User passwords are encoded using BCryptPasswordEncoder which is part of Spring security.
+     *
+     *                  If email field is mapped as unique in database, during method invocation with a non-unique email
+     *                  DataIntegrityViolationException is thrown. In this case we generate a response with http status 409 (conflict)
+     *                  and a response body stating that email is not unique.
+     *
+     *                  If everything is successful we generate http status 200 (ok) and return a user.
+     *
+     */
     public ResponseEntity<Object> register(UserRegisterDto userRegisterDto){
 
         if (!userRepository.existsUserByUsername(userRegisterDto.getUsername()) ){

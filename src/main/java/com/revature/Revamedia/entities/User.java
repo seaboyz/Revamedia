@@ -7,11 +7,17 @@
 
 package com.revature.Revamedia.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import org.springframework.validation.annotation.Validated;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.*;
@@ -24,14 +30,20 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private Integer userId;
+
     @Column(name = "username", unique = true)
     private String username;
+
     @Column(name = "email", unique = true)
     private String email;
+
+    @NotEmpty
     @Column(name = "password")
     private String password;
+
     @Column(name = "first_name")
     private String firstName;
+
     @Column(name = "last_name")
     private String lastName;
     @Column(name = "profile_picture")
@@ -47,14 +59,12 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "followerId", cascade = CascadeType.ALL)
     private Set<UserFollows> following;
 
-    //@Transient
     @JsonManagedReference
     @OneToMany(mappedBy = "ownerId")
     private Set<UserPosts> postsOwned;
 
 
     @JsonIgnoreProperties("likes")
-    //@JsonIgnore
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "liked_posts",
@@ -106,9 +116,7 @@ public class User implements Serializable {
         this.eventsJoined = new HashSet<>();
         this.eventsOwned = new HashSet<>();
 
-//        this.conversations = new HashSet<>();
-
-        this.likedPosts = new ArrayList<>();
+        //this.conversations = new HashSet<>();
     }
 
     public User(Integer userId, String username, String email, String password, String firstName, String lastName, String profilePicture, Timestamp dateCreated, Set<UserFollows> followers, Set<UserFollows> following, Set<UserPosts> posts, Set<UserGroups> groupsJoined, Set<UserGroups> groupsOwned, Set<UserEvents> eventsJoined, Set<UserEvents> eventsOwned, Set<UserConversations> conversations) {
@@ -120,7 +128,6 @@ public class User implements Serializable {
         this.lastName = lastName;
         this.profilePicture = profilePicture;
         this.dateCreated = dateCreated;
-        this.likedPosts = likedPosts;
         this.followers = followers;
         this.following = following;
         this.postsOwned = posts;

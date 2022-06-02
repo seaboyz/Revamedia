@@ -32,11 +32,13 @@ export class AuthenticationService {
     //Post request to attempt to login the user
     this.http.post('http://localhost:8080/auth/login', user, {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
+        'Content-Type': 'application/json',
+      }),
+      'withCredentials': true
     }).subscribe((response: any) => {
       //If login was successful store the user's info in session storage
       user = response;
+
       this.loggedIn.next(true);
       sessionStorage.setItem('LoggedIn', '1');
       this.router.navigateByUrl('/home');

@@ -9,7 +9,6 @@ import { LoginComponent } from './Components/login/login.component';
 import { RegisterComponent } from './Components/register/register.component';
 import { ErrorPageComponent } from './Components/error-page/error-page.component';
 import { ProfileComponent } from './Components/profile/profile.component';
-import { AddPostComponent } from './Components/add-post/add-post.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -20,7 +19,6 @@ const routes: Routes = [
   { path: 'groups', component: GroupsComponent },
   { path: 'settings', component: SettingsComponent },
   { path: 'profile', component: ProfileComponent },
-  { path: 'post', component: AddPostComponent },
   { path: '',   redirectTo: '/login', pathMatch: 'full' },
   { path: '**', component: ErrorPageComponent },
 ];

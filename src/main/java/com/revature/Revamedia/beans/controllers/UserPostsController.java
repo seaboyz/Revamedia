@@ -1,3 +1,8 @@
+/**
+ *  Author(s): @Brandon Le, @Tony Henderson
+ *  Contributor(s):@Stan Savelev, @William Bjerke
+ *  Purpose: CRUD functionality for user posts
+ */
 package com.revature.Revamedia.beans.controllers;
 
 import com.revature.Revamedia.beans.services.UserPostsService;
@@ -20,7 +25,7 @@ public class UserPostsController {
     private final UserService userService;
 
     @Autowired
-    public UserPostsController(UserPostsService userPostsService, UserService userService){
+    public UserPostsController(UserPostsService userPostsService, UserService userService) {
         this.userPostsService = userPostsService;
         this.userService = userService;
     }
@@ -35,23 +40,23 @@ public class UserPostsController {
         } catch (EntityNotFoundException e) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
-//
-//        UserPosts result = userPostsService.updatePostLikes(dto);
-//        if (result == null)
-//            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-//        else
-//            return new ResponseEntity<>(result, HttpStatus.OK);
+        //
+        // UserPosts result = userPostsService.updatePostLikes(dto);
+        // if (result == null)
+        // return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        // else
+        // return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     @GetMapping("/allPosts")
     @ResponseStatus(HttpStatus.OK)
-    public List<UserPosts> getAllPosts(){
+    public List<UserPosts> getAllPosts() {
         return userPostsService.getAllPosts();
     }
 
     @GetMapping("/postsByUser/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public List<UserPosts> getPostsByUserId(@PathVariable Integer id){
+    public List<UserPosts> getPostsByUserId(@PathVariable Integer id) {
         return userPostsService.getPostsByUser(id);
     }
 }

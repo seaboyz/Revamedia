@@ -1,9 +1,16 @@
+/**
+ *  Author(s): @Brandon Le, @Tony Henderson
+ *  Contributor(s):@Stan Savelev, @William Bjerke
+ *  Purpose: Added delete
+ */
+
 package com.revature.Revamedia.beans.services;
 
 import com.revature.Revamedia.beans.repositories.UserPostsRepository;
 import com.revature.Revamedia.beans.repositories.UserRepository;
 import com.revature.Revamedia.dtos.UpdatePostLikesDto;
 import com.revature.Revamedia.entities.User;
+import com.revature.Revamedia.entities.UserComments;
 import com.revature.Revamedia.entities.UserPosts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,7 +46,7 @@ public class UserPostsService {
         UserPosts post = userPostsRepository.getById(dto.getPostId());
         User user = userRepository.getById(dto.getUserId());
 
-        if(user.getLikedPosts().contains(post)){
+        if (user.getLikedPosts().contains(post)) {
             Set<User> usersLiked = post.getLikes();
             usersLiked.remove(user);
             post.setLikes(usersLiked);
@@ -62,12 +69,20 @@ public class UserPostsService {
         return post;
     }
 
-    public List<UserPosts> getPostsByUser(Integer userId){
+    public List<UserPosts> getPostsByUser(Integer userId) {
         return userPostsRepository.getUserPostsByUser(userId);
     }
 
     public List<UserPosts> getAllPosts() {
         return userPostsRepository.findAll();
+    }
+
+    public void deleteAllPosts(List<UserPosts> post) {
+        userPostsRepository.deleteAll();
+    }
+
+    public void delete(UserPosts post) {
+        userPostsRepository.delete(post);
     }
 
 }

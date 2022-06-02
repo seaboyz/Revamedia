@@ -8,6 +8,7 @@ import javax.validation.constraints.*;
  * Purpose: Object of this class is used to register a user.
  *          It contains and validates all the necessary fields that are filled during registration.
  */
+
 public class UserRegisterDto {
 
     @NotEmpty(message = "Username can't be empty")

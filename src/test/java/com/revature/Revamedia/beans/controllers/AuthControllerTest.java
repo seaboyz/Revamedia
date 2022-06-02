@@ -1,27 +1,54 @@
 package com.revature.Revamedia.beans.controllers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import com.revature.Revamedia.beans.services.AuthService;
 import com.revature.Revamedia.beans.services.JsonWebToken;
+import com.revature.Revamedia.dtos.AuthDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.test.web.servlet.MockMvc;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest
+@WebMvcTest(AuthController.class)
 public class AuthControllerTest {
-    private AuthController authController;
+
+    private MockMvc mockMvc;
+
 
     @MockBean
-    private AuthService authService;
+    private AuthService authServiceMock;
 
-    @MockBean
-    private JsonWebToken mockJwt;
 
-    public AuthControllerTest(@Autowired AuthController authController){
-        this.authController=authController;
+    public AuthControllerTest(@Autowired MockMvc mockMvc) {
+        this.mockMvc = mockMvc;
     }
     @Test
-    public void loginTest(){}
+    public void loginTest(){
+        AuthDto authDto= new AuthDto("shady", "Password1!");
+        HttpHeaders headers= new HttpHeaders();
+        headers.add("Set-Cookie", "user_session=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJKc29uIjoie1widXNlcklkXCI6NCxcInVzZXJuYW1lXCI6XCJzaGFkeVwifSJ9.LSzPbhNAALEFrBWZPpf8KGvREormRNt3tXFkGMTvnU3-MPHw76JD5cmreZJMYaSwNt7H6YJlALCFAWobPAKWbw; Max-Age=86400; Path=/;");
+        when(authServiceMock.login(authDto)).thenReturn(ResponseEntity.ok().headers(headers).build());
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            String content = mapper.writeValueAsString(authDto);
+            this.mockMvc.perform(post("/auth/login").contentType(MediaType.APPLICATION_JSON).content(content)).andExpect(status().isOk());
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
 
 
 }

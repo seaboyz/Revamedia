@@ -23,11 +23,9 @@ import javax.validation.Valid;
 public class AuthController {
 
     private final AuthService authService;
-    private final JsonWebToken jwt;
 
     @Autowired
-    public AuthController(AuthService authService, JsonWebToken jwt){
-        this.jwt=jwt;
+    public AuthController(AuthService authService){
         this.authService = authService;
     }
 

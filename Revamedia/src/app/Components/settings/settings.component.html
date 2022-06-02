@@ -66,3 +66,36 @@
   </div>
   <!-- Settings Content End -->
 </div>
+
+
+<!-- BLACKOUTSCREEN START-->
+<div class="screen" id="screen"></div>
+<!-- BLACKOUTSCREEN END-->
+
+<!-- EDIT POST FORM START -->
+<div class="modal" id="add-post-modal">
+  <div class="form-header">
+    <h3>Create new post</h3>
+    <span>x</span>
+  </div>
+  <form>
+    <div class="form-data">
+      <h4>Add Image or Video</h4>
+      <div class="file-input">
+        <input type="file" id="file" class="file">
+        <label for="file">
+          Select File
+        </label>
+        <p class="file-name" id="add-post-fileName"></p>
+      </div>
+    </div>
+    <div class="form-data">
+      <h4>Write a caption</h4>
+      <textarea name="message" placeholder="Write a caption..."></textarea>
+    </div>
+    <div class="post-submit">
+      <button>Create Post</button>
+    </div>
+  </form>
+</div>
+<!-- ADD POST FORM END -->

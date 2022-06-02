@@ -39,8 +39,8 @@
             <div class="post-options">
               <div class="container">
                 <div class="likes">
-                  <fa-icon id="icon" title="Like" [icon]="faHeart" size="lg"></fa-icon>
-                  <span>100 likes</span>
+                  <fa-icon id="icon" title="Like" [icon]="faHeart" size="lg" (click)="likePost()"></fa-icon>
+                  <span>{{totalLikes}}</span>
                 </div>
                 <div class="comment">
                   <fa-icon id="icon" (click)="openAddComment()" title="Comment" [icon]="faComment" size="lg"></fa-icon>

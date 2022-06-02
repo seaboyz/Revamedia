@@ -1,15 +1,17 @@
 /**
- *  Author(s): @Brandon Le, @Tony Henderson
- *  Contributor(s):
- *  Purpose:
+ * Author(s): @Brandon Le, @Tony Henderson
+ * Contributor(s):
+ * Purpose:
  */
 
 package com.revature.Revamedia.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Date;
 
 @Entity
@@ -20,10 +22,12 @@ public class UserFollows implements Serializable {
     @Column(name = "follow_id")
     private Integer followId;
 
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "followed_id", referencedColumnName = "user_id")
     private User followedId;
 
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "follower_id", referencedColumnName = "user_id")
     private User followerId;
@@ -33,12 +37,12 @@ public class UserFollows implements Serializable {
 
     @CreatedDate
     @Column(name = "date_followed")
-    private Date dateFollowed;
+    private Timestamp dateFollowed;
 
     public UserFollows() {
     }
 
-    public UserFollows(Integer id, User followedId, User followerId, boolean bookmarked, Date dateFollowed) {
+    public UserFollows(Integer id, User followedId, User followerId, boolean bookmarked, Timestamp dateFollowed) {
         this.followId = id;
         this.followedId = followedId;
         this.followerId = followerId;
@@ -78,11 +82,11 @@ public class UserFollows implements Serializable {
         this.bookmarked = bookmarked;
     }
 
-    public Date getDateFollowed() {
+    public Timestamp getDateFollowed() {
         return dateFollowed;
     }
 
-    public void setDateFollowed(Date dateFollowed) {
+    public void setDateFollowed(Timestamp dateFollowed) {
         this.dateFollowed = dateFollowed;
     }
 

@@ -40,7 +40,7 @@ postLifetime:String;
 dateCreated:String;
 }
 //temporary, probably
-export let baseUrl:String='http://localhost:4200'
+export let baseUrl:String='http://localhost:8080'
 export interface User{
   userId:number;
   username:string;

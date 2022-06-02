@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 //icons
 import { faHeart, faEllipsis, faBookmark, faComment, faShareFromSquare, faFaceGrinTongueSquint, faFaceGrinStars } from '@fortawesome/free-solid-svg-icons';
 import { GiphyService } from 'src/app/services/giphy.service';
+import { PostService } from 'src/app/services/post.service';
 import { CommentService } from '../../services/comment.service';
 
 @Component({
@@ -13,14 +14,23 @@ import { CommentService } from '../../services/comment.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(public CommentService: CommentService, public gifService: GiphyService) { }
+  constructor(public CommentService: CommentService, public gifService: GiphyService,public postService:PostService) { }
 
   ngOnInit(): void {
     // this.getAllComments();
     this.getGifs('funny');
     this.getStickers('funny');
   }
-
+  public onAddPost(post:NgForm){
+    this.postService.createPost(post.value).subscribe(
+      (response: any) => {
+        console.log(response);
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error.message)
+      }
+    )
+  }
   // Variables Used In Home Component
   public comment: any = {};
   public comments: any = [];

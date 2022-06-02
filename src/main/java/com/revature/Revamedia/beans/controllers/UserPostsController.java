@@ -42,7 +42,7 @@ public class UserPostsController {
         return ResponseEntity.ok(userPostsService.getPostById(id));
     }
 
-    @PostMapping("/addPost")
+    @PostMapping(value="/addPost")
     public ResponseEntity<UserPosts> createPost(@RequestBody UserPosts post){
         return  new ResponseEntity<>(userPostsService.save(post),HttpStatus.CREATED);
     }

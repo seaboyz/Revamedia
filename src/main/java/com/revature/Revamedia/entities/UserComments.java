@@ -1,11 +1,13 @@
 package com.revature.Revamedia.entities;
 /**
- *  Author(s): @Brandon Le, @Tony Henderson
- *  Contributor(s):
- *  Purpose:
+ * Author(s): @Brandon Le, @Tony Henderson
+ * Contributor(s):
+ * Purpose:
  */
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -13,31 +15,39 @@ import java.util.List;
 
 
 @Entity
-@Table(name="user_comments", schema = _SchemaName.schemaName)
+@Table(name = "user_comments", schema = _SchemaName.schemaName)
 public class UserComments implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "comment_id")
     private Integer commentId;
 
+
     @JsonIgnore
+
+    @JsonBackReference
+
     @ManyToOne()
     @JoinColumn(name = "owner_id", referencedColumnName = "user_id")
     private User ownerId;
 
+
     @JsonIgnore
+    @JsonBackReference
     @ManyToOne()
     @JoinColumn(name = "post_id", referencedColumnName = "post_id")
     private UserPosts postId;
 
+
     @JsonIgnore
+    @JsonManagedReference
     @OneToMany(mappedBy = "commentId", cascade = CascadeType.ALL)
     private List<UserReplies> replies;
 
-    @Column(name ="message", length=500)
+    @Column(name = "message", length = 500)
     private String message;
 
-    @Column(name ="date_created")
+    @Column(name = "date_created")
     private String dateCreated;
 
     public UserComments() {
@@ -102,12 +112,12 @@ public class UserComments implements Serializable {
         this.replies = replies;
     }
 
-    public void addReply (UserReplies reply){
+    public void addReply(UserReplies reply) {
         this.replies.add(reply);
     }
 
 
-    public void removeReply (UserReplies reply) {
+    public void removeReply(UserReplies reply) {
         this.replies.remove(reply);
     }
 

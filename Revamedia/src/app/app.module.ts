@@ -17,10 +17,11 @@ import { LoginComponent } from './Components/login/login.component';
 import { RegisterComponent } from './Components/register/register.component';
 import { ErrorPageComponent } from './Components/error-page/error-page.component';
 import { ProfileComponent } from './Components/profile/profile.component';
-import { AddPostComponent } from './Components/add-post/add-post.component';
-import { AuthenticationService } from './services/authentication.service';
 import { ValidateEqualModule } from 'ng-validate-equal';
 import { CookieService } from 'ngx-cookie-service';
+import { CommentService } from './Shared/services/user-comments-service/comment.service';
+import { GiphyService } from './Shared/services/giphy-service/giphy.service';
+import { AuthenticationService } from './Shared/services/auth-service/authentication.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,6 @@ import { CookieService } from 'ngx-cookie-service';
     RegisterComponent,
     ErrorPageComponent,
     ProfileComponent,
-    AddPostComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,9 +44,11 @@ import { CookieService } from 'ngx-cookie-service';
     BrowserAnimationsModule,
     FontAwesomeModule,
     FormsModule,
+    HttpClientModule,
+    FormsModule,
     ValidateEqualModule
   ],
-  providers: [AuthenticationService, CookieService],
+  providers: [AuthenticationService, CommentService, GiphyService, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

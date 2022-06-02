@@ -1,28 +1,23 @@
 /**
  * Author(s): @Brandon Le, @Tony Henderson
- * Contributor(s):
- * Purpose:
+ * Contributor(s): @Arun Mohan, @Anthony Pilletti
+ * Purpose: Entity class to represent User in database
  */
 
 
 package com.revature.Revamedia.entities;
 
-
-import org.springframework.validation.annotation.Validated;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-
 import javax.persistence.*;
-import javax.validation.Valid;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.*;
 
 @Entity
+@JsonIgnoreProperties
 @Table(name = "users", schema = _SchemaName.schemaName)
 public class User implements Serializable {
 
@@ -63,7 +58,6 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "ownerId")
     private Set<UserPosts> postsOwned;
 
-
     @JsonIgnoreProperties("likes")
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
@@ -72,7 +66,6 @@ public class User implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "post_id")
     )
     private List<UserPosts> likedPosts;
-
 
     @JsonIgnoreProperties("usersJoined")
     @ManyToMany(cascade = CascadeType.ALL)
@@ -100,11 +93,6 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "ownerId", cascade = CascadeType.ALL)
     private Set<UserEvents> eventsOwned;
 
-   /* @JsonManagedReference
-    @OneToMany(mappedBy = "conversationId", cascade = CascadeType.ALL)
-    private Set<UserConversations> conversations;*/
-
-
     public User() {
         this.followers = new HashSet<>();
         this.following = new HashSet<>();
@@ -116,10 +104,15 @@ public class User implements Serializable {
         this.eventsJoined = new HashSet<>();
         this.eventsOwned = new HashSet<>();
 
-        //this.conversations = new HashSet<>();
+//        this.conversations = new HashSet<>();
+
+        this.likedPosts = new ArrayList<>();
     }
 
-    public User(Integer userId, String username, String email, String password, String firstName, String lastName, String profilePicture, Timestamp dateCreated, Set<UserFollows> followers, Set<UserFollows> following, Set<UserPosts> posts, Set<UserGroups> groupsJoined, Set<UserGroups> groupsOwned, Set<UserEvents> eventsJoined, Set<UserEvents> eventsOwned, Set<UserConversations> conversations) {
+    public User(Integer userId, String username, String email, String password, String firstName, String lastName,
+            String profilePicture, Timestamp dateCreated, Set<UserFollows> followers, Set<UserFollows> following,
+            Set<UserPosts> posts, Set<UserGroups> groupsJoined, Set<UserGroups> groupsOwned, List<UserPosts> likedPosts,
+            Set<UserEvents> eventsJoined, Set<UserEvents> eventsOwned, Set<UserConversations> conversations) {
         this.userId = userId;
         this.username = username;
         this.email = email;
@@ -128,6 +121,7 @@ public class User implements Serializable {
         this.lastName = lastName;
         this.profilePicture = profilePicture;
         this.dateCreated = dateCreated;
+        this.likedPosts = likedPosts;
         this.followers = followers;
         this.following = following;
         this.postsOwned = posts;
@@ -135,7 +129,7 @@ public class User implements Serializable {
         this.groupsOwned = groupsOwned;
         this.eventsJoined = eventsJoined;
         this.eventsOwned = eventsOwned;
-        //this.conversations = conversations;
+        // this.conversations = conversations;
     }
 
     public Integer getUserId() {
@@ -321,22 +315,6 @@ public class User implements Serializable {
     public void setProfilePicture(String profilePicture) {
         this.profilePicture = profilePicture;
     }
-
-   /* public void addConversation(UserConversations conversation) {
-        this.conversations.add(conversation);
-    }
-
-    public void removeConversation(UserConversations conversation) {
-        this.conversations.remove(conversation);
-    }
-
-    public Set<UserConversations> getConversations() {
-        return conversations;
-    }
-
-    public void setConversations(Set<UserConversations> conversations) {
-        this.conversations = conversations;
-    }*/
 
     public void addLikedPost(UserPosts post) {
         this.likedPosts.add(post);

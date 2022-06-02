@@ -1,7 +1,7 @@
 /**
  * Author(s): @Brandon Le, @Tony Henderson
- * Contributor(s):
- * Purpose:
+ * Contributor(s): @Arun Mohan, @Anthony Pilletti
+ * Purpose: Entity class to represent UserPosts in database
  */
 package com.revature.Revamedia.entities;
 

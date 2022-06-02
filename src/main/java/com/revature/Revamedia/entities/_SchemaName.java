@@ -1,7 +1,7 @@
 /**
- *  Author(s): @Brandon Le, @Jarod Heng
- *  Contributor(s):
- *  Purpose:
+ * Author(s): @Brandon Le, @Jarod Heng
+ * Contributor(s):
+ * Purpose:
  */
 package com.revature.Revamedia.entities;
 

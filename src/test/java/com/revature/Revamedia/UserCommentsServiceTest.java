@@ -1,4 +1,4 @@
-package com.revature.Revamedia.beans;
+package com.revature.Revamedia;
 
 import com.revature.Revamedia.beans.services.UserCommentsService;
 import com.revature.Revamedia.beans.repositories.UserCommentsRepository;
@@ -42,7 +42,7 @@ public class UserCommentsServiceTest {
 
 
         USER_1 = new User(1, "test", "test@aol.com", "pass", "test", "name", null, null, null, null, null, null, null, null, null, null);
-        POST_1 = new UserPosts(1, USER_1, null, "test message", null, null, 1, null, null, null);
+        POST_1 = new UserPosts(1, USER_1, null, "test message", null, null, null, null, null, null);
         COMMENT_1 = new UserComments(1, USER_1, POST_1,null, "test comment", null);
         COMMENT_2 = new UserComments(2, USER_1, POST_1,null, "test comment number 2", null);
 

@@ -10,7 +10,14 @@
 
   <!-- Settings Content Start -->
   <div class="settings">
-    <button (click)="changeTheme()">Dark Mode</button>
+    <div class="changeTheme">
+      <h3 *ngIf="darkTheme == false">Dark Mode</h3>
+      <h3 *ngIf="darkTheme == true">Light Mode</h3>
+      <button (click)="changeTheme()">
+        <fa-icon *ngIf="darkTheme == true" [icon]="faSun"></fa-icon>
+        <fa-icon *ngIf="darkTheme == false" [icon]="faMoon"></fa-icon>
+      </button>
+    </div>
   </div>
   <!-- Settings Content End -->
 </div>

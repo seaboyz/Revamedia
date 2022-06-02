@@ -63,6 +63,17 @@ $darkgrey: rgb(61,66,74);
       }
     }
   }
+  #postOptionMenu{
+    background-color: rgb(31, 31, 31);
+    color: white;
+    li{
+      background-color: rgb(31, 31, 31);
+      color: white;
+      &:hover{
+        background-color: rgb(19, 19, 19);
+      }
+    }
+  }
   #addCommentReplyForm{
     background-color: rgb(31, 31, 31);
     color: white;

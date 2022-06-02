@@ -118,8 +118,9 @@ $darkgrey: rgb(61,66,74);
               cursor: pointer;
             }
             ul{
+              border: 1px solid $grey;
               position: absolute;
-              transform:translate(80%, 28%);
+              transform:translate(45%, 25%);
               list-style: none;
               background-color: $lightgrey;
               border-radius: 3px;

@@ -25,7 +25,7 @@
             </div>
             <div class="post-options">
               <fa-icon (click)="togglePostsOptions()" id="icon" [icon]="faEllipsis"></fa-icon>
-              <ul *ngIf="postsOptionsClicked" >
+              <ul *ngIf="postsOptionsClicked" id="postOptionMenu">
                 <li (click)="openModal('edit', post)">Edit Post</li>
                 <li  (click)="openModal('delete', post)">Delete Post</li>
               </ul>

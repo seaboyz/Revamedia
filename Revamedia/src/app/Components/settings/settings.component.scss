@@ -34,8 +34,25 @@ $darkgrey: rgb(61,66,74);
     display:flex;
     flex-direction: column;
     align-items: center;
-    .color-picker{
-      width: 25%;
+    .changeTheme{
+      display: flex;
+      flex-direction: row;
+      h3{
+        font-size: 1.5rem;
+        margin-right: 1rem;
+      }
+      button{
+        border: none;
+        outline: none;
+        background: $blue;
+        color: white;
+        padding: .3rem .6rem;
+        cursor: pointer;
+        border-radius: 5px;
+        &:hover{
+          background: $orange;
+        }
+      }
     }
   }
 }

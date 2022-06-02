@@ -38,7 +38,7 @@ public class RevamediaApplication {
         UserMessagesService userMessagesService = context.getBean(UserMessagesService.class);
 
 
-        /*User user1 = new User();
+        User user1 = new User();
         user1.setFirstName("Brandon");
         user1.setUsername("b1");
         user1.setPassword("password");
@@ -157,17 +157,17 @@ public class RevamediaApplication {
             System.out.println(follows);
         }
 
-*//*        List<UserReplies> repliesList = new ArrayList<>();
+        List<UserReplies> repliesList = new ArrayList<>();
         for (UserReplies reply : userRepliesService.getAllReplies()) {
             repliesList.add(reply);
         }
 
         comment1.setReplies(repliesList);
-        userCommentsService.save(comment1);*//*
+        userCommentsService.save(comment1);
 
         //testing groups
         UserGroups group1 = new UserGroups();
-        group1.setOwnerId(user1);*/
+        group1.setOwnerId(user1);
 
         //testing conversations and messages
 //        UserConversations conversations1 = new UserConversations();
@@ -181,11 +181,29 @@ public class RevamediaApplication {
 //
 //        user1.addConversation(conversations1);
 
+
         //UserClass: class names are pascal case
         //userClass: variable names camel case
         //user_id : database
         //all caps and underscore for constant variables
     }
+
+//
+//    @Bean
+//    public CorsFilter corsFilter() {
+//        CorsConfiguration corsConfiguration = new CorsConfiguration();
+//        corsConfiguration.setAllowCredentials(true);
+//        corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:4200","http://localhost:4200/%22"));
+//        corsConfiguration.setAllowedHeaders(Arrays.asList("Origin", "Access-Control-Allow-Origin", "Content-Type",
+//                "Accept", "Authorization", "Origin, Accept", "X-Requested-With",
+//                "Access-Control-Request-Method", "Access-Control-Request-Headers", "mode", "user_id"));
+//        corsConfiguration.setExposedHeaders(Arrays.asList("Origin", "Content-Type", "Accept", "Authorization",
+//                "Access-Control-Allow-Origin", "Access-Control-Allow-Origin", "Access-Control-Allow-Credentials", "mode"));
+//        corsConfiguration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+//        UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
+//        urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
+//        return new CorsFilter(urlBasedCorsConfigurationSource);
+//    }
 
 }
 

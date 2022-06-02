@@ -5,12 +5,10 @@ package com.revature.Revamedia.entities;
  * Purpose:
  */
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -26,18 +24,28 @@ public class UserComments implements Serializable {
     @Column(name = "comment_id")
     private Integer commentId;
 
+
+
     @JsonIgnore
+
+    @JsonBackReference
+
     @ManyToOne()
     @JoinColumn(name = "owner_id", referencedColumnName = "user_id")
     private User ownerId;
 
-    @JsonIgnore
 
+
+    @JsonIgnore
+    @JsonBackReference
     @ManyToOne()
     @JoinColumn(name = "post_id", referencedColumnName = "post_id")
     private UserPosts postId;
 
+
+
     @JsonIgnore
+    @JsonManagedReference
     @OneToMany(mappedBy = "commentId", cascade = CascadeType.ALL)
     private List<UserReplies> replies;
 

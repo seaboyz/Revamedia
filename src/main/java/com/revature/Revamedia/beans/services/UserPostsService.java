@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserPostsService {
@@ -23,7 +22,11 @@ public class UserPostsService {
         this.userPostsRepository = userPostsRepository;
     }
 
-    public UserPosts getPostById(Integer id){return userPostsRepository.getById(id);}
+    public UserPosts getPostById(Integer id) {
+        UserPosts posts = userPostsRepository.getById(id);
+//        System.out.println("DEBUG - getPostsById returned: " + posts);
+        return posts;
+    }
 
     public UserPosts save(UserPosts post) {
         return userPostsRepository.save(post);

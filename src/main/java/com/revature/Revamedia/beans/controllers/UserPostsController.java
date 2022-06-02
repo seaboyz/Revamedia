@@ -7,12 +7,16 @@
 package com.revature.Revamedia.beans.controllers;
 
 import com.revature.Revamedia.beans.services.UserPostsService;
+import com.revature.Revamedia.entities.User;
 import com.revature.Revamedia.entities.UserPosts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotWritableException;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityNotFoundException;
+import javax.persistence.PersistenceException;
 import java.util.List;
 
 
@@ -38,8 +42,15 @@ public class UserPostsController {
     //TODO: Include exception handling if post does not exist.
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserPosts> getPostByPostId(@PathVariable Integer id){
-        return ResponseEntity.ok(userPostsService.getPostById(id));
+    public ResponseEntity<UserPosts> getPostByPostId(@PathVariable int id){
+
+        try{
+            UserPosts post = userPostsService.getPostById(id);
+            System.out.println(post);
+            return ResponseEntity.ok(post);
+        }catch(EntityNotFoundException e){
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @PostMapping("/addPost")

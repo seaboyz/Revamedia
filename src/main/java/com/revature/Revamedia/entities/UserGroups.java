@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -38,14 +39,14 @@ public class UserGroups {
     private Set<UserPosts> posts;
 
     @Column(name = "date_created")
-    private String dateCreated;
+    private Timestamp dateCreated;
 
     public UserGroups() {
         this.usersJoined = new HashSet<>();
         this.posts = new HashSet<>();
     }
 
-    public UserGroups(User ownerId, String title, Set<User> usersJoined, Set<UserPosts> posts, String dateCreated) {
+    public UserGroups(User ownerId, String title, Set<User> usersJoined, Set<UserPosts> posts, Timestamp dateCreated) {
         this.ownerId = ownerId;
         this.title = title;
         this.usersJoined = usersJoined;
@@ -110,11 +111,11 @@ public class UserGroups {
         this.posts.remove(post);
     }
 
-    public String getDateCreated() {
+    public Timestamp getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(String dateCreated) {
+    public void setDateCreated(Timestamp dateCreated) {
         this.dateCreated = dateCreated;
     }
 

@@ -17,6 +17,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.*;
 
 @Entity
@@ -46,7 +47,7 @@ public class User implements Serializable {
     @Column(name = "profile_picture")
     private String profilePicture;
     @Column(name = "date_created")
-    private String dateCreated;
+    private Timestamp dateCreated;
 
     @JsonManagedReference
     @OneToMany(mappedBy = "followedId", cascade = CascadeType.ALL)
@@ -116,7 +117,7 @@ public class User implements Serializable {
         //this.conversations = new HashSet<>();
     }
 
-    public User(Integer userId, String username, String email, String password, String firstName, String lastName, String profilePicture, String dateCreated, Set<UserFollows> followers, Set<UserFollows> following, Set<UserPosts> posts, Set<UserGroups> groupsJoined, Set<UserGroups> groupsOwned, Set<UserEvents> eventsJoined, Set<UserEvents> eventsOwned, Set<UserConversations> conversations) {
+    public User(Integer userId, String username, String email, String password, String firstName, String lastName, String profilePicture, Timestamp dateCreated, Set<UserFollows> followers, Set<UserFollows> following, Set<UserPosts> posts, Set<UserGroups> groupsJoined, Set<UserGroups> groupsOwned, Set<UserEvents> eventsJoined, Set<UserEvents> eventsOwned, Set<UserConversations> conversations) {
         this.userId = userId;
         this.username = username;
         this.email = email;
@@ -183,11 +184,11 @@ public class User implements Serializable {
         this.lastName = lastName;
     }
 
-    public String getDateCreated() {
+    public Timestamp getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(String dateCreated) {
+    public void setDateCreated(Timestamp dateCreated) {
         this.dateCreated = dateCreated;
     }
 

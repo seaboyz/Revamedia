@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "user_replies", schema = _SchemaName.schemaName)
@@ -33,12 +34,12 @@ public class UserReplies implements Serializable {
     private String message;
 
     @Column(name ="date_created")
-    private String dateCreated;
+    private Timestamp dateCreated;
 
     public UserReplies() {
     }
 
-    public UserReplies(Integer replyId, User ownerId, UserComments commentId, String message, String dateCreated) {
+    public UserReplies(Integer replyId, User ownerId, UserComments commentId, String message, Timestamp dateCreated) {
         this.replyId = replyId;
         this.ownerId = ownerId;
         this.commentId = commentId;
@@ -78,11 +79,11 @@ public class UserReplies implements Serializable {
         this.message = message;
     }
 
-    public String getDateCreated() {
+    public Timestamp getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(String dateCreated) {
+    public void setDateCreated(Timestamp dateCreated) {
         this.dateCreated = dateCreated;
     }
 

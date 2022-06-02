@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from 'src/app/services/authentication.service';
+import { AuthenticationService } from 'src/app/Shared/services/authentication.service';
 // Icons
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { NgForm } from '@angular/forms';

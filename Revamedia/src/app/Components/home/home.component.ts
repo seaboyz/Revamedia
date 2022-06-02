@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 //icons
 import { faHeart, faEllipsis, faBookmark, faComment, faShareFromSquare } from '@fortawesome/free-solid-svg-icons';
-import { UserPostsService } from 'src/app/services/user-posts-service/user-posts.service';
+import { UserPostsService } from 'src/app/Shared/services/user-posts-service/user-posts.service';
 import { HttpClient } from '@angular/common/http';
 
 @Component({

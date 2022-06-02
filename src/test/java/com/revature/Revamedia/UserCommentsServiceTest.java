@@ -105,6 +105,16 @@ public class UserCommentsServiceTest {
         UserComments updatedComment = userCommentsService.save(commentToUpdate);
         assertEquals(commentToUpdate, updatedComment);
         verify(userCommentsRepositoryMock, times(1)).save(commentToUpdate);
-
     }
+
+    //test that comment gets deleted
+//    @Test
+//    public void commentGetsDeleted(@Autowired UserCommentsService userCommentsService) {
+//        UserComments commentToCreate = COMMENT_1;
+//
+//        when(userCommentsRepositoryMock.delete(any())).thenReturn(commentToCreate);
+//        UserComments comment = userCommentsService.save(commentToCreate);
+//
+//        assertEquals(commentToCreate, comment);
+//    }
 }

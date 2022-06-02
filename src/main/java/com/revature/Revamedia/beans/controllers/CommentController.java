@@ -29,7 +29,6 @@ public class CommentController {
     public HttpResponseDto getById(HttpServletResponse res, @PathVariable("id") int id) {
         UserComments comment = userCommentsService.getCommentById(id);
 
-
         if(comment.getCommentId() != id) {
             res.setStatus(400);
             return new HttpResponseDto(400, "Failed to get comment.", comment);
@@ -63,7 +62,6 @@ public class CommentController {
         }
     }
 
-
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.OK)
     public HttpResponseDto updateById(@RequestBody UserComments updatedComment, HttpServletResponse res) {
@@ -78,7 +76,12 @@ public class CommentController {
         }
     }
 
-
-
+    @DeleteMapping("/delete")
+    @ResponseStatus(HttpStatus.OK)
+    public HttpResponseDto delete(@RequestBody UserComments comment, HttpServletResponse res){
+        userCommentsService.delete(comment);
+        res.setStatus(200);
+        return new HttpResponseDto(200, "Comment successfully deleted.", comment);
+    }
 }
 

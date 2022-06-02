@@ -4,8 +4,12 @@
 
 export const environment = {
   production: false,
+<<<<<<< HEAD
   baseUrl: 'http://localhost:8080',
   apiKey: 'M4g0SX27EqOQZ9eAipfpXcGPrfYAQsrI'
+=======
+  apiBaseUrl: 'http://localhost:8080'
+>>>>>>> dev
 };
 
 /*

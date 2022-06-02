@@ -1,11 +1,12 @@
 /**
- *  Author(s): @Brandon Le, @Tony Henderson
- *  Contributor(s):
- *  Purpose:
+ * Author(s): @Brandon Le, @Tony Henderson
+ * Contributor(s):
+ * Purpose:
  */
 
 package com.revature.Revamedia.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
@@ -20,10 +21,12 @@ public class UserFollows implements Serializable {
     @Column(name = "follow_id")
     private Integer followId;
 
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "followed_id", referencedColumnName = "user_id")
     private User followedId;
 
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "follower_id", referencedColumnName = "user_id")
     private User followerId;

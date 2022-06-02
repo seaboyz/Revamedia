@@ -14,12 +14,11 @@ import { LoginComponent } from './Components/login/login.component';
 import { RegisterComponent } from './Components/register/register.component';
 import { ErrorPageComponent } from './Components/error-page/error-page.component';
 import { ProfileComponent } from './Components/profile/profile.component';
-import { CommentService } from './services/comment.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { GiphyService } from './services/giphy.service';
-import { PostPageComponent } from './post-page/post-page.component';
-import { AuthenticationService } from './services/authentication.service';
+import { CommentService } from './Shared/services/user-comments-service/comment.service';
+import { GiphyService } from './Shared/services/giphy-service/giphy.service';
+import { AuthenticationService } from './Shared/services/auth-service/authentication.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +33,6 @@ import { AuthenticationService } from './services/authentication.service';
     RegisterComponent,
     ErrorPageComponent,
     ProfileComponent,
-    PostPageComponent,
   ],
   imports: [
     BrowserModule,

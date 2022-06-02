@@ -1,14 +1,14 @@
 /**
- *  Author(s): @Brandon Le, @Tony Henderson
- *  Contributor(s):@Stan Savelev, @William Bjerke
- *  Purpose: CRUD functionality for user posts
+ * Author(s): @Brandon Le, @Arun Mohan, @Anthony Pilletti
+ * Contributor(s): @Stan Savelev, @William Bjerke
+ * Purpose: Controller class to define UserPost backend CRUD functions
  */
+
 package com.revature.Revamedia.beans.controllers;
 
 import com.revature.Revamedia.beans.services.UserPostsService;
 import com.revature.Revamedia.beans.services.UserService;
 import com.revature.Revamedia.dtos.UpdatePostLikesDto;
-import com.revature.Revamedia.entities.User;
 import com.revature.Revamedia.entities.UserPosts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,10 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
-import javax.servlet.http.HttpServletResponse;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @RestController
 @RequestMapping(value = "/posts", produces = "application/json")
@@ -34,6 +31,11 @@ public class UserPostsController {
         this.userService = userService;
     }
 
+    /**
+     * Update the like status of a post by a given user
+     * @param dto UpdatePostLikes dto from the HTTP Request Body containing User and Post ids
+     * @return ResponseEntity containing response status and updated UserPost
+     */
     @PutMapping("/likes")
     public ResponseEntity<UserPosts> updatePostLikes(@RequestBody UpdatePostLikesDto dto) {
 
@@ -44,20 +46,23 @@ public class UserPostsController {
         } catch (EntityNotFoundException e) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
-        //
-        // UserPosts result = userPostsService.updatePostLikes(dto);
-        // if (result == null)
-        // return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        // else
-        // return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
+    /**
+     * Get all posts from the database
+     * @return List of all UserPosts
+     */
     @GetMapping("/allPosts")
     @ResponseStatus(HttpStatus.OK)
     public List<UserPosts> getAllPosts() {
         return userPostsService.getAllPosts();
     }
 
+    /**
+     * Get all posts made by the given user
+     * @param id UserId as a path variable
+     * @return List of UserPosts owned by user
+     */
     @GetMapping("/postsByUser/{id}")
     @ResponseStatus(HttpStatus.OK)
     public List<UserPosts> getPostsByUserId(@PathVariable Integer id) {

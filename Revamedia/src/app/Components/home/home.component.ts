@@ -3,11 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 //icons
 import { faHeart, faEllipsis, faBookmark, faComment, faShareFromSquare, faFaceGrinTongueSquint, faFaceGrinStars } from '@fortawesome/free-solid-svg-icons';
-import { GiphyService } from 'src/app/services/giphy.service';
-import { CommentService } from '../../services/comment.service';
 
-import { UserPostsService } from 'src/app/services/user-posts-service/user-posts.service';
 import { HttpClient } from '@angular/common/http';
+import { UserPostsService } from 'src/app/Shared/services/user-posts-service/user-posts.service';
+import { CommentService } from 'src/app/Shared/services/user-comments-service/comment.service';
+import { GiphyService } from 'src/app/Shared/services/giphy-service/giphy.service';
 
 @Component({
   selector: 'app-home',

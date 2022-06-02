@@ -9,9 +9,6 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class PostService {
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  };
 url=baseUrl+'/post';
 constructor(private httpClient:HttpClient){}
 getPostAll():Observable<any>{

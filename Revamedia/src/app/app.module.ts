@@ -15,18 +15,14 @@ import { RegisterComponent } from './Components/register/register.component';
 import { ErrorPageComponent } from './Components/error-page/error-page.component';
 import { ProfileComponent } from './Components/profile/profile.component';
 import { CommentService } from './services/comment.service';
-<<<<<<< HEAD
 import { AddPostComponent } from './Components/add-post/add-post.component';
-import { AuthenticationService } from './services/authentication.service';
 import { PostService } from './services/post.service';
-=======
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { GiphyService } from './services/giphy.service';
 import { PostPageComponent } from './post-page/post-page.component';
 import { AuthenticationService } from './services/authentication.service';
 
->>>>>>> dev
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,12 +35,8 @@ import { AuthenticationService } from './services/authentication.service';
     LoginComponent,
     RegisterComponent,
     ErrorPageComponent,
-<<<<<<< HEAD
-    ProfileComponent
-=======
     ProfileComponent,
-    PostPageComponent,
->>>>>>> dev
+    PostPageComponent
   ],
   imports: [
     BrowserModule,
@@ -52,16 +44,10 @@ import { AuthenticationService } from './services/authentication.service';
     AppRoutingModule,
     BrowserAnimationsModule,
     FontAwesomeModule,
-<<<<<<< HEAD
-    FormsModule
-  ],
-  providers: [AuthenticationService,PostService,CommentService],
-=======
     FormsModule,
     HttpClientModule,
   ],
-  providers: [AuthenticationService, CommentService, GiphyService],
->>>>>>> dev
+  providers: [AuthenticationService, CommentService, GiphyService,PostService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -18,7 +18,7 @@ import { HttpClient } from '@angular/common/http';
 export class HomeComponent implements OnInit {
 
 
-  constructor(private userPostsService : UserPostsService, private http : HttpClient, public CommentService: CommentService, public gifService: GiphyService) { }
+  constructor(private postService:PostService, private userPostsService : UserPostsService, private http : HttpClient, public CommentService: CommentService, public gifService: GiphyService) { }
 
   ngOnInit(): void {
     // this.getAllComments();

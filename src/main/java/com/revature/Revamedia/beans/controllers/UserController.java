@@ -2,7 +2,6 @@ package com.revature.Revamedia.beans.controllers;
 
 
 import com.revature.Revamedia.beans.services.UserService;
-import com.revature.Revamedia.dtos.AuthDto;
 import com.revature.Revamedia.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,13 +24,6 @@ public class UserController {
 
     //Controller Methods
 
-    @PostMapping("/login")
-    @ResponseStatus(HttpStatus.OK)
-    public User login(@RequestBody User user, HttpServletResponse response) {
-        AuthDto auth = new AuthDto(user.getUsername(), user.getPassword());
-        return userService.login(auth);
-        
-    }
 
     @GetMapping("/allUsers")
     @ResponseStatus(HttpStatus.OK)

@@ -48,7 +48,8 @@ export class RegisterComponent implements OnInit {
     }
     this.register.createUser(this.user, options).subscribe((data) => {
       console.log(data)
-    })
+    },(error) => {console.log(error)}
+    )
   }
 
 

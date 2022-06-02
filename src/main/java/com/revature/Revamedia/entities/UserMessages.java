@@ -7,6 +7,7 @@ package com.revature.Revamedia.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Entity
@@ -29,12 +30,12 @@ public class UserMessages implements Serializable {
     private String message;
 
     @Column(name ="date_created")
-    private String dateCreated;
+    private Timestamp dateCreated;
 
     public UserMessages() {
     }
 
-    public UserMessages(Integer messageId, User ownerId, UserConversations conversation, String message, String dateCreated) {
+    public UserMessages(Integer messageId, User ownerId, UserConversations conversation, String message, Timestamp dateCreated) {
         this.messageId = messageId;
         this.ownerId = ownerId;
         this.conversation = conversation;
@@ -74,11 +75,11 @@ public class UserMessages implements Serializable {
         this.message = message;
     }
 
-    public String getDateCreated() {
+    public Timestamp getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(String dateCreated) {
+    public void setDateCreated(Timestamp dateCreated) {
         this.dateCreated = dateCreated;
     }
 

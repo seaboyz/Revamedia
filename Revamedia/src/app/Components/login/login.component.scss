@@ -17,8 +17,8 @@ $darkgrey: rgb(61,66,74);
     background-color: $grey;
     h1{
       font-size: 1.5rem;
-      font-weight: bold;
-      color: #F26925;
+      font-weight: normal;
+      color: $darkgrey;
     }
   }
 
@@ -88,6 +88,7 @@ $darkgrey: rgb(61,66,74);
           border: none;
           background: $orange;
           color: $darkgrey;
+          outline: none;
           padding: .3rem 0;
           font-size: 1.2rem;
           cursor: pointer;

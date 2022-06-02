@@ -19,6 +19,7 @@ import { ErrorPageComponent } from './Components/error-page/error-page.component
 import { ProfileComponent } from './Components/profile/profile.component';
 import { AddPostComponent } from './Components/add-post/add-post.component';
 import { AuthenticationService } from './services/authentication.service';
+import { ValidateEqualModule } from 'ng-validate-equal';
 import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
@@ -42,7 +43,8 @@ import { CookieService } from 'ngx-cookie-service';
     AppRoutingModule,
     BrowserAnimationsModule,
     FontAwesomeModule,
-    FormsModule
+    FormsModule,
+    ValidateEqualModule
   ],
   providers: [AuthenticationService, CookieService],
   bootstrap: [AppComponent]

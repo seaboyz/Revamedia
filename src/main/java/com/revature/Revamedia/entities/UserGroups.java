@@ -7,6 +7,7 @@ package com.revature.Revamedia.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -34,7 +35,7 @@ public class UserGroups {
     @ManyToMany(mappedBy = "groupsJoined")
     private Set<User> usersJoined;
 
-
+    @JsonManagedReference
     @OneToMany(mappedBy = "groupId", cascade = CascadeType.ALL)
     private Set<UserPosts> posts;
 

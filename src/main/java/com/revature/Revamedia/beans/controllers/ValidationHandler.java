@@ -14,6 +14,9 @@ import java.util.Map;
 /**
  * @Author: Kenneth Strohm
  * @Contributor: Giorgi Amirajibi, Mohammad Foroutanyazdian, Fatemeh Goudarzi
+ * Purpose: This class handles errors that are generated during user input that doesn't satisfy our validation checks.
+ *          It returns http status 400 (bad request) and a map object with key value pairs
+ *          where key is field name and value is either a default or a custom message.
  */
 
 @ControllerAdvice

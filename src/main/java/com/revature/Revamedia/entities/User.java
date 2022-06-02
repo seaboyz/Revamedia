@@ -7,9 +7,11 @@
 
 package com.revature.Revamedia.entities;
 
+
+import org.springframework.validation.annotation.Validated;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import org.springframework.validation.annotation.Validated;
 
 
 import javax.persistence.*;
@@ -335,6 +337,14 @@ public class User implements Serializable {
     public void setConversations(Set<UserConversations> conversations) {
         this.conversations = conversations;
     }*/
+
+    public void addLikedPost(UserPosts post) {
+        this.likedPosts.add(post);
+    }
+
+    public void removeLikedPost(UserPosts post) {
+        this.likedPosts.remove(post);
+    }
 
     @Override
     public String toString() {

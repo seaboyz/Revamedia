@@ -109,7 +109,6 @@
             <artifactId>spring-security-core</artifactId>
         </dependency>
 
-
     </dependencies>
 
     <build>

@@ -1,7 +1,7 @@
 /**
- *  Author(s): @Everyone
- *  Contributor(s):
- *  Purpose: Main Driver for Revamedia Application. Starts up spring boot application.
+ * Author(s): @Everyone
+ * Contributor(s):
+ * Purpose: Main Driver for Revamedia Application. Starts up spring boot application.
  */
 package com.revature.Revamedia;
 
@@ -16,6 +16,10 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 
 @SpringBootApplication(scanBasePackages = "com.revature.Revamedia.beans")
 public class RevamediaApplication {
@@ -34,8 +38,7 @@ public class RevamediaApplication {
         UserMessagesService userMessagesService = context.getBean(UserMessagesService.class);
 
 
-
-        User user1 = new User();
+        /*User user1 = new User();
         user1.setFirstName("Brandon");
         user1.setUsername("b1");
         user1.setPassword("password");
@@ -76,18 +79,16 @@ public class RevamediaApplication {
         UserPosts post1 = new UserPosts();
         post1.setOwnerId(user1);
         post1.setMessage("post1 message by user1");
-        post1.setLikes(20);
         userPostsService.save(post1);
 
         UserPosts post2 = new UserPosts();
         post2.setOwnerId(user1);
         post2.setMessage("post2 message by user1");
-        post2.setLikes(5);
+
 
         UserPosts post3 = new UserPosts();
         post3.setOwnerId(user1);
         post3.setMessage("post3 message by user1");
-        post3.setLikes(11);
 
         user1.addPost(post1);
         user1.addPost(post2);
@@ -156,49 +157,35 @@ public class RevamediaApplication {
             System.out.println(follows);
         }
 
-/*        List<UserReplies> repliesList = new ArrayList<>();
+*//*        List<UserReplies> repliesList = new ArrayList<>();
         for (UserReplies reply : userRepliesService.getAllReplies()) {
             repliesList.add(reply);
         }
 
         comment1.setReplies(repliesList);
-        userCommentsService.save(comment1);*/
+        userCommentsService.save(comment1);*//*
 
         //testing groups
         UserGroups group1 = new UserGroups();
-        group1.setOwnerId(user1);
+        group1.setOwnerId(user1);*/
 
         //testing conversations and messages
-        UserConversations conversations1 = new UserConversations();
-
-        UserMessages message1 = new UserMessages();
-        message1.setOwnerId(user1);
-        message1.setMessage("user1 sending message to user2");
-
-        conversations1.setRecipientId(user2);
-        conversations1.addMessage(message1);
-
-        user1.addConversation(conversations1);
+//        UserConversations conversations1 = new UserConversations();
+//
+//        UserMessages message1 = new UserMessages();
+//        message1.setOwnerId(user1);
+//        message1.setMessage("user1 sending message to user2");
+//
+//        conversations1.setRecipientId(user2);
+//        conversations1.addMessage(message1);
+//
+//        user1.addConversation(conversations1);
 
         //UserClass: class names are pascal case
         //userClass: variable names camel case
         //user_id : database
         //all caps and underscore for constant variables
     }
-    @Bean
-    public CorsFilter corsFilter() {
-        CorsConfiguration corsConfiguration = new CorsConfiguration();
-        corsConfiguration.setAllowCredentials(true);
-        corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:4200","http://localhost:4200/%22"));
-        corsConfiguration.setAllowedHeaders(Arrays.asList("Origin", "Access-Control-Allow-Origin", "Content-Type",
-                "Accept", "Authorization", "Origin, Accept", "X-Requested-With",
-                "Access-Control-Request-Method", "Access-Control-Request-Headers", "mode", "user_id"));
-        corsConfiguration.setExposedHeaders(Arrays.asList("Origin", "Content-Type", "Accept", "Authorization",
-                "Access-Control-Allow-Origin", "Access-Control-Allow-Origin", "Access-Control-Allow-Credentials", "mode"));
-        corsConfiguration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
-        urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
-        return new CorsFilter(urlBasedCorsConfigurationSource);
-    }
+
 }
 

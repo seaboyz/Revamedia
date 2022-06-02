@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,8 +18,9 @@ import { RegisterComponent } from './Components/register/register.component';
 import { ErrorPageComponent } from './Components/error-page/error-page.component';
 import { ProfileComponent } from './Components/profile/profile.component';
 import { CommentService } from './services/comment.service';
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { AddPostComponent } from './Components/add-post/add-post.component';
+import { AuthenticationService } from './services/authentication.service';
+
 
 @NgModule({
   declarations: [
@@ -35,13 +38,13 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FontAwesomeModule,
-    FormsModule,
-    HttpClientModule,
+    FormsModule
   ],
-  providers: [CommentService],
+  providers: [AuthenticationService,CommentService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

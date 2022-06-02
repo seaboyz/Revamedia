@@ -112,12 +112,7 @@ public class User implements Serializable {
         this.likedPosts = new ArrayList<>();
     }
 
-<<<<<<< HEAD
     public User(Integer userId, String username, String email, String password, String firstName, String lastName, String profilePicture, Timestamp dateCreated, Set<UserFollows> followers, Set<UserFollows> following, Set<UserPosts> posts, Set<UserGroups> groupsJoined, Set<UserGroups> groupsOwned, Set<UserEvents> eventsJoined, Set<UserEvents> eventsOwned, Set<UserConversations> conversations) {
-=======
-
-    public User(Integer userId, String username, String email, String password, String firstName, String lastName, String profilePicture, String dateCreated, Set<UserFollows> followers, Set<UserFollows> following, Set<UserPosts> posts, Set<UserGroups> groupsJoined, Set<UserGroups> groupsOwned, Set<UserEvents> eventsJoined, Set<UserEvents> eventsOwned, Set<UserConversations> conversations, List<UserPosts> likedPosts) {
->>>>>>> 41e4f84822dff391afba1e72a2d79dbe00aaee83
         this.userId = userId;
         this.username = username;
         this.email = email;

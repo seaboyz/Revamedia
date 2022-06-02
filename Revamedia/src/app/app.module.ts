@@ -19,6 +19,7 @@ import { ErrorPageComponent } from './Components/error-page/error-page.component
 import { ProfileComponent } from './Components/profile/profile.component';
 import { AddPostComponent } from './Components/add-post/add-post.component';
 import { AuthenticationService } from './services/authentication.service';
+import { ValidateEqualModule } from 'ng-validate-equal';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { AuthenticationService } from './services/authentication.service';
     AppRoutingModule,
     BrowserAnimationsModule,
     FontAwesomeModule,
-    FormsModule
+    FormsModule,
+    ValidateEqualModule
   ],
   providers: [AuthenticationService],
   bootstrap: [AppComponent]

@@ -69,7 +69,6 @@ public class UserPosts implements Serializable {
         this.likes = new HashSet<>();
     }
 
-
     public UserPosts(Integer postId, User ownerId, List<UserComments> comments, String message, String youtubeLink, String image, Set<User> likes, String postLifetime, Timestamp dateCreated, UserGroups groupId) {
         this.postId = postId;
         this.ownerId = ownerId;

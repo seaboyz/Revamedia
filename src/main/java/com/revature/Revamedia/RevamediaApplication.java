@@ -24,7 +24,7 @@ public class RevamediaApplication {
     public static void main(String[] args) {
 
         ConfigurableApplicationContext context = SpringApplication.run(RevamediaApplication.class, args);
-
+        context.start();
         UserService userService = context.getBean(UserService.class);
         UserFollowsService userFollowsService = context.getBean(UserFollowsService.class);
         UserPostsService userPostsService = context.getBean(UserPostsService.class);

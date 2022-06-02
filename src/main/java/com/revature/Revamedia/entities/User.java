@@ -39,7 +39,6 @@ public class User implements Serializable {
     @Column(name = "date_created")
     private Timestamp dateCreated;
 
-
     @JsonManagedReference
     @OneToMany(mappedBy = "followedId", cascade = CascadeType.ALL)
     private Set<UserFollows> followers;
@@ -111,7 +110,6 @@ public class User implements Serializable {
 
         this.likedPosts = new ArrayList<>();
     }
-
 
     public User(Integer userId, String username, String email, String password, String firstName, String lastName, String profilePicture, Timestamp dateCreated, Set<UserFollows> followers, Set<UserFollows> following, Set<UserPosts> posts, Set<UserGroups> groupsJoined, Set<UserGroups> groupsOwned, Set<UserEvents> eventsJoined, Set<UserEvents> eventsOwned, Set<UserConversations> conversations) {
         this.userId = userId;

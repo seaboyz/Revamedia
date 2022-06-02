@@ -107,6 +107,15 @@ public class UserCommentsServiceTest {
         verify(userCommentsRepositoryMock, times(1)).save(commentToUpdate);
     }
 
+    @Test
+    @DisplayName("Test that a comment is deleted")
+    void delete(@Autowired UserCommentsService userCommentsService)  {
+        UserComments userComments = new UserComments(2, USER_1, POST_1,null,
+                "test comment number 2", null);
+
+        userCommentsService.delete(userComments);
+        verify(userCommentsRepositoryMock, times(1)).delete(userComments);
+    }
     //test that comment gets deleted
 //    @Test
 //    public void commentGetsDeleted(@Autowired UserCommentsService userCommentsService) {

@@ -5,15 +5,13 @@ import com.revature.Revamedia.entities.UserPosts;
 public class UpdatePostLikesDto {
     private Integer userId;
     private Integer postId;
-    private Integer likes;
 
     public UpdatePostLikesDto() {
     }
 
-    public UpdatePostLikesDto(Integer userId, Integer postId, Integer likes) {
+    public UpdatePostLikesDto(Integer userId, Integer postId) {
         this.userId = userId;
         this.postId = postId;
-        this.likes = likes;
     }
 
     public Integer getUserId() {
@@ -32,11 +30,4 @@ public class UpdatePostLikesDto {
         this.postId = postId;
     }
 
-    public Integer getLikes() {
-        return likes;
-    }
-
-    public void setLikes(Integer likes) {
-        this.likes = likes;
-    }
 }

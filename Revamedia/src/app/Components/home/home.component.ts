@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 //icons
 import { faHeart, faEllipsis, faBookmark, faComment, faShareFromSquare } from '@fortawesome/free-solid-svg-icons';
+import { UserPostsService } from 'src/app/services/user-posts.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
@@ -9,9 +11,31 @@ import { faHeart, faEllipsis, faBookmark, faComment, faShareFromSquare } from '@
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  postToLike : any = {
+    userId : 1,
+    postId : 2
+  }
+
+  public totalLikes : number = 0;
+
+  constructor(private userPostsService : UserPostsService, private http : HttpClient) { }
 
   ngOnInit(): void {
+  }
+
+  likePost(): void {
+
+
+
+    this.userPostsService.updatePostLikes(this.postToLike).subscribe((data) => {
+        console.log(data.body.likes.length);
+        this.totalLikes = data.body.likes.length;
+
+    });
+
+
+
+
   }
 
   // Front End Work

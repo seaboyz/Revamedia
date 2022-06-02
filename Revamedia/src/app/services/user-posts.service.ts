@@ -15,18 +15,13 @@ export class UserPostsService {
 
 
 
-  updatePostLikes(updatePostLikesDto: UpdatePostLikesDto) : Observable<any> {
+  updatePostLikes(updatePostLikesDto: any) : Observable<any> {
 
-    //after 
+    
     return this.http.put<any>(`${this.userPostURL}/likes`, updatePostLikesDto, {observe : `response`})
+    
   }
 
 
   constructor(private http:HttpClient) { }
-}
-
-interface UpdatePostLikesDto {
-  userId: number,
-  postId: number,
-  likes: number
 }

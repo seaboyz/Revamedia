@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
+@JsonIgnoreProperties
 @Table(name = "user_posts", schema = _SchemaName.schemaName)
 public class UserPosts implements Serializable {
     @Id
@@ -26,12 +27,10 @@ public class UserPosts implements Serializable {
     @Column(name = "post_id")
     private Integer postId;
 
-
     @JsonBackReference
     @ManyToOne()
     @JoinColumn(name = "owner_id", referencedColumnName = "user_id")
     private User ownerId;
-
 
     @JsonManagedReference
     @OneToMany(mappedBy = "postId", cascade = CascadeType.ALL)
@@ -42,7 +41,6 @@ public class UserPosts implements Serializable {
     @JoinColumn(name = "group_id")
     private UserGroups groupId;
 
-
     @Column(name = "message", length = 500)
     private String message;
 
@@ -52,11 +50,9 @@ public class UserPosts implements Serializable {
     @Column(name = "image")
     private String image;
 
-
-    @JsonIgnoreProperties({"likedPosts", "postsOwned"})
+    @JsonIgnoreProperties({ "likedPosts", "postsOwned" })
     @ManyToMany(mappedBy = "likedPosts", cascade = CascadeType.ALL)
     private Set<User> likes;
-
 
     @Column(name = "post_lifetime", nullable = true)
     private String postLifetime;
@@ -69,8 +65,8 @@ public class UserPosts implements Serializable {
         this.likes = new HashSet<>();
     }
 
-
-    public UserPosts(Integer postId, User ownerId, List<UserComments> comments, String message, String youtubeLink, String image, Set<User> likes, String postLifetime, Timestamp dateCreated, UserGroups groupId) {
+    public UserPosts(Integer postId, User ownerId, List<UserComments> comments, String message, String youtubeLink,
+            String image, Set<User> likes, String postLifetime, Timestamp dateCreated, UserGroups groupId) {
         this.postId = postId;
         this.ownerId = ownerId;
         this.comments = comments;
@@ -171,11 +167,11 @@ public class UserPosts implements Serializable {
         this.groupId = groupId;
     }
 
-    public void addLikes (User user) {
+    public void addLikes(User user) {
         likes.add(user);
     }
 
-    public void removeLikes (User user) {
+    public void removeLikes(User user) {
         likes.remove(user);
     }
 

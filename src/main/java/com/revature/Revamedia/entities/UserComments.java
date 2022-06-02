@@ -1,9 +1,11 @@
 package com.revature.Revamedia.entities;
+
 /**
  * Author(s): @Brandon Le, @Tony Henderson
  * Contributor(s):
  * Purpose:
  */
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -32,7 +34,6 @@ public class UserComments implements Serializable {
     @JoinColumn(name = "post_id", referencedColumnName = "post_id")
     private UserPosts postId;
 
-
     @JsonManagedReference
     @OneToMany(mappedBy = "commentId", cascade = CascadeType.ALL)
     private List<UserReplies> replies;
@@ -43,18 +44,22 @@ public class UserComments implements Serializable {
     @Column(name = "date_created")
     private Timestamp dateCreated;
 
+    @Column(name = "giphyUrl")
+    private String giphyUrl;
+
     public UserComments() {
         this.replies = new ArrayList<>();
     }
 
-    public UserComments(Integer commentId, User ownerId, UserPosts postId, List<UserReplies> replies, String message, Timestamp dateCreated) {
+    public UserComments(Integer commentId, User ownerId, UserPosts postId, List<UserReplies> replies, String message,
+            Timestamp dateCreated, String giphyUrl) {
         this.commentId = commentId;
         this.ownerId = ownerId;
         this.postId = postId;
         this.replies = replies;
         this.message = message;
         this.dateCreated = dateCreated;
-
+        this.giphyUrl = giphyUrl;
     }
 
     public Integer getCommentId() {
@@ -109,9 +114,16 @@ public class UserComments implements Serializable {
         this.replies.add(reply);
     }
 
-
     public void removeReply(UserReplies reply) {
         this.replies.remove(reply);
+    }
+
+    public String getGiphyUrl() {
+        return giphyUrl;
+    }
+
+    public void setGiphyUrl(String giphyUrl) {
+        this.giphyUrl = giphyUrl;
     }
 
     @Override
@@ -121,6 +133,7 @@ public class UserComments implements Serializable {
                 ", ownerId=" + ownerId +
                 ", replies=" + replies +
                 ", message='" + message + '\'' +
+                ", giphyUrl=" + giphyUrl +
                 ", dateCreated='" + dateCreated + '\'' +
                 '}';
     }

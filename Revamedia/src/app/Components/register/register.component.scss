@@ -108,6 +108,10 @@ $darkgrey: rgb(61,66,74);
             background: #eda144;
             color: black;
           }
+          &:disabled{
+            background: #e0d4c5;
+            pointer-events: none;
+          }
         }
       }
     }

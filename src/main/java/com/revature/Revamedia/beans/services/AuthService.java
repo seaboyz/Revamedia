@@ -9,6 +9,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import javax.validation.ConstraintViolationException;
+import javax.validation.constraints.Email;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+
 
 /**
  * @Author(s): Giorgi Amirajibi, Mohammad Foroutanyazdian, Fatemeh Goudarzi, Tony Henderson
@@ -52,6 +57,7 @@ public class AuthService {
             user.setFirstName(userRegisterDto.getFirstName());
             user.setLastName(userRegisterDto.getLastName());
             user.setEmail(userRegisterDto.getEmail());
+            user.setDateCreated(Timestamp.valueOf(LocalDateTime.now()));
             try {
                 return ResponseEntity.ok(userRepository.save(user));
             }

@@ -43,7 +43,6 @@ public class UserPostsController {
 
     @GetMapping("/{id}")
     public ResponseEntity<UserPosts> getPostByPostId(@PathVariable int id){
-
         try{
             UserPosts post = userPostsService.getPostById(id);
             System.out.println(post);

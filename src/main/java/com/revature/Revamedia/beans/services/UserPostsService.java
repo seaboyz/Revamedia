@@ -24,7 +24,6 @@ public class UserPostsService {
 
     public UserPosts getPostById(Integer id) {
         UserPosts posts = userPostsRepository.getById(id);
-//        System.out.println("DEBUG - getPostsById returned: " + posts);
         return posts;
     }
 

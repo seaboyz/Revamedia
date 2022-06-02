@@ -15,11 +15,14 @@ $grey: rgb(192,192,190);
 $lightgrey: rgb(230,229,222);
 $darkgrey: rgb(61,66,74);
 .darkMode{
+  transition: all 0.4s ease-in-out;
   color: white;
   #home-page,#events-page,#groups-page,#messages-page,#profile-page,#settings-page, #post-page{
     background-color: rgb(31, 31, 31);
+    transition: all 0.4s ease-in-out;
   }
   #page-title{
+    transition: all 0.4s ease-in-out;
     background-color: rgb(31, 31, 31);
     color: white;
     h3{
@@ -27,6 +30,7 @@ $darkgrey: rgb(61,66,74);
     }
   }
   #setBackgroundColor{
+    transition: all 0.4s ease-in-out;
     background-color: rgb(31, 31, 31);
     color: white;
     a{
@@ -35,7 +39,7 @@ $darkgrey: rgb(61,66,74);
         color: $blue;
       }
     }
-    h5{
+    h5,h4{
       color: white;
     }
     #icon{
@@ -64,6 +68,7 @@ $darkgrey: rgb(61,66,74);
     }
   }
   #postOptionMenu{
+    transition: all 0.4s ease-in-out;
     background-color: rgb(31, 31, 31);
     color: white;
     li{
@@ -75,6 +80,7 @@ $darkgrey: rgb(61,66,74);
     }
   }
   #addCommentReplyForm{
+    transition: all 0.4s ease-in-out;
     background-color: rgb(31, 31, 31);
     color: white;
     border: 1px solid $lightgrey;
@@ -96,6 +102,7 @@ $darkgrey: rgb(61,66,74);
     }
   }
   #commentSection{
+    transition: all 0.4s ease-in-out;
     background-color: rgb(31, 31, 31);
     color: white;
     border: 1px solid $lightgrey;
@@ -111,6 +118,7 @@ $darkgrey: rgb(61,66,74);
   }
   #delete-post-modal,#edit-post-modal,#add-post-modal,#following-modal,#followers-modal{
     background-color: rgb(31, 31, 31);
+    transition: all 0.4s ease-in-out;
     color: white;
     h2,h3,h4,h5{
       color: white;
@@ -126,6 +134,7 @@ $darkgrey: rgb(61,66,74);
     }
   }
   #navbar{
+    transition: all 0.4s ease-in-out;
     background-color: rgb(15, 15, 15);
     color: white;
     border-right: .5px solid $orange;

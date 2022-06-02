@@ -17,6 +17,7 @@ export class SettingsComponent implements OnInit {
   // Front End Work
   public faSun = faSun; // icon
   public faMoon = faMoon; // icon
+
   public darkTheme = false;
   public changeTheme() {
     document.body.classList.toggle('darkMode');

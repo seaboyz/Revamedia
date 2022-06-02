@@ -7,13 +7,14 @@
 package com.revature.Revamedia.beans.controllers;
 
 import com.revature.Revamedia.beans.services.UserPostsService;
-import com.revature.Revamedia.entities.User;
 import com.revature.Revamedia.entities.UserPosts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 
 @RestController
 @RequestMapping(value = "/post" , produces = "application/json")
@@ -28,33 +29,28 @@ public class UserPostsController {
     }
 
     //Controller Methods
-    //Postman works!
+
     @GetMapping("/getAllPosts")
-    @ResponseStatus(HttpStatus.OK)
-    public List<UserPosts> getAllPosts(){
-//        System.out.println("Hello world");
-        return userPostsService.getAllPosts();
+    public ResponseEntity<List<UserPosts>> getAllPosts(){
+        return ResponseEntity.ok(userPostsService.getAllPosts()) ;
     }
 
     //TODO: Include exception handling if post does not exist.
-    //Postman works!
-    @GetMapping("/getPostByPostId/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public UserPosts getPostByPostId(@PathVariable Integer id){
-        return userPostsService.getPostById(id);
+
+    @GetMapping("/{id}")
+    public ResponseEntity<UserPosts> getPostByPostId(@PathVariable Integer id){
+        return ResponseEntity.ok(userPostsService.getPostById(id));
     }
 
     @PostMapping("/addPost")
-    @ResponseStatus(HttpStatus.OK)
-    public UserPosts createPost(@RequestBody UserPosts post){
-        return userPostsService.save(post);
+    public ResponseEntity<UserPosts> createPost(@RequestBody UserPosts post){
+        return  new ResponseEntity<>(userPostsService.save(post),HttpStatus.CREATED);
     }
 
-    //Postman works
+
     @PutMapping("/updatePost")
-    @ResponseStatus(HttpStatus.OK)
-    public UserPosts updatePost(@RequestBody UserPosts post){
-        return userPostsService.update(post);
+    public ResponseEntity<UserPosts> updatePost(@RequestBody UserPosts post){
+        return ResponseEntity.ok(userPostsService.update(post)) ;
     }
 
     @DeleteMapping("/deletePost")
@@ -62,7 +58,4 @@ public class UserPostsController {
     public void deletePost(@RequestBody UserPosts post){
          userPostsService.delete(post);
     }
-    //TODO: Create delete all by user id.
-//    @DeleteMapping("/deleteAll")
-//    @ResponseStatus(HttpStatus.OK)
 }

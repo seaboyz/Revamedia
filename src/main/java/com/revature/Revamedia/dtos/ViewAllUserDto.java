@@ -5,7 +5,8 @@ import com.revature.Revamedia.entities.UserPosts;
 
 import java.util.Set;
 
-public class ViewAllUsersDto {
+public class ViewAllUserDto {
+    private String userName;
     private String firstName;
     private String lastName;
     private String profilePicture;
@@ -13,21 +14,43 @@ public class ViewAllUsersDto {
     private Set<UserFollows> following;
     private Set<UserPosts> postsOwned;
 
-    public ViewAllUsersDto() {
+    public ViewAllUserDto() {
     }
 
-    public ViewAllUsersDto(String firstName, String lastName) {
+    public ViewAllUserDto(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
 
-    public ViewAllUsersDto(String firstName, String lastName, String profilePicture, Set<UserFollows> followers, Set<UserFollows> following, Set<UserPosts> postsOwned) {
+    public ViewAllUserDto(String userName) {
+        this.userName = userName;
+    }
+
+    public ViewAllUserDto(String firstName, String lastName, String profilePicture, Set<UserFollows> followers, Set<UserFollows> following, Set<UserPosts> postsOwned) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.profilePicture = profilePicture;
         this.followers = followers;
         this.following = following;
         this.postsOwned = postsOwned;
+    }
+
+    public ViewAllUserDto(String userName, String firstName, String lastName, String profilePicture, Set<UserFollows> followers, Set<UserFollows> following, Set<UserPosts> postsOwned) {
+        this.userName = userName;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.profilePicture = profilePicture;
+        this.followers = followers;
+        this.following = following;
+        this.postsOwned = postsOwned;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getFirstName() {

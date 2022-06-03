@@ -14,118 +14,146 @@
   <!-- main feed start -->
   <div class="main">
 
-      <!-- post start -->
-      <div class="post-data">
+    <!-- post start -->
+    <div class="post-data">
 
-        <div class="post">
-          <div class="post-title">
-            <div class="post-author">
-              <img routerLink="/profile" routerLinkActive="active" src="https://avatars.githubusercontent.com/u/77355023?v=4" alt="User">
-              <a routerLink="/profile" routerLinkActive="active">leobarrientos02</a>
-            </div>
-            <div class="post-options">
-              <fa-icon (click)="togglePostsOptions()" id="icon" [icon]="faEllipsis"></fa-icon>
-              <ul *ngIf="postsOptionsClicked" >
-                <li (click)="openModal('edit', post)">Edit Post</li>
-                <li  (click)="openModal('delete', post)">Delete Post</li>
-              </ul>
-            </div>
+      <div class="post">
+        <div class="post-title">
+          <div class="post-author">
+            <img routerLink="/profile" routerLinkActive="active"
+              src="https://avatars.githubusercontent.com/u/77355023?v=4" alt="User">
+            <a routerLink="/profile" routerLinkActive="active">leobarrientos02</a>
           </div>
-          <div class="post-body">
-            <img src="https://images.theconversation.com/files/453091/original/file-20220318-23-2ehppm.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=900.0&fit=crop" alt="User">
-            <div class="post-description">
-              <p><a routerLink="/profile" routerLinkActive="active">leobarrientos02</a>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, dolore animi consequuntur laudantium, atque at ex voluptas perspiciatis ut quod quasi officiis. Eum, delectus. Porro laboriosam nihil dolor corporis minima?</p>
-            </div>
-            <div class="post-options">
-              <div class="container">
-                <div class="likes">
-                  <fa-icon id="icon" title="Like" [icon]="faHeart" size="lg" (click)="likePost()"></fa-icon>
-                  <span>{{totalLikes}}</span>
-                </div>
-                <div class="comment">
-                  <fa-icon id="icon" (click)="openAddComment()" title="Comment" [icon]="faComment" size="lg"></fa-icon>
-                </div>
-              </div>
-              <div class="bookmark">
-                <fa-icon id="icon" title="Bookmark" [icon]="faBookmark" size="lg"></fa-icon>
-              </div>
-            </div>
+          <div class="post-options">
+            <fa-icon (click)="togglePostsOptions()" id="icon" [icon]="faEllipsis"></fa-icon>
+            <ul *ngIf="postsOptionsClicked">
+              <li (click)="openModal('edit', 'post-modal')">Edit Post</li>
+              <li (click)="openModal('delete', 'post-modal')">Delete Post</li>
+            </ul>
           </div>
         </div>
-
-        <div class="add-comment" *ngIf="addComment">
-          <div class="add-comment-header">
-            <h5>Add Comment</h5>
-            <button title="Close" (click)="closeAddComment()">X</button>
+        <div class="post-body">
+          <img
+            src="https://images.theconversation.com/files/453091/original/file-20220318-23-2ehppm.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=900.0&fit=crop"
+            alt="User">
+          <div class="post-description">
+            <p><a routerLink="/profile" routerLinkActive="active">leobarrientos02</a>Lorem ipsum dolor sit amet
+              consectetur adipisicing elit. Laborum, dolore animi consequuntur laudantium, atque at ex voluptas
+              perspiciatis ut quod quasi officiis. Eum, delectus. Porro laboriosam nihil dolor corporis minima?</p>
           </div>
-          <form #addCommentForm="ngForm" (ngSubmit)="onAddComment(addCommentForm)" ngNativeValidate enctype="multipart/form-data" id="add-comment-form">
-            <input type="hidden" name="dateCreated" ngModel="{{currentDate}}">
-            <textarea ngModel name="message" id="comment" rows="5"></textarea>
-            <div class="file-input">
-              <input type="file" id="file" class="file" (change)="fileName($event,'add-comment')">
-              <label for="file">
-                Add Image
-              </label>
-              <p class="file-name" id="add-comment-fileName"></p>
-            </div>
-            <button>Comment</button>
-          </form>
-        </div>
-
-        <span (click)=" toggleHideComments()" id="viewComments">{{hideComments ? 'Hide Comments' : 'View Comments' }}</span>
-
-        <div class="post-comments-section" *ngIf="hideComments">
-          <!-- comments start -->
-          <h5>Comments</h5>
-          <div class="comment">
-            <div class="comment-author">
-              <img routerLink="/profile" routerLinkActive="active" src="https://avatars.githubusercontent.com/u/77355023?v=4" alt="User">
-              <a routerLink="/profile" routerLinkActive="active" title="View Profile" >leobarrientos02</a>
-            </div>
-            <div class="comment-content">
-              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi provident omnis, fugiat quas fuga vero harum beatae quibusdam doloremque sequi voluptates laboriosam hic id modi nisi quo fugit expedita sit!</p>
-              <img src="https://cdn.discordapp.com/attachments/959893537355350073/969003426094661692/76289-1650787315-1611918496.png" alt="Comment">
-            </div>
-            <div class="reply-card">
-              <button (click)="openAddReply()">Reply</button>
-            </div>
-            <!-- comment end -->
-
-            <div class="add-reply" *ngIf="addReply">
-              <div class="add-reply-header">
-                <h5>Add Reply</h5>
-                <button title="Close" (click)="closeAddReply()">X</button>
+          <div class="post-options">
+            <div class="container">
+              <div class="likes">
+                <fa-icon id="icon" title="Like" [icon]="faHeart" size="lg" (click)="likePost()"></fa-icon>
+                <span>{{totalLikes}}</span>
               </div>
-              <form enctype="multipart/form-data" id="add-comment-form">
-                <textarea name="comment" id="comment" rows="5"></textarea>
-                <div class="file-input">
-                  <input type="file" id="file" class="file" (change)="fileName($event,'add-reply')">
-                  <label for="file">
-                    Add Image
-                  </label>
-                  <p class="file-name" id="add-reply-fileName"></p>
-                </div>
-                <button>Reply</button>
-              </form>
-            </div>
-
-            <!-- Replies Start -->
-            <div class="reply">
-              <div class="reply-author">
-                <img routerLink="/profile" routerLinkActive="active" src="https://avatars.githubusercontent.com/u/77355023?v=4" alt="User">
-                <a routerLink="/profile" routerLinkActive="active" title="View Profile" >leobarrientos02</a>
-              </div>
-              <div class="reply-content">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, fuga, eaque eos alias laboriosam quis sapiente, illum provident accusantium odio minima aspernatur nihil deleniti? Dicta odit tempore aspernatur cum quis!</p>
-                <img src="https://media3.giphy.com/media/3EuAsjZDUJefK/giphy.gif?cid=ecf05e47baab3e1b6e1451e393cae03f17f5fd0f114af892&rid=giphy.gif&ct=g" alt="reply">
+              <div class="comment">
+                <fa-icon id="icon" (click)="openAddComment()" title="Comment" [icon]="faComment" size="lg"></fa-icon>
               </div>
             </div>
-            <!-- Replies End -->
-
+            <div class="bookmark">
+              <fa-icon id="icon" title="Bookmark" [icon]="faBookmark" size="lg"></fa-icon>
+            </div>
           </div>
         </div>
       </div>
-      <!-- post end -->
+
+      <div class="add-comment" *ngIf="addComment">
+        <div class="add-comment-header">
+          <h5>Add Comment</h5>
+          <button title="Close" (click)="closeAddComment()">X</button>
+        </div>
+        <form #addCommentForm="ngForm" (ngSubmit)="onAddComment(addCommentForm)" ngNativeValidate
+          enctype="multipart/form-data" id="add-comment-form">
+          <input type="hidden" name="dateCreated" ngModel="{{currentDate}}">
+          <textarea ngModel name="message" id="comment" rows="5"></textarea>
+          <div class="file-input">
+            <input type="file" id="file" class="file" (change)="fileName($event,'add-comment')">
+            <label for="file">
+              Add Image
+            </label>
+            <p class="file-name" id="add-comment-fileName"></p>
+          </div>
+          <button>Comment</button>
+        </form>
+      </div>
+
+      <span (click)=" toggleHideComments()" id="viewComments">{{hideComments ? 'Hide Comments' : 'View Comments'
+        }}</span>
+
+      <div class="post-comments-section" *ngIf="hideComments">
+        <!-- comments start -->
+        <h5>Comments</h5>
+        <h5></h5>
+        <div class="comment">
+          <div class="comment-author">
+
+
+
+            <img routerLink="/profile" routerLinkActive="active"
+              src="https://avatars.githubusercontent.com/u/77355023?v=4" alt="User">
+            <a routerLink="/profile" routerLinkActive="active" title="View Profile">leobarrientos02</a>
+          </div>
+          <div class="comment-options">
+            <fa-icon (click)="toggleCommentsOptions()" id="icon" [icon]="faEllipsis"></fa-icon>
+            <ul *ngIf="commentOptionsClicked">
+              <li (click)="openModal('edit',  'comment-modal')">Edit Comment</li>
+              <li (click)="openModal('delete', 'comment-modal')">Delete Comment</li>
+            </ul>
+          </div>
+
+          <div class="comment-content">
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi provident omnis, fugiat quas fuga vero
+              harum beatae quibusdam doloremque sequi voluptates laboriosam hic id modi nisi quo fugit expedita sit!</p>
+            <img
+              src="https://cdn.discordapp.com/attachments/959893537355350073/969003426094661692/76289-1650787315-1611918496.png"
+              alt="Comment">
+          </div>
+          <div class="reply-card">
+            <button (click)="openAddReply()">Reply</button>
+          </div>
+          <!-- comment end -->
+
+          <div class="add-reply" *ngIf="addReply">
+            <div class="add-reply-header">
+              <h5>Add Reply</h5>
+              <button title="Close" (click)="closeAddReply()">X</button>
+            </div>
+            <form enctype="multipart/form-data" id="add-comment-form">
+              <textarea name="comment" id="comment" rows="5"></textarea>
+              <div class="file-input">
+                <input type="file" id="file" class="file" (change)="fileName($event,'add-reply')">
+                <label for="file">
+                  Add Image
+                </label>
+                <p class="file-name" id="add-reply-fileName"></p>
+              </div>
+              <button>Reply</button>
+            </form>
+          </div>
+
+          <!-- Replies Start -->
+          <div class="reply">
+            <div class="reply-author">
+              <img routerLink="/profile" routerLinkActive="active"
+                src="https://avatars.githubusercontent.com/u/77355023?v=4" alt="User">
+              <a routerLink="/profile" routerLinkActive="active" title="View Profile">leobarrientos02</a>
+            </div>
+            <div class="reply-content">
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, fuga, eaque eos alias laboriosam quis
+                sapiente, illum provident accusantium odio minima aspernatur nihil deleniti? Dicta odit tempore
+                aspernatur cum quis!</p>
+              <img
+                src="https://media3.giphy.com/media/3EuAsjZDUJefK/giphy.gif?cid=ecf05e47baab3e1b6e1451e393cae03f17f5fd0f114af892&rid=giphy.gif&ct=g"
+                alt="reply">
+            </div>
+          </div>
+          <!-- Replies End -->
+
+        </div>
+      </div>
+    </div>
+    <!-- post end -->
 
   </div>
   <!-- main feed end -->
@@ -140,7 +168,7 @@
 <div class="modal" id="add-post-modal">
   <div class="form-header">
     <h3>Create new post</h3>
-    <span (click)="closeModal('add')">x</span>
+    <span (click)="closeModal('add', 'post-modal')">x</span>
   </div>
   <form>
     <div class="form-data">
@@ -168,7 +196,7 @@
 <div class="modal" id="edit-post-modal">
   <div class="form-header">
     <h3>Edit post</h3>
-    <span (click)="closeModal('edit')">x</span>
+    <span (click)="closeModal('edit',  'post-modal')">x</span>
   </div>
   <form>
     <div class="form-data">
@@ -196,7 +224,7 @@
 <div class="modal" id="delete-post-modal">
   <div class="form-header">
     <h3>Delete post</h3>
-    <span (click)="closeModal('delete')">x</span>
+    <span (click)="closeModal('delete', 'post-modal' )">x</span>
   </div>
   <form>
     <h2>Are you sure you want to delete this post?</h2>
@@ -206,6 +234,73 @@
   </form>
 </div>
 <!-- ADD POST FORM END -->
+
+
+
+<!-- Edit COMMENT FORM START -->
+<div class="modal" id="edit-comment-modal">
+  <div class="form-header">
+    <h3>Edit comment</h3>
+    <span (click)="closeModal('edit',  'comment-modal')">x</span>
+  </div>
+  <form>
+    <div class="form-data">
+      <h4>Edit Image or Video</h4>
+      <div class="file-input">
+        <input type="file" id="file" class="file" (change)="fileName($event, 'edit-post')">
+        <label for="file">
+          Select File
+        </label>
+        <p class="file-name" id="edit-post-fileName"></p>
+      </div>
+    </div>
+    <div class="form-data">
+      <h4>Edit caption</h4>
+      <textarea name="message" placeholder="Write a caption..."></textarea>
+    </div>
+    <div class="post-submit">
+      <button>Update comment</button>
+    </div>
+  </form>
+</div>
+<!-- Edit COMMENT FORM END -->
+
+<!-- delete COMMENT FORM START -->
+<div class="modal" id="delete-comment-modal">
+  <div class="form-header">
+    <h3>Delete comment</h3>
+    <span (click)="closeModal('delete',  'comment-modal')">x</span>
+  </div>
+  <form>
+    <h2>Are you sure you want to delete this comment?</h2>
+    <div class="post-submit">
+      <button id="deleteBtn">Delete comment</button>
+    </div>
+  </form>
+</div>
+<!-- ADD COMMENT FORM END -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <!-- <div class="reactions">
   <ul>
@@ -217,16 +312,16 @@
   </div>
   <div class="gifs">
     <!-- funny gifs -->
-    <!-- <img src="https://giphy.com/gifs/hallmarkecards-cute-hallmark-shoebox-2A75RyXVzzSI2bx4Gj" alt="Funny1">
+<!-- <img src="https://giphy.com/gifs/hallmarkecards-cute-hallmark-shoebox-2A75RyXVzzSI2bx4Gj" alt="Funny1">
     <img src="https://giphy.com/gifs/moodman-funny-lol-laughing-fUYhyT9IjftxrxJXcE" alt="Funny2">
     <img src="https://giphy.com/gifs/lol-laugh-laughing-gj0QdZ9FgqGhOBNlFS" alt="Funny3">
     <img src="https://giphy.com/gifs/lol-laugh-laughing-gj0QdZ9FgqGhOBNlFS" alt="Funny4">
     <!-- mad gifs -->
-    <!-- <img src="https://giphy.com/gifs/disneypixar-disney-pixar-11tTNkNy1SdXGg" alt="Mad1">
+<!-- <img src="https://giphy.com/gifs/disneypixar-disney-pixar-11tTNkNy1SdXGg" alt="Mad1">
     <img src="https://giphy.com/gifs/mad-arthur-fist-WoF3yfYupTt8mHc7va" alt="Mad2">
     <img src="https://giphy.com/gifs/KhliiAkDFP9YY" alt="Mad3">
     <img src="https://giphy.com/gifs/KhliiAkDFP9YY" alt="Mad3"> --> -->
-  <!-- </div>
+<!-- </div>
   <div class="pics">
 
   </div>

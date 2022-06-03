@@ -14,20 +14,20 @@ import { HttpClient } from '@angular/common/http';
 })
 export class HomeComponent implements OnInit {
 
-  postToLike : any = {
-    userId : 1,
-    postId : 1
+  postToLike: any = {
+    userId: 1,
+    postId: 1
   }
 
-  users : any[] = [];
-  following : any[] = [];
-  posts : any[] = [];
-  followPosts : any[] = [];
-  comments : any[] = [];
+  users: any[] = [];
+  following: any[] = [];
+  posts: any[] = [];
+  followPosts: any[] = [];
+  comments: any[] = [];
 
-  public totalLikes : number = 0;
+  public totalLikes: number = 0;
 
-  constructor(public CommentService: CommentService,private userPostsService : UserPostsService, private http : HttpClient) { }
+  constructor(public CommentService: CommentService, private userPostsService: UserPostsService, private http: HttpClient) { }
 
   ngOnInit(): void {
     this.getAllComments();
@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit {
   public post: any;
 
   // Back End Work
-  public getCommentById(id: number){
+  public getCommentById(id: number) {
     this.CommentService.getCommentById(id).subscribe(
       (response: any) => {
         this.comment = response.data;
@@ -51,7 +51,7 @@ export class HomeComponent implements OnInit {
     )
   }
 
-  public onAddComment(commentForm: NgForm): void{
+  public onAddComment(commentForm: NgForm): void {
     this.CommentService.addComment(commentForm.value).subscribe(
       (response: any) => {
         console.log(response);
@@ -63,7 +63,7 @@ export class HomeComponent implements OnInit {
     )
   }
 
-  public onEditComment(commentForm: NgForm): void{
+  public onEditComment(commentForm: NgForm): void {
     this.CommentService.updateComment(commentForm.value).subscribe(
       (response: any) => {
         console.log(response);
@@ -75,7 +75,7 @@ export class HomeComponent implements OnInit {
   }
 
   // Get All Comments
-  public getAllComments(): void{
+  public getAllComments(): void {
     this.CommentService.getAllComments().subscribe(
       (response: any) => {
         this.comments.push(response.data);
@@ -84,7 +84,7 @@ export class HomeComponent implements OnInit {
         console.log(error.message)
       }
     )
-  
+
 
 
 
@@ -93,22 +93,22 @@ export class HomeComponent implements OnInit {
   likePost(): void {
 
     this.userPostsService.updatePostLikes(this.postToLike).subscribe((data) => {
-        console.log(data.body.likes.length);
-        this.totalLikes = data.body.likes.length;
-        
+      console.log(data.body.likes.length);
+      this.totalLikes = data.body.likes.length;
+
     });
 
 
 
-     // get all comments for given post
-        
-        // console.log(data.body.comments);
-        // console.log(data.body.comments[0]);
-        // this.comments = data.body.comments;
+    // get all comments for given post
 
-        // for (var cur of this.comments) {
-        //   console.log(cur);
-        // }
+    // console.log(data.body.comments);
+    // console.log(data.body.comments[0]);
+    // this.comments = data.body.comments;
+
+    // for (var cur of this.comments) {
+    //   console.log(cur);
+    // }
 
 
     // get all users -> get all owned posts
@@ -149,7 +149,7 @@ export class HomeComponent implements OnInit {
 
   // hide Comments
   public hideComments = true;
-  public toggleHideComments() : void {
+  public toggleHideComments(): void {
     this.hideComments = !this.hideComments;
   }
 
@@ -165,47 +165,56 @@ export class HomeComponent implements OnInit {
   public fileName(event: any, target: string): void {
     var fileNames: any[] = event.target.files;
     const file = document.getElementById(`${target}-fileName`);
-    for(let i = 0; i< fileNames.length; i++){
+    for (let i = 0; i < fileNames.length; i++) {
       file!.textContent = fileNames[i].name;
     }
   }
 
   // Add Reply
   public addReply = false;
-  public openAddReply(){
+  public openAddReply() {
     this.addReply = true;
   }
-  public closeAddReply(){
+  public closeAddReply() {
     this.addReply = false;
   }
 
   // post optional
   public postsOptionsClicked = false;
-  public togglePostsOptions(){
+  public togglePostsOptions() {
     this.postsOptionsClicked = !this.postsOptionsClicked;
   }
 
-  public openModal(modalType: string, post: any){
+  //comment options
+  // post optional
+  public commentOptionsClicked = false;
+  public toggleCommentsOptions() {
+    this.commentOptionsClicked = !this.commentOptionsClicked;
+  }
+
+  public openModal(modalType: string, post: any) {
     // Screen
     const screen = document.getElementById('screen');
     screen?.classList.add('openScreen');
     // Form
-    const form = document.getElementById(`${modalType}-post-modal`);
+    const form = document.getElementById(`${modalType}-${post}`);
     form?.classList.add('openModal');
-    if(modalType === "edit"){
+    if (modalType === "edit") {
       this.postsOptionsClicked = false;
+      this.commentOptionsClicked = false;
     }
-    if(modalType === "delete"){
+    if (modalType === "delete") {
       this.postsOptionsClicked = false;
+      this.commentOptionsClicked = false;
     }
   }
 
-  public closeModal(modalType: string){
+  public closeModal(modalType: string, post: any) {
     // Screen
     const screen = document.getElementById('screen');
     screen?.classList.remove('openScreen');
     // Form
-    const form = document.getElementById(`${modalType}-post-modal`);
+    const form = document.getElementById(`${modalType}-${post}`);
     form?.classList.remove('openModal');
   }
 }

@@ -343,6 +343,35 @@ $darkgrey: rgb(61,66,74);
               }
             }
           }
+          .comment-options{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            #icon{
+              color: $darkgrey;
+              font-size: 1.5rem;
+              cursor: pointer;
+            }
+            ul{
+              position: absolute;
+              transform:translate(80%, 28%);
+              list-style: none;
+              background-color: $lightgrey;
+              border-radius: 3px;
+              li{
+                background-color: $lightgrey;
+                margin: .75rem 0;
+                width: 100%;
+                padding: .25rem;
+                text-align: center;
+                color: #000;
+                cursor: pointer;
+                &:hover{
+                  background-color: $grey;
+                }
+              }
+            }
+          }
           .comment-content{
             margin-left: 2rem;
             p{

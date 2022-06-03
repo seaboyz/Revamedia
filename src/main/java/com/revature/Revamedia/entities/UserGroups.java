@@ -35,7 +35,7 @@ public class UserGroups {
     @ManyToMany(mappedBy = "groupsJoined")
     private Set<User> usersJoined;
 
-    @JsonManagedReference
+    @JsonManagedReference(value="groups-post")
     @OneToMany(mappedBy = "groupId", cascade = CascadeType.ALL)
     private Set<UserPosts> posts;
 

@@ -39,16 +39,16 @@ public class User implements Serializable {
     @Column(name = "date_created")
     private Timestamp dateCreated;
 
-    @JsonManagedReference
+    @JsonManagedReference(value="user-followers")
     @OneToMany(mappedBy = "followedId", cascade = CascadeType.ALL)
     private Set<UserFollows> followers;
 
-    @JsonManagedReference
+    @JsonManagedReference(value="user-following")
     @OneToMany(mappedBy = "followerId", cascade = CascadeType.ALL)
     private Set<UserFollows> following;
 
     // @Transient
-    @JsonManagedReference
+    @JsonManagedReference(value="owner-post")
     @OneToMany(mappedBy = "ownerId")
     private Set<UserPosts> postsOwned;
 
@@ -65,7 +65,7 @@ public class User implements Serializable {
     private Set<UserGroups> groupsJoined;
 
 
-    @JsonManagedReference
+    //@JsonManagedReference(value="user-groups") //no back reference in groupsowned!!!
     @OneToMany(mappedBy = "ownerId", cascade = CascadeType.ALL)
     private Set<UserGroups> groupsOwned;
 
@@ -75,7 +75,7 @@ public class User implements Serializable {
             @JoinColumn(name = "event_id") })
     private Set<UserEvents> eventsJoined;
 
-    @JsonManagedReference
+    @JsonManagedReference(value="user-events")
     @OneToMany(mappedBy = "ownerId", cascade = CascadeType.ALL)
     private Set<UserEvents> eventsOwned;
 

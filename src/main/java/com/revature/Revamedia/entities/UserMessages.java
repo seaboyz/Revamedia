@@ -20,12 +20,12 @@ public class UserMessages implements Serializable {
     @Column(name = "message_id")
     private Integer messageId;
 
-    @JsonBackReference
+    @JsonBackReference(value="user-messages")
     @ManyToOne()
     @JoinColumn(name = "owner_id", referencedColumnName = "user_id")
     private User ownerId;
 
-    @JsonBackReference
+    @JsonBackReference(value="conversation-messages")
     @ManyToOne()
     @JoinColumn(name = "conversation_id", referencedColumnName = "conversation_id")
     private UserConversations conversation;

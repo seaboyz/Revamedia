@@ -25,7 +25,7 @@ public class UserReplies implements Serializable {
     @JoinColumn(name = "owner_id", referencedColumnName = "user_id")
     private User ownerId;
 
-    @JsonBackReference
+    @JsonBackReference(value="comments-replies")
     @ManyToOne()
     @JoinColumn(name = "comment_id", referencedColumnName = "comment_id")
     private UserComments commentId;

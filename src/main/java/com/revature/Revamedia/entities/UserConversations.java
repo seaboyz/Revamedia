@@ -22,12 +22,12 @@ public class UserConversations implements Serializable {
     @Column(name = "conversation_id")
     private Integer conversationId;
 
-    @JsonBackReference
+    @JsonBackReference(value="recipient-conversations")
     @ManyToOne()
     @JoinColumn(name = "recipient_id", referencedColumnName = "user_id")
     private User recipientId;
 
-    @JsonManagedReference
+    @JsonManagedReference(value="conversations-messages")
     @OneToMany(mappedBy = "messageId", cascade = CascadeType.ALL)
     private List<UserMessages> messages;
 

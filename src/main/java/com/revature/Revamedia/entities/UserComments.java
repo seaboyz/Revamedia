@@ -24,17 +24,17 @@ public class UserComments implements Serializable {
     @Column(name = "comment_id")
     private Integer commentId;
 
-    @JsonBackReference
+    @JsonBackReference(value="user-comments")
     @ManyToOne()
     @JoinColumn(name = "owner_id", referencedColumnName = "user_id")
     private User ownerId;
 
-    @JsonBackReference
+    @JsonBackReference(value="post-comments")
     @ManyToOne()
     @JoinColumn(name = "post_id", referencedColumnName = "post_id")
     private UserPosts postId;
 
-    @JsonManagedReference
+    @JsonManagedReference(value="comments-replies")
     @OneToMany(mappedBy = "commentId", cascade = CascadeType.ALL)
     private List<UserReplies> replies;
 

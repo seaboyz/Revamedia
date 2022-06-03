@@ -22,12 +22,12 @@ public class UserFollows implements Serializable {
     @Column(name = "follow_id")
     private Integer followId;
 
-    @JsonBackReference
+    @JsonBackReference(value="user-followers")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "followed_id", referencedColumnName = "user_id")
     private User followedId;
 
-    @JsonBackReference
+    @JsonBackReference(value="user-following")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "follower_id", referencedColumnName = "user_id")
     private User followerId;

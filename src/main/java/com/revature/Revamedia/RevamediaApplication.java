@@ -42,7 +42,7 @@ public class RevamediaApplication {
             user2.setPassword("password");
             userService.save(user2);
 
-            
+
             UserPosts post1 = new UserPosts();
             post1.setOwnerId(user1);
             userPostsService.save(post1);

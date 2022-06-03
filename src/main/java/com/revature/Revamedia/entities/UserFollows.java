@@ -23,21 +23,15 @@ public class UserFollows implements Serializable {
     @Column(name = "follow_id")
     private Integer followId;
 
-<<<<<<< HEAD
-    @JsonBackReference(value="user-followers")
-=======
+
     @JsonIgnoreProperties({"followers", "following", "likedPosts", "groupsJoined", "groupsOwned", "eventsJoined", "eventsOwned"})
->>>>>>> dev
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "followed_id", referencedColumnName = "user_id")
     private User followedId;
 
-<<<<<<< HEAD
-    @JsonBackReference(value="user-following")
-=======
+
     //@JsonBackReference
     @JsonIgnoreProperties({"followers", "following", "likedPosts", "groupsJoined", "groupsOwned", "eventsJoined", "eventsOwned"})
->>>>>>> dev
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "follower_id", referencedColumnName = "user_id")
     private User followerId;

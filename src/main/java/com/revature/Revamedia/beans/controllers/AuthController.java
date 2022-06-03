@@ -38,6 +38,4 @@ public class AuthController {
     public ResponseEntity<Object> login(@Valid @RequestBody AuthDto authDto) {
         return authService.login(authDto);
     }
-
-
 }

@@ -48,7 +48,7 @@ public class RevamediaApplication {
             post2.setOwnerId(user1);
             userPostsService.save(post2);
 
-            UserPosts post3 = new UserPosts();
+            UserPosts post3 = new UserPosts();           
             post3.setOwnerId(user2);
             userPostsService.save(post3);
 

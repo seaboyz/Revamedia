@@ -103,8 +103,6 @@ public class UserPostsServiceTest {
 
         UserPosts returnedPosts = userPostsService.save(userPosts);
 
-
-
         Assertions.assertEquals(userPosts, returnedPosts);
         verify(userPostsRepository, times(1)).save(userPosts);
     }
@@ -126,7 +124,6 @@ public class UserPostsServiceTest {
         user1.setFirstName("Brandon");
         user1.setUsername("b1");
         user1.setPassword("password");
-
 
         User user2 = new User();
         user2.setFirstName("gio");

@@ -61,10 +61,10 @@ export class HomeComponent implements OnInit {
   public user: any;
   public comment: any = {};
   public currentDate = new Date();
-  public post: any = {};
-  postToLike : any = {
-    userId : 1,
-    postId : 2
+  public post: any;
+  postToLike: any = {
+    userId: 1,
+    postId: 1
   }
 
   users: any[] = [];

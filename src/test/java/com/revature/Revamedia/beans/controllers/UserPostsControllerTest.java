@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 package com.revature.Revamedia.beans.controllers;
 
 import com.revature.Revamedia.beans.services.UserPostsService;
@@ -39,6 +40,8 @@ public class UserPostsControllerTest {
     }
 }
 =======
+=======
+>>>>>>> stan-feature-user-posts
 /**
  * Author(s): @Brandon Le, @Arun Mohan, @Anthony Pilletti
  * Contributor(s): @Stan Savelev, @William Bjerke
@@ -121,4 +124,7 @@ public class UserPostsControllerTest {
         //to do later
     }
 }
+<<<<<<< HEAD
 >>>>>>> dev
+=======
+>>>>>>> stan-feature-user-posts

@@ -38,7 +38,7 @@ export class RegisterService {
       //errorMessage = `Error Code: ${error.status}\nMessage: ${error.error.firstName}`;
     }
     //return errorMessage;
-    return throwError(() => new Error(JSON.stringify(errorMessage)));
+    return throwError(() => errorMessage);
   }
 
 

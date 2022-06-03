@@ -4,8 +4,9 @@ import { Component, OnInit } from '@angular/core';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { HttpHeaders } from '@angular/common/http';
 
-import { IUserInterface } from 'src/app/shared/interfaces/IUserInterface';
+import { IUserInterface } from 'src/app/Shared/interfaces/IUserInterface';
 import { Router } from '@angular/router';
+import { IRegisterError } from 'src/app/Shared/interfaces/IRegisterError.interface';
 
 @Component({
   selector: 'app-register',
@@ -21,6 +22,15 @@ export class RegisterComponent implements OnInit {
   fName: string = "";
   lName: string = "";
   email: string = "";
+  
+  error : IRegisterError = {
+    errorStatus :"",
+    errorFirstName : "",
+    errorLastName : "",
+    errorEmail : "",
+    errorUsername : "",
+    errorPassword : ""
+  };
 
   public user: IUserInterface = {
     username: "",
@@ -49,8 +59,40 @@ export class RegisterComponent implements OnInit {
     }
     this.register.createUser(this.user, options).subscribe((data) => {
       console.log(data),this.router.navigateByUrl('/login')
-    },(error) => {console.log(error)}
+    },(error) => {this.error = error}
     )
+  }
+
+  checkInput(data: string) {
+    const input : any = document.querySelector("#" + data);
+    if(!input.checkValidity()){
+      switch(data) {
+        case "fName" : this.error.errorFirstName = "First name should consist of letters only";
+        break;
+        case "lName" : this.error.errorLastName = "Last name should consist of letters only";
+        break;
+        case "email" : this.error.errorEmail = "Not a valid email";
+        break;
+        case "username" : this.error.errorUsername = "Username should be between 2 and 255 characters";
+        break;
+        case "password" : this.error.errorPassword= "Min 8 characters, at least 1 uppercase letter, 1 lowercase, 1 number and 1 special character";
+        break;
+      }
+    }
+    else{
+      switch(data) {
+        case "fName" : this.error.errorFirstName = "";
+        break;
+        case "lName" : this.error.errorLastName = "";
+        break;
+        case "email" : this.error.errorEmail = "";
+        break;
+        case "username" : this.error.errorUsername = "";
+        break;
+        case "passwords" : this.error.errorPassword= "";
+        break;
+      }
+    }
   }
 
 

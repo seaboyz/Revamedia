@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 //icons
 import { faHeart, faEllipsis, faBookmark, faComment, faShareFromSquare, faFaceGrinTongueSquint, faFaceGrinStars } from '@fortawesome/free-solid-svg-icons';
-import { PostService } from 'src/app/Shared/services/post.service';
+import { PostService, User } from 'src/app/Shared/services/post.service';
 
 
 import { HttpClient } from '@angular/common/http';

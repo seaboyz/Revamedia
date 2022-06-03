@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class PostService {
-url=baseUrl+'/post';
+url=baseUrl+'/posts';
 constructor(private httpClient:HttpClient){}
 getPostAll():Observable<any>{
 return this.httpClient.get<any>(this.url+'/getAllPosts',)

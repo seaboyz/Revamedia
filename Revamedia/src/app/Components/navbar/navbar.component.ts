@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 // Icons
 import { faHome, faEnvelope, faUserGear, faCalendarDays, faUsers, faDoorOpen } from '@fortawesome/free-solid-svg-icons';
-import { AuthenticationService } from 'app/Shared/services/auth-service/authentication.service';
+import {AuthenticationService} from "../../Shared/services/auth-service/authentication.service";
+
 
 @Component({
   selector: 'app-navbar',

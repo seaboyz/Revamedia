@@ -6,7 +6,6 @@
 package com.revature.Revamedia;
 
 import com.revature.Revamedia.beans.services.*;
-import com.revature.Revamedia.beans.utils.CorsFilter;
 import com.revature.Revamedia.entities.User;
 import com.revature.Revamedia.entities.UserPosts;
 import org.springframework.boot.SpringApplication;
@@ -17,6 +16,9 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
+
+import java.sql.Date;
+import java.sql.Timestamp;
 
 @SpringBootApplication(scanBasePackages = "com.revature.Revamedia.beans")
 public class RevamediaApplication {

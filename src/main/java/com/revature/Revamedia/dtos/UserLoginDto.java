@@ -1,13 +1,13 @@
 package com.revature.Revamedia.dtos;
 
-public class AuthDto {
+public class UserLoginDto {
     private String username;
     private String password;
 
-    public AuthDto() {
+    public UserLoginDto() {
     }
 
-    public AuthDto(String username, String password) {
+    public UserLoginDto(String username, String password) {
         this.username = username;
         this.password = password;
     }
@@ -28,3 +28,4 @@ public class AuthDto {
         this.password = password;
     }
 }
+

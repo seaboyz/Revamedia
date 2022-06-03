@@ -1,3 +1,8 @@
+/**
+ * Author(s): @Brandon Le, @Arun Mohan, @Anthony Pilletti
+ * Contributor(s): @Stan Savelev, @William Bjerke
+ * Purpose: Test class to test the functions in the UserPostsService.
+ */
 package com.revature.Revamedia.beans.services;
 
 import com.revature.Revamedia.beans.repositories.UserPostsRepository;
@@ -44,6 +49,8 @@ public class UserPostsServiceTest {
 
         userPosts = new UserPosts();
         userPosts.setPostId(1);
+
+
     }
 
     @Test

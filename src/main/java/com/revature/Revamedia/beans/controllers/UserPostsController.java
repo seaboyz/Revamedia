@@ -9,6 +9,8 @@ package com.revature.Revamedia.beans.controllers;
 import com.revature.Revamedia.beans.services.UserPostsService;
 import com.revature.Revamedia.beans.services.UserService;
 import com.revature.Revamedia.dtos.UpdatePostLikesDto;
+import com.revature.Revamedia.dtos.UserPostsDto;
+import com.revature.Revamedia.entities.User;
 import com.revature.Revamedia.entities.UserPosts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -37,7 +39,27 @@ public class UserPostsController {
         this.userService = userService;
     }
 
-    //Controller Methods
+    /**
+     * Update the like status of a post by a given user
+     * @param dto UpdatePostLikes dto from the HTTP Request Body containing User and Post ids
+     * @return ResponseEntity containing response status and updated UserPost
+     */
+    @PutMapping("/likes")
+    public ResponseEntity<UserPostsDto> updatePostLikes(@RequestBody UpdatePostLikesDto dto) {
+
+        try {
+            UserPostsDto userPostsDto = new UserPostsDto();
+            UserPosts result = userPostsService.updatePostLikes(dto);
+            User user = userService.getUserById(dto.getUserId());
+            userPostsDto.setUserPosts(result);
+            userPostsDto.setUser(user);
+
+            return new ResponseEntity<>(userPostsDto, HttpStatus.OK);
+
+        } catch (EntityNotFoundException e) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+    }
 
     /**
      * Get all posts from the database

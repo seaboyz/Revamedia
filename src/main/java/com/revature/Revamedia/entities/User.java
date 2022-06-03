@@ -48,7 +48,8 @@ public class User implements Serializable {
     private Set<UserFollows> following;
 
     // @Transient
-    @JsonManagedReference
+    //@JsonManagedReference
+    @JsonIgnoreProperties({""})
     @OneToMany(mappedBy = "ownerId")
     private Set<UserPosts> postsOwned;
 

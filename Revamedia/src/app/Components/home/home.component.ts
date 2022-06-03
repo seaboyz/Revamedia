@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 import { UserPostsService } from 'src/app/Shared/services/user-posts-service/user-posts.service';
 import { CommentService } from 'src/app/Shared/services/user-comments-service/comment.service';
 import { GiphyService } from 'src/app/Shared/services/giphy-service/giphy.service';
+import { UserService } from 'src/app/Shared/services/user-service/user.service';
 
 @Component({
   selector: 'app-home',
@@ -16,21 +17,40 @@ import { GiphyService } from 'src/app/Shared/services/giphy-service/giphy.servic
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private userPostsService : UserPostsService, private http : HttpClient, public CommentService: CommentService, public gifService: GiphyService) { }
+  constructor(private userPostsService : UserPostsService, private http : HttpClient, public CommentService: CommentService, public gifService: GiphyService, private userService: UserService) { }
 
   ngOnInit(): void {
     // this.getAllComments();
     this.getGifs('funny');
     this.getStickers('funny');
+    this.userService.getCurrentUser().subscribe({
+      next: response => {
+        this.user = response;
+
+        let f: any;
+        this.posts = [];
+        for(f of response.following) {
+          this.posts.push(f.followedId.postsOwned);
+        }
+        this.posts = this.posts.flat();
+        //b.date.getTime() - a.date.getTime();
+        
+      },
+      error: err => {
+        console.error(err);
+      }
+    });
   }
+  
 
   // Variables Used In Home Component
+  public user: any;
   public comment: any = {};
   public currentDate = new Date();
-  public post: any;
+  public post: any = {};
   postToLike : any = {
     userId : 1,
-    postId : 1
+    postId : 2
   }
 
   users : any[] = [];
@@ -89,13 +109,18 @@ export class HomeComponent implements OnInit {
     )
   }
 
-  likePost(): void {
+  likePost(currentPost: any): void {
+    let p = {
+      userId: 0,
+      postId: 0,
+    }
+    p.postId = currentPost.postId;
+    p.userId = this.user.userId;
 
-    this.userPostsService.updatePostLikes(this.postToLike).subscribe((data) => {
-        console.log(data.body.likes.length);
-        this.totalLikes = data.body.likes.length;
-
-    });
+    this.totalLikes = this.userService.userLikesPost(p);
+  }
+    
+  
 
 
 
@@ -134,10 +159,6 @@ export class HomeComponent implements OnInit {
 
     // });
 
-
-
-
-  }
 
   // Front End Work
   public faHeart = faHeart; //icon

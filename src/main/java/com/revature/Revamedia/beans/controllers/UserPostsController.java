@@ -39,6 +39,15 @@ public class UserPostsController {
 
     //Controller Methods
 
+    /**
+     * Get all posts from the database
+     * @return List of all UserPosts
+     */
+    @GetMapping("/getAllPosts")
+    public ResponseEntity<List<UserPosts>> getAllPosts(){
+        return ResponseEntity.ok(userPostsService.getAllPosts()) ;
+    }
+
      /**
      * Get all posts made by the given user
      * @param id UserId as a path variable
@@ -68,7 +77,7 @@ public class UserPostsController {
         /**
          * Update the like status of a post by a given user
          * @param //dto UpdatePostLikes dto from the HTTP Request Body containing User and Post ids
-         * @return ResponseEntity containing response status and updated UserPost
+         * @return //ResponseEntity containing response status and updated UserPost
          */
 
 //    @PutMapping("/likes")
@@ -107,17 +116,6 @@ public class UserPostsController {
         }
     }
 
-
-    /**
-     * Get all posts from the database
-     * @return List of all UserPosts
-     */
-    @GetMapping("/allPosts")
-    @ResponseStatus(HttpStatus.OK)
-    public List<UserPosts> getAllPosts() {
-        return userPostsService.getAllPosts();
-    }
-
     /**
      * Get all posts made by the given user
      * @param id UserId as a path variable
@@ -129,4 +127,3 @@ public class UserPostsController {
         return userPostsService.getPostsByUser(id);
     }
 }
-

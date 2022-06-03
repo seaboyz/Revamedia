@@ -1,9 +1,8 @@
 /**
- *  Author(s): @Brandon Le, @Tony Henderson
- *  Contributor(s):@Stan Savelev, @William Bjerke
- *  Purpose: Added delete
+ * Author(s): @Brandon Le, @Tony Henderson
+ * Contributor(s): @Arun Mohan, @Anthony Pilletti, @Stan Savelev, @William Bjerke
+ * Purpose: Service Class to handle all UserPost backend CRUD functionality calls
  */
-
 package com.revature.Revamedia.beans.services;
 
 import com.revature.Revamedia.beans.repositories.UserPostsRepository;
@@ -41,6 +40,11 @@ public class UserPostsService {
         return userPostsRepository.save(post);
     }
 
+    /**
+     * Update the set of likes for the given post and the list of likedPosts for the given user
+     * @param dto UpdatePostLikes dto containing user and post ids
+     * @return the updated UserPost
+     */
     public UserPosts updatePostLikes(UpdatePostLikesDto dto) {
         UserPosts post = userPostsRepository.getById(dto.getPostId());
         User user = userRepository.getById(dto.getUserId());
@@ -54,6 +58,7 @@ public class UserPostsService {
             postsLiked.remove(post);
             user.setLikedPosts(postsLiked);
             userRepository.save(user);
+        // else, add their like
         } else {
             Set<User> usersLiked = post.getLikes();
             usersLiked.add(user);

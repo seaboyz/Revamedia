@@ -5,7 +5,7 @@
 
   <div class="login">
     <h2>Login</h2>
-    <span id="invalid" class="invalid"><br>Invalid username and/or password<br></span>
+    <span class="invalid" *ngIf="invalid == true">Invalid username and/or password</span>
     <form #loginForm="ngForm" (ngSubmit)="TEMPLogIn(loginForm)" ngNativeValidate>
       <div class="form-row">
         <label for="username">Username</label>

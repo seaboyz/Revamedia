@@ -42,46 +42,20 @@ export class HomeComponent implements OnInit {
   public totalLikes : number = 0;
 
   // Back End Work
-  public getCommentById(id: number){
-    this.CommentService.getCommentById(id).subscribe(
-      (response: any) => {
-        this.comment = response.data;
-        console.log(this.comment);
-      },
-      (error: HttpErrorResponse) => {
-        console.log(error.message)
-      }
-    )
-  }
-
   public onAddComment(commentForm: NgForm): void{
     this.CommentService.addComment(commentForm.value).subscribe(
       (response: any) => {
         console.log(response);
-        this.getCommentById(response.data.commentId);
       },
       (error: HttpErrorResponse) => {
         console.log(error.message)
       }
     )
   }
-
   public onEditComment(commentForm: NgForm): void{
     this.CommentService.updateComment(commentForm.value).subscribe(
       (response: any) => {
         console.log(response);
-      },
-      (error: HttpErrorResponse) => {
-        console.log(error.message)
-      }
-    )
-  }
-
-  // Get All Comments
-  public getAllComments(): void{
-    this.CommentService.getAllComments().subscribe(
-      (response: any) => {
-        this.comments.push(response.data);
       },
       (error: HttpErrorResponse) => {
         console.log(error.message)

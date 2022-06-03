@@ -1,15 +1,17 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { CommentService} from "../../Shared/services/user-comments-service/comment.service";
 //icons
 import { faHeart, faEllipsis, faBookmark, faComment, faShareFromSquare, faFaceGrinTongueSquint, faFaceGrinStars } from '@fortawesome/free-solid-svg-icons';
-import { PostService, User } from 'src/app/Shared/services/post.service';
+import { PostService, User } from '../../Shared/services/post.service';
 
 
 import { HttpClient } from '@angular/common/http';
-import { UserPostsService } from 'src/app/Shared/services/user-posts-service/user-posts.service';
-import { CommentService } from 'src/app/Shared/services/user-comments-service/comment.service';
-import { GiphyService } from 'src/app/Shared/services/giphy-service/giphy.service';
+import {UserPostsService} from "../../Shared/services/user-posts-service/user-posts.service";
+import {GiphyService} from "../../Shared/services/giphy-service/giphy.service";
+import { UserService } from 'app/Shared/services/user-service/user.service';
+
 
 @Component({
   selector: 'app-home',
@@ -19,7 +21,7 @@ import { GiphyService } from 'src/app/Shared/services/giphy-service/giphy.servic
 export class HomeComponent implements OnInit {
 
 
-  constructor(private postService:PostService, private userPostsService : UserPostsService, private http : HttpClient, public CommentService: CommentService, public gifService: GiphyService) { }
+  constructor(private userService:UserService,private postService:PostService, private userPostsService : UserPostsService, private http : HttpClient, public CommentService: CommentService, public gifService: GiphyService) { }
 
   ngOnInit(): void {
     // this.getAllComments();

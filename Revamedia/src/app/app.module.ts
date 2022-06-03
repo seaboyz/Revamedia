@@ -14,7 +14,6 @@ import { LoginComponent } from './Components/login/login.component';
 import { RegisterComponent } from './Components/register/register.component';
 import { ErrorPageComponent } from './Components/error-page/error-page.component';
 import { ProfileComponent } from './Components/profile/profile.component';
-import { AddPostComponent } from './Components/add-post/add-post.component';
 import { PostService } from './Shared/services/post.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -35,7 +34,7 @@ import { AuthenticationService } from './Shared/services/auth-service/authentica
     RegisterComponent,
     ErrorPageComponent,
     ProfileComponent,
-    ],
+  ],
   imports: [
     BrowserModule,
     HttpClientModule,

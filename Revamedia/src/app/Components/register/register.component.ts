@@ -5,6 +5,7 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { HttpHeaders } from '@angular/common/http';
 
 import { IUserInterface } from 'src/app/shared/interfaces/IUserInterface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +14,7 @@ import { IUserInterface } from 'src/app/shared/interfaces/IUserInterface';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private register: RegisterService) { }
+  constructor(private register: RegisterService, private router: Router) { }
   username: string = "";
   password: string = "";
   confirmPassword: string = "";
@@ -47,7 +48,7 @@ export class RegisterComponent implements OnInit {
       })
     }
     this.register.createUser(this.user, options).subscribe((data) => {
-      console.log(data)
+      console.log(data),this.router.navigateByUrl('/login')
     },(error) => {console.log(error)}
     )
   }

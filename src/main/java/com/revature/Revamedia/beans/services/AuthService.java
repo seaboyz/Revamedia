@@ -1,16 +1,18 @@
 package com.revature.Revamedia.beans.services;
 
 import com.revature.Revamedia.beans.repositories.UserRepository;
+import com.revature.Revamedia.dtos.UserLoginDto;
 import com.revature.Revamedia.dtos.UserRegisterDto;
 import com.revature.Revamedia.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import javax.validation.ConstraintViolationException;
-import javax.validation.constraints.Email;
+import reactor.core.publisher.Mono;
+
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
@@ -69,4 +71,20 @@ public class AuthService {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Username is not unique");
         }
     }
+
+    public ResponseEntity<Object> login (UserLoginDto userLoginDto){
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(10);
+        if (userRepository.existsUserByUsername(userLoginDto.getUsername())){
+            if (encoder.matches(userLoginDto.getPassword(),userRepository.findByUsername(userLoginDto.getUsername()).getPassword())){
+                return ResponseEntity.status(HttpStatus.OK).body("User Logged In");
+            }
+            else {
+                return ResponseEntity.ok("Password didn't match");
+            }
+        }
+        else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("No such user");
+        }
+    }
+
 }

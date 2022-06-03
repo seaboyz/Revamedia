@@ -26,13 +26,7 @@ public class UserController {
 
     //Controller Methods
 
-    @PostMapping("/login")
-    @ResponseStatus(HttpStatus.OK)
-    public User login(@RequestBody User user, HttpServletResponse response) {
-        AuthDto auth = new AuthDto(user.getUsername(), user.getPassword());
-        return userService.login(auth);
-        
-    }
+
 
     @GetMapping("/allUsers")
     @ResponseStatus(HttpStatus.OK)
@@ -44,5 +38,6 @@ public class UserController {
     public ResponseEntity<User> user (@PathVariable Integer id){
         return new ResponseEntity<>(userService.getUserById(id), HttpStatus.ACCEPTED);
     }
+
 
 }

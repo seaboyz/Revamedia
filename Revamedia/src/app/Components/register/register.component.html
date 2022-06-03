@@ -9,29 +9,37 @@
       <div class="form-row">
         <div>
           <label for="fName">First Name</label>
-          <input type="text" required="required" name="fName" id="fName" placeholder="First Name..."
-                 [(ngModel)]="fName">
+          <input type="text" required title="Letters Only" pattern="([a-zA-ZÀ-ÿ][-,a-z. ']+[ ]*)+" name="fName" id="fName" placeholder="First Name..."
+                 [(ngModel)]="fName" (blur) = "checkInput('fName')">
+                 <p *ngIf="error.errorFirstName != ''">{{error.errorFirstName}}</p>
         </div>
         <div>
           <label for="lName">Last Name</label>
-          <input type="text" required name="lName" id="lName" placeholder="Last Name..." [(ngModel)]="lName">
+          <input type="text" required title="Letters Only" pattern="([a-zA-ZÀ-ÿ][-,a-z. ']+[ ]*)+" name="lName" id="lName"
+                 placeholder="Last Name..." [(ngModel)]="lName" (blur) = "checkInput('lName')">
+          <p *ngIf="error.errorLastName != ''">{{error.errorLastName}}</p>
         </div>
       </div>
       <div class="form-row">
         <div>
           <label for="email">Email</label>
-          <input type="email" required name="email" id="email" placeholder="Email..." [(ngModel)]="email">
+          <input type="email" required title="Valid Email" pattern="^((?![\.!@#$%^&*()-_=+])[\w/-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$" name="email" id="email"
+                 placeholder="Email..." [(ngModel)]="email" (blur) = "checkInput('email')">
+          <p *ngIf="error.errorEmail != ''">{{error.errorEmail}}</p>
         </div>
         <div>
           <label for="username">Username</label>
-          <input type="text" required name="username" id="username" placeholder="Username..." [(ngModel)]="username">
+          <input type="text" required title="Letters, numbers and special characters" pattern="^(?=[a-zA-Z0-9._]{2,20}$)(?!.*[_.]{2})[^_.].*[^_.]$" name="username" id="username"
+                 placeholder="Username..." [(ngModel)]="username" (blur) = "checkInput('username')">
+          <p *ngIf="error.errorUsername != ''">{{error.errorUsername}}</p>
         </div>
       </div>
       <div class="form-row">
         <div>
           <label for="password">Password</label>
-          <input [type]="showPassword ? 'text' : 'password'" #modelPassword="ngModel" [(ngModel)]="password" required name="password" id="password"
-                 placeholder="Password...">
+          <input [type]="showPassword ? 'text' : 'password'" #modelPassword="ngModel" [(ngModel)]="password" required title="Min 8 characters, at least 1 uppercase letter, 1 lowercase, 1 number and 1 special character" 
+                pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" name="password" id="password" placeholder="Password..." (blur) = "checkInput('password')">
+                 <p *ngIf="error.errorPassword != ''">{{error.errorPassword}}</p>
           <span (click)="toggleShowPassword()">
             <fa-icon *ngIf="showPassword === false" [icon]="faEye"></fa-icon>
             <fa-icon *ngIf="showPassword === true" [icon]="faEyeSlash"></fa-icon>

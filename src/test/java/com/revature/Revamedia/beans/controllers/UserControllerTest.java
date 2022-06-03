@@ -56,4 +56,13 @@ public class UserControllerTest {
             throw new RuntimeException(e);
         }
     }
+
+    @Test
+    public void getUserByIdTest() {
+        //arrange
+
+        //act
+
+        //assert
+    }
 }

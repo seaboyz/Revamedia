@@ -46,9 +46,5 @@ public class AuthControllerTest {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
-
     }
-
-
 }

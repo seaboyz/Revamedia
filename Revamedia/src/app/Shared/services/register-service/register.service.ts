@@ -14,28 +14,25 @@ export class RegisterService {
   createUser(body: object, options: object): Observable<any> {
     console.log("Post: ", this.baseUrl, body, options)
     return this.http.post<any>(this.baseUrl ,  JSON.stringify(body), options)
-      .pipe(
-        retry(3),
-        catchError(this.errorHandler)
-      )
+
   }
 
-  errorHandler(e: any): any {
-    console.log(e)
-    console.log("Error handler invoked...");
-    let errorMessage = '';
-    if (e.error instanceof ErrorEvent) {
-      // Get client-side error
-      errorMessage = e.error.message;
+  // errorHandler(e: any): any {
+  //   console.log(e)
+  //   console.log("Error handler invoked...");
+  //   let errorMessage = '';
+  //   if (e.error instanceof ErrorEvent) {
+  //     // Get client-side error
+  //     errorMessage = e.error.message;
 
-    } else {
-      // Get server-side error
-      errorMessage = `Error Code: ${e.status}\nMessage: ${e.message}`;
+  //   } else {
+  //     // Get server-side error
+  //     errorMessage = `Error Code: ${e.status}\nMessage: ${e.message}`;
 
-    }
-    console.log(errorMessage);
-    return throwError(() => new Error(errorMessage));
-  }
+  //   }
+  //   console.log(errorMessage);
+  //   return throwError(() => new Error(errorMessage));
+  // }
 
 
 }

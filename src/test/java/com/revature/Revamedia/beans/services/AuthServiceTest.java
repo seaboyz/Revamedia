@@ -88,8 +88,7 @@ public class AuthServiceTest {
         exampleUser.setFirstName("Terrell");
         exampleUser.setLastName("Crawford");
         AuthDto userToLogin = new AuthDto("shady", "Password1!");
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(10);
-        exampleUser.setPassword(encoder.encode("Password0!"));
+        when(mockBCryptPasswordEncoder.matches(any(), any())).thenReturn(false);
         when(mockUserService.existsByUsername(any())).thenReturn(true);
         when(mockUserService.findUserByUsername(any())).thenReturn(exampleUser);
         when(mockJwt.sign(any())).thenReturn("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJKc29uIjoie1widXNlcklkXCI6NCxcInVzZXJuYW1lXCI6XCJzaGFkeVwifSJ9.LSzPbhNAALEFrBWZPpf8KGvREormRNt3tXFkGMTvnU3-MPHw76JD5cmreZJMYaSwNt7H6YJlALCFAWobPAKWbw");

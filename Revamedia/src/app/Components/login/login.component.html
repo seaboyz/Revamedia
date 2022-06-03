@@ -1,11 +1,12 @@
-<div class="login-page">
+<div class="login-page" id="login-page">
   <div class="login-nav">
     <h1>Revamedia</h1>
   </div>
-
   <div class="login">
     <h2>Login</h2>
-    <span id="invalid" class="invalid"><br>Invalid username and/or password<br></span>
+    <br>
+    <span id="invalid" class="invalid">Invalid username and/or password</span>
+    <br>
     <form #loginForm="ngForm" (ngSubmit)="TEMPLogIn(loginForm)" ngNativeValidate>
       <div class="form-row">
         <label for="username">Username</label>

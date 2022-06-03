@@ -1,8 +1,12 @@
 package com.revature.Revamedia.beans.controllers;
 
 import com.revature.Revamedia.beans.services.AuthService;
-import com.revature.Revamedia.dtos.UserLoginDto;
+import com.revature.Revamedia.beans.services.JsonWebToken;
+import com.revature.Revamedia.dtos.AuthDto;
+import com.revature.Revamedia.dtos.CookieDto;
 import com.revature.Revamedia.dtos.UserRegisterDto;
+import com.revature.Revamedia.entities.User;
+import com.revature.Revamedia.exceptions.UnauthorizedUserException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,15 +14,11 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 /**
- * @Author(s): Giorgi Amirajibi, Mohammad Foroutanyazdian, Fatemeh Goudarzi, Tony Henderson
- * @Contributor(s): Kenneth Strohm, Randall Hale
- * Purpose: It is used to receive/produce http requests/responses.
- *          This controller specifically deals with User registration and login.
- *          Uses AuthService object, that is injected in a constructor, to invoke CRUD functionality.
+ * @Author: Giorgi Amirajibi, Mohammad Foroutanyazdian, Fatemeh Goudarzi, Tony Henderson
+ * @Contributor: Kenneth Strohm, Randall Hale
  */
 
 @RestController
-@CrossOrigin
 @RequestMapping("/auth")
 public class AuthController {
 
@@ -35,8 +35,8 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Object> login(@RequestBody UserLoginDto userLoginDto){
-        return ResponseEntity.status(HttpStatus.OK).body(authService.login(userLoginDto));
+    public ResponseEntity<Object> login(@Valid @RequestBody AuthDto authDto) {
+        return authService.login(authDto);
     }
 
 

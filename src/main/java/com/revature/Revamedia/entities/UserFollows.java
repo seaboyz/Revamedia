@@ -82,7 +82,7 @@ public class UserFollows implements Serializable {
         this.bookmarked = bookmarked;
     }
 
-    public Date getDateFollowed() {
+    public Timestamp getDateFollowed() {
         return dateFollowed;
     }
 

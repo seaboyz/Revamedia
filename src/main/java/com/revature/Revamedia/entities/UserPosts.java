@@ -1,11 +1,12 @@
 /**
  * Author(s): @Brandon Le, @Tony Henderson
- * Contributor(s):
- * Purpose:
+ * Contributor(s): @Arun Mohan, @Anthony Pilletti
+ * Purpose: Entity class to represent UserPosts in database
  */
 package com.revature.Revamedia.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -13,10 +14,12 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 @Entity
+@JsonIgnoreProperties
 @Table(name = "user_posts", schema = _SchemaName.schemaName)
 public class UserPosts implements Serializable {
     @Id
@@ -24,12 +27,10 @@ public class UserPosts implements Serializable {
     @Column(name = "post_id")
     private Integer postId;
 
-
     @JsonBackReference
     @ManyToOne()
     @JoinColumn(name = "owner_id", referencedColumnName = "user_id")
     private User ownerId;
-
 
     @JsonManagedReference
     @OneToMany(mappedBy = "postId", cascade = CascadeType.ALL)
@@ -40,7 +41,6 @@ public class UserPosts implements Serializable {
     @JoinColumn(name = "group_id")
     private UserGroups groupId;
 
-
     @Column(name = "message", length = 500)
     private String message;
 
@@ -50,10 +50,9 @@ public class UserPosts implements Serializable {
     @Column(name = "image")
     private String image;
 
-    @JsonIgnoreProperties("likedPosts")
+    @JsonIgnoreProperties({ "likedPosts", "postsOwned" })
     @ManyToMany(mappedBy = "likedPosts", cascade = CascadeType.ALL)
     private Set<User> likes;
-
 
     @Column(name = "post_lifetime", nullable = true)
     private String postLifetime;
@@ -63,19 +62,21 @@ public class UserPosts implements Serializable {
 
     public UserPosts() {
         this.comments = new ArrayList<>();
+        this.likes = new HashSet<>();
     }
 
-    public UserPosts(Integer postId, User ownerId, List<UserComments> comments, String message, String youtubeLink, String image, Set<User> likes, String postLifetime, Timestamp dateCreated, UserGroups groupId) {
+    public UserPosts(Integer postId, User ownerId, List<UserComments> comments, String message, String youtubeLink,
+            String image, Set<User> likes, String postLifetime, Timestamp dateCreated, UserGroups groupId) {
         this.postId = postId;
         this.ownerId = ownerId;
         this.comments = comments;
+        this.groupId = groupId;
         this.message = message;
         this.youtubeLink = youtubeLink;
         this.image = image;
         this.likes = likes;
         this.postLifetime = postLifetime;
         this.dateCreated = dateCreated;
-        this.groupId = groupId;
     }
 
     public Integer getPostId() {
@@ -118,12 +119,12 @@ public class UserPosts implements Serializable {
         this.image = image;
     }
 
-    public void addLikes(User user) {
-        likes.add(user);
+    public Set<User> getLikes() {
+        return likes;
     }
 
-    public void removeLikes(User user) {
-        likes.remove(user);
+    public void setLikes(Set<User> likes) {
+        this.likes = likes;
     }
 
     public String getPostLifetime() {
@@ -164,6 +165,14 @@ public class UserPosts implements Serializable {
 
     public void setGroupId(UserGroups groupId) {
         this.groupId = groupId;
+    }
+
+    public void addLikes(User user) {
+        likes.add(user);
+    }
+
+    public void removeLikes(User user) {
+        likes.remove(user);
     }
 
     @Override

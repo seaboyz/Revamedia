@@ -1,4 +1,4 @@
-<div class="register-page" id="register-page">
+<div class="register-page">
   <div class="register-nav">
     <h1>Revamedia</h1>
   </div>
@@ -23,7 +23,6 @@
           <span *ngIf="error.errorLastName != ''" class="error">
             <fa-icon [icon]="faWarning"></fa-icon>
             {{error.errorLastName}}</span>
-
         </div>
       </div>
       <div class="form-row">
@@ -79,7 +78,7 @@
       </div>
     </form>
     <div class="register-help">
-      <span>Already Registered?<a routerLink="/login" routerLinkActive="active">Login</a></span>
+      <span>Already Registered?<a routerLink="/login" routerLinkActive="active">login</a></span>
     </div>
   </div>
 </div>

@@ -22,7 +22,7 @@ export class RegisterService {
 
   errorHandler(error: any): any {
     let errorMessage : any = {};
-    
+
     if (error.error instanceof ErrorEvent) {
       // Get client-side error
       errorMessage = error.error.message;
@@ -35,7 +35,7 @@ export class RegisterService {
       errorMessage.errorEmail = error.error.email;
       errorMessage.errorUsername = error.error.username;
       errorMessage.errorPassword = error.error.password;
-      //errorMessage = `Error Code: ${error.status}\nMessage: ${error.error.firstName}`;
+      //errorMessage = Error Code: ${error.status}\nMessage: ${error.error.firstName};
     }
     //return errorMessage;
     return throwError(() => errorMessage);

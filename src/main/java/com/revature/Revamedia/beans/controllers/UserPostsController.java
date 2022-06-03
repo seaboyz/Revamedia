@@ -9,6 +9,8 @@ package com.revature.Revamedia.beans.controllers;
 import com.revature.Revamedia.beans.services.UserPostsService;
 import com.revature.Revamedia.beans.services.UserService;
 import com.revature.Revamedia.dtos.UpdatePostLikesDto;
+import com.revature.Revamedia.dtos.UserPostsDto;
+import com.revature.Revamedia.entities.User;
 import com.revature.Revamedia.entities.UserPosts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -105,11 +107,16 @@ public class UserPostsController {
      * @return ResponseEntity containing response status and updated UserPost
      */
     @PutMapping("/likes")
-    public ResponseEntity<UserPosts> updatePostLikes(@RequestBody UpdatePostLikesDto dto) {
+    public ResponseEntity<UserPostsDto> updatePostLikes(@RequestBody UpdatePostLikesDto dto) {
 
         try {
+            UserPostsDto userPostsDto = new UserPostsDto();
             UserPosts result = userPostsService.updatePostLikes(dto);
-            return new ResponseEntity<>(result, HttpStatus.OK);
+            User user = userService.getUserById(dto.getUserId());
+            userPostsDto.setUserPosts(result);
+            userPostsDto.setUser(user);
+
+            return new ResponseEntity<>(userPostsDto, HttpStatus.OK);
 
         } catch (EntityNotFoundException e) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);

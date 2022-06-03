@@ -54,8 +54,8 @@
                 {
                   "type": "bundle",
                   "name": "main",
-                  "maximumWarning": "200kb",
-                  "maximumError": "500kb"
+                  "maximumWarning": "300kb",
+                  "maximumError": "2500kb"
                 }
               ],
               "fileReplacements": [

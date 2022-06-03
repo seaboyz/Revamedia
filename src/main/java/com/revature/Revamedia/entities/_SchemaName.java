@@ -10,6 +10,7 @@ public class _SchemaName {
 
     private static final String mainSchema = "my_schema";
 
+
     /**
      *  Variable to change schemas for database.
      */

@@ -6,6 +6,7 @@ import com.revature.Revamedia.entities.UserComments;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
@@ -25,10 +26,9 @@ public class CommentController {
 
 
     @GetMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
     public HttpResponseDto getById(HttpServletResponse res, @PathVariable("id") int id) {
         UserComments comment = userCommentsService.getCommentById(id);
-
+        System.out.println(comment.getCommentId());
         if(comment.getCommentId() != id) {
             res.setStatus(400);
             return new HttpResponseDto(400, "Failed to get comment.", comment);

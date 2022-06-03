@@ -1,3 +1,9 @@
+/**
+ * Author(s): @Brandon Le, @Arun Mohan, @Anthony Pilletti
+ * Contributor(s):
+ * Purpose: Data Transfer Object class to store http request body data when updating likes from the frontend
+ */
+
 package com.revature.Revamedia.dtos;
 
 import com.revature.Revamedia.entities.UserPosts;

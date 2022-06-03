@@ -43,8 +43,8 @@ public class UserCommentsServiceTest {
 
         USER_1 = new User(1, "test", "test@aol.com", "pass", "test", "name", null, null, null, null, null, null, null, null, null, null);
         POST_1 = new UserPosts(1, USER_1, null, "test message", null, null, null, null, null, null);
-        COMMENT_1 = new UserComments(1, USER_1, POST_1, null, "test comment", null);
-        COMMENT_2 = new UserComments(2, USER_1, POST_1, null, "test comment number 2", null);
+        COMMENT_1 = new UserComments(1, USER_1, POST_1, null, "test comment", null, null);
+        COMMENT_2 = new UserComments(2, USER_1, POST_1, null, "test comment number 2", null, null);
 
     }
 
@@ -111,7 +111,7 @@ public class UserCommentsServiceTest {
     @DisplayName("Test that a comment is deleted")
     void delete(@Autowired UserCommentsService userCommentsService) {
         UserComments userComments = new UserComments(2, USER_1, POST_1, null,
-                "test comment number 2", null);
+                "test comment number 2", null, null);
 
         userCommentsService.delete(userComments);
         verify(userCommentsRepositoryMock, times(1)).delete(userComments);

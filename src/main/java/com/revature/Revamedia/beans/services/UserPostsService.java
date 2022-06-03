@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -30,7 +29,10 @@ public class UserPostsService {
         this.userRepository = userRepository;
     }
 
-    public UserPosts getPostById(Integer id){return userPostsRepository.getById(id);}
+    public UserPosts getPostById(Integer id) {
+        UserPosts posts = userPostsRepository.getById(id);
+        return posts;
+    }
 
     public UserPosts save(UserPosts post) {
         return userPostsRepository.save(post);

@@ -13,6 +13,11 @@ import com.revature.Revamedia.entities.UserPosts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotWritableException;
+import org.springframework.web.bind.annotation.*;
+
+import javax.persistence.EntityNotFoundException;
+import javax.persistence.PersistenceException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
@@ -20,7 +25,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping(value = "/posts", produces = "application/json")
+@RequestMapping(value = "/post", produces = "application/json")
 public class UserPostsController {
 
     private final UserPostsService userPostsService;
@@ -34,9 +39,20 @@ public class UserPostsController {
 
     //Controller Methods
 
+     /**
+     * Get all posts made by the given user
+     * @param id UserId as a path variable
+     * @return List of UserPosts owned by user
+     */
     @GetMapping("/{id}")
-    public ResponseEntity<UserPosts> getPostByPostId(@PathVariable Integer id){
-        return ResponseEntity.ok(userPostsService.getPostById(id));
+    public ResponseEntity<UserPosts> getPostByPostId(@PathVariable int id){
+        try{
+            UserPosts post = userPostsService.getPostById(id);
+            System.out.println(post);
+            return ResponseEntity.ok(post);
+        }catch(EntityNotFoundException e){
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @PostMapping(value="/addPost")
@@ -46,9 +62,28 @@ public class UserPostsController {
 
 
     @PutMapping("/updatePost")
-    public ResponseEntity<UserPosts> updatePost(@RequestBody UserPosts post){
-        return ResponseEntity.ok(userPostsService.update(post)) ;
+    public ResponseEntity<UserPosts> updatePost(@RequestBody UserPosts post) {
+        return ResponseEntity.ok(userPostsService.update(post));
     }
+        /**
+         * Update the like status of a post by a given user
+         * @param //dto UpdatePostLikes dto from the HTTP Request Body containing User and Post ids
+         * @return ResponseEntity containing response status and updated UserPost
+         */
+
+//    @PutMapping("/likes")
+//    public ResponseEntity<UserPosts> updatePostLikes(@RequestBody UpdatePostLikesDto dto) {
+//
+//        try {
+//            UserPosts result = userPostsService.updatePostLikes(dto);
+//            return new ResponseEntity<>(result, HttpStatus.OK);
+//
+//        } catch (EntityNotFoundException e) {
+//            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+//        }
+//    }
+
+
 
     @DeleteMapping("/deletePost")
     @ResponseStatus(HttpStatus.OK)
@@ -94,3 +129,4 @@ public class UserPostsController {
         return userPostsService.getPostsByUser(id);
     }
 }
+

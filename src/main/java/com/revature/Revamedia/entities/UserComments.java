@@ -29,15 +29,12 @@ public class UserComments implements Serializable {
 
 
     @JsonIgnore
-    @JsonBackReference
     @ManyToOne()
     @JoinColumn(name = "owner_id", referencedColumnName = "user_id")
     private User ownerId;
 
 
     @JsonIgnore
-
-    @JsonBackReference
     @ManyToOne()
     @JoinColumn(name = "post_id", referencedColumnName = "post_id")
     private UserPosts postId;
@@ -45,7 +42,6 @@ public class UserComments implements Serializable {
 
 
     @JsonIgnore
-    @JsonManagedReference
     @OneToMany(mappedBy = "commentId", cascade = CascadeType.ALL)
     private List<UserReplies> replies;
 

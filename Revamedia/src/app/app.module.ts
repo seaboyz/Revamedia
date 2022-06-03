@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,6 +22,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { CommentService } from './Shared/services/user-comments-service/comment.service';
 import { GiphyService } from './Shared/services/giphy-service/giphy.service';
 import { AuthenticationService } from './Shared/services/auth-service/authentication.service';
+import { HttpErrorInterceptor } from './Shared/services/HttpInterceptor/http-error.interceptor';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,7 @@ import { AuthenticationService } from './Shared/services/auth-service/authentica
     FormsModule,
     ValidateEqualModule
   ],
-  providers: [AuthenticationService, CommentService, GiphyService, CookieService],
+  providers: [AuthenticationService, CommentService, GiphyService, CookieService, { provide: HTTP_INTERCEPTORS,useClass: HttpErrorInterceptor,multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

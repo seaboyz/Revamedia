@@ -1,10 +1,101 @@
-<div class="settings-page">
+<div class="settings-page" id="settings-page">
   <!-- Page title Start -->
-  <div class="page-title">
+  <div class="page-title" id="page-title">
     <h3>Revamedia</h3>
     <div class="page-subTitle">
       <span>Settings</span>
     </div>
   </div>
   <!-- Page title End -->
+
+  <!-- Settings Content Start -->
+  <div class="settings">
+
+    <div class="system-settings" id="setBackgroundColor">
+      <h4>System Settings</h4>
+      <div class="theme">
+        <h5>Change Theme</h5>
+        <div class="changeTheme">
+          <h3 *ngIf="darkTheme == false">Dark Mode</h3>
+          <h3 *ngIf="darkTheme == true">Light Mode</h3>
+          <button (click)="changeTheme()">
+            <fa-icon *ngIf="darkTheme == true" [icon]="faSun"></fa-icon>
+            <fa-icon *ngIf="darkTheme == false" [icon]="faMoon"></fa-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="user-settings" id="setBackgroundColor">
+      <h4>User Settings</h4>
+      <div class="user-settings-row">
+        <h5>First Name</h5>
+        <span>Leonel</span>
+      </div>
+      <div class="user-settings-row">
+        <h5>Last Name</h5>
+        <span>Barrientos</span>
+      </div>
+      <div class="user-settings-row">
+        <h5>Username</h5>
+        <span>leobarrientos02</span>
+      </div>
+      <div class="user-settings-row">
+        <h5>Email</h5>
+        <span>leo@gmail.com</span>
+      </div>
+      <div class="user-settings-row">
+        <h5>Profile Pic</h5>
+        <img src="https://avatars.githubusercontent.com/u/77355023?v=4" alt="User">
+      </div>
+      <div class="user-settings-row">
+        <h5>Password</h5>
+        <span>*******</span>
+      </div>
+      <div class="user-settings-row">
+        <h5>Edit Account</h5>
+        <button>Edit</button>
+      </div>
+      <div class="user-settings-row">
+        <h5>Delete Account</h5>
+        <button id="deleteBtn">Delete</button>
+      </div>
+
+    </div>
+
+  </div>
+  <!-- Settings Content End -->
 </div>
+
+
+<!-- BLACKOUTSCREEN START-->
+<div class="screen" id="screen"></div>
+<!-- BLACKOUTSCREEN END-->
+
+<!-- EDIT POST FORM START -->
+<div class="modal" id="add-post-modal">
+  <div class="form-header">
+    <h3>Create new post</h3>
+    <span>x</span>
+  </div>
+  <form>
+    <div class="form-data">
+      <h4>Add Image or Video</h4>
+      <div class="file-input">
+        <input type="file" id="file" class="file">
+        <label for="file">
+          Select File
+        </label>
+        <p class="file-name" id="add-post-fileName"></p>
+      </div>
+    </div>
+    <div class="form-data">
+      <h4>Write a caption</h4>
+      <textarea name="message" placeholder="Write a caption..."></textarea>
+    </div>
+    <div class="post-submit">
+      <button>Create Post</button>
+    </div>
+  </form>
+</div>
+<!-- ADD POST FORM END -->

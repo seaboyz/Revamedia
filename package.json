@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "ng-validate-equal": "^6.0.1",
+    "ngx-cookie-service": "^14.0.0"
+  },
+  "devDependencies": {
+    "@types/jquery": "^3.5.14"
+  }
+}

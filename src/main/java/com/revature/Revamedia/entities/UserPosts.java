@@ -50,7 +50,7 @@ public class UserPosts implements Serializable {
     @Column(name = "image")
     private String image;
 
-    @JsonIgnoreProperties({ "likedPosts", "postsOwned" })
+    @JsonIgnoreProperties({"followers", "following", "likedPosts", "groupsJoined", "groupsOwned", "eventsJoined", "eventsOwned", "postsOwned"})
     @ManyToMany(mappedBy = "likedPosts", cascade = CascadeType.ALL)
     private Set<User> likes;
 

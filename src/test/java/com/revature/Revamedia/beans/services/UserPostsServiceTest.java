@@ -152,5 +152,20 @@ public class UserPostsServiceTest {
         assertEquals(postList, returnedList);
         verify(userPostsRepository, times(1)).findAll();
     }
+
+
+    @Test
+    void delete(@Autowired UserPostsService userPostsService) {
+        User user1 = new User();
+        user1.setFirstName("Brandon");
+        user1.setUsername("b1");
+        user1.setPassword("password");
+
+        UserPosts post1 = new UserPosts();
+        post1.setOwnerId(user1);
+
+        userPostsService.delete(post1);
+        verify(userPostsRepository, times(1)).delete(post1);
+    }
 }
 

@@ -41,7 +41,7 @@ public class UserRepliesServiceTest {
     public void beforeEach() {
         USER_1 = new User(1, "test", "test@aol.com", "pass", "test", "name", null, null, null, null, null, null, null, null, null, null);
         POST_1 = new UserPosts(1, USER_1, null, "test message", null, null, null, null, null, null);
-        COMMENT_1 = new UserComments(1, USER_1, POST_1, null, "test comment", null);
+        COMMENT_1 = new UserComments(1, USER_1, POST_1, null, "test comment", null, null);
     }
 
     @Test
@@ -101,7 +101,7 @@ public class UserRepliesServiceTest {
     @Test
     @DisplayName("Test that a comment is deleted")
     void delete(@Autowired UserRepliesService userRepliesService) {
-        UserReplies userReplies = new UserReplies(2,USER_1,COMMENT_1,"Testing delete", null);
+        UserReplies userReplies = new UserReplies(2,USER_1,COMMENT_1,"Testing delete", null, null);
 
         userRepliesService.delete(userReplies);
         verify(userRepliesRepositoryMock, times(1)).delete(userReplies);

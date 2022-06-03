@@ -27,12 +27,13 @@ import { AuthenticationService } from './Shared/services/auth-service/authentica
     SettingsComponent,
     EventsComponent,
     GroupsComponent,
-    HomeComponent,
+    HomeComponent, 
     MessagesComponent,
     LoginComponent,
     RegisterComponent,
     ErrorPageComponent,
     ProfileComponent,
+  
   ],
   imports: [
     BrowserModule,

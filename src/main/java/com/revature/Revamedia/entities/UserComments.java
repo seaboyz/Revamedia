@@ -62,8 +62,7 @@ public class UserComments implements Serializable {
         this.replies = new ArrayList<>();
     }
 
-    public UserComments(Integer commentId, User ownerId, UserPosts postId, List<UserReplies> replies, String message,
-            Timestamp dateCreated, String giphyUrl) {
+    public UserComments(Integer commentId, User ownerId, UserPosts postId, List<UserReplies> replies, String message, Timestamp dateCreated, String giphyUrl) {
         this.commentId = commentId;
         this.ownerId = ownerId;
         this.postId = postId;

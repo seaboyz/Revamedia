@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faEyeSlash, faWarning } from '@fortawesome/free-solid-svg-icons';
 import { HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { RegisterService } from '../../Shared/services/register-service/register.service';
@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
   fName: string = "";
   lName: string = "";
   email: string = "";
-  
+
   error : IRegisterError = {
     errorStatus :"",
     errorFirstName : "",
@@ -98,6 +98,7 @@ export class RegisterComponent implements OnInit {
   // Front End Work
   public faEye = faEye; // icons
   public faEyeSlash = faEyeSlash; // icons
+  public faWarning = faWarning; // icons
 
   // Show Password
   public showPassword = false;

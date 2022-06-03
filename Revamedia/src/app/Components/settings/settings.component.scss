@@ -254,6 +254,19 @@ $darkgrey: rgb(61,66,74);
         height: 2rem;
         border-radius: 50%;
       }
+      input{
+        width: 45%;
+        border: none;
+        outline: none;
+        padding: .3rem;
+        font-size: 1.1rem;
+        color: $darkgrey;
+        border: 1.2px solid $grey;
+        border-radius: 4px;
+        &:focus{
+          border: 1.2px solid $blue;
+        }
+      }
     }
     .post-submit{
       margin-top: 1rem;

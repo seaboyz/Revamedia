@@ -25,7 +25,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping(value = "/posts", produces = "application/json")
+@RequestMapping(value = "/post", produces = "application/json")
 public class UserPostsController {
 
     private final UserPostsService userPostsService;
@@ -48,7 +48,6 @@ public class UserPostsController {
         return ResponseEntity.ok(userPostsService.getAllPosts()) ;
     }
 
-    //TODO: Include exception handling if post does not exist.
      /**
      * Get all posts made by the given user
      * @param id UserId as a path variable
@@ -72,26 +71,26 @@ public class UserPostsController {
 
 
     @PutMapping("/updatePost")
-    public ResponseEntity<UserPosts> updatePost(@RequestBody UserPosts post){
-        return ResponseEntity.ok(userPostsService.update(post)) ;
-    /**
-     * Update the like status of a post by a given user
-     * @param dto UpdatePostLikes dto from the HTTP Request Body containing User and Post ids
-     * @return ResponseEntity containing response status and updated UserPost
-     */
-    @PutMapping("/likes")
-    public ResponseEntity<UserPosts> updatePostLikes(@RequestBody UpdatePostLikesDto dto) {
+    public ResponseEntity<UserPosts> updatePost(@RequestBody UserPosts post) {
+        return ResponseEntity.ok(userPostsService.update(post));
+    }
+        /**
+         * Update the like status of a post by a given user
+         * @param dto UpdatePostLikes dto from the HTTP Request Body containing User and Post ids
+         * @return ResponseEntity containing response status and updated UserPost
+         */
 
-        try {
-            UserPosts result = userPostsService.updatePostLikes(dto);
-            return new ResponseEntity<>(result, HttpStatus.OK);
+//    @PutMapping("/likes")
+//    public ResponseEntity<UserPosts> updatePostLikes(@RequestBody UpdatePostLikesDto dto) {
+//
+//        try {
+//            UserPosts result = userPostsService.updatePostLikes(dto);
+//            return new ResponseEntity<>(result, HttpStatus.OK);
+//
+//        } catch (EntityNotFoundException e) {
+//            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+//        }
+//    }
 
-        } catch (EntityNotFoundException e) {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        }
     }
 
-    
-
-
-}

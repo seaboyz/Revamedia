@@ -88,7 +88,7 @@ export class RegisterComponent implements OnInit {
         break;
         case "username" : this.error.errorUsername = "";
         break;
-        case "passwords" : this.error.errorPassword= "";
+        case "password" : this.error.errorPassword= "";
         break;
       }
     }

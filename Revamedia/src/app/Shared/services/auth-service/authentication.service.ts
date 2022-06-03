@@ -3,6 +3,8 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +13,7 @@ export class AuthenticationService {
 
   public loggedIn = new BehaviorSubject<boolean>(this.checkLoginStatus());
 
-  constructor(private router: Router, private http: HttpClient) { }
+  constructor(private router: Router, private http: HttpClient, private cookieService: CookieService) { }
 
   checkLoginStatus(): boolean {
     var loginCookie = sessionStorage.getItem('LoggedIn');
@@ -28,11 +30,11 @@ export class AuthenticationService {
       password: loginForm.value.password
     }
     //Post request to attempt to login the user
-    this.http.post('http://localhost:8080/login', user, {
+    this.http.post('http://localhost:8080/auth/login', user, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'mode': 'login'
-      })
+      }),
+      'withCredentials': true
     }).subscribe((response: any) => {
       //If login was successful store the user's info in session storage
       user = response;
@@ -44,21 +46,19 @@ export class AuthenticationService {
       sessionStorage.setItem('phone', response.phone);
 
 
+      this.loggedIn.next(true);
+      sessionStorage.setItem('LoggedIn', '1');
+      this.router.navigateByUrl('/home');
     }, (error: HttpErrorResponse) => {
-      const message = document.getElementById('invalid');
-      message?.classList.toggle('show');
+      document.getElementById('invalid')!.style.display = "flex";
       console.log(error);
     })
-
-    // THIS IS IMPORTANT FOR FRONT END
-    this.router.navigateByUrl('/home');
-    this.loggedIn.next(true);
-    sessionStorage.setItem('LoggedIn', '1');
   }
 
   public logout() {
     this.loggedIn.next(false);
     this.router.navigateByUrl('/login');
-    sessionStorage.clear();
+    this.cookieService.deleteAll();
+    sessionStorage.removeItem('LoggedIn');
   }
 }

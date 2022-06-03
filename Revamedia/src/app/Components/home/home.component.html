@@ -15,7 +15,7 @@
   <div class="main">
 
       <!-- post start -->
-      <div class="post-data">
+      <div class="post-data" *ngFor="let p of posts">
 
         <div class="post">
           <div class="post-title" id="setBackgroundColor">
@@ -34,7 +34,7 @@
           <div class="post-body">
             <img src="https://images.theconversation.com/files/453091/original/file-20220318-23-2ehppm.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=900.0&fit=crop" alt="User">
             <div class="post-description" id="setBackgroundColor">
-              <p><a routerLink="/profile" routerLinkActive="active">leobarrientos02</a>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, dolore animi consequuntur laudantium, atque at ex voluptas perspiciatis ut quod quasi officiis. Eum, delectus. Porro laboriosam nihil dolor corporis minima?</p>
+              <p><a routerLink="/profile" routerLinkActive="active">leobarrientos02</a>{{p.message}}</p>
             </div>
             <div class="post-options" id="setBackgroundColor">
               <div class="container">
@@ -43,10 +43,11 @@
                     [icon]="faHeart"
                     size="lg"
                     [ngClass]="[totalLikes < 1 ? 'NoLike' : 'OneLike']"
-                    (click)="likePost()"
+                    (click)="likePost(p)"
                     >
                   </fa-icon>
-                  <span>{{totalLikes}} likes</span>
+                   <span>{{p.likes.length}}</span>
+                      
                 </div>
                 <div class="comment">
                   <span (click)="openAddComment()">

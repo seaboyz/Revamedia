@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 // Icons
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { NgForm } from '@angular/forms';
-import { AuthenticationService } from 'src/app/Shared/services/auth-service/authentication.service';
+import {AuthenticationService} from "../../Shared/services/auth-service/authentication.service";
+
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,7 @@ export class LoginComponent implements OnInit {
   constructor(public auth: AuthenticationService) { }
 
   ngOnInit(): void {
+
   }
 
   public TEMPLogIn(loginForm: NgForm) {

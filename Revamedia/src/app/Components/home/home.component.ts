@@ -1,6 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+
 //icons
 import { faHeart, faEllipsis, faBookmark, faComment, faShareFromSquare, faFaceGrinTongueSquint, faFaceGrinStars } from '@fortawesome/free-solid-svg-icons';
 import { HttpClient } from '@angular/common/http';
@@ -8,6 +7,8 @@ import { UserService } from 'src/app/Shared/services/user-service/user.service';
 import { UserPostsService } from 'src/app/Shared/services/user-posts-service/user-posts.service';
 import { CommentService } from 'src/app/Shared/services/user-comments-service/comment.service';
 import { GiphyService } from 'src/app/Shared/services/giphy-service/giphy.service';
+import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 
 @Component({

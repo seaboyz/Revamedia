@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
+
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+
 import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -17,12 +17,13 @@ import { LoginComponent } from './Components/login/login.component';
 import { RegisterComponent } from './Components/register/register.component';
 import { ErrorPageComponent } from './Components/error-page/error-page.component';
 import { ProfileComponent } from './Components/profile/profile.component';
-import { ValidateEqualModule } from 'ng-validate-equal';
-import { CookieService } from 'ngx-cookie-service';
 import { CommentService } from './Shared/services/user-comments-service/comment.service';
 import { GiphyService } from './Shared/services/giphy-service/giphy.service';
 import { AuthenticationService } from './Shared/services/auth-service/authentication.service';
-import { HttpErrorInterceptor } from './Shared/services/HttpInterceptor/http-error.interceptor';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { ValidateEqualModule } from 'ng-validate-equal';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,7 @@ import { HttpErrorInterceptor } from './Shared/services/HttpInterceptor/http-err
     FormsModule,
     ValidateEqualModule
   ],
-  providers: [AuthenticationService, CommentService, GiphyService, CookieService, { provide: HTTP_INTERCEPTORS,useClass: HttpErrorInterceptor,multi: true }],
+  providers: [AuthenticationService, CommentService, GiphyService, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

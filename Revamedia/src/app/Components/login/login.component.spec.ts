@@ -40,5 +40,12 @@ fdescribe('LoginComponent', () => {
     })
   })
 
+  it('toggleShowPassword() should flip the value of showPassword', () => {
+    let StoreVal = component.showPassword;
+    spyOn(component, 'toggleShowPassword');
+    component.toggleShowPassword();
+    expect(component.showPassword).not.toEqual(StoreVal);
+  })
+
 
 });

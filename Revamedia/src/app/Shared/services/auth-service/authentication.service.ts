@@ -42,15 +42,18 @@ export class AuthenticationService {
       sessionStorage.setItem('firstname', response.firstName);
       sessionStorage.setItem('lastname', response.lastName);
       sessionStorage.setItem('phone', response.phone);
-      this.loggedIn.next(true);
-      sessionStorage.setItem('LoggedIn', '1');
+
 
     }, (error: HttpErrorResponse) => {
       const message = document.getElementById('invalid');
       message?.classList.toggle('show');
       console.log(error);
     })
+
+    // THIS IS IMPORTANT FOR FRONT END
     this.router.navigateByUrl('/home');
+    this.loggedIn.next(true);
+    sessionStorage.setItem('LoggedIn', '1');
   }
 
   public logout() {

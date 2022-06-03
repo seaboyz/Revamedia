@@ -1,6 +1,6 @@
-<div class="home-page">
+<div class="home-page" id="home-page">
   <!-- Page title Start -->
-  <div class="page-title">
+  <div class="page-title" id="page-title">
     <div class="card">
       <h3>Revamedia</h3>
       <div class="page-subTitle">
@@ -162,8 +162,10 @@
 
 
 
-<!-- BLACKOUTSCREEN -->
+<!-- BLACKOUTSCREEN START-->
 <div class="screen" id="screen"></div>
+<!-- BLACKOUTSCREEN END-->
+
 <!-- ADD POST FORM START -->
 <div class="modal" id="add-post-modal">
   <div class="form-header">
@@ -174,7 +176,7 @@
     <div class="form-data">
       <h4>Add Image or Video</h4>
       <div class="file-input">
-        <input type="file" id="file" class="file" (change)="fileName($event, 'add-post')">
+        <input type="file" id="file" class="file" (change)="addPostFileName($event)">
         <label for="file">
           Select File
         </label>
@@ -202,7 +204,7 @@
     <div class="form-data">
       <h4>Edit Image or Video</h4>
       <div class="file-input">
-        <input type="file" id="file" class="file" (change)="fileName($event, 'edit-post')">
+        <input type="file" id="file" class="file">
         <label for="file">
           Select File
         </label>

@@ -2,10 +2,12 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 //icons
-import { faHeart, faEllipsis, faBookmark, faComment, faShareFromSquare } from '@fortawesome/free-solid-svg-icons';
-import { CommentService } from '../../services/comment.service';
-import { UserPostsService } from 'src/app/services/user-posts-service/user-posts.service';
+import { faHeart, faEllipsis, faBookmark, faComment, faShareFromSquare, faFaceGrinTongueSquint, faFaceGrinStars } from '@fortawesome/free-solid-svg-icons';
+
 import { HttpClient } from '@angular/common/http';
+import { UserPostsService } from 'src/app/Shared/services/user-posts-service/user-posts.service';
+import { CommentService } from 'src/app/Shared/services/user-comments-service/comment.service';
+import { GiphyService } from 'src/app/Shared/services/giphy-service/giphy.service';
 
 @Component({
   selector: 'app-home',
@@ -14,29 +16,30 @@ import { HttpClient } from '@angular/common/http';
 })
 export class HomeComponent implements OnInit {
 
-  postToLike: any = {
-    userId: 1,
-    postId: 1
-  }
-
-  users: any[] = [];
-  following: any[] = [];
-  posts: any[] = [];
-  followPosts: any[] = [];
-  comments: any[] = [];
-
-  public totalLikes: number = 0;
-
-  constructor(public CommentService: CommentService, private userPostsService: UserPostsService, private http: HttpClient) { }
+  constructor(private userPostsService : UserPostsService, private http : HttpClient, public CommentService: CommentService, public gifService: GiphyService) { }
 
   ngOnInit(): void {
-    this.getAllComments();
+    // this.getAllComments();
+    this.getGifs('funny');
+    this.getStickers('funny');
   }
 
   // Variables Used In Home Component
   public comment: any = {};
   public currentDate = new Date();
   public post: any;
+  postToLike : any = {
+    userId : 1,
+    postId : 1
+  }
+
+  users : any[] = [];
+  following : any[] = [];
+  posts : any[] = [];
+  followPosts : any[] = [];
+  comments : any[] = [];
+
+  public totalLikes : number = 0;
 
   // Back End Work
   public getCommentById(id: number) {
@@ -84,10 +87,6 @@ export class HomeComponent implements OnInit {
         console.log(error.message)
       }
     )
-
-
-
-
   }
 
   likePost(): void {
@@ -100,7 +99,11 @@ export class HomeComponent implements OnInit {
 
 
 
-    // get all comments for given post
+     // get all comments for given post
+
+        // console.log(data.body.comments);
+        // console.log(data.body.comments[0]);
+        // this.comments = data.body.comments;
 
     // console.log(data.body.comments);
     // console.log(data.body.comments[0]);
@@ -146,6 +149,8 @@ export class HomeComponent implements OnInit {
   public faBookmark = faBookmark; //icon
   public faComment = faComment; //icon
   public faShareFromSquare = faShareFromSquare; //icon
+  public faFaceGrinTongueSquint = faFaceGrinTongueSquint; //icon
+  public faFaceGrinStars = faFaceGrinStars; //icon
 
   // hide Comments
   public hideComments = true;
@@ -216,5 +221,64 @@ export class HomeComponent implements OnInit {
     // Form
     const form = document.getElementById(`${modalType}-${post}`);
     form?.classList.remove('openModal');
+  }
+
+  // gifs
+  public gifs: any[] = [];
+  public getGifs(search: string): void {
+    this.gifService.getGIFS(search).subscribe(
+      (response: any) => {
+        this.gifs = response.data;
+        // console.log(this.gifs);
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error.message)
+      }
+    )
+  }
+
+  public searchGiphy(){
+    const search = document.getElementById(`giphy-search-comment`) as HTMLInputElement;
+    let query = search?.value;
+    let cleanQuery = query.trim();
+    let cleanQuery2 = cleanQuery.replace(" ", "+");
+    this.getGifs(cleanQuery2);
+    this.getStickers(cleanQuery2);
+    if(query === ""){
+      this.getGifs("happy");
+      this.getStickers("happy");
+    }
+  }
+
+  public searchGiphyForReply(){
+    const search = document.getElementById(`giphy-search-reply`) as HTMLInputElement;
+    let query = search?.value;
+    let cleanQuery = query.trim();
+    let cleanQuery2 = cleanQuery.replace(" ", "+");
+    this.getGifs(cleanQuery2);
+    this.getStickers(cleanQuery2);
+    if(query === ""){
+      this.getGifs("happy");
+      this.getStickers("happy");
+    }
+  }
+
+  public selectedGiphy = "";
+  public selectGiphy(url: any){
+    this.selectedGiphy = url;
+  }
+
+  // stickers
+  public stickers: any[] = [];
+  public getStickers(search: string): void {
+    this.gifService.getStickers(search).subscribe(
+      (response: any) => {
+        this.stickers = response.data;
+        // console.log(this.stickers);
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error.message)
+      }
+    )
   }
 }

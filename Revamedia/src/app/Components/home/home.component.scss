@@ -42,8 +42,19 @@ $darkgrey: rgb(61,66,74);
       padding: .5rem 1rem;
       cursor: pointer;
       color: black;
+      transition: all .3s ease-in-out;
       &:hover{
-        background: #fca843;
+        background: $blue;
+      }
+    }
+  }
+  @media screen and (max-width: 800px){
+    .page-title{
+      padding: .5rem 1rem;
+      button{
+        font-size: .9rem;
+        border-radius: 7px;
+        padding: .4rem .8rem;
       }
     }
   }
@@ -66,6 +77,8 @@ $darkgrey: rgb(61,66,74);
         margin-bottom: .5rem;
         background: white;
         box-shadow: rgba(0, 0, 0, 0.075) 0px 3px 8px;
+
+        // POST TITLE START
         .post-title{
           display: flex;
           flex-direction: row;
@@ -105,8 +118,9 @@ $darkgrey: rgb(61,66,74);
               cursor: pointer;
             }
             ul{
+              border: 1px solid $grey;
               position: absolute;
-              transform:translate(80%, 28%);
+              transform:translate(45%, 25%);
               list-style: none;
               background-color: $lightgrey;
               border-radius: 3px;
@@ -125,6 +139,21 @@ $darkgrey: rgb(61,66,74);
             }
           }
         }
+        @media screen and (max-width: 800px){
+          .post-title{
+            .post-options{
+              #icon{
+                font-size: 1.2rem;
+              }
+              ul{
+                width: 20%;
+                transform:translate(40%, 24%);
+              }
+            }
+          }
+        }
+        // POST TITLE END
+
         .post-body{
           img{
             width: 100%;
@@ -159,7 +188,7 @@ $darkgrey: rgb(61,66,74);
               flex-direction: row;
               justify-content: space-between;
               .likes{
-                #icon{
+                #heartIcon{
                   color: pink;
                   cursor: pointer;
                   transition: all .3s ease-in-out;
@@ -173,7 +202,7 @@ $darkgrey: rgb(61,66,74);
                 }
               }
               .comment{
-                #icon{
+                #commentIcon{
                   color: lightblue;
                   cursor: pointer;
                   transition: all .3s ease-in-out;
@@ -197,6 +226,7 @@ $darkgrey: rgb(61,66,74);
         }
       }
 
+      //  ADD COMMENT START
       .add-comment{
         margin: .5rem 0;
         width: 100%;
@@ -236,47 +266,70 @@ $darkgrey: rgb(61,66,74);
             color: $darkgrey;
             padding: .4rem;
           }
-
-          .file {
-            opacity: 0;
-            width: 0.1px;
-            height: 0.1px;
-            position: absolute;
-          }
-          .file-input label {
+          .reactions{
             margin: .5rem 0;
-            display: block;
-            position: relative;
-            height: 2rem;
-            width: 7rem;
-            border-radius: 8px;
-            background: $lightgrey;
+            width: 100%;
             display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-            font-size: .9rem;
-            color: $darkgrey;
-            cursor: pointer;
-            transition: transform .2s ease-out;
+            flex-direction: column;
+            span{
+              font-size: 1.7rem;
+            }
+            .search{
+              width: 100%;
+              display: flex;
+              flex-direction: row;
+              input{
+                width: 80%;
+                font-size: 1rem;
+                color: $darkgrey;
+                padding: .2rem;
+                border: none;
+                border: 1px solid $grey;
+                outline: none;
+                &:focus{
+                  border: 1px solid $blue;
+                }
+              }
+              span{
+                background: $blue;
+                font-size: 1rem;
+                cursor: pointer;
+                color: $darkgrey;
+                padding: .2rem .5rem;
+                transition: all .3s ease-in-out;
+                &:hover{
+                  background: $orange;
+                }
+              }
+            }
+            #reaction-title{
+              font-size: 1.25rem;
+              color: $blue;
+              margin-top: .5rem;
+            }
+            .gifs,.stickers{
+              margin: .5rem 0;
+              width: 100%;
+              display: grid;
+              grid-template-columns: repeat(4, 1fr);
+              grid-template-rows: repeat(3, 1fr);
+              grid-column-gap: .5rem;
+              grid-row-gap: .5rem;
+              .gif,.sticker{
+                img{
+                  object-fit: cover;
+                  width: 6rem;
+                  height: 6rem;
+                  border-radius: 3px;
+                  cursor: pointer;
+                  border: 2px solid $blue;
+                  &:hover{
+                    border: 2px solid $orange;
+                  }
+                }
+              }
+            }
           }
-
-          .file-name {
-            font-size: 0.85rem;
-            color: #555;
-          }
-
-          input:hover + label,
-          input:focus + label {
-            transform: scale(1.02);
-          }
-
-          /* Adding an outline to the label on focus */
-          input:focus + label {
-            outline: 1px solid #000;
-            outline: -webkit-focus-ring-color auto 2px;
-          }
-
           button{
             align-self: flex-end;
             width: 20%;
@@ -293,15 +346,40 @@ $darkgrey: rgb(61,66,74);
           }
         }
       }
+      @media screen and (max-width: 800px) {
+        .add-comment{
+          Form{
+            .reactions{
+              .gifs, .stickers{
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: repeat(4, 1fr);
+                .gif,.sticker{
+                  img{
+                    object-fit: cover;
+                    width: 5rem;
+                    height: 5rem;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      // ADD COMMENT END
 
       #viewComments{
         cursor: pointer;
+        background: white;
+        padding: .2rem .5rem;
+        border-radius: 3px;
         color: $darkgrey;
         margin: .5rem 0;
         &:hover{
           text-decoration: underline
         }
       }
+
+      // COMMENTS DISPLAY
       .post-comments-section{
         margin-top: .5rem;
         background: white;
@@ -403,6 +481,7 @@ $darkgrey: rgb(61,66,74);
             }
           }
 
+          // ADD REPLY FORM START
           .add-reply{
             margin: .5rem 0;
             width: 100%;
@@ -442,47 +521,76 @@ $darkgrey: rgb(61,66,74);
                 color: $darkgrey;
                 padding: .4rem;
               }
-
-              .file {
-                opacity: 0;
-                width: 0.1px;
-                height: 0.1px;
-                position: absolute;
-              }
-              .file-input label {
+              .reactions{
                 margin: .5rem 0;
-                display: block;
-                position: relative;
-                height: 2rem;
-                width: 7rem;
-                border-radius: 8px;
-                background: $lightgrey;
+                width: 100%;
                 display: flex;
-                flex-direction: row;
-                align-items: center;
-                justify-content: center;
-                font-size: .9rem;
-                color: $darkgrey;
-                cursor: pointer;
-                transition: transform .2s ease-out;
+                flex-direction: column;
+                span{
+                  font-size: 1.7rem;
+                }
+                .search{
+                  width: 100%;
+                  display: flex;
+                  flex-direction: row;
+                  input{
+                    width: 80%;
+                    font-size: 1rem;
+                    color: $darkgrey;
+                    padding: .2rem;
+                    border: none;
+                    border: 1px solid $grey;
+                    outline: none;
+                    &:focus{
+                      border: 1px solid $blue;
+                    }
+                  }
+                  span{
+                    background: $blue;
+                    font-size: 1rem;
+                    cursor: pointer;
+                    color: $darkgrey;
+                    padding: .2rem .5rem;
+                    transition: all .3s ease-in-out;
+                    &:hover{
+                      background: $orange;
+                    }
+                  }
+                }
+                #reaction-title{
+                  font-size: 1.25rem;
+                  color: $blue;
+                  margin-top: .5rem;
+                }
+                .gifs, .stickers{
+                  margin: .5rem 0;
+                  width: 100%;
+                  display: grid;
+                  grid-template-columns: repeat(4, 1fr);
+                  grid-template-rows: repeat(3, 1fr);
+                  grid-column-gap: .5rem;
+                  grid-row-gap: .5rem;
+                  .gif,.sticker{
+                    img{
+                      object-fit: cover;
+                      width: 6rem;
+                      height: 6rem;
+                      border-radius: 3px;
+                      cursor: pointer;
+                      border: 2px solid $blue;
+                      &:hover{
+                        border: 2px solid $orange;
+                      }
+                    }
+                    @media screen and (max-width: 800px){
+                      img{
+                        width: 5rem;
+                        height: 5rem;
+                      }
+                    }
+                  }
+                }
               }
-
-              .file-name {
-                font-size: 0.85rem;
-                color: #555;
-              }
-
-              input:hover + label,
-              input:focus + label {
-                transform: scale(1.02);
-              }
-
-              /* Adding an outline to the label on focus */
-              input:focus + label {
-                outline: 1px solid #000;
-                outline: -webkit-focus-ring-color auto 2px;
-              }
-
               button{
                 align-self: flex-end;
                 width: 20%;
@@ -499,6 +607,26 @@ $darkgrey: rgb(61,66,74);
               }
             }
           }
+          @media screen and (max-width: 800px) {
+            .add-reply{
+              Form{
+                .reactions{
+                  .gifs, .stickers{
+                    grid-template-columns: repeat(3, 1fr);
+                    grid-template-rows: repeat(4, 1fr);
+                    .gif,.sticker{
+                      img{
+                        object-fit: cover;
+                        width: 4rem;
+                        height: 4rem;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+          // ADD REPLY FORM END
 
         }
         .reply{
@@ -543,6 +671,7 @@ $darkgrey: rgb(61,66,74);
           }
         }
       }
+      // COMMENT DISPLAY END
     }
 
   }
@@ -737,6 +866,17 @@ $darkgrey: rgb(61,66,74);
     }
   }
 }
+// media queries for modals
+@media screen and (max-width: 800px) {
+  .modal{
+    width: 85%;
+    .form-header{
+      h3{
+        font-size: 2rem;
+      }
+    }
+  }
+}
 
 .openScreen{
   top: 0;
@@ -747,4 +887,11 @@ $darkgrey: rgb(61,66,74);
   top: 5%;
   left: 20%;
   transform: scale(1);
+}
+// media queries for modals
+@media screen and (max-width: 800px) {
+  .openModal{
+    top: 5%;
+    left: 10%;
+  }
 }

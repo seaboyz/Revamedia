@@ -1,14 +1,10 @@
-
 import { Component, OnInit } from '@angular/core';
-// Icons
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faEyeSlash, faWarning } from '@fortawesome/free-solid-svg-icons';
 import { HttpHeaders } from '@angular/common/http';
-
-
-import { RegisterService } from "../../Shared/services/register-service/register.service";
-import { IUserInterface } from "../../Shared/interfaces/IUserInterface";
 import { Router } from '@angular/router';
-import { IRegisterError } from 'app/Shared/interfaces/IRegisterError';
+import { RegisterService } from '../../Shared/services/register-service/register.service';
+import { IRegisterError } from '../../Shared/interfaces/IRegisterError.interface';
+import { IUserInterface } from '../../Shared/interfaces/IUserInterface';
 
 @Component({
   selector: 'app-register',
@@ -24,7 +20,6 @@ export class RegisterComponent implements OnInit {
   fName: string = "";
   lName: string = "";
   email: string = "";
-
 
   error : IRegisterError = {
     errorStatus :"",
@@ -60,10 +55,11 @@ export class RegisterComponent implements OnInit {
       })
     }
     this.register.createUser(this.user, options).subscribe((data) => {
-      console.log(data)
-      this.router.navigate(["./login"])
-    })
-
+    
+      this.router.navigateByUrl('/login')
+      
+    },(error) => {this.error = error}
+    )
   }
 
   checkInput(data: string) {
@@ -92,16 +88,16 @@ export class RegisterComponent implements OnInit {
         break;
         case "username" : this.error.errorUsername = "";
         break;
-        case "passwords" : this.error.errorPassword= "";
+        case "password" : this.error.errorPassword= "";
         break;
       }
     }
   }
 
-
   // Front End Work
   public faEye = faEye; // icons
   public faEyeSlash = faEyeSlash; // icons
+  public faWarning = faWarning; // icons
 
   // Show Password
   public showPassword = false;

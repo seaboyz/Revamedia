@@ -15,24 +15,22 @@ export class RegisterService {
     console.log("Post: ", this.baseUrl, body, options)
     return this.http.post<any>(this.baseUrl ,  JSON.stringify(body), options)
 
+  errorHandler(error: any): any {
+    let errorMessage : any = {};
+    
+    if (error.error instanceof ErrorEvent) {
+      // Get client-side error
+      errorMessage = error.error.message;
+
+    } else {
+      // Get server-side error
+      errorMessage.errorStatus = error.status;
+      errorMessage.errorFirstName = error.error.firstName;
+      errorMessage.errorLastName = error.error.lastName;
+      errorMessage.errorEmail = error.error.email;
+      errorMessage.errorUsername = error.error.username;
+      errorMessage.errorPassword = error.error.password;
+    }
+    return throwError(() => errorMessage);
   }
-
-  // errorHandler(e: any): any {
-  //   console.log(e)
-  //   console.log("Error handler invoked...");
-  //   let errorMessage = '';
-  //   if (e.error instanceof ErrorEvent) {
-  //     // Get client-side error
-  //     errorMessage = e.error.message;
-
-  //   } else {
-  //     // Get server-side error
-  //     errorMessage = `Error Code: ${e.status}\nMessage: ${e.message}`;
-
-  //   }
-  //   console.log(errorMessage);
-  //   return throwError(() => new Error(errorMessage));
-  // }
-
-
 }

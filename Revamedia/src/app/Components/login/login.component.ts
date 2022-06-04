@@ -19,14 +19,16 @@ export class LoginComponent implements OnInit {
 
   }
 
-
   public TEMPLogIn(loginForm: NgForm) {
     this.auth.login(loginForm);
   }
 
   // Front End Work
   public faEye = faEye; //icon
-  public faEyeSlash = faEyeSlash; // icons
+  public faEyeSlash = faEyeSlash; // icon
+
+  // Invalid username or password
+  public invalid = false;
 
   // Show Password
   public showPassword = false;

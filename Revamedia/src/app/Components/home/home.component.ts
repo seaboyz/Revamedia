@@ -3,12 +3,13 @@ import { HttpErrorResponse } from '@angular/common/http';
 //icons
 import { faHeart, faEllipsis, faBookmark, faComment, faShareFromSquare, faFaceGrinTongueSquint, faFaceGrinStars } from '@fortawesome/free-solid-svg-icons';
 import { HttpClient } from '@angular/common/http';
-import { UserService } from 'src/app/Shared/services/user-service/user.service';
-import { UserPostsService } from 'src/app/Shared/services/user-posts-service/user-posts.service';
-import { CommentService } from 'src/app/Shared/services/user-comments-service/comment.service';
-import { GiphyService } from 'src/app/Shared/services/giphy-service/giphy.service';
+import { UserService } from 'app/Shared/services/user-service/user.service';
+
+import { CommentService } from 'app/Shared/services/user-comments-service/comment.service';
+import { GiphyService } from 'app/Shared/services/giphy-service/giphy.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { UserPostsService } from 'app/Shared/services/user-posts-service/user-posts.service';
 
 
 @Component({
@@ -18,7 +19,7 @@ import { NgForm } from '@angular/forms';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private userPostsService : UserPostsService, private http : HttpClient, public CommentService: CommentService, public gifService: GiphyService, private userService: UserService) { }
+  constructor(private userPostsService: UserPostsService, private http: HttpClient, public CommentService: CommentService, public gifService: GiphyService, private userService: UserService) { }
 
   ngOnInit(): void {
     // this.getAllComments();
@@ -30,19 +31,19 @@ export class HomeComponent implements OnInit {
 
         let f: any;
         this.posts = [];
-        for(f of response.following) {
+        for (f of response.following) {
           this.posts.push(f.followedId.postsOwned);
         }
         this.posts = this.posts.flat();
         //b.date.getTime() - a.date.getTime();
-        
+
       },
       error: err => {
         console.error(err);
       }
     });
   }
-  
+
 
   // Variables Used In Home Component
   public user: any;
@@ -120,45 +121,45 @@ export class HomeComponent implements OnInit {
 
     this.totalLikes = this.userService.userLikesPost(p);
   }
-    
-  
 
 
 
-    // get all comments for given post
-
-    // console.log(data.body.comments);
-    // console.log(data.body.comments[0]);
-    // this.comments = data.body.comments;
-
-    // for (var cur of this.comments) {
-    //   console.log(cur);
-    // }
 
 
-    // get all users -> get all owned posts
+  // get all comments for given post
 
-    // this.userPostsService.getUsers().subscribe((data) => {
+  // console.log(data.body.comments);
+  // console.log(data.body.comments[0]);
+  // this.comments = data.body.comments;
 
-    //   this.users = data.body;
-    //   console.log("all users:");
-    //   console.log(this.users);
-
-    //   // loop through all users
-    //   for (var user of this.users) {
-    //     // loop through all owned posts for each user
-    //     for (var post of user.postsOwned)
-    //       // add post to post array
-    //       this.posts.push(post)
-    //   }
-    //   console.log("all posts:");
-    //   console.log(this.posts);
+  // for (var cur of this.comments) {
+  //   console.log(cur);
+  // }
 
 
-    //   //for (var follow of this.currentuser.following)
-    //       //getuser
+  // get all users -> get all owned posts
 
-    // });
+  // this.userPostsService.getUsers().subscribe((data) => {
+
+  //   this.users = data.body;
+  //   console.log("all users:");
+  //   console.log(this.users);
+
+  //   // loop through all users
+  //   for (var user of this.users) {
+  //     // loop through all owned posts for each user
+  //     for (var post of user.postsOwned)
+  //       // add post to post array
+  //       this.posts.push(post)
+  //   }
+  //   console.log("all posts:");
+  //   console.log(this.posts);
+
+
+  //   //for (var follow of this.currentuser.following)
+  //       //getuser
+
+  // });
 
 
   // Front End Work

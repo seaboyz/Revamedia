@@ -44,10 +44,12 @@ public class RevamediaApplication {
 
             UserPosts post1 = new UserPosts();
             post1.setOwnerId(user1);
+            post1.setImage("helloWorld.jpeg");
             userPostsService.save(post1);
 
             UserPosts post2 = new UserPosts();
             post2.setOwnerId(user1);
+            post2.setImage("helloWorld2.jpeg");
             userPostsService.save(post2);
 
             UserPosts post3 = new UserPosts();           

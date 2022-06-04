@@ -37,8 +37,21 @@ $darkgrey: rgb(61,66,74);
           height: 1.25rem;
           border-radius: 50%;
           border: 1px solid $orange;
+          cursor: pointer;
+          &:hover{
+            border: 1px solid $blue;
+          }
         }
         span{
+          display: flex;
+          flex-direction: row;
+          p{
+            font-size: 1rem;
+            cursor: pointer;
+            &:hover{
+              text-decoration: underline;
+            }
+          }
           font-size: 1rem;
         }
       }
@@ -698,6 +711,14 @@ $darkgrey: rgb(61,66,74);
         margin-top:1rem;
         font-size: 1rem;
         color: $darkgrey;
+      }
+    }
+    @media screen and (max-width: 800px) {
+      .noPost{
+        width: 80%;
+        margin: 1rem 0;
+        border-radius: 8px;
+        text-align: center;
       }
     }
   }

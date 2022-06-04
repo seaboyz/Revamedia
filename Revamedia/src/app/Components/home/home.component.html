@@ -5,9 +5,9 @@
       <h3>Revamedia</h3>
       <div class="page-subTitle">
         <div class="user">
-          <img *ngIf="user?.profilePicture !== ''" src="{{user?.profilePicture}}" alt="{{ user?.username }}">
-          <img *ngIf="user?.profilePicture === ''" src="https://randomuser.me/api/portraits/lego/1.jpg" alt="No Pic">
-          <span>{{ user?.username }}'s Feed</span>
+          <img *ngIf="user?.profilePicture !== ''" src="{{user?.profilePicture}}" alt="{{ user?.username }}"  routerLink="/profile" routerLinkActive="active">
+          <img *ngIf="user?.profilePicture === ''" src="https://randomuser.me/api/portraits/lego/1.jpg" alt="No Pic" routerLink="/profile" routerLinkActive="active">
+          <span><p routerLink="/profile" routerLinkActive="active">{{ user?.username }}</p>'s Feed</span>
         </div>
       </div>
     </div>

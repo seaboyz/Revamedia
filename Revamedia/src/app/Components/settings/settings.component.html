@@ -75,7 +75,7 @@
     <span (click)="closeModal('delete')">x</span>
   </div>
   <form>
-    <span>{{ deleteUser?.firstName }} {{ deleteUser?.lastName }}</span>
+    <h6>{{ deleteUser?.firstName }} {{ deleteUser?.lastName }}</h6>
     <h2>Are you sure you want to delete your account?</h2>
     <div class="post-submit">
       <button id="deleteBtn">Delete</button>
@@ -111,10 +111,19 @@
       <h5>Profile Pic</h5>
       <input ngModel="{{ editUser?.profilePicture }}" type="url" name="profile_pic" id="profile_pic" placeholder="Image Url...">
     </div>
-    <div class="user-settings-row">
+    <!-- <div class="user-settings-row">
       <h5>Password</h5>
-      <input ngModel="{{ editUser?.password }}" type="password"name="password" id="password" placeholder="Password">
-    </div>
+      <div class="password">
+        <input ngModel="{{ editUser?.password }}" [type]="showPassword ? 'text' : 'password'" name="password" id="password"
+        placeholder="Password..." required>
+        <p (click)="toggleShowPassword()">
+          <fa-icon *ngIf="showPassword === false" [icon]="faEye"></fa-icon>
+          <fa-icon *ngIf="showPassword === true" [icon]="faEyeSlash"></fa-icon>
+          {{showPassword ? 'Hide Password' : 'Show Password' }}
+        </p>
+      </div>
+    </div> -->
+
     <div class="post-submit">
       <button>Update</button>
     </div>

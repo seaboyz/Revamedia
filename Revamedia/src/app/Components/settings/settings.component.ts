@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 // Icons
-import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
+import { faSun, faMoon, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { UserService } from 'src/app/Shared/services/user-service/user.service';
 
 @Component({
@@ -22,6 +22,7 @@ export class SettingsComponent implements OnInit {
   public editUser: any; // Used for edit modal
   public deleteUser: any; // Used for delete modal
 
+  // GET CURRENT USER
   public getUserData(){
     this.userService.getCurrentUser().subscribe(
       (response: any) => {
@@ -34,17 +35,30 @@ export class SettingsComponent implements OnInit {
     );
   }
 
-  // Front End Work
-  public faSun = faSun; // icon
-  public faMoon = faMoon; // icon
+  // ICONS
+  public faSun = faSun;
+  public faMoon = faMoon;
+  public faEyeSlash = faEyeSlash;
+  public faEye = faEye;
+  // ICONS
 
+  // DARK THEME
   public darkTheme = false;
   public changeTheme() {
     document.body.classList.toggle('darkMode');
     this.darkTheme = !this.darkTheme;
   }
+  // DARK THEME
 
-  // MODALS FUNCTION START
+  // SHOW PASSWORD
+  // Show Password
+  public showPassword = false;
+  public toggleShowPassword() {
+    this.showPassword = !this.showPassword;
+  }
+  // SHOW PASSWORD
+
+  // MODALS FUNCTION
   public openModal(mode: string, user: any){
     // Screen
     const screen = document.getElementById('screen');
@@ -68,6 +82,5 @@ export class SettingsComponent implements OnInit {
     const form = document.getElementById(`${modalType}-account-modal`);
     form?.classList.remove('openModal');
   }
-
 // MODALS FUNCTION END
 }

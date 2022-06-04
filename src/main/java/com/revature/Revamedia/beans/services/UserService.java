@@ -7,6 +7,7 @@ import com.revature.Revamedia.exceptions.UnauthorizedUserException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Service
@@ -22,7 +23,7 @@ public class UserService {
         return userRepository.getById(id);
     }
 
-    public User save(User user) {
+    public User save(@Valid User user) {
         return userRepository.save(user);
     }
 
@@ -38,12 +39,8 @@ public class UserService {
         return userRepository.findByUsername(username);
     }
 
-    public User login(AuthDto authDto) {
-        User user = userRepository.findByUsername(authDto.getUsername());
-        if (user != null && user.getPassword().equals(authDto.getPassword())) {
-            return user;
-        } else {
-            throw new UnauthorizedUserException("Unauthorized!");
-        }
-    }
+    public boolean existsByUsername(String username){return userRepository.existsUserByUsername(username);}
+
+
+
 }

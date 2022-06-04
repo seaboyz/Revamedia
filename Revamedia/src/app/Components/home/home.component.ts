@@ -1,7 +1,4 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-//icons
 import { faHeart, faEllipsis, faBookmark, faComment, faShareFromSquare } from '@fortawesome/free-solid-svg-icons';
 import { CommentService } from 'src/app/Shared/services/user-comments-service/comment.service';
 import { UserPostsService } from 'src/app/Shared/services/user-posts-service/user-posts.service';
@@ -32,8 +29,10 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.getAllComments();
   }
+  
 
   // Variables Used In Home Component
+  public user: any;
   public comment: any = {};
   public currentDate = new Date();
   public post: any;
@@ -55,7 +54,6 @@ export class HomeComponent implements OnInit {
     this.CommentService.addComment(commentForm.value).subscribe(
       (response: any) => {
         console.log(response);
-        this.getCommentById(response.data.commentId);
       },
       (error: HttpErrorResponse) => {
         console.log(error.message)
@@ -74,6 +72,23 @@ export class HomeComponent implements OnInit {
     )
   }
 
+  likePost(currentPost: any): void {
+
+    this.userPostsService.updatePostLikes(this.postToLike).subscribe((data) => {
+        console.log(data.body.likes.length);
+        this.totalLikes = data.body.likes.length;
+
+    let p = {
+      userId: 0,
+      postId: 0,
+    }
+    p.postId = currentPost.postId;
+    p.userId = this.user.userId;
+
+    this.totalLikes = this.userService.userLikesPost(p);
+  }
+    
+  
   // Get All Comments
   public getAllComments(): void {
     this.CommentService.getAllComments().subscribe(
@@ -135,10 +150,6 @@ export class HomeComponent implements OnInit {
 
     // });
 
-
-
-
-  }
 
   // Front End Work
   public faHeart = faHeart; //icon

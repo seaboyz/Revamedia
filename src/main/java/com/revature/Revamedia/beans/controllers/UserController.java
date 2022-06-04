@@ -1,6 +1,5 @@
 package com.revature.Revamedia.beans.controllers;
 
-
 import com.revature.Revamedia.beans.services.UserService;
 import com.revature.Revamedia.dtos.AuthDto;
 import com.revature.Revamedia.entities.User;
@@ -26,8 +25,6 @@ public class UserController {
 
     //Controller Methods
 
-
-
     @GetMapping("/allUsers")
     @ResponseStatus(HttpStatus.OK)
     public List<User> getAll(){
@@ -38,6 +35,4 @@ public class UserController {
     public ResponseEntity<User> user (@PathVariable Integer id){
         return new ResponseEntity<>(userService.getUserById(id), HttpStatus.ACCEPTED);
     }
-
-
 }

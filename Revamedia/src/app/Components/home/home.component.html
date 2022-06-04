@@ -19,13 +19,14 @@
   <div class="main">
 
       <!-- post start -->
-      <div class="post-data" *ngFor="let p of posts">
+      <div class="post-data" *ngFor="let p of user?.postsOwned">
 
         <div class="post">
           <div class="post-title" id="setBackgroundColor">
             <div class="post-author">
-              <img routerLink="/profile" routerLinkActive="active" src="https://avatars.githubusercontent.com/u/77355023?v=4" alt="User">
-              <a routerLink="/profile" routerLinkActive="active">leobarrientos02</a>
+              <img *ngIf="user?.profilePicture !== ''" src="{{user?.profilePicture}}" alt="{{ user?.username }}"  routerLink="/profile" routerLinkActive="active">
+          <img *ngIf="user?.profilePicture === ''" src="https://randomuser.me/api/portraits/lego/1.jpg" alt="No Pic" routerLink="/profile" routerLinkActive="active">
+              <a routerLink="/profile" routerLinkActive="active">{{ user?.username }}</a>
             </div>
             <div class="post-options">
               <fa-icon (click)="togglePostsOptions()" id="icon" [icon]="faEllipsis"></fa-icon>
@@ -36,9 +37,9 @@
             </div>
           </div>
           <div class="post-body">
-            <img src="https://images.theconversation.com/files/453091/original/file-20220318-23-2ehppm.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=900.0&fit=crop" alt="User">
+            <img src="{{ p?.image }}" alt="Post">
             <div class="post-description" id="setBackgroundColor">
-              <p><a routerLink="/profile" routerLinkActive="active">leobarrientos02</a>{{p.message}}</p>
+              <p><a routerLink="/profile" routerLinkActive="active">{{ user?.username }}</a>{{p?.message}}</p>
             </div>
             <div class="post-options" id="setBackgroundColor">
               <div class="container">
@@ -50,7 +51,7 @@
                     (click)="likePost(p)"
                     >
                   </fa-icon>
-                   <span>{{p.likes.length}}</span>
+                   <span>{{ p?.likes?.length }} likes</span>
 
                 </div>
                 <div class="comment">
@@ -109,19 +110,20 @@
         </div>
         <!-- ADD COMMENT END -->
 
-        <span (click)="toggleHideComments()" id="viewComments">{{hideComments ? 'Hide Comments' : 'View Comments' }}</span>
+        <span *ngIf="p?.comments.length == 0">No Comments</span>
+        <span (click)="toggleHideComments()" *ngIf="p?.comments.length > 0" id="viewComments">{{hideComments ? 'Hide Comments' : 'View Comments' }}</span>
 
-        <div class="post-comments-section" *ngIf="hideComments" id="commentSection">
+        <div class="post-comments-section" *ngIf="p?.comments.length > 0 && hideComments == true" id="commentSection">
           <!-- comments start -->
           <h5>Comments</h5>
-          <div class="comment">
+          <div class="comment" *ngFor="let comment of p?.comments">
             <div class="comment-author">
               <img routerLink="/profile" routerLinkActive="active" src="https://avatars.githubusercontent.com/u/77355023?v=4" alt="User">
               <a routerLink="/profile" routerLinkActive="active" title="View Profile" >leobarrientos02</a>
             </div>
             <div class="comment-content">
-              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi provident omnis, fugiat quas fuga vero harum beatae quibusdam doloremque sequi voluptates laboriosam hic id modi nisi quo fugit expedita sit!</p>
-              <img src="https://cdn.discordapp.com/attachments/959893537355350073/969003426094661692/76289-1650787315-1611918496.png" alt="Comment">
+              <p>{{ comment?.message }}</p>
+              <img *ngIf="comment?.giphyUrl !== ''" src="{{ comment?.giphyUrl }}" alt="Attached Image">
             </div>
 
             <div class="reply-card">
@@ -171,7 +173,7 @@
             <!-- ADD REPLY END-->
 
             <!-- Replies Start -->
-            <div class="reply">
+            <div class="reply" *ngFor="let reply of comment?.replies">
               <div class="reply-author">
                 <img routerLink="/profile" routerLinkActive="active" src="https://avatars.githubusercontent.com/u/77355023?v=4" alt="User">
                 <a routerLink="/profile" routerLinkActive="active" title="View Profile" >leobarrientos02</a>
@@ -189,7 +191,7 @@
       <!-- post end -->
 
       <!-- NO POST AVAILABLE START-->
-      <div class="noPost" *ngIf="posts.length === 0">
+      <div class="noPost" *ngIf="user?.postsOwned.length == 0">
         <h1>No Post</h1>
         <p>Seems like there are no posts available to show</p>
         <p>Sorry for the inconvience.</p>

@@ -61,9 +61,6 @@ export class HomeComponent implements OnInit {
   comments : any[] = [];
 
   public totalLikes : number = 0;
-  public likePost(post: any){
-    console.log("works")
-  }
 
   // // Back End Work
   public onAddComment(commentForm: NgForm): void{
@@ -87,22 +84,24 @@ export class HomeComponent implements OnInit {
   // //   )
   // // }
 
-  // likePost(currentPost: any): void {
+  likePost(currentPost: any): void {
 
-  //   this.userPostsService.updatePostLikes(this.postToLike).subscribe((data) => {
-  //       console.log(data.body.likes.length);
-  //       this.totalLikes = data.body.likes.length;
+    this.userPostsService.updatePostLikes(this.postToLike).subscribe(
+      (data) => {
+        console.log(data.body.likes.length);
+        this.totalLikes = data.body.likes.length;
 
-  //   let p = {
-  //     userId: 0,
-  //     postId: 0,
-  //   }
-  //   p.postId = currentPost.postId;
-  //   p.userId = this.user.userId;
+        let p = {
+          userId: 0,
+          postId: 0,
+        }
+        p.postId = currentPost.postId;
+        p.userId = this.user.userId;
 
-  //   this.totalLikes = this.userService.userLikesPost(p);
-  //   }
-  // }
+        this.totalLikes = this.userService.userLikesPost(p);
+      }
+    )
+  }
 
 
   // // Get All Comments

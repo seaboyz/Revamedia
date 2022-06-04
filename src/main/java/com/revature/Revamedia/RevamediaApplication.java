@@ -7,6 +7,7 @@ package com.revature.Revamedia;
 
 import com.revature.Revamedia.beans.services.*;
 import com.revature.Revamedia.entities.User;
+import com.revature.Revamedia.entities.UserComments;
 import com.revature.Revamedia.entities.UserPosts;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -30,15 +31,68 @@ public class RevamediaApplication {
                 UserConversationsService userConversationsService = context.getBean(UserConversationsService.class);
                 UserMessagesService userMessagesService = context.getBean(UserMessagesService.class);
 
+                // KYLE
                 User kyle = new User();
                 kyle.setFirstName("Kyle");
                 kyle.setLastName("Plummer");
                 kyle.setUsername("KPlummer");
                 kyle.setEmail("KPlummer@gmail.com");
-                kyle.setPassword("Password");
+                kyle.setPassword("Password1!");
                 kyle.setProfilePicture("https://randomuser.me/api/portraits/lego/1.jpg");
                 kyle.setDateCreated(new Timestamp(System.currentTimeMillis()));
                 userService.save(kyle);
+
+                // Leo
+                User leo = new User();
+                leo.setFirstName("Leonel");
+                leo.setLastName("Barrientos");
+                leo.setUsername("leoBarrientos02");
+                leo.setEmail("leoBarrientos02@gmail.com");
+                leo.setPassword("Password1!");
+                leo.setProfilePicture("https://avatars.githubusercontent.com/u/77355023?s=400&u=149ab70c25dbfa4dbfb3afc5c5c9eabefe0f7c7c&v=4");
+                leo.setDateCreated(new Timestamp(System.currentTimeMillis()));
+                userService.save(leo);
+
+                 // KYLE POST
+                UserPosts post1 = new UserPosts();
+                post1.setOwnerId(kyle);
+                post1.setImage("https://images.pexels.com/photos/3408744/pexels-photo-3408744.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+                post1.setMessage("I Still can't believe i was able to see this view in person.");
+                post1.setDateCreated(new Timestamp(System.currentTimeMillis()));
+                kyle.addPost(post1);
+
+                userPostsService.save(post1);
+                userService.update(kyle);
+
+
+                // KYLE POST2
+                UserPosts post2 = new UserPosts();
+                post2.setOwnerId(kyle);
+                post2.setImage("https://images.pexels.com/photos/3601450/pexels-photo-3601450.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+                post2.setMessage("I'm an island boy.");
+                post2.setDateCreated(new Timestamp(System.currentTimeMillis()));
+                kyle.addPost(post2);
+
+                userPostsService.save(post2);
+                userService.update(kyle);
+
+                // testing comments
+                UserComments comment1 = new UserComments();
+                comment1.setOwnerId(leo);
+                comment1.setPostId(post2);
+                comment1.setMessage("Awesome picture bro, i hope you enjoyed your time off.");
+                comment1.setDateCreated(new Timestamp(System.currentTimeMillis()));
+                comment1.setGiphyUrl("https://media1.giphy.com/media/fpWxOVANhGVkwCFJor/giphy.gif?cid=ecf05e47capt30np9brv7c6kv0f0m9wyxgm0vqf89tdtj69w&rid=giphy.gif&ct=ts");
+                userCommentsService.save(comment1);
+                post2.addComment(comment1);
+                userPostsService.save(post2);
+
+                // //testing replies
+                // UserReplies reply1 = new UserReplies();
+                // reply1.setOwnerId(user1);
+                // reply1.setCommentId(comment1);
+                // reply1.setMessage("reply1 message by user1");
+                // comment1.addReply(reply1);
 
 
                 // User user1 = new User();

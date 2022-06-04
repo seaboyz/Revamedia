@@ -60,7 +60,7 @@ $darkgrey: rgb(61,66,74);
       border: none;
       background: $orange;
       font-size: 1rem;
-      border-radius: 10px;
+      border-radius: 5px;
       border: none;
       outline: none;
       padding: .5rem 1rem;
@@ -465,12 +465,12 @@ $darkgrey: rgb(61,66,74);
           .comment-content{
             margin-left: 2rem;
             p{
-              font-size: .9rem;
+              font-size: 1rem;
             }
             img{
-              margin: .5rem 1rem;
-              width: 12rem;
-              height: 12rem;
+              border: 1px solid $lightgrey;
+              width: 10rem;
+              height: 10rem;
               object-fit: cover;
               border-radius: 3px;
             }
@@ -642,7 +642,9 @@ $darkgrey: rgb(61,66,74);
 
         }
         .reply{
-          margin-left: 2rem;
+          border-top: 1px solid $lightgrey;
+          margin: .5rem 0  0 2rem;
+          padding: .5rem 0;
           .reply-author{
             display: flex;
             flex-direction: row;

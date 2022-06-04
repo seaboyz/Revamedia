@@ -179,8 +179,8 @@
                 <a routerLink="/profile" routerLinkActive="active" title="View Profile" >leobarrientos02</a>
               </div>
               <div class="reply-content">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, fuga, eaque eos alias laboriosam quis sapiente, illum provident accusantium odio minima aspernatur nihil deleniti? Dicta odit tempore aspernatur cum quis!</p>
-                <img src="https://media3.giphy.com/media/3EuAsjZDUJefK/giphy.gif?cid=ecf05e47baab3e1b6e1451e393cae03f17f5fd0f114af892&rid=giphy.gif&ct=g" alt="reply">
+                <p>{{ reply?.message }}</p>
+                <img src="{{ reply?.giphyUrl }}" *ngIf="reply?.giphyUrl !== ''" alt="Attached Image">
               </div>
             </div>
             <!-- Replies End -->

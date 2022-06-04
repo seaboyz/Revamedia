@@ -9,6 +9,7 @@ import com.revature.Revamedia.beans.services.*;
 import com.revature.Revamedia.entities.User;
 import com.revature.Revamedia.entities.UserComments;
 import com.revature.Revamedia.entities.UserPosts;
+import com.revature.Revamedia.entities.UserReplies;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -87,12 +88,18 @@ public class RevamediaApplication {
                 post2.addComment(comment1);
                 userPostsService.save(post2);
 
-                // //testing replies
-                // UserReplies reply1 = new UserReplies();
-                // reply1.setOwnerId(user1);
-                // reply1.setCommentId(comment1);
-                // reply1.setMessage("reply1 message by user1");
-                // comment1.addReply(reply1);
+                //testing replies
+                 UserReplies reply1 = new UserReplies();
+                 reply1.setOwnerId(kyle);
+                 reply1.setCommentId(comment1);
+                reply1.setMessage("Thank you, but i believe you should be getting ready for your interview. Good luck!!");
+                 reply1.setDateCreated(new Timestamp(System.currentTimeMillis()));
+                 reply1.setGiphyUrl("https://media0.giphy.com/media/12XDYvMJNcmLgQ/giphy.gif?cid=ecf05e47wqxq3jqldfwi6vb0xt0fkvpf3k9w0lpp5uq24lyj&rid=giphy.gif&ct=g");
+                 comment1.addReply(reply1);
+                 userRepliesService.save(reply1);
+                 comment1.addReply(reply1);
+                 userCommentsService.save(comment1);
+                 userPostsService.save(post2);
 
 
                 // User user1 = new User();

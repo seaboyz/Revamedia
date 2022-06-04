@@ -468,10 +468,10 @@ $darkgrey: rgb(61,66,74);
               font-size: 1rem;
             }
             img{
+              margin: .4rem 0 0 .4rem;
               border: 1px solid $lightgrey;
-              width: 10rem;
-              height: 10rem;
-              object-fit: cover;
+              width: 12rem;
+              object-fit: contain;
               border-radius: 3px;
             }
           }
@@ -673,13 +673,13 @@ $darkgrey: rgb(61,66,74);
           .reply-content{
             margin-left: 2rem;
             p{
-              font-size: .9rem;
+              font-size: 1rem;
             }
             img{
-              margin: .5rem 0;
+              margin: .4rem 0 0 .4rem;
+              border: 1px solid $lightgrey;
               width: 12rem;
-              height: 12rem;
-              object-fit: cover;
+              object-fit: contain;
               border-radius: 3px;
             }
           }

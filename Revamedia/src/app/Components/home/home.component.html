@@ -191,7 +191,7 @@
     <h3>Create new post</h3>
     <span (click)="closeModal('add')">x</span>
   </div>
-  <form>
+  <form #addPostForm="ngForm" (ngSubmit)="onAddPost(addPostForm)">
     <div class="form-data">
       <h4>Add Image or Video</h4>
       <div class="file-input">

@@ -123,7 +123,16 @@ export class HomeComponent implements OnInit {
   }
 
 
-
+  onAddPost(postForm: NgForm): void {
+    this.userPostsService.addPost(postForm.value).subscribe(
+      (response: any) => {
+        console.log(response)
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error.message)
+      }
+    )
+  }
 
 
   // get all comments for given post

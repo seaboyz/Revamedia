@@ -28,7 +28,11 @@
 
     <div class="user-settings" id="setBackgroundColor">
       <h4>User Settings</h4>
-      <div class="user-settings-row">
+      <div class="user-settings-title">
+        <h3>Edit Account</h3>
+        <button (click)="openModal('edit', user)">Edit</button>
+      </div>
+      <div class="user-settings-row" style="border-top:1px solid rgb(230,229,222);">
         <h5>First Name</h5>
         <span>Leonel</span>
       </div>
@@ -48,19 +52,10 @@
         <h5>Profile Pic</h5>
         <img src="https://avatars.githubusercontent.com/u/77355023?v=4" alt="User">
       </div>
-      <div class="user-settings-row">
-        <h5>Password</h5>
-        <span>*******</span>
+      <div class="user-settings-title">
+        <h3>Delete Account</h3>
+        <button id="deleteBtn" (click)="openModal('delete', user)">Delete</button>
       </div>
-      <div class="user-settings-row">
-        <h5>Edit Account</h5>
-        <button>Edit</button>
-      </div>
-      <div class="user-settings-row">
-        <h5>Delete Account</h5>
-        <button id="deleteBtn">Delete</button>
-      </div>
-
     </div>
 
   </div>
@@ -72,30 +67,57 @@
 <div class="screen" id="screen"></div>
 <!-- BLACKOUTSCREEN END-->
 
-<!-- EDIT POST FORM START -->
-<div class="modal" id="add-post-modal">
+
+<!-- DELETE ACCOUNT FORM START -->
+<div class="modal" id="delete-account-modal">
   <div class="form-header">
-    <h3>Create new post</h3>
-    <span>x</span>
+    <h3>Delete Account</h3>
+    <span (click)="closeModal('delete')">x</span>
   </div>
   <form>
-    <div class="form-data">
-      <h4>Add Image or Video</h4>
-      <div class="file-input">
-        <input type="file" id="file" class="file">
-        <label for="file">
-          Select File
-        </label>
-        <p class="file-name" id="add-post-fileName"></p>
-      </div>
-    </div>
-    <div class="form-data">
-      <h4>Write a caption</h4>
-      <textarea name="message" placeholder="Write a caption..."></textarea>
-    </div>
+    <h2>Are you sure you want to delete your account?</h2>
     <div class="post-submit">
-      <button>Create Post</button>
+      <button id="deleteBtn">Delete</button>
     </div>
   </form>
 </div>
-<!-- ADD POST FORM END -->
+<!-- DELETE ACCOUNT FORM END -->
+
+<!-- EDIT ACCOUNT FORM START -->
+<div class="modal" id="edit-account-modal">
+  <div class="form-header">
+    <h3>Update Account</h3>
+    <span (click)="closeModal('edit')">x</span>
+  </div>
+  <form>
+    <div class="user-settings-row">
+      <h5>First Name</h5>
+      <input type="text" name="first_name" id="first_name" placeholder="First Name">
+    </div>
+    <div class="user-settings-row">
+      <h5>Last Name</h5>
+      <input type="text" name="last_name" id="last_name" placeholder="Last Name">
+    </div>
+    <div class="user-settings-row">
+      <h5>Username</h5>
+      <input type="text" name="username" id="username" placeholder="Username...">
+    </div>
+    <div class="user-settings-row">
+      <h5>Email</h5>
+      <input type="email" name="email" id="email" placeholder="Email">
+    </div>
+    <div class="user-settings-row">
+      <h5>Profile Pic</h5>
+      <input type="url" name="profile_pic" id="profile_pic" placeholder="Image URL">
+    </div>
+    <div class="user-settings-row">
+      <h5>Password</h5>
+      <input type="password" name="password" id="password" placeholder="Password">
+    </div>
+    <div class="post-submit">
+      <button>Update</button>
+    </div>
+  </form>
+</div>
+<!-- EDIT ACCOUNT FORM END -->
+

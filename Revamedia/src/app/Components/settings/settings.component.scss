@@ -47,7 +47,6 @@ $darkgrey: rgb(61,66,74);
         font-size: 2rem;
         color: $darkgrey;
         text-decoration: underline;
-        margin-bottom: 1rem;
       }
 
       .user-settings-row{
@@ -57,19 +56,31 @@ $darkgrey: rgb(61,66,74);
         align-items: center;
         justify-content: space-between;
         border-bottom: 1px solid $lightgrey;
-        border-top: 1px solid $lightgrey;
-        padding: 1rem 0;
+        padding: .75rem 0;
         h5{
-          font-size: 1.5rem;
+          font-size: 1.2rem;
           color: $darkgrey;
         }
         span{
           font-size: 1.3rem;
         }
         img{
-          width: 3rem;
-          height: 3rem;
+          width: 2.5rem;
+          height: 2.5rem;
           border-radius: 50%;
+        }
+      }
+      .user-settings-title{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 0;
+        h3{
+          font-size: 1.5rem;
+          font-weight: 700;
+          color: $blue;
         }
         button{
           border: none;
@@ -158,3 +169,162 @@ $darkgrey: rgb(61,66,74);
     margin-left: 10%;
   }
 }
+
+
+// BLACKOUT SCREEN CSS START
+.screen{
+  position: fixed;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.38);
+  top: -100%;
+  left: -100%;
+  opacity: 0;
+  width: 100vw;
+  height: 100vh;
+  transition: all .4s ease-in-out;
+}
+.openScreen{
+  top: 0;
+  left: 0;
+  opacity: 1;
+}
+// BLACKOUT SCREEN CSS END
+
+// MODALS CSS START
+.modal{
+  position: fixed;
+  z-index: 15;
+  top: -100%;
+  left: -100%;
+  transform: scale(0);
+  transition: all .4s ease-in-out;
+  background-color: white;
+  border-right: 3px solid $orange;
+  border-left: 3px solid $orange;
+  border-bottom: 3px solid $blue;
+  border-top: 3px solid $blue;
+  min-height: 30vh;
+  border-radius: 2px;
+  background: white;
+  padding: 2rem;
+  width: 60%;
+  .form-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    h3{
+      font-size: 2.2rem;
+      color: $darkgrey;
+      text-decoration: underline;
+    }
+    span{
+      font-size: 2.5rem;
+      color: $darkgrey;
+      cursor: pointer;
+      transition: all .3s ease-in-out;
+      &:hover{
+       color: $blue;
+      }
+    }
+  }
+  form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: .5rem 0;
+    .user-settings-row{
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid $lightgrey;
+      padding: .5rem 0;
+      h5{
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: $darkgrey;
+      }
+      span{
+        font-size: 1.3rem;
+      }
+      img{
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+      }
+      input{
+        width: 45%;
+        border: none;
+        outline: none;
+        padding: .3rem;
+        font-size: 1.1rem;
+        color: $darkgrey;
+        border: 1.2px solid $grey;
+        border-radius: 4px;
+        &:focus{
+          border: 1.2px solid $blue;
+        }
+      }
+    }
+    .post-submit{
+      margin-top: 1rem;
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      button{
+        border: none;
+        background: $orange;
+        font-size: 1.25rem;
+        cursor: pointer;
+        color: $darkgrey;
+        padding: .4rem 1rem;
+        border-radius: 3px;
+        transition: all .3s ease-in-out;
+        &:hover{
+          background: #e4993f;
+        }
+      }
+      #deleteBtn{
+        border: none;
+        background: rgb(206, 0, 0);
+        font-size: 1.25rem;
+        cursor: pointer;
+        color: white;
+        padding: .4rem 1rem;
+        border-radius: 3px;
+        transition: all .3s ease-in-out;
+        &:hover{
+          background: rgb(162, 0, 0);
+        }
+      }
+    }
+  }
+}
+// media queries for modals
+@media screen and (max-width: 800px) {
+  .modal{
+    width: 85%;
+    .form-header{
+      h3{
+        font-size: 2rem;
+      }
+    }
+  }
+}
+
+.openModal{
+  top: 5%;
+  left: 20%;
+  transform: scale(1);
+}
+// media queries for modals
+@media screen and (max-width: 800px) {
+  .openModal{
+    top: 5%;
+    left: 10%;
+  }
+}
+
+// MODALS CSS END

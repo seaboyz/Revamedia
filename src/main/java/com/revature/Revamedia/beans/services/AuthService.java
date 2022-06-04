@@ -42,6 +42,7 @@ public class AuthService {
             System.out.println("User in register");
             System.out.println(user);
             System.out.println(ResponseEntity.ok(user));
+            userService.save(user);
             return ResponseEntity.ok().build();
         }
         else {

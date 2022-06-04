@@ -49,8 +49,17 @@ $darkgrey: rgb(61, 66, 74);
       width: 100%;
       text-align: center;
     }
-
-    form {
+    // INVALID TEXT
+    .invalid{
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgb(193, 0, 0);
+      font-weight: 600;
+    }
+    
+    form{
       margin: .5rem 0;
       border-top: solid 1px $lightgrey;
       border-bottom: 1px solid $lightgrey;

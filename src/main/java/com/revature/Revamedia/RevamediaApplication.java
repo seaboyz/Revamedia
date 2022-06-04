@@ -29,6 +29,18 @@ public class RevamediaApplication {
                 UserGroupsService userGroupsService = context.getBean(UserGroupsService.class);
                 UserConversationsService userConversationsService = context.getBean(UserConversationsService.class);
                 UserMessagesService userMessagesService = context.getBean(UserMessagesService.class);
+
+                User kyle = new User();
+                kyle.setFirstName("Kyle");
+                kyle.setLastName("Plummer");
+                kyle.setUsername("KPlummer");
+                kyle.setEmail("KPlummer@gmail.com");
+                kyle.setPassword("Password");
+                kyle.setProfilePicture("https://randomuser.me/api/portraits/lego/1.jpg");
+                kyle.setDateCreated(new Timestamp(System.currentTimeMillis()));
+                userService.save(kyle);
+
+
                 // User user1 = new User();
                 // user1.setFirstName("Brandon");
                 // user1.setUsername("b1");

@@ -15,7 +15,7 @@ import { FireAuthService } from "src/app/Shared/services/fire-auth-service/fire-
 export class LoginComponent implements OnInit
 {
 
-  constructor(public auth: AuthenticationService, private fireAuth: FireAuthService) { }
+  constructor(public auth: FireAuthService, ) { }
 
   ngOnInit(): void
   {
@@ -24,12 +24,7 @@ export class LoginComponent implements OnInit
 
   public TEMPLogIn(loginForm: NgForm)
   {
-    this.auth.login(loginForm);
-  }
-
-  public firebaseLogin(loginForm: NgForm)
-  {
-    this.fireAuth.login(loginForm.value.username, loginForm.value.password)
+    this.auth.login(loginForm.value.username, loginForm.value.password)
   }
 
   // Front End Work

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MessageService } from "src/app/Shared/services/message-service/message.service";
 
 @Component({
   selector: 'app-message-input',
@@ -10,20 +11,23 @@ export class MessageInputComponent implements OnInit
 
   message = "";
 
-  constructor() { }
+  constructor(private messageSerive: MessageService) { }
 
   ngOnInit(): void
   {
   }
 
-  handleSubmit(event: Event)
+  handleSubmit(event: any)
   {
-    console.log(event)
+    if (event.keyCode === 13) {
+      this.send();
+    }
   }
 
   send()
   {
-    console.log("send!")
+    this.messageSerive.sendMessage(this.message);
   }
+
 
 }

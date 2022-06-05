@@ -10,7 +10,7 @@ import { RegisterComponent } from './Components/register/register.component';
 import { ErrorPageComponent } from './Components/error-page/error-page.component';
 import { ProfileComponent } from './Components/profile/profile.component';
 // Guard
-import { AuthGuard } from "../app/Shared/guard/auth.guard";
+import {AngularFireAuthGuard as AuthGuard} from '@angular/fire/compat/auth-guard';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },

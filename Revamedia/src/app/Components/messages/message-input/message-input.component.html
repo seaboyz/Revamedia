@@ -1,1 +1,10 @@
-<p>message-input works!</p>
+<input
+    class="message-input"
+    [(ngModel)]="message"
+    (keydown)="handleSubmit($event)"
+/>
+
+<button
+    class="send"
+    (click)="send()"
+>Send</button>

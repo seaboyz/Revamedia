@@ -5,11 +5,25 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './message-input.component.html',
   styleUrls: ['./message-input.component.scss']
 })
-export class MessageInputComponent implements OnInit {
+export class MessageInputComponent implements OnInit
+{
+
+  message = "";
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit(): void
+  {
+  }
+
+  handleSubmit(event: Event)
+  {
+    console.log(event)
+  }
+
+  send()
+  {
+    console.log("send!")
   }
 
 }

@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NgForm } from '@angular/forms';
+import { AuthenticationService } from "src/app/Shared/services/auth-service/authentication.service";
 import { LoginComponent } from './login.component';
-import { AuthenticationService } from 'app/Shared/services/auth-service/authentication.service';
 
 fdescribe('LoginComponent', () => {
   let component: LoginComponent;

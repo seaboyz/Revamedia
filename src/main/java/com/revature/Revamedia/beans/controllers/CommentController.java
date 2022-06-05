@@ -76,8 +76,10 @@ public class CommentController {
 
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.OK)
-    public HttpResponseDto updateById(@RequestBody UserComments updatedComment, HttpServletResponse res) {
-        UserComments comment = userCommentsService.update(updatedComment);
+    public HttpResponseDto updateById(@RequestBody UserCommentsDto updatedComment, HttpServletResponse res) {
+        UserComments comment = userCommentsService.getCommentById(updatedComment.getComment_id());
+        comment.setMessage(updatedComment.getMessage());
+        userCommentsService.update(comment);
 
         if(comment.getMessage() != comment.getMessage()) {
             res.setStatus(400);

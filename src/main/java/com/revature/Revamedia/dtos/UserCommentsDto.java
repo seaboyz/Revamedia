@@ -25,6 +25,11 @@ public class UserCommentsDto {
         this.giphyUrl = giphyUrl;
     }
 
+    public UserCommentsDto(Integer comment_id, String message) {
+        this.comment_id = comment_id;
+        this.message = message;
+    }
+
     public Integer getOwner_id() {
         return owner_id;
     }

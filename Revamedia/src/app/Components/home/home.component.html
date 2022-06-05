@@ -69,7 +69,7 @@
         </div>
 
         <span *ngIf="p?.comments.length === 0">No Comments</span>
-        <span (click)="toggleHideComments()" *ngIf="p?.comments.length !== 0" id="viewComments">{{hideComments ? 'Hide Comments' : 'View Comments' }}</span>
+        <span (click)="toggleHideComments()" *ngIf="p?.comments.length !== 0" id="viewComments">{{viewComments ? 'Hide Comments' : 'View Comments' }}</span>
 
         <!-- ADD COMMENT -->
         <div class="add-comment" *ngIf="addComment">
@@ -112,7 +112,7 @@
         </div>
         <!-- ADD COMMENT END-->
 
-        <div class="post-comments-section" *ngIf="p?.comments.length > 0 && hideComments == true" id="commentSection">
+        <div class="post-comments-section" *ngIf="p?.comments.length > 0 && viewComments == true" id="commentSection">
           <!-- comments start -->
           <h5>Comments</h5>
           <div class="comment" *ngFor="let comment of p?.comments">
@@ -321,49 +321,3 @@
   </form>
 </div>
 <!-- ADD COMMENT FORM END -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <div class="reactions">
-  <ul>
-    <li>Emojis</li>
-    <li>GIFS</li>
-    <li>Pics</li>
-  </ul>
-  <div class="emojis">
-  </div>
-  <div class="gifs">
-    <!-- funny gifs -->
-<!-- <img src="https://giphy.com/gifs/hallmarkecards-cute-hallmark-shoebox-2A75RyXVzzSI2bx4Gj" alt="Funny1">
-    <img src="https://giphy.com/gifs/moodman-funny-lol-laughing-fUYhyT9IjftxrxJXcE" alt="Funny2">
-    <img src="https://giphy.com/gifs/lol-laugh-laughing-gj0QdZ9FgqGhOBNlFS" alt="Funny3">
-    <img src="https://giphy.com/gifs/lol-laugh-laughing-gj0QdZ9FgqGhOBNlFS" alt="Funny4">
-    <!-- mad gifs -->
-<!-- <img src="https://giphy.com/gifs/disneypixar-disney-pixar-11tTNkNy1SdXGg" alt="Mad1">
-    <img src="https://giphy.com/gifs/mad-arthur-fist-WoF3yfYupTt8mHc7va" alt="Mad2">
-    <img src="https://giphy.com/gifs/KhliiAkDFP9YY" alt="Mad3">
-    <img src="https://giphy.com/gifs/KhliiAkDFP9YY" alt="Mad3"> --> -->
-<!-- </div>
-  <div class="pics">
-  </div>
-</div> --> -->

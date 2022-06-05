@@ -172,9 +172,9 @@ export class HomeComponent implements OnInit {
   public faFaceGrinTongueSquint = faFaceGrinTongueSquint; //icon
 
   // hide Comments
-  public hideComments = true;
+  public viewComments = false;
   public toggleHideComments(): void {
-    this.hideComments = !this.hideComments;
+    this.viewComments = !this.viewComments;
   }
 
   // Add comment

@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
 
   }
 
-  public TEMPLogIn(loginForm: NgForm) {
+  public logIn(loginForm: NgForm) {
     this.auth.login(loginForm);
   }
 

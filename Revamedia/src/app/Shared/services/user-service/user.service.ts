@@ -39,7 +39,7 @@ export class UserService {
       console.log(data.body);
       num = data.body.userPosts.likes.length;
       this.setCurrentUser(data.body.user);
-    
+
   });
     return num
   }
@@ -59,7 +59,7 @@ export class UserService {
         // this.conversations = new HashSet<>();
 
    //     this.likedPosts = new ArrayList<>();
-  //1. when user logs in- 
+  //1. when user logs in-
   //2.you store their user id in local storage.
   //3. call method to get user information.
   //4. set user information into user

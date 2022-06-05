@@ -39,9 +39,7 @@ public class UserComments implements Serializable {
     @JoinColumn(name = "post_id", referencedColumnName = "post_id")
     private UserPosts postId;
 
-
-
-    @JsonIgnore
+//    @JsonIgnore
     @OneToMany(mappedBy = "commentId", cascade = CascadeType.ALL)
     private List<UserReplies> replies;
 

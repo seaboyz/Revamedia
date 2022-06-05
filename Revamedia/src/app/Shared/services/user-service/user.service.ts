@@ -13,7 +13,7 @@ export class UserService {
 
   constructor(private http:HttpClient, private userPostsService:UserPostsService) {
     this.userSubject = new BehaviorSubject<any>(this.user);
-    this.getUserById(2).subscribe((response: any) => {
+    this.getUserById(1).subscribe((response: any) => {
       console.log("1: ", response.body);
       this.user = response.body;
       console.log("userservice: ", this.user);

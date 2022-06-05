@@ -31,7 +31,7 @@
     <h4 class="profile-posts-title" id="setBackgroundColor">{{ user?.username }}'s Posts</h4>
     <div class="users-post">
       <div class="post" *ngFor="let post of user?.postsOwned">
-        <img src="https://images.theconversation.com/files/453091/original/file-20220318-23-2ehppm.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=900.0&fit=crop" alt="User">
+        <img src="{{ post?.image }}" alt="POST">
       </div>
     </div>
 

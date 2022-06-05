@@ -19,7 +19,7 @@
   <div class="main">
 
       <!-- post start -->
-      <div class="post-data" *ngFor="let p of user?.postsOwned">
+      <div class="post-data" *ngFor="let p of posts">
 
         <div class="post">
           <div class="post-title" id="setBackgroundColor">
@@ -43,12 +43,11 @@
             </div>
             <div class="post-options" id="setBackgroundColor">
               <div class="container">
-                <div class="likes">
+                <div class="likes" (click)="likePost(p)">
                   <fa-icon
                     [icon]="faHeart"
                     size="lg"
-                    [ngClass]="[totalLikes < 1 ? 'NoLike' : 'OneLike']"
-                    (click)="likePost()"
+                    [ngClass]="[p?.likes?.length < 1 ? 'NoLike' : 'OneLike']"
                     >
                   </fa-icon>
                    <span>{{ p?.likes?.length }} likes</span>
@@ -77,8 +76,11 @@
             <h5>Add Comment</h5>
             <button title="Close" (click)="closeAddComment()">X</button>
           </div>
-          <form id="add-comment-form">
-            <textarea name="comment" id="comment" rows="3"></textarea>
+          <form #commentForm="ngForm" (ngSubmit)="onAddComment(commentForm)" id="add-comment-form">
+            <input type="hidden" name="post_id" ngModel="{{ p?.postId }}">
+            <input type="hidden" name="date_created" ngModel="{{ currentDate }}">
+            <input type="hidden" name="owner_id" ngModel="{{ user?.userId }}">
+            <textarea name="message" id="comment" rows="4" ngModel></textarea>
             <div class="reactions">
               <span>Reactions</span>
               <div class="search">
@@ -136,8 +138,11 @@
                 <h5>Add Reply</h5>
                 <button title="Close" (click)="closeAddReply()">X</button>
               </div>
-              <form id="add-reply-form">
-                <textarea name="comment" id="comment" rows="3"></textarea>
+              <form #replyForm="ngForm" (ngSubmit)="onAddReply(replyForm)" id="add-reply-form">
+                <input type="hidden" name="comment_id" ngModel="{{ comment?.commentId }}" >
+                <input type="hidden" name="date_created" ngModel="{{ currentDate }}">
+                <input type="hidden" name="owner_id" ngModel="{{ user?.userId }}">
+                <textarea ngModel name="message" id="comment" rows="4"></textarea>
                 <div class="reactions">
                   <span>Reactions</span>
                   <div class="search">

@@ -40,6 +40,7 @@ public class RevamediaApplication {
                 UserGroupsService userGroupsService = context.getBean(UserGroupsService.class);
                 UserConversationsService userConversationsService = context.getBean(UserConversationsService.class);
                 UserMessagesService userMessagesService = context.getBean(UserMessagesService.class);
+                UserFollowsService userFollowsService = context.getBean(UserFollowsService.class);
 
                 // KYLE
                 User kyle = new User();
@@ -112,6 +113,31 @@ public class RevamediaApplication {
                 comment1.addReply(reply1);
                 userCommentsService.save(comment1);
                 userPostsService.save(post2);
+
+                // Leo Post
+                UserPosts post3 = new UserPosts();
+                post3.setOwnerId(leo);
+                post3.setImage("https://images.pexels.com/photos/5750823/pexels-photo-5750823.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+                post3.setMessage("This week i am going to start training in a boxing gym. I hope i can get better at self defense.");
+                post3.setDateCreated(new Timestamp(System.currentTimeMillis()));
+                leo.addPost(post3);
+                userPostsService.save(post3);
+                userService.update(leo);
+
+                //Follows
+                 UserFollows follow1 = new UserFollows();
+                 follow1.setFollowedId(userService.getUserById(2));
+                 follow1.setFollowerId(userService.getUserById(1));
+                 follow1.setDateFollowed(new Timestamp(System.currentTimeMillis()));
+                 leo.addFollower(follow1);
+                 userFollowsService.save(follow1);
+
+//                UserFollows follow2 = new UserFollows();
+//                follow2.setFollowedId(userService.getUserById(1));
+//                follow2.setDateFollowed(new Timestamp(System.currentTimeMillis()));
+//                leo.addFollower(follow2);
+//                userFollowsService.save(follow2);
+//                userService.update(leo);
         }
 }
 

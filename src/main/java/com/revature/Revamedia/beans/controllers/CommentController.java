@@ -1,6 +1,7 @@
 package com.revature.Revamedia.beans.controllers;
 
 import com.revature.Revamedia.beans.services.UserCommentsService;
+import com.revature.Revamedia.dtos.AddCommentDto;
 import com.revature.Revamedia.dtos.HttpResponseDto;
 import com.revature.Revamedia.dtos.UserCommentsDto;
 import com.revature.Revamedia.entities.UserComments;
@@ -63,14 +64,20 @@ public class CommentController {
 
     @PostMapping("/add")
     @ResponseStatus(HttpStatus.OK)
-    public HttpResponseDto saveComment(@RequestBody UserComments comment, HttpServletResponse res){
-        UserComments newComment = userCommentsService.save(comment);
-        if(comment.getMessage() != comment.getMessage()) {
+    public HttpResponseDto saveComment(@RequestBody AddCommentDto dto, HttpServletResponse res){
+        UserComments newComment = new UserComments();
+        newComment.setMessage(dto.getMessage());
+        newComment.setGiphyUrl(dto.getGiphyUrl());
+        newComment.setDateCreated(dto.getDateCreated());
+        newComment.setOwnerId(dto.getUser());
+        newComment.setPostId(dto.getPost());
+        userCommentsService.save(newComment);
+        if(newComment.getMessage() != dto.getMessage()) {
             res.setStatus(400);
-            return new HttpResponseDto(400, "Failed to save comment", comment);
+            return new HttpResponseDto(400, "Failed to save comment", newComment);
         } else {
             res.setStatus(200);
-            return new HttpResponseDto(200, "Successfully saved comment" + comment.getMessage(), newComment);
+            return new HttpResponseDto(200, "Successfully saved comment", newComment);
         }
     }
 

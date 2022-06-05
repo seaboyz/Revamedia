@@ -14,7 +14,7 @@ export class SettingsComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-    this.getUserData();
+    this.getCurrentUserData();
   }
 
   // Back end work
@@ -23,7 +23,7 @@ export class SettingsComponent implements OnInit {
   public deleteUser: any; // Used for delete modal
 
   // GET CURRENT USER
-  public getUserData(){
+  public getCurrentUserData(){
     this.userService.getCurrentUser().subscribe(
       (response: any) => {
         this.user = response;

@@ -39,7 +39,6 @@ export class UserService {
       console.log(data.body);
       num = data.body.userPosts.likes.length;
       this.setCurrentUser(data.body.user);
-
   });
     return num
   }

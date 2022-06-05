@@ -8,6 +8,7 @@ import { UserPostsService } from 'src/app/Shared/services/user-posts-service/use
 import { HttpClient } from '@angular/common/http';
 import { UserService } from 'src/app/Shared/services/user-service/user.service';
 import { GiphyService } from 'src/app/Shared/services/giphy-service/giphy.service';
+import { ThisReceiver } from '@angular/compiler';
 
 @Component({
   selector: 'app-home',
@@ -23,10 +24,11 @@ export class HomeComponent implements OnInit {
 
   public user: any;
   users: any[] = [];
-  following: any[] = [];
   posts: any[] = [];
-  followPosts: any[] = [];
-  comments: any[] = [];
+
+  // Variables Used In Home Component
+  public currentDate = new Date();
+  public post: any;
 
   public totalLikes: number = 0;
 
@@ -37,129 +39,132 @@ export class HomeComponent implements OnInit {
     // this.getAllComments();
     this.getGifs('funny');
     this.getStickers('funny');
-    this.userService.getCurrentUser().subscribe({
-      next: response => {
-        this.user = response;
+    this.posts = [];
+    this.getCurrentUserData();
+    // this.userService.getCurrentUser().subscribe({
+    //   next: response => {
+    //     this.user = response;
 
-        let f: any;
-        this.posts = [];
-        for(f of response.following) {
-          this.posts.push(f.followedId.postsOwned);
-        }
-        this.posts = this.posts.flat();
-        //b.date.getTime() - a.date.getTime();
+    //     let f: any;
+    //     this.posts = [];
+    //     for(f of response.following) {
+    //       this.posts.push(f.followedId.postsOwned);
+    //     }
+    //     this.posts = this.posts.flat();
+    //     //b.date.getTime() - a.date.getTime();
 
-      },
-      error: err => {
-        console.error(err);
-      }
-    });
+    //   },
+    //   error: err => {
+    //     console.error(err);
+    //   }
+    // });
   }
 
-
-  // Variables Used In Home Component
-  public comment: any = {};
-  public currentDate = new Date();
-  public post: any;
+  // GET CURRENT USER
+  public getCurrentUserData(){
+    this.userService.getCurrentUser().subscribe(
+      (response: any) => {
+        this.user = response;
+        for(let f of response?.following) {
+          this.posts = f?.followedId?.postsOwned;
+          this.posts = this.posts.flat();
+        }
+        for(let p of response?.postsOwned){
+          this.posts.push(p)
+          this.posts = this.posts.flat();
+        }
+        // console.log(this.posts);
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error.message)
+      }
+    );
+  }
 
   // // Back End Work
+  public likePost(currentPost: any): void {
+    this.userPostsService.updatePostLikes(this.postToLike).subscribe(
+      (data) => {
+        // console.log(data.body.likes.length);
+        // this.totalLikes = data.body.likes.length;
+        let p = {
+          userId: 0,
+          postId: 0,
+        }
+        p.postId = currentPost.postId;
+        p.userId = this.user.userId;
+
+        this.totalLikes = this.userService.userLikesPost(p);
+      }
+    )
+  }
+
+  // likePost(): void {
+
+  // // // Get All Comments
+  // // // public getAllComments(): void{
+  // // //   this.CommentService.getAllComments().subscribe(
+  // // //     (response: any) => {
+  // // //       this.comments.push(response.data);
+  // // //     },
+  // // //     (error: HttpErrorResponse) => {
+  // // //       console.log(error.message)
+  // // //     }
+  // // //   )
+  // // // }
+
+
+  // //    // get all comments for given post
+
+  // //       // console.log(data.body.comments);
+  // //       // console.log(data.body.comments[0]);
+  // //       // this.comments = data.body.comments;
+
+  // //       // for (var cur of this.comments) {
+  // //       //   console.log(cur);
+  // //       // }
+
+
+  // //   // get all users -> get all owned posts
+
+  // //   // this.userPostsService.getUsers().subscribe((data) => {
+
+  // //   //   this.users = data.body;
+  // //   //   console.log("all users:");
+  // //   //   console.log(this.users);
+
+  // //   //   // loop through all users
+  // //   //   for (var user of this.users) {
+  // //   //     // loop through all owned posts for each user
+  // //   //     for (var post of user.postsOwned)
+  // //   //       // add post to post array
+  // //   //       this.posts.push(post)
+  // //   //   }
+  // //   //   console.log("all posts:");
+  // //   //   console.log(this.posts);
+
+
+  // //   //   //for (var follow of this.currentuser.following)
+  // //   //       //getuser
+
+  // //   // });
+
+  // }
+
+  // Add Comment
   public onAddComment(commentForm: NgForm): void{
     this.CommentService.addComment(commentForm.value).subscribe(
       (response: any) => {
-        this.comment = response.data;
-        console.log(this.comment);
+        console.log(response);
       },
       (error: HttpErrorResponse) => {
         console.log(error.message)
       }
     )
   }
-  // // public onEditComment(commentForm: NgForm): void{
-  // //   this.CommentService.updateComment(commentForm.value).subscribe(
-  // //     (response: any) => {
-  // //       console.log(response);
-  // //     },
-  // //     (error: HttpErrorResponse) => {
-  // //       console.log(error.message)
-  // //     }
-  // //   )
-  // // }
-
-  // likePost(currentPost: any): void {
-
-  //   this.userPostsService.updatePostLikes(this.postToLike).subscribe(
-  //     (data) => {
-  //       console.log(data.body.likes.length);
-  //       this.totalLikes = data.body.likes.length;
-
-  //       let p = {
-  //         userId: 0,
-  //         postId: 0,
-  //       }
-  //       p.postId = currentPost.postId;
-  //       p.userId = this.user.userId;
-
-  //       this.totalLikes = this.userService.userLikesPost(p);
-  //     }
-  //   )
-
-
-
-
-  // }
-
-  likePost(): void {
-
-  // // Get All Comments
-  // // public getAllComments(): void{
-  // //   this.CommentService.getAllComments().subscribe(
-  // //     (response: any) => {
-  // //       this.comments.push(response.data);
-  // //     },
-  // //     (error: HttpErrorResponse) => {
-  // //       console.log(error.message)
-  // //     }
-  // //   )
-  // // }
-
-
-  //    // get all comments for given post
-
-  //       // console.log(data.body.comments);
-  //       // console.log(data.body.comments[0]);
-  //       // this.comments = data.body.comments;
-
-  //       // for (var cur of this.comments) {
-  //       //   console.log(cur);
-  //       // }
-
-
-  //   // get all users -> get all owned posts
-
-  //   // this.userPostsService.getUsers().subscribe((data) => {
-
-  //   //   this.users = data.body;
-  //   //   console.log("all users:");
-  //   //   console.log(this.users);
-
-  //   //   // loop through all users
-  //   //   for (var user of this.users) {
-  //   //     // loop through all owned posts for each user
-  //   //     for (var post of user.postsOwned)
-  //   //       // add post to post array
-  //   //       this.posts.push(post)
-  //   //   }
-  //   //   console.log("all posts:");
-  //   //   console.log(this.posts);
-
-
-  //   //   //for (var follow of this.currentuser.following)
-  //   //       //getuser
-
-  //   // });
-
-
-
+  // Add Reply
+  public onAddReply(replyForm: NgForm): void {
+    console.log(replyForm.value);
   }
 
   // Front End Work

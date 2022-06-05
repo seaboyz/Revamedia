@@ -25,6 +25,7 @@ import { FormsModule } from '@angular/forms';
 import { ValidateEqualModule } from 'ng-validate-equal';
 import { CookieService } from 'ngx-cookie-service';
 import { UserListComponent } from './Components/messages/user-list/user-list.component';
+import { ConversationComponent } from './Components/messages/conversation/conversation.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { UserListComponent } from './Components/messages/user-list/user-list.com
     ErrorPageComponent,
     ProfileComponent,
     UserListComponent,
+    ConversationComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,23 +1,52 @@
-<div class="login-page" id="login-page">
+<div
+  class="login-page"
+  id="login-page"
+>
   <div class="login-nav">
     <h1>Revamedia</h1>
   </div>
   <div class="login">
     <h2>Login</h2>
 
-    <span class="invalid" *ngIf="invalid == true">Invalid username and/or password</span>
-    <form #loginForm="ngForm" (ngSubmit)="TEMPLogIn(loginForm)" ngNativeValidate>
+    <span
+      class="invalid"
+      *ngIf="invalid == true"
+    >Invalid username and/or password</span>
+    <form
+      #loginForm="ngForm"
+      (ngSubmit)="firebaseLogin(loginForm)"
+      ngNativeValidate
+    >
       <div class="form-row">
         <label for="username">Username</label>
-        <input ngModel type="text" name="username" id="username" placeholder="Username..." required>
+        <input
+          ngModel
+          type="text"
+          name="username"
+          id="username"
+          placeholder="Username..."
+          required
+        >
       </div>
       <div class="form-row">
         <label for="password">Password</label>
-        <input ngModel [type]="showPassword ? 'text' : 'password'" name="password" id="password"
-          placeholder="Password..." required>
+        <input
+          ngModel
+          [type]="showPassword ? 'text' : 'password'"
+          name="password"
+          id="password"
+          placeholder="Password..."
+          required
+        >
         <span (click)="toggleShowPassword()">
-          <fa-icon *ngIf="showPassword === false" [icon]="faEye"></fa-icon>
-          <fa-icon *ngIf="showPassword === true" [icon]="faEyeSlash"></fa-icon>
+          <fa-icon
+            *ngIf="showPassword === false"
+            [icon]="faEye"
+          ></fa-icon>
+          <fa-icon
+            *ngIf="showPassword === true"
+            [icon]="faEyeSlash"
+          ></fa-icon>
           {{showPassword ? 'Hide Password' : 'Show Password' }}
         </span>
       </div>
@@ -26,7 +55,10 @@
       </div>
     </form>
     <div class="login-help">
-      <span>Not Registered?<a routerLink="/register" routerLinkActive="active">Register Here</a></span>
+      <span>Not Registered?<a
+          routerLink="/register"
+          routerLinkActive="active"
+        >Register Here</a></span>
       <span>Forgot Password?<a>Click Here</a></span>
     </div>
   </div>

@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 // Icons
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { NgForm } from '@angular/forms';
-import {AuthenticationService} from "../../Shared/services/auth-service/authentication.service";
+import { AuthenticationService } from "../../Shared/services/auth-service/authentication.service";
+import { FireAuthService } from "src/app/Shared/services/fire-auth-service/fire-auth.service";
 
 
 @Component({
@@ -11,16 +12,24 @@ import {AuthenticationService} from "../../Shared/services/auth-service/authenti
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit
+{
 
-  constructor(public auth: AuthenticationService) { }
+  constructor(public auth: AuthenticationService, private fireAuth: FireAuthService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void
+  {
 
   }
 
-  public TEMPLogIn(loginForm: NgForm) {
+  public TEMPLogIn(loginForm: NgForm)
+  {
     this.auth.login(loginForm);
+  }
+
+  public firebaseLogin(loginForm: NgForm)
+  {
+    this.fireAuth.login(loginForm.value.username, loginForm.value.password)
   }
 
   // Front End Work
@@ -32,7 +41,8 @@ export class LoginComponent implements OnInit {
 
   // Show Password
   public showPassword = false;
-  public toggleShowPassword() {
+  public toggleShowPassword()
+  {
     this.showPassword = !this.showPassword;
   }
 

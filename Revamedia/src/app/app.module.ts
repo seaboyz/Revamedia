@@ -27,6 +27,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { UserListComponent } from './Components/messages/user-list/user-list.component';
 import { ConversationComponent } from './Components/messages/conversation/conversation.component';
 import { MessageComponent } from './Components/messages/conversation/message/message.component';
+import { MessageInputComponent } from './Components/messages/message-input/message-input.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { MessageComponent } from './Components/messages/conversation/message/mes
     UserListComponent,
     ConversationComponent,
     MessageComponent,
+    MessageInputComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,8 +1,7 @@
 
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,7 +19,6 @@ import { ProfileComponent } from './Components/profile/profile.component';
 import { CommentService } from './Shared/services/user-comments-service/comment.service';
 import { GiphyService } from './Shared/services/giphy-service/giphy.service';
 import { AuthenticationService } from './Shared/services/auth-service/authentication.service';
-import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ValidateEqualModule } from 'ng-validate-equal';
 import { CookieService } from 'ngx-cookie-service';
@@ -32,12 +30,13 @@ import { CookieService } from 'ngx-cookie-service';
     SettingsComponent,
     EventsComponent,
     GroupsComponent,
-    HomeComponent,
+    HomeComponent, 
     MessagesComponent,
     LoginComponent,
     RegisterComponent,
     ErrorPageComponent,
     ProfileComponent,
+  
   ],
   imports: [
     BrowserModule,
@@ -48,7 +47,7 @@ import { CookieService } from 'ngx-cookie-service';
     FormsModule,
     HttpClientModule,
     FormsModule,
-    ValidateEqualModule
+    ValidateEqualModule,
   ],
   providers: [AuthenticationService, CommentService, GiphyService, CookieService],
   bootstrap: [AppComponent]

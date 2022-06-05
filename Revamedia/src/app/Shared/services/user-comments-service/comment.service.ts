@@ -10,7 +10,7 @@ import {environment} from "../../../../environments/environment";
 export class CommentService {
 
   // API Base Url
-  private baseUrl = `${environment.baseUrl}/comment`;
+  private baseUrl = `${environment.apiBaseUrl}/comment`;
 
   constructor(private httpClient: HttpClient) { }
 
@@ -22,7 +22,7 @@ export class CommentService {
     return this.httpClient.get<any>(`${this.baseUrl}/${commentId}`);
   }
 
-  public getAllComments(): Observable<any[]>{
+  public getAllComments(): Observable<any[]> {
     return this.httpClient.get<any[]>(`${this.baseUrl}/all`);
   }
 

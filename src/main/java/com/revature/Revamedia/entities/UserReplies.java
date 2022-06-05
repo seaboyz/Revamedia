@@ -5,6 +5,7 @@
  */
 package com.revature.Revamedia.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
@@ -20,18 +21,19 @@ public class UserReplies implements Serializable {
     @Column(name = "reply_id")
     private Integer replyId;
 
-    @JsonBackReference
+    @JsonIgnore
     @ManyToOne()
     @JoinColumn(name = "owner_id", referencedColumnName = "user_id")
     private User ownerId;
 
-    @JsonBackReference
+    @JsonIgnore
     @ManyToOne()
     @JoinColumn(name = "comment_id", referencedColumnName = "comment_id")
     private UserComments commentId;
 
     @Column(name = "message", length = 500)
     private String message;
+
 
     @Column(name = "giphyUrl")
     private String giphyUrl;
@@ -110,4 +112,5 @@ public class UserReplies implements Serializable {
                 ", dateCreated='" + dateCreated + '\'' +
                 '}';
     }
+
 }

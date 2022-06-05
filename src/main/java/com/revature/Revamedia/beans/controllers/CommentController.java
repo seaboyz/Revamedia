@@ -2,6 +2,7 @@ package com.revature.Revamedia.beans.controllers;
 
 import com.revature.Revamedia.beans.services.UserCommentsService;
 import com.revature.Revamedia.dtos.HttpResponseDto;
+import com.revature.Revamedia.dtos.UserCommentsDto;
 import com.revature.Revamedia.entities.UserComments;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -10,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.LinkedList;
 import java.util.List;
 
 @RestController
@@ -27,14 +29,17 @@ public class CommentController {
 
     @GetMapping("/{id}")
     public HttpResponseDto getById(HttpServletResponse res, @PathVariable("id") int id) {
-        UserComments comment = userCommentsService.getCommentById(id);
+       UserComments comment = userCommentsService.getCommentById(id);
+       UserCommentsDto commentsDto = new UserCommentsDto(comment.getOwnerId().getUserId(), comment.getPostId().getPostId(),
+               comment.getCommentId(), comment.getMessage(), comment.getDateCreated(), comment.getGiphyUrl());
         System.out.println(comment.getCommentId());
+
         if(comment.getCommentId() != id) {
             res.setStatus(400);
-            return new HttpResponseDto(400, "Failed to get comment.", comment);
+            return new HttpResponseDto(400, "Failed to get comment.", commentsDto);
         } else {
             res.setStatus(200);
-            return new HttpResponseDto(200, "Successfully retrieved comment.", comment);
+            return new HttpResponseDto(200, "Successfully retrieved comment.", commentsDto);
         }
     }
 
@@ -43,8 +48,15 @@ public class CommentController {
     @ResponseStatus(HttpStatus.OK)
     public HttpResponseDto getById(HttpServletResponse res) {
         List<UserComments> comments = userCommentsService.getAllComment();
+        List<UserCommentsDto> dtoComments = new LinkedList<>();
+        for (UserComments comment: comments) {
+            UserCommentsDto commentsDto = new UserCommentsDto(comment.getOwnerId().getUserId(), comment.getPostId().getPostId(),
+                    comment.getCommentId(), comment.getMessage(), comment.getDateCreated(), comment.getGiphyUrl());
+            dtoComments.add(commentsDto);
+        }
+        System.out.println(comments);
         res.setStatus(200);
-        return new HttpResponseDto(200, "Successfully retrieved all comments.", comments);
+        return new HttpResponseDto(200, "Successfully retrieved all comments.", dtoComments);
     }
 
 

@@ -39,7 +39,7 @@ public class UserRepliesServiceTest {
 
     @BeforeEach
     public void beforeEach() {
-        USER_1 = new User(1, "test", "test@aol.com", "pass", "test", "name", null, null, null, null, null, null, null, null, null, null);
+        USER_1 = new User(1, "test", "test@aol.com", "pass", "test", "name", null, null, null, null, null, null, null, null, null, null, null);
         POST_1 = new UserPosts(1, USER_1, null, "test message", null, null, null, null, null, null);
         COMMENT_1 = new UserComments(1, USER_1, POST_1, null, "test comment", null, null);
     }

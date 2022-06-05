@@ -28,6 +28,10 @@ import { UserListComponent } from './Components/messages/user-list/user-list.com
 import { ConversationComponent } from './Components/messages/conversation/conversation.component';
 import { MessageComponent } from './Components/messages/conversation/message/message.component';
 import { MessageInputComponent } from './Components/messages/message-input/message-input.component';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
@@ -56,7 +60,10 @@ import { MessageInputComponent } from './Components/messages/message-input/messa
     FormsModule,
     HttpClientModule,
     FormsModule,
-    ValidateEqualModule
+    ValidateEqualModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore())
   ],
   providers: [AuthenticationService, CommentService, GiphyService, CookieService],
   bootstrap: [AppComponent]

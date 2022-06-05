@@ -4,13 +4,12 @@
 
 export const environment = {
   firebase: {
-    projectId: 'revamedia-3b33a',
-    appId: '1:306888999384:web:2ebba90e1d35b7fd3af2ad',
-    storageBucket: 'revamedia-3b33a.appspot.com',
-    apiKey: 'AIzaSyDd83vhFtAcihQWM1dzBAaFrEWx0fbnXZo',
-    authDomain: 'revamedia-3b33a.firebaseapp.com',
-    messagingSenderId: '306888999384',
-    measurementId: 'G-K4EXHV8FJ6',
+    projectId: 'revamedia-9a504',
+    appId: '1:326581507119:web:cfdcf28bffd99a93dce2da',
+    storageBucket: 'revamedia-9a504.appspot.com',
+    apiKey: 'AIzaSyArSpbLD3XfRlX54YDjSM8pHRgSbjsmYp0',
+    authDomain: 'revamedia-9a504.firebaseapp.com',
+    messagingSenderId: '326581507119',
   },
   production: false,
   baseUrl: 'http://localhost:8080',

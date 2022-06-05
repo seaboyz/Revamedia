@@ -1,10 +1,14 @@
 package com.revature.Revamedia.beans.controllers;
 
 import com.revature.Revamedia.beans.services.UserCommentsService;
+import com.revature.Revamedia.beans.services.UserPostsService;
+import com.revature.Revamedia.beans.services.UserService;
 import com.revature.Revamedia.dtos.AddCommentDto;
 import com.revature.Revamedia.dtos.HttpResponseDto;
 import com.revature.Revamedia.dtos.UserCommentsDto;
+import com.revature.Revamedia.entities.User;
 import com.revature.Revamedia.entities.UserComments;
+import com.revature.Revamedia.entities.UserPosts;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.HttpStatus;
@@ -12,6 +16,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -21,10 +26,14 @@ public class CommentController {
 
     // Initialize Service
     private final UserCommentsService userCommentsService;
+    private final UserService userService;
+    private final UserPostsService userPostsService;
 
     @Autowired
-    public CommentController(UserCommentsService userCommentsService) {
+    public CommentController(UserCommentsService userCommentsService, UserService userService, UserPostsService userPostsService) {
         this.userCommentsService = userCommentsService;
+        this.userService = userService;
+        this.userPostsService = userPostsService;
     }
 
 
@@ -66,11 +75,18 @@ public class CommentController {
     @ResponseStatus(HttpStatus.OK)
     public HttpResponseDto saveComment(@RequestBody AddCommentDto dto, HttpServletResponse res){
         UserComments newComment = new UserComments();
+        UserPosts post = new UserPosts();
+        post = userPostsService.getPostById(dto.getPost_id());
+
+        User user = new User();
+        user = userService.getUserById(dto.getOwner_id());
+
         newComment.setMessage(dto.getMessage());
         newComment.setGiphyUrl(dto.getGiphyUrl());
-        newComment.setDateCreated(dto.getDateCreated());
-        newComment.setOwnerId(dto.getUser());
-        newComment.setPostId(dto.getPost());
+        newComment.setDateCreated(new Timestamp(System.currentTimeMillis()));
+        newComment.setOwnerId(user);
+        newComment.setPostId(post);
+
         userCommentsService.save(newComment);
         if(newComment.getMessage() != dto.getMessage()) {
             res.setStatus(400);

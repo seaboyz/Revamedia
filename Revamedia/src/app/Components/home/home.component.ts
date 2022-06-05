@@ -156,8 +156,8 @@ export class HomeComponent implements OnInit {
     this.CommentService.addComment(commentForm.value).subscribe(
       (response: any) => {
         console.log(response);
+        console.log(commentForm.value);
         this.addComment = false;
-        this.getCurrentUserData();
       },
       (error: HttpErrorResponse) => {
         console.log(error.message)

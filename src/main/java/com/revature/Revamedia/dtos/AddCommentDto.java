@@ -7,8 +7,8 @@ import java.sql.Timestamp;
 
 public class AddCommentDto {
 
-    private User user;
-    private UserPosts post;
+    private Integer owner_id;
+    private Integer post_id;
     private String message;
     private String giphyUrl;
     private Timestamp dateCreated;
@@ -16,28 +16,28 @@ public class AddCommentDto {
     public AddCommentDto() {
     }
 
-    public AddCommentDto(User user, UserPosts post, String message, String giphyUrl, Timestamp dateCreated) {
-        this.user = user;
-        this.post = post;
+    public AddCommentDto(Integer owner_id, Integer post_id, String message, String giphyUrl, Timestamp dateCreated) {
+        this.owner_id = owner_id;
+        this.post_id = post_id;
         this.message = message;
         this.giphyUrl = giphyUrl;
         this.dateCreated = dateCreated;
     }
 
-    public User getUser() {
-        return user;
+    public Integer getOwner_id() {
+        return owner_id;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setOwner_id(Integer owner_id) {
+        this.owner_id = owner_id;
     }
 
-    public UserPosts getPost() {
-        return post;
+    public Integer getPost_id() {
+        return post_id;
     }
 
-    public void setPost(UserPosts post) {
-        this.post = post;
+    public void setPost_id(Integer post_id) {
+        this.post_id = post_id;
     }
 
     public String getMessage() {

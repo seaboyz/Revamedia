@@ -78,7 +78,6 @@
           </div>
           <form #commentForm="ngForm" (ngSubmit)="onAddComment(commentForm)" id="add-comment-form">
             <input type="hidden" name="post_id" ngModel="{{ p?.postId }}">
-            <input type="hidden" name="date_created" ngModel="{{ currentDate }}">
             <input type="hidden" name="owner_id" ngModel="{{ user?.userId }}">
             <textarea name="message" id="comment" rows="4" ngModel></textarea>
             <div class="reactions">

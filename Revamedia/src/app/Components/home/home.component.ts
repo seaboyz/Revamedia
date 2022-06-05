@@ -25,10 +25,11 @@ export class HomeComponent implements OnInit {
   public user: any;
   users: any[] = [];
   posts: any[] = [];
+  public post: any;
+  public comment: any;
 
   // Variables Used In Home Component
   public currentDate = new Date();
-  public post: any;
 
   public totalLikes: number = 0;
 
@@ -163,7 +164,24 @@ export class HomeComponent implements OnInit {
         console.log(error.message)
       }
     )
+  } // ADD COMMENT END
+
+  // EDIT COMMENT
+  public onEditComment(commentForm: NgForm): void{
+    this.CommentService.updateComment(commentForm.value).subscribe(
+      (response: any) => {
+        console.log(response);
+        console.log(commentForm.value);
+
+        this.closeModal('edit', 'comment-modal');
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error.message)
+      }
+    )
   }
+
+
   // Add Reply
   public onAddReply(replyForm: NgForm): void {
     console.log(replyForm.value);
@@ -223,16 +241,18 @@ export class HomeComponent implements OnInit {
     this.commentOptionsClicked = !this.commentOptionsClicked;
   }
 
-  public openModal(modalType: string, post: any) {
+  public editComment: any;
+  public openModal(modalType: string, id: string, object: any) {
     // Screen
     const screen = document.getElementById('screen');
     screen?.classList.add('openScreen');
     // Form
-    const form = document.getElementById(`${modalType}-${post}`);
+    const form = document.getElementById(`${modalType}-${id}`);
     form?.classList.add('openModal');
     if (modalType === "edit") {
       this.postsOptionsClicked = false;
       this.commentOptionsClicked = false;
+      this.editComment = object;
     }
     if (modalType === "delete") {
       this.postsOptionsClicked = false;

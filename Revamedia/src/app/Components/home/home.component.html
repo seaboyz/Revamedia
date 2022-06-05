@@ -11,7 +11,7 @@
         </div>
       </div>
     </div>
-    <button (click)="openModal('add', post)">Add Post</button>
+    <button (click)="openModal('add','post-modal', post)">Add Post</button>
   </div>
   <!-- Page title End -->
 
@@ -31,8 +31,8 @@
             <div class="post-options">
               <fa-icon (click)="togglePostsOptions()" id="icon" [icon]="faEllipsis"></fa-icon>
               <ul *ngIf="postsOptionsClicked" id="postOptionMenu">
-                <li (click)="openModal('edit', post)">Edit Post</li>
-                <li  (click)="openModal('delete', post)">Delete Post</li>
+                <li (click)="openModal('edit','post-modal', post)">Edit Post</li>
+                <li  (click)="openModal('delete', 'post-modal', post)">Delete Post</li>
               </ul>
             </div>
           </div>
@@ -123,6 +123,7 @@
             </div>
             <div class="comment-content">
               <p>{{ comment?.message }}</p>
+              <button (click)="openModal('edit', 'comment-modal', comment)" >Edit</button>
               <img *ngIf="comment?.giphyUrl !== ''" src="{{ comment?.giphyUrl }}" alt="Attached Image">
             </div>
 
@@ -242,7 +243,7 @@
 <div class="modal" id="edit-post-modal">
   <div class="form-header">
     <h3>Edit post</h3>
-    <span (click)="closeModal('edit',  'post-modal')">x</span>
+    <span (click)="closeModal('edit', 'post-modal')">x</span>
   </div>
   <form>
     <div class="form-data">
@@ -270,7 +271,7 @@
 <div class="modal" id="delete-post-modal">
   <div class="form-header">
     <h3>Delete post</h3>
-    <span (click)="closeModal('delete', 'post-modal' )">x</span>
+    <span (click)="closeModal('delete', 'post-modal')">x</span>
   </div>
   <form>
     <h2>Are you sure you want to delete this post?</h2>
@@ -289,20 +290,11 @@
     <h3>Edit comment</h3>
     <span (click)="closeModal('edit', 'comment-modal')">x</span>
   </div>
-  <form>
+  <form #editCommentForm="ngForm" (ngSubmit)="onEditComment(editCommentForm)">
+    <input type="hidden" name="comment_id" ngModel="{{ editComment?.commentId }}">
     <div class="form-data">
-      <h4>Edit Image or Video</h4>
-      <div class="file-input">
-        <input type="file" id="file" class="file" (change)="fileName($event, 'edit-post')">
-        <label for="file">
-          Select File
-        </label>
-        <p class="file-name" id="edit-post-fileName"></p>
-      </div>
-    </div>
-    <div class="form-data">
-      <h4>Edit caption</h4>
-      <textarea name="message" placeholder="Write a caption..."></textarea>
+      <h4>Edit Message</h4>
+      <textarea ngModel="{{ editComment?.message }}" name="message"></textarea>
     </div>
     <div class="post-submit">
       <button>Update comment</button>

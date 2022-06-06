@@ -175,7 +175,7 @@
               </div>
               <div class="reply-content">
                 <p>{{ reply?.message }}</p>
-                <img src="{{ reply?.giphyUrl }}" *ngIf="reply?.giphyUrl !== null" alt="Attached Image">
+                <img src="{{ reply?.giphyUrl }}" *ngIf="reply?.giphyUrl !== ''" alt="Attached Image">
               </div>
             </div>
             <!-- Replies End -->

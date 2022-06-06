@@ -40,7 +40,6 @@ export class HomeComponent implements OnInit {
     this.getGifs('funny');
     this.posts = [];
     this.getCurrentUserData();
-    this.openingAnimation();
     // this.userService.getCurrentUser().subscribe({
     //   next: response => {
     //     this.user = response;
@@ -62,7 +61,7 @@ export class HomeComponent implements OnInit {
 
   // GET CURRENT USER
   public getCurrentUserData(){
-    this.userService.getUser(1).subscribe(
+    this.userService.getUser(2).subscribe(
       (response: any) => {
         this.user = response;
         for(let f of response?.following) {
@@ -73,6 +72,7 @@ export class HomeComponent implements OnInit {
           this.posts.push(p)
           this.posts = this.posts.flat();
         }
+        this.openingAnimation();
         // console.log(this.posts);
       },
       (error: HttpErrorResponse) => {
@@ -377,6 +377,6 @@ export class HomeComponent implements OnInit {
   public openingAnimation() {
     const anim = this.animationService;
     const main = '#main';
-    anim.fadeIn(main, 0.3, 0, 0.7);
+    anim.fadeIn(main, 0.8, 0, 0);
   }
 }

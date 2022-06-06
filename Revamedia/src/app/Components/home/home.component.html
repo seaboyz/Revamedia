@@ -11,7 +11,7 @@
         </div>
       </div>
     </div>
-    <button (click)="openModal('add','post-modal', post)">Add Post</button>
+    <button (click)="openModal('add','post-modal', user)">Add Post</button>
   </div>
   <!-- Page title End -->
 
@@ -208,12 +208,13 @@
     <h3>Create new post</h3>
     <span (click)="closeModal('add', 'post-modal')">x</span>
   </div>
-  <form>
+  <form  #addPostForm="ngForm" (ngSubmit)="addPost(addPostForm)">
     <div class="form-data">
       <h4>Add Image or Youtube Link</h4>
       <input type="text" name="image" id="image" placeholder="ImageUrl or Youtube Link">
     </div>
     <div class="form-data">
+      <input type="hidden" name="userId" ngModel="{{ post?.userId }}">
       <h4>Write a caption</h4>
       <textarea name="message" placeholder="Write a caption..." rows="8"></textarea>
     </div>

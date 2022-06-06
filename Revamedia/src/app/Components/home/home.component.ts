@@ -61,7 +61,7 @@ export class HomeComponent implements OnInit {
 
   // GET CURRENT USER
   public getCurrentUserData(){
-    this.userService.getUser(2).subscribe(
+    this.userService.getUser().subscribe(
       (response: any) => {
         this.user = response;
         let userPosts = [];
@@ -96,8 +96,10 @@ export class HomeComponent implements OnInit {
         }
         p.postId = currentPost.postId;
         p.userId = this.user.userId;
+        console.log(p);
         // this.getCurrentUserData();
-        this.totalLikes = this.userService.userLikesPost(p);
+        this.userService.userLikesPost(p);
+        // this.getCurrentUserData();
       }
     )
   }
@@ -154,6 +156,9 @@ export class HomeComponent implements OnInit {
 
   // }
 
+  addPost(form: NgForm){
+    console.log(form.value);
+  }
   // Add Comment
   public onAddComment(commentForm: NgForm): void{
     this.CommentService.addComment(commentForm.value).subscribe(
@@ -325,6 +330,9 @@ export class HomeComponent implements OnInit {
       this.deleteReply = object;
       this.deletePost = object;
     }
+    if(modalType === "add"){
+      this.post = object;
+    }
   }
 
   public closeModal(modalType: string, post: any) {
@@ -380,6 +388,6 @@ export class HomeComponent implements OnInit {
   public openingAnimation() {
     const anim = this.animationService;
     const main = '#main';
-    anim.fadeIn(main, 0.8, 0, 0);
+    anim.fadeIn(main, 0.5, 0, 0);
   }
 }

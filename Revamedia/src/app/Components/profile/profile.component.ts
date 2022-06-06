@@ -12,7 +12,7 @@ export class ProfileComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-    this.getUserData();
+    this.getCurrentUserData();
   }
 
   // User data
@@ -20,8 +20,9 @@ export class ProfileComponent implements OnInit {
   // Posts
   public posts: any[] = [];
   // GET CURRENT USER
-  public getUserData(){
-    this.userService.getCurrentUser().subscribe(
+  // GET CURRENT USER
+  public getCurrentUserData(){
+    this.userService.getUser().subscribe(
       (response: any) => {
         this.user = response;
         console.log(this.user);

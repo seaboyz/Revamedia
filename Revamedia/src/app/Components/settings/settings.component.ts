@@ -25,7 +25,7 @@ export class SettingsComponent implements OnInit {
 
   // GET CURRENT USER
   public getCurrentUserData(){
-    this.userService.getUser(2).subscribe(
+    this.userService.getUser().subscribe(
       (response: any) => {
         this.user = response;
         console.log(this.user);

@@ -859,6 +859,18 @@ $darkgrey: rgb(61,66,74);
         color: $darkgrey;
         margin-bottom: .5rem;
       }
+      input{
+        width: 100%;
+        padding: .3rem;
+        font-size: 1rem;
+        color: $darkgrey;
+        border: 1px solid $grey;
+        border-radius: 4px;
+        outline: none;
+        &:focus{
+          border: 1px solid $blue;
+        }
+      }
       .file {
         opacity: 0;
         width: 0.1px;

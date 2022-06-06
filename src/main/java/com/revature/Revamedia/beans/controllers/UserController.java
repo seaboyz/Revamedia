@@ -2,6 +2,7 @@ package com.revature.Revamedia.beans.controllers;
 
 import com.revature.Revamedia.beans.services.UserService;
 import com.revature.Revamedia.dtos.AuthDto;
+import com.revature.Revamedia.dtos.UpdateUserDto;
 import com.revature.Revamedia.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,5 +35,16 @@ public class UserController {
     @GetMapping("/{id}")
     public ResponseEntity<User> user (@PathVariable Integer id){
         return new ResponseEntity<>(userService.getUserById(id), HttpStatus.ACCEPTED);
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<User> updateUser(@PathVariable Integer id, @RequestBody UpdateUserDto dto){
+        User user = userService.getUserById(id);
+        user.setUsername(dto.getUsername());
+        user.setProfilePicture(dto.getProfilePicture());
+        user.setEmail(dto.getEmail());
+        user.setFirstName(dto.getFirstName());
+        user.setLastName(dto.getLastName());
+        return new ResponseEntity<>(userService.update(user), HttpStatus.OK);
     }
 }

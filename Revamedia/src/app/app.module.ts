@@ -23,6 +23,7 @@ import { FormsModule } from '@angular/forms';
 import { ValidateEqualModule } from 'ng-validate-equal';
 import { CookieService } from 'ngx-cookie-service';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,13 +31,13 @@ import { CookieService } from 'ngx-cookie-service';
     SettingsComponent,
     EventsComponent,
     GroupsComponent,
-    HomeComponent, 
+    HomeComponent,
     MessagesComponent,
     LoginComponent,
     RegisterComponent,
     ErrorPageComponent,
     ProfileComponent,
-  
+
   ],
   imports: [
     BrowserModule,

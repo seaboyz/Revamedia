@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 // Icons
 import { faSun, faMoon, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { UserService } from 'src/app/Shared/services/user-service/user.service';
@@ -24,7 +25,7 @@ export class SettingsComponent implements OnInit {
 
   // GET CURRENT USER
   public getCurrentUserData(){
-    this.userService.getCurrentUser().subscribe(
+    this.userService.getUser(1).subscribe(
       (response: any) => {
         this.user = response;
         console.log(this.user);
@@ -33,6 +34,19 @@ export class SettingsComponent implements OnInit {
         console.log(error.message)
       }
     );
+  }
+
+  // Update User
+  public onUpdateUser(updateForm: NgForm, id: number){
+    this.userService.updateUser(updateForm.value, id).subscribe(
+      (response: any) => {
+        this.closeModal('edit');
+        this.getCurrentUserData();
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error.message)
+      }
+    )
   }
 
   // ICONS

@@ -90,14 +90,14 @@
     <h3>Update Account</h3>
     <span (click)="closeModal('edit')">x</span>
   </div>
-  <form>
+  <form #updateUser="ngForm" (ngSubmit)="onUpdateUser(updateUser, editUser?.userId)">
     <div class="user-settings-row">
       <h5>First Name</h5>
-      <input ngModel="{{ editUser?.firstName }}" type="text" name="first_name" id="first_name" placeholder="First Name...">
+      <input ngModel="{{ editUser?.firstName }}" type="text" name="firstName" id="first_name" placeholder="First Name...">
     </div>
     <div class="user-settings-row">
       <h5>Last Name</h5>
-      <input ngModel="{{ editUser?.lastName }}" type="text" name="last_name" id="last_name" placeholder="Last Name...">
+      <input ngModel="{{ editUser?.lastName }}" type="text" name="lastName" id="last_name" placeholder="Last Name...">
     </div>
     <div class="user-settings-row">
       <h5>Username</h5>
@@ -109,7 +109,7 @@
     </div>
     <div class="user-settings-row">
       <h5>Profile Pic</h5>
-      <input ngModel="{{ editUser?.profilePicture }}" type="url" name="profile_pic" id="profile_pic" placeholder="Image Url...">
+      <input ngModel="{{ editUser?.profilePicture }}" type="url" name="profilePicture" id="profile_pic" placeholder="Image Url...">
     </div>
     <!-- <div class="user-settings-row">
       <h5>Password</h5>
@@ -130,4 +130,3 @@
   </form>
 </div>
 <!-- EDIT ACCOUNT FORM END -->
-

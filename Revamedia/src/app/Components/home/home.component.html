@@ -31,13 +31,13 @@
             <div class="post-options">
               <fa-icon (click)="togglePostsOptions()" id="icon" [icon]="faEllipsis"></fa-icon>
               <ul *ngIf="postsOptionsClicked" id="postOptionMenu">
-                <li (click)="openModal('edit','post-modal', post)">Edit Post</li>
-                <li  (click)="openModal('delete', 'post-modal', post)">Delete Post</li>
+                <li (click)="openModal('edit','post-modal', p)">Edit Post</li>
+                <li  (click)="openModal('delete', 'post-modal', p)">Delete Post</li>
               </ul>
             </div>
           </div>
           <div class="post-body">
-            <img src="{{ p?.image }}" alt="Post">
+            <img src="{{ p?.image }}" alt="{{p?.image}}">
             <div class="post-description" id="setBackgroundColor">
               <p><a routerLink="/profile" routerLinkActive="active">{{ user?.username }}</a>{{p?.message}}</p>
             </div>
@@ -80,6 +80,7 @@
             <input type="hidden" name="post_id" ngModel="{{ p?.postId }}">
             <input type="hidden" name="owner_id" ngModel="{{ user?.userId }}">
             <textarea name="message" id="comment" rows="4" ngModel></textarea>
+            <button>Add Comment</button>
             <div class="reactions">
               <span>Reactions</span>
               <div class="search">
@@ -97,7 +98,6 @@
                 <input type="hidden" name="giphyUrl" ngModel="{{selectedGiphy}}">
               </div>
             </div>
-            <button>Add Comment</button>
           </form>
         </div>
         <!-- ADD COMMENT END-->
@@ -136,6 +136,7 @@
                 <input type="hidden" name="comment_id" ngModel="{{ comment?.commentId }}" >
                 <input type="hidden" name="owner_id" ngModel="{{ user?.userId }}">
                 <textarea ngModel name="message" id="comment" rows="4"></textarea>
+                <button>Reply</button>
                 <div class="reactions">
                   <span>Reactions</span>
                   <div class="search">
@@ -156,7 +157,6 @@
                     <input type="hidden" name="giphyUrl" ngModel="{{selectedGiphy}}">
                   </div>
                 </div>
-                <button>Reply</button>
               </form>
             </div>
             <!-- ADD REPLY END-->
@@ -210,18 +210,12 @@
   </div>
   <form>
     <div class="form-data">
-      <h4>Add Image or Video</h4>
-      <div class="file-input">
-        <input type="file" id="file" class="file" (change)="fileName($event, 'add-post')">
-        <label for="file">
-          Select File
-        </label>
-        <p class="file-name" id="add-post-fileName"></p>
-      </div>
+      <h4>Add Image or Youtube Link</h4>
+      <input type="text" name="image" id="image" placeholder="ImageUrl or Youtube Link">
     </div>
     <div class="form-data">
       <h4>Write a caption</h4>
-      <textarea name="message" placeholder="Write a caption..."></textarea>
+      <textarea name="message" placeholder="Write a caption..." rows="8"></textarea>
     </div>
     <div class="post-submit">
       <button>Create Post</button>
@@ -239,17 +233,11 @@
   <form>
     <div class="form-data">
       <h4>Edit Image or Video</h4>
-      <div class="file-input">
-        <input type="file" id="file" class="file" (change)="fileName($event, 'edit-post')">
-        <label for="file">
-          Select File
-        </label>
-        <p class="file-name" id="edit-post-fileName"></p>
-      </div>
+      <input type="text" ngModel="{{ editPost?.image }}" name="image" id="image" placeholder="ImageUrl or Youtube Link">
     </div>
     <div class="form-data">
       <h4>Edit caption</h4>
-      <textarea name="message" placeholder="Write a caption..."></textarea>
+      <textarea name="message" placeholder="Write a caption..." ngModel="{{ editPost?.message }}" rows="8"></textarea>
     </div>
     <div class="post-submit">
       <button>Update Post</button>
@@ -266,6 +254,8 @@
   </div>
   <form>
     <h2>Are you sure you want to delete this post?</h2>
+    <span style="font-size: .8rem;">{{ deletePost?.message }}</span>
+    <img style="width:8rem;height: 8rem; object-fit:cover;" src="{{ deletePost?.image }}" alt="Image">
     <div class="post-submit">
       <button id="deleteBtn">Delete Post</button>
     </div>
@@ -343,3 +333,11 @@
   </form>
 </div>
 <!-- delete COMMENT FORM END -->
+
+<!-- <div class="file-input">
+  <input type="file" id="file" class="file" (change)="fileName($event, 'edit-post')">
+  <label for="file">
+    Select File
+  </label>
+  <p class="file-name" id="edit-post-fileName"></p>
+</div> -->

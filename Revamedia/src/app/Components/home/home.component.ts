@@ -62,7 +62,7 @@ export class HomeComponent implements OnInit {
 
   // GET CURRENT USER
   public getCurrentUserData(){
-    this.userService.getCurrentUser().subscribe(
+    this.userService.getUser(1).subscribe(
       (response: any) => {
         this.user = response;
         for(let f of response?.following) {
@@ -93,7 +93,7 @@ export class HomeComponent implements OnInit {
         }
         p.postId = currentPost.postId;
         p.userId = this.user.userId;
-
+        // this.getCurrentUserData();
         this.totalLikes = this.userService.userLikesPost(p);
       }
     )
@@ -155,8 +155,9 @@ export class HomeComponent implements OnInit {
   public onAddComment(commentForm: NgForm): void{
     this.CommentService.addComment(commentForm.value).subscribe(
       (response: any) => {
-        console.log(response);
-        console.log(commentForm.value);
+        // console.log(response);
+        // console.log(commentForm.value);
+        this.getCurrentUserData();
         this.addComment = false;
       },
       (error: HttpErrorResponse) => {
@@ -169,9 +170,7 @@ export class HomeComponent implements OnInit {
   public onEditComment(commentForm: NgForm): void{
     this.CommentService.updateComment(commentForm.value).subscribe(
       (response: any) => {
-        console.log(response);
-        console.log(commentForm.value);
-
+        this.getCurrentUserData();
         this.closeModal('edit', 'comment-modal');
       },
       (error: HttpErrorResponse) => {
@@ -183,7 +182,8 @@ export class HomeComponent implements OnInit {
   public onDeleteComment(id: number){
     this.CommentService.deleteComment(id).subscribe(
       (response: any) => {
-        console.log(response);
+        //console.log(response);
+        this.getCurrentUserData();
         this.closeModal('delete', 'comment-modal');
       },
       (error: HttpErrorResponse) => {
@@ -197,8 +197,9 @@ export class HomeComponent implements OnInit {
   public onAddReply(replyForm: NgForm): void{
     this.CommentService.addReply(replyForm.value).subscribe(
       (response: any) => {
-        console.log(response);
-        console.log(replyForm.value);
+        // console.log(response);
+        // console.log(replyForm.value);
+        this.getCurrentUserData();
         this.addReply = false;
       },
       (error: HttpErrorResponse) => {
@@ -214,7 +215,8 @@ export class HomeComponent implements OnInit {
     let replyId = replyForm.value.reply_id;
     this.CommentService.updateReply(message, replyId).subscribe(
       (response: any) => {
-        console.log(response);
+        // console.log(response);
+        this.getCurrentUserData();
         this.closeModal('edit', 'reply-modal');
       },
       (error: HttpErrorResponse) => {
@@ -228,7 +230,8 @@ export class HomeComponent implements OnInit {
   public onDeleteReply(id: number){
     this.CommentService.deleteReply(id).subscribe(
       (response: any) => {
-        console.log(response);
+        // console.log(response);
+        this.getCurrentUserData();
         this.closeModal('delete', 'reply-modal');
       },
       (error: HttpErrorResponse) => {
@@ -296,6 +299,8 @@ export class HomeComponent implements OnInit {
   public deleteComment: any;
   public editReply: any;
   public deleteReply: any;
+  public editPost: any;
+  public deletePost: any;
   public openModal(modalType: string, id: string, object: any) {
     // Screen
     const screen = document.getElementById('screen');
@@ -308,12 +313,14 @@ export class HomeComponent implements OnInit {
       this.commentOptionsClicked = false;
       this.editComment = object;
       this.editReply = object;
+      this.editPost = object;
     }
     if (modalType === "delete") {
       this.postsOptionsClicked = false;
       this.commentOptionsClicked = false;
       this.deleteComment = object;
       this.deleteReply = object;
+      this.deletePost = object;
     }
   }
 

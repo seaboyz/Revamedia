@@ -9,6 +9,7 @@ package com.revature.Revamedia.beans.controllers;
 import com.revature.Revamedia.beans.services.UserPostsService;
 import com.revature.Revamedia.beans.services.UserService;
 import com.revature.Revamedia.dtos.CreateUserPostsDto;
+import com.revature.Revamedia.dtos.DeleteUserPostsDto;
 import com.revature.Revamedia.dtos.UpdatePostLikesDto;
 import com.revature.Revamedia.dtos.UpdateUserPostsDto;
 import com.revature.Revamedia.entities.User;
@@ -19,6 +20,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.List;
 
 
 @RestController
@@ -83,10 +85,11 @@ public class UserPostsController {
         return ResponseEntity.ok(userPostsService.update(post));
     }
 
-//    @DeleteMapping("/deletePost")
-//    public void deletePost(@RequestBody UserPosts post){
-//        userPostsService.delete(post);
-//    }
+    @DeleteMapping("/deletePost")
+    public void deletePost(@RequestBody DeleteUserPostsDto dto){
+        UserPosts post = userPostsService.getPostById(dto.getPostId());
+        userPostsService.delete(post);
+    }
 
         /**
          * Update the like status of a post by a given user

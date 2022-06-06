@@ -8,7 +8,7 @@ package com.revature.Revamedia.entities;
 public class _SchemaName {
     private static final String publicSchema = "public";
 
-    private static final String mainSchema = "public";
+    private static final String mainSchema = "stan_schema";
 
     /**
      *  Variable to change schemas for database.

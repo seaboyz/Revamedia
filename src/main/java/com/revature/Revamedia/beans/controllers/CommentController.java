@@ -113,9 +113,10 @@ public class CommentController {
         }
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping("/delete/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public HttpResponseDto delete(@RequestBody UserComments comment, HttpServletResponse res){
+    public HttpResponseDto delete(@PathVariable Integer id, HttpServletResponse res){
+        UserComments comment = userCommentsService.getCommentById(id);
         userCommentsService.delete(comment);
         res.setStatus(200);
         return new HttpResponseDto(200, "Comment successfully deleted.", comment);

@@ -179,6 +179,19 @@ export class HomeComponent implements OnInit {
       }
     )
   }
+  // DELETE REPLY
+  public onDeleteComment(id: number){
+    this.CommentService.deleteComment(id).subscribe(
+      (response: any) => {
+        console.log(response);
+        this.closeModal('delete', 'comment-modal');
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error.message)
+      }
+    )
+  }
+  // DELETE REPLY END
 
   // Add REPLY
   public onAddReply(replyForm: NgForm): void{
@@ -195,6 +208,7 @@ export class HomeComponent implements OnInit {
   } // ADD COMMENT END
 
 
+  // EDIT REPLY START
   public onEditReply(replyForm: NgForm): void{
     let message = replyForm.value.message;
     let replyId = replyForm.value.reply_id;
@@ -208,7 +222,21 @@ export class HomeComponent implements OnInit {
       }
     )
   }
+  // EDIT REPLY END
 
+  // DELETE REPLY
+  public onDeleteReply(id: number){
+    this.CommentService.deleteReply(id).subscribe(
+      (response: any) => {
+        console.log(response);
+        this.closeModal('delete', 'reply-modal');
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error.message)
+      }
+    )
+  }
+  // DELETE REPLY END
 
   // Front End Work
   public faHeart = faHeart; //icon

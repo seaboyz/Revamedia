@@ -94,8 +94,9 @@ public class ReplyController {
         }
     }
 
-    @DeleteMapping("/delete")
-    public HttpResponseDto delete(@RequestBody UserReplies reply, HttpServletResponse res){
+    @DeleteMapping("/delete/{id}")
+    public HttpResponseDto delete(@PathVariable Integer id, HttpServletResponse res){
+        UserReplies reply = userRepliesService.getReplyById(id);
         userRepliesService.delete(reply);
         res.setStatus(200);
         return new HttpResponseDto(200, "Reply successfully deleted.", reply);

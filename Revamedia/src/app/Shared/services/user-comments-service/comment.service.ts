@@ -30,12 +30,20 @@ export class CommentService {
     return this.httpClient.put<any>(`${this.baseUrl}/comment/update`, comment);
   }
 
+  public deleteComment(id: number): Observable<any> {
+    return this.httpClient.delete<any>(`${this.baseUrl}/comment/delete/${id}`);
+  }
+
   public addReply(reply: any): Observable<any> {
     return this.httpClient.post<any>(`${this.baseUrl}/reply/add`, reply);
   }
 
   public updateReply(message: any, id: number): Observable<any> {
     return this.httpClient.put<any>(`${this.baseUrl}/reply/update/${id}`, message);
+  }
+
+  public deleteReply(id: number): Observable<any> {
+    return this.httpClient.delete<any>(`${this.baseUrl}/reply/delete/${id}`);
   }
 
 }

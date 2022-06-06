@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
@@ -74,9 +75,11 @@ public class UserControllerTest {
         ObjectMapper mapper = new ObjectMapper();
         //act
         String content = mapper.writeValueAsString(id);
-        this.mockMvc.perform(get("/user/{id}").contentType(MediaType.APPLICATION_JSON).content(content)).andExpect(status().isOk());
+        this.mockMvc.perform(post("/user/{id}").contentType(MediaType.APPLICATION_JSON).content(content)).andExpect(status().isOk());
         //assert
 
+
          */
+
     }
 }

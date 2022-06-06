@@ -42,10 +42,16 @@ export class AuthenticationService {
       'withCredentials': true
     }).subscribe((response: any) => {
       //If login was successful store the user's info in session storage
-      user = response;
+      // user = response;
+      // sessionStorage.setItem('userid', response.userId.toString());
+      // sessionStorage.setItem('username', response.username);
+      // sessionStorage.setItem('email', response.email);
+      // sessionStorage.setItem('firstname', response.firstName);
+      // sessionStorage.setItem('lastname', response.lastName);
+      // sessionStorage.setItem('phone', response.phone);
 
-      this.loggedIn.next(true);
       sessionStorage.setItem('LoggedIn', '1');
+      this.loggedIn.next(true);
       this.router.navigateByUrl('/home');
     }, (error: HttpErrorResponse) => {
       document.getElementById('invalid')!.style.display = "flex";

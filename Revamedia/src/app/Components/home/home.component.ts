@@ -64,14 +64,17 @@ export class HomeComponent implements OnInit {
     this.userService.getUser(2).subscribe(
       (response: any) => {
         this.user = response;
+        let userPosts = [];
+        userPosts = response?.postsOwned;
+        let followingPost = [];
         for(let f of response?.following) {
-          this.posts = f?.followedId?.postsOwned;
-          this.posts = this.posts.flat();
+          followingPost = f?.followedId?.postsOwned;
         }
-        for(let p of response?.postsOwned){
-          this.posts.push(p)
-          this.posts = this.posts.flat();
-        }
+        this.posts = followingPost.concat(userPosts);
+        // for(let p of response?.postsOwned){
+        //   this.posts.push(p);
+        //   this.posts = this.posts.flat();
+        // }
         this.openingAnimation();
         // console.log(this.posts);
       },

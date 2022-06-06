@@ -25,7 +25,7 @@ export class AuthenticationService {
     }
   }
 
-  authUrl: string = environment.baseUrl + "/auth/login";
+  authUrl: string = environment.apiBaseUrl + "/auth/login";
   public login(loginForm: NgForm) {
 
     let user = {

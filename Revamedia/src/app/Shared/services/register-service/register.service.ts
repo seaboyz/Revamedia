@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 export class RegisterService {
 
-  registerUrl: string = environment.baseUrl + "/auth/register";
+  registerUrl: string = environment.apiBaseUrl + "/auth/register";
 
   constructor(private http : HttpClient) { }
   createUser(body: object, options: object): Observable<any> {

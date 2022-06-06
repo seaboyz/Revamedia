@@ -8,7 +8,8 @@ package com.revature.Revamedia.entities;
 public class _SchemaName {
     private static final String publicSchema = "public";
 
-    private static final String mainSchema = "stan_schema";
+
+    private static final String mainSchema = "kenneth";
     private static final String mainSchema2 = "my_schema";
     private static final String diegoSchema = "diego";
 

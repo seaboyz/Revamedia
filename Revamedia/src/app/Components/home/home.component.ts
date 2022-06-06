@@ -1,13 +1,15 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+
 //icons
 import { faHeart, faEllipsis, faBookmark, faComment, faShareFromSquare, faFaceGrinTongueSquint, faFaceGrinStars } from '@fortawesome/free-solid-svg-icons';
-
 import { HttpClient } from '@angular/common/http';
+import { UserService } from 'src/app/Shared/services/user-service/user.service';
 import { UserPostsService } from 'src/app/Shared/services/user-posts-service/user-posts.service';
 import { CommentService } from 'src/app/Shared/services/user-comments-service/comment.service';
 import { GiphyService } from 'src/app/Shared/services/giphy-service/giphy.service';
+import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+
 
 @Component({
   selector: 'app-home',
@@ -16,21 +18,40 @@ import { GiphyService } from 'src/app/Shared/services/giphy-service/giphy.servic
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private userPostsService : UserPostsService, private http : HttpClient, public CommentService: CommentService, public gifService: GiphyService) { }
+  constructor(private userPostsService : UserPostsService, private http : HttpClient, public CommentService: CommentService, public gifService: GiphyService, private userService: UserService) { }
 
   ngOnInit(): void {
     // this.getAllComments();
     this.getGifs('funny');
     this.getStickers('funny');
+    this.userService.getCurrentUser().subscribe({
+      next: response => {
+        this.user = response;
+
+        let f: any;
+        this.posts = [];
+        for(f of response.following) {
+          this.posts.push(f.followedId.postsOwned);
+        }
+        this.posts = this.posts.flat();
+        //b.date.getTime() - a.date.getTime();
+        
+      },
+      error: err => {
+        console.error(err);
+      }
+    });
   }
+  
 
   // Variables Used In Home Component
+  public user: any;
   public comment: any = {};
   public currentDate = new Date();
-  public post: any;
+  public post: any = {};
   postToLike : any = {
     userId : 1,
-    postId : 1
+    postId : 2
   }
 
   users : any[] = [];
@@ -42,30 +63,16 @@ export class HomeComponent implements OnInit {
   public totalLikes : number = 0;
 
   // Back End Work
-  public getCommentById(id: number){
-    this.CommentService.getCommentById(id).subscribe(
-      (response: any) => {
-        this.comment = response.data;
-        console.log(this.comment);
-      },
-      (error: HttpErrorResponse) => {
-        console.log(error.message)
-      }
-    )
-  }
-
   public onAddComment(commentForm: NgForm): void{
     this.CommentService.addComment(commentForm.value).subscribe(
       (response: any) => {
         console.log(response);
-        this.getCommentById(response.data.commentId);
       },
       (error: HttpErrorResponse) => {
         console.log(error.message)
       }
     )
   }
-
   public onEditComment(commentForm: NgForm): void{
     this.CommentService.updateComment(commentForm.value).subscribe(
       (response: any) => {
@@ -77,6 +84,23 @@ export class HomeComponent implements OnInit {
     )
   }
 
+  likePost(currentPost: any): void {
+
+    this.userPostsService.updatePostLikes(this.postToLike).subscribe((data) => {
+        console.log(data.body.likes.length);
+        this.totalLikes = data.body.likes.length;
+
+    let p = {
+      userId: 0,
+      postId: 0,
+    }
+    p.postId = currentPost.postId;
+    p.userId = this.user.userId;
+
+    this.totalLikes = this.userService.userLikesPost(p);
+  }
+    
+  
   // Get All Comments
   public getAllComments(): void{
     this.CommentService.getAllComments().subscribe(
@@ -88,15 +112,6 @@ export class HomeComponent implements OnInit {
       }
     )
   }
-
-  likePost(): void {
-
-    this.userPostsService.updatePostLikes(this.postToLike).subscribe((data) => {
-        console.log(data.body.likes.length);
-        this.totalLikes = data.body.likes.length;
-
-    });
-
 
 
      // get all comments for given post
@@ -134,10 +149,6 @@ export class HomeComponent implements OnInit {
 
     // });
 
-
-
-
-  }
 
   // Front End Work
   public faHeart = faHeart; //icon

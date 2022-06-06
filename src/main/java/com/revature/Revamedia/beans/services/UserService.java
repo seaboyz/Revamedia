@@ -1,6 +1,7 @@
 package com.revature.Revamedia.beans.services;
 
 import com.revature.Revamedia.beans.repositories.UserRepository;
+import com.revature.Revamedia.dtos.AuthDto;
 import com.revature.Revamedia.entities.User;
 import com.revature.Revamedia.exceptions.UnauthorizedUserException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +38,9 @@ public class UserService {
     public User findUserByUsername(String username) {
         return userRepository.findByUsername(username);
     }
+
+    public boolean existsByUsername(String username){return userRepository.existsUserByUsername(username);}
+
+
 
 }

@@ -5,7 +5,10 @@ import javax.validation.constraints.*;
 /**
  * @Author: Giorgi Amirajibi, Mohammad Foroutanyazdian, Fatemeh Goudarzi, Tony Henderson
  * @Contributor: Kenneth Strohm, Randall Hale
+ * Purpose: Object of this class is used to register a user.
+ *          It contains and validates all the necessary fields that are filled during registration.
  */
+
 public class UserRegisterDto {
 
     @NotEmpty(message = "Username can't be empty")
@@ -18,11 +21,11 @@ public class UserRegisterDto {
     private String password;
 
     @NotEmpty(message = "First name can't be empty")
-    @Pattern(regexp = "([a-zA-ZÀ-ÿ][-,a-z. ']+[ ]*)+", message = "First name should consist of letters only")
+    @Pattern(regexp = "([a-zA-ZÀ-ÿ][-,a-z. ']+[ ]*)+", message = "First name should consist of letters only and be a minimum of 2 characters")
     private String firstName;
 
     @NotEmpty(message = "Last name can't be empty")
-    @Pattern(regexp = "([a-zA-ZÀ-ÿ][-,a-z. ']+[ ]*)+", message = "Last name should consist of letters only")
+    @Pattern(regexp = "([a-zA-ZÀ-ÿ][-,a-z. ']+[ ]*)+", message = "Last name should consist of letters only and be a minimum of 2 characters")
     private String lastName;
     @NotEmpty(message = "Email can't be empty")
     @Email(message = "Not a valid email")

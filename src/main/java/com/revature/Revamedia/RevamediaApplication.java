@@ -6,16 +6,21 @@
 package com.revature.Revamedia;
 
 import com.revature.Revamedia.beans.services.*;
+import com.revature.Revamedia.entities.User;
+import com.revature.Revamedia.entities.UserPosts;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+
+import java.sql.Date;
+import java.sql.Timestamp;
 
 @SpringBootApplication(scanBasePackages = "com.revature.Revamedia.beans")
 public class RevamediaApplication {
         public static void main(String[] args) {
 
                 ConfigurableApplicationContext context = SpringApplication.run(RevamediaApplication.class, args);
-
+                context.start();
                 UserPostsService userPostsService = context.getBean(UserPostsService.class);
                 UserService userService = context.getBean(UserService.class);
                 UserCommentsService userCommentsService = context.getBean(UserCommentsService.class);
@@ -24,27 +29,26 @@ public class RevamediaApplication {
                 UserGroupsService userGroupsService = context.getBean(UserGroupsService.class);
                 UserConversationsService userConversationsService = context.getBean(UserConversationsService.class);
                 UserMessagesService userMessagesService = context.getBean(UserMessagesService.class);
-
                 // User user1 = new User();
                 // user1.setFirstName("Brandon");
                 // user1.setUsername("b1");
                 // user1.setPassword("password");
                 // userService.save(user1);
                 //
-                // User user2 = userService.getUserById(2);
-                // user2.setFirstName("gio");
-                // user2.setUsername("unique");
-                // user2.setPassword("password");
+                 /*User user2 = userService.getUserById(2);
 
-                // UserPosts post1 = new UserPosts();
-                // post1.setOwnerId(user2);
-                // post1.setMessage("post1 message by user2");
-                //
-                // user2.addPost(post1);
-                //
-                // userPostsService.save(post1);
-                // userService.update(user2);
+                Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
+
+                 UserPosts post1 = new UserPosts();
+                 post1.setOwnerId(user2);
+                 post1.setMessage("second post message by user2");
+                 post1.setDateCreated(timestamp);
+                 user2.addPost(post1);
+
+                 userPostsService.save(post1);
+                 userService.update(user2);
+*/
                 //
                 // User user3 = new User();
                 // user3.setFirstName("tony");

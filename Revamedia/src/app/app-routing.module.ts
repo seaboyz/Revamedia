@@ -10,18 +10,18 @@ import { RegisterComponent } from './Components/register/register.component';
 import { ErrorPageComponent } from './Components/error-page/error-page.component';
 import { ProfileComponent } from './Components/profile/profile.component';
 // Guard
-import {AngularFireAuthGuard as AuthGuard} from '@angular/fire/compat/auth-guard';
+import { AuthGuard } from "../app/Shared/guard/auth.guard";
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'home', component: HomeComponent , canActivate:[AuthGuard] },
-  { path: 'messages', component: MessagesComponent, canActivate:[AuthGuard] },
-  { path: 'events', component: EventsComponent, canActivate:[AuthGuard] },
-  { path: 'groups', component: GroupsComponent, canActivate:[AuthGuard] },
-  { path: 'settings', component: SettingsComponent, canActivate:[AuthGuard] },
-  { path: 'profile', component: ProfileComponent, canActivate:[AuthGuard] },
-  { path: '',   redirectTo: '/login', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'messages', component: MessagesComponent, canActivate: [AuthGuard] },
+  { path: 'events', component: EventsComponent, canActivate: [AuthGuard] },
+  { path: 'groups', component: GroupsComponent, canActivate: [AuthGuard] },
+  { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', component: ErrorPageComponent },
 ];
 

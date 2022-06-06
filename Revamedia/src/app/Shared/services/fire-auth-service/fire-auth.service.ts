@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FirebaseError } from "@angular/fire/app";
-import { Auth, signInWithEmailAndPassword, signOut, createUserWithEmailAndPassword, UserCredential, User, AdditionalUserInfo } from '@angular/fire/auth';
+import { Auth, signInWithEmailAndPassword, signOut, createUserWithEmailAndPassword, UserCredential, User } from '@angular/fire/auth';
 import { doc, getDoc, getFirestore, setDoc } from '@angular/fire/firestore'
 
 @Injectable({
@@ -9,18 +9,43 @@ import { doc, getDoc, getFirestore, setDoc } from '@angular/fire/firestore'
 export class FireAuthService
 {
 
-  constructor(private auth: Auth) { }
+  constructor(private auth: Auth)
+  {
+    auth.onAuthStateChanged(async user =>
+    {
+      if (!user) {
+        localStorage.setItem('user', 'null');
+        return;
+      };
+      try {
+        const userRef = await this.createUserProfileDocument(user, {});
+        if (!userRef) return;
+        const userSnap = await getDoc(userRef);
+        if (!userSnap.exists()) return;
+        const currentUser = { id: userSnap.id, ...userSnap.data() }
+        localStorage.setItem('user', JSON.stringify(currentUser))
+
+      } catch (error) {
+        console.log('fail to get user info', error);
+      }
+
+    })
+  }
 
   login(email: string, password: string)
   {
 
     signInWithEmailAndPassword(this.auth, email, password)
-      .then(console.log);
+
   }
 
   logout()
   {
-    signOut(this.auth);
+    signOut(this.auth)
+      .then(() =>
+      {
+        localStorage.removeItem('user')
+      });
   }
 
   async register(email: string, username: string, firstName: string, lastName: string, password: string)

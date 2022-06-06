@@ -47,4 +47,5 @@ public class UserController {
         user.setLastName(dto.getLastName());
         return new ResponseEntity<>(userService.update(user), HttpStatus.OK);
     }
+
 }

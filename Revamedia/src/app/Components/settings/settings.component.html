@@ -48,14 +48,14 @@
         <h5>Email</h5>
         <span>{{user?.email}}</span>
       </div>
-      <div class="user-settings-row">
+      <div class="user-settings-row" style="border:none;">
         <h5>Profile Pic</h5>
         <img src="{{ user?.profilePicture }}" alt="{{user?.username}}">
       </div>
-      <div class="user-settings-title">
+      <!-- <div class="user-settings-title">
         <h3>Delete Account</h3>
         <button id="deleteBtn" (click)="openModal('delete', deleteUser)">Delete</button>
-      </div>
+      </div> -->
     </div>
 
   </div>

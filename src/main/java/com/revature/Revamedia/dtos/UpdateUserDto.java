@@ -1,14 +1,24 @@
 package com.revature.Revamedia.dtos;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
 public class UpdateUserDto {
 
+    @NotEmpty(message = "Username can't be empty")
+    @Size(min = 2, max = 255, message = "Username should be between 2 and 255 characters")
     private String username;
     private String profilePicture;
-
+    @NotEmpty(message = "First name can't be empty")
+    @Pattern(regexp = "([a-zA-ZÀ-ÿ][-,a-z. ']+[ ]*)+", message = "First name should consist of letters only and be a minimum of 2 characters")
     private String firstName;
-
+    @NotEmpty(message = "Last name can't be empty")
+    @Pattern(regexp = "([a-zA-ZÀ-ÿ][-,a-z. ']+[ ]*)+", message = "Last name should consist of letters only and be a minimum of 2 characters")
     private String lastName;
-
+    @NotEmpty(message = "Email can't be empty")
+    @Email(message = "Not a valid email")
     private String email;
 
     public UpdateUserDto() {

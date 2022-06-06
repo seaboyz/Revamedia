@@ -39,21 +39,11 @@
             <div class="post-options" id="setBackgroundColor">
               <div class="container">
                 <div class="likes">
-                  <fa-icon
-                    [icon]="faHeart"
-                    size="lg"
-                    [ngClass]="[totalLikes < 1 ? 'NoLike' : 'OneLike']"
-                    (click)="likePost(p)"
-                    >
-                  </fa-icon>
-                   <span>{{p.likes.length}}</span>
-                      
+                  <fa-icon id="heartIcon" title="Like" [icon]="faHeart" size="lg" (click)="likePost(p)"></fa-icon>
+                  <span>{{p.likes.length}}</span>
                 </div>
                 <div class="comment">
-                  <span (click)="openAddComment()">
-                    <fa-icon id="commentIcon" title="Comment" [icon]="faComment" size="lg"></fa-icon>
-                    Comment
-                  </span>
+                  <fa-icon id="commentIcon" (click)="openAddComment()" title="Comment" [icon]="faComment" size="lg"></fa-icon>
                 </div>
               </div>
               <div class="bookmark">
@@ -80,7 +70,7 @@
               </div>
               <span id="reaction-title">
                 <fa-icon [icon]="faFaceGrinTongueSquint"></fa-icon>
-                gifs (Choose one)
+                gifs
               </span>
               <div class="gifs">
                 <div class="gif" *ngFor="let gif of gifs">
@@ -91,7 +81,7 @@
               </div>
               <span id="reaction-title">
                 <fa-icon [icon]="faFaceGrinStars"></fa-icon>
-                Stickers (Choose one)
+                Stickers
               </span>
               <div class="stickers">
                 <div class="sticker" *ngFor="let sticker of stickers">
@@ -141,7 +131,7 @@
                   </div>
                   <span id="reaction-title">
                     <fa-icon [icon]="faFaceGrinTongueSquint"></fa-icon>
-                    gifs (Choose one)
+                    gifs
                   </span>
                   <div class="gifs">
                     <div class="gif" *ngFor="let gif of gifs">
@@ -152,7 +142,7 @@
                   </div>
                   <span id="reaction-title">
                     <fa-icon [icon]="faFaceGrinStars"></fa-icon>
-                    Stickers (Choose one)
+                    Stickers
                   </span>
                   <div class="stickers">
                     <div class="sticker" *ngFor="let sticker of stickers">
@@ -264,4 +254,4 @@
     </div>
   </form>
 </div>
-<!-- DELETE POST FORM END -->
+<!-- ADD POST FORM END -->

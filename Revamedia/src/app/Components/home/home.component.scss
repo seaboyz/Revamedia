@@ -184,24 +184,17 @@ background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/s
             border-top: 1px solid $lightgrey;
             padding:1rem;
             .container{
+              width: 25%;
               display: flex;
               flex-direction: row;
               justify-content: space-between;
               .likes{
-                .NoLike{
+                #heartIcon{
                   color: pink;
                   cursor: pointer;
                   transition: all .3s ease-in-out;
                   &:hover{
                     color: red;
-                  }
-                }
-                .OneLike{
-                  color: red;
-                  cursor: pointer;
-                  transition: all .3s ease-in-out;
-                  &:hover{
-                    color: rgb(187, 0, 0);
                   }
                 }
                 span{
@@ -210,15 +203,6 @@ background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/s
                 }
               }
               .comment{
-                margin-left: 2rem;
-                cursor: pointer;
-                span{
-                  font-size: .8rem;
-                  color: $grey;
-                  &:hover{
-                    color: $darkgrey;
-                  }
-                }
                 #commentIcon{
                   color: lightblue;
                   cursor: pointer;
@@ -289,7 +273,7 @@ background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/s
             display: flex;
             flex-direction: column;
             span{
-              font-size: 1.5rem;
+              font-size: 1.7rem;
             }
             .search{
               width: 100%;
@@ -688,12 +672,7 @@ background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/s
   opacity: 0;
   width: 100vw;
   height: 100vh;
-  transition: all .4s ease-in-out;
-}
-.openScreen{
-  top: 0;
-  left: 0;
-  opacity: 1;
+  transition: all .6s ease-in-out;
 }
 
 .modal{
@@ -702,7 +681,7 @@ background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/s
   top: -100%;
   left: -100%;
   transform: scale(0);
-  transition: all .4s ease-in-out;
+  transition: all .6s ease-in-out;
   background-color: white;
   border-right: 3px solid $orange;
   border-left: 3px solid $orange;
@@ -871,8 +850,13 @@ background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/s
   }
 }
 
+.openScreen{
+  top: 0;
+  left: 0;
+  opacity: 1;
+}
 .openModal{
-  top: 9%;
+  top: 5%;
   left: 20%;
   transform: scale(1);
 }

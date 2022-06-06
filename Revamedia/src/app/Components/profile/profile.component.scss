@@ -141,7 +141,7 @@ $darkgrey: rgb(61,66,74);
   opacity: 0;
   width: 100vw;
   height: 100vh;
-  transition: all .4s ease-in-out;
+  transition: all .6s ease-in-out;
 }
 
 .modal{
@@ -150,7 +150,7 @@ $darkgrey: rgb(61,66,74);
   top: -100%;
   right: -100%;
   transform: scale(0);
-  transition: all .4s ease-in-out;
+  transition: all .6s ease-in-out;
   background-color: white;
   border-right: 3px solid $orange;
   border-left: 3px solid $orange;

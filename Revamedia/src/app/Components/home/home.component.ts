@@ -180,11 +180,35 @@ export class HomeComponent implements OnInit {
     )
   }
 
+  // Add REPLY
+  public onAddReply(replyForm: NgForm): void{
+    this.CommentService.addReply(replyForm.value).subscribe(
+      (response: any) => {
+        console.log(response);
+        console.log(replyForm.value);
+        this.addReply = false;
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error.message)
+      }
+    )
+  } // ADD COMMENT END
 
-  // Add Reply
-  public onAddReply(replyForm: NgForm): void {
-    console.log(replyForm.value);
+
+  public onEditReply(replyForm: NgForm): void{
+    let message = replyForm.value.message;
+    let replyId = replyForm.value.reply_id;
+    this.CommentService.updateReply(message, replyId).subscribe(
+      (response: any) => {
+        console.log(response);
+        this.closeModal('edit', 'reply-modal');
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error.message)
+      }
+    )
   }
+
 
   // Front End Work
   public faHeart = faHeart; //icon
@@ -242,6 +266,8 @@ export class HomeComponent implements OnInit {
 
   public editComment: any;
   public deleteComment: any;
+  public editReply: any;
+  public deleteReply: any;
   public openModal(modalType: string, id: string, object: any) {
     // Screen
     const screen = document.getElementById('screen');
@@ -253,11 +279,13 @@ export class HomeComponent implements OnInit {
       this.postsOptionsClicked = false;
       this.commentOptionsClicked = false;
       this.editComment = object;
+      this.editReply = object;
     }
     if (modalType === "delete") {
       this.postsOptionsClicked = false;
       this.commentOptionsClicked = false;
       this.deleteComment = object;
+      this.deleteReply = object;
     }
   }
 

@@ -118,7 +118,7 @@
             </div>
             <div class="comment-content">
               <p>{{ comment?.message }}</p>
-              <img *ngIf="comment?.giphyUrl !== ''" src="{{ comment?.giphyUrl }}" alt="Attached Image">
+              <img *ngIf="comment?.giphyUrl !== null" src="{{ comment?.giphyUrl }}" alt="Attached Image">
             </div>
 
             <div class="reply-card">
@@ -134,7 +134,6 @@
               </div>
               <form #replyForm="ngForm" (ngSubmit)="onAddReply(replyForm)" id="add-reply-form">
                 <input type="hidden" name="comment_id" ngModel="{{ comment?.commentId }}" >
-                <input type="hidden" name="date_created" ngModel="{{ currentDate }}">
                 <input type="hidden" name="owner_id" ngModel="{{ user?.userId }}">
                 <textarea ngModel name="message" id="comment" rows="4"></textarea>
                 <div class="reactions">
@@ -164,13 +163,19 @@
 
             <!-- Replies Start -->
             <div class="reply" *ngFor="let reply of comment?.replies">
-              <div class="reply-author">
-                <img routerLink="/profile" routerLinkActive="active" src="https://avatars.githubusercontent.com/u/77355023?v=4" alt="User">
-                <a routerLink="/profile" routerLinkActive="active" title="View Profile" >leobarrientos02</a>
+              <div class="reply-title">
+                <div class="reply-author">
+                  <img routerLink="/profile" routerLinkActive="active" src="https://avatars.githubusercontent.com/u/77355023?v=4" alt="User">
+                  <a routerLink="/profile" routerLinkActive="active" title="View Profile" >leobarrientos02</a>
+                </div>
+                <div class="reply-option">
+                  <button (click)="openModal('edit', 'reply-modal', reply)" >Edit</button>
+                  <button (click)="openModal('delete', 'reply-modal', reply)" >Delete</button>
+                </div>
               </div>
               <div class="reply-content">
                 <p>{{ reply?.message }}</p>
-                <img src="{{ reply?.giphyUrl }}" *ngIf="reply?.giphyUrl !== ''" alt="Attached Image">
+                <img src="{{ reply?.giphyUrl }}" *ngIf="reply?.giphyUrl !== null" alt="Attached Image">
               </div>
             </div>
             <!-- Replies End -->
@@ -302,4 +307,23 @@
     </div>
   </form>
 </div>
-<!-- ADD COMMENT FORM END -->
+<!-- delete COMMENT FORM END -->
+
+
+<!-- Edit reply FORM START -->
+<div class="modal" id="edit-reply-modal">
+  <div class="form-header">
+    <h3>Edit Reply</h3>
+    <span (click)="closeModal('edit', 'reply-modal')">x</span>
+  </div>
+  <form #editReplyForm="ngForm" (ngSubmit)="onEditReply(editReplyForm)">
+    <input type="hidden" name="reply_id" ngModel="{{ editReply?.replyId }}">
+    <div class="form-data">
+      <textarea ngModel="{{ editReply?.message }}" name="message" rows="4"></textarea>
+    </div>
+    <div class="post-submit">
+      <button>Update Reply</button>
+    </div>
+  </form>
+</div>
+<!-- Edit COMMENT FORM END -->

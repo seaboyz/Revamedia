@@ -669,28 +669,48 @@ $darkgrey: rgb(61,66,74);
           border-top: 1px solid $lightgrey;
           margin: .5rem 0  0 2rem;
           padding: .5rem 0;
-          .reply-author{
+          .reply-title{
+            width: 100%;
             display: flex;
             flex-direction: row;
             align-items: center;
-            img{
-              border-radius:50%;
-              width: 1.5rem;
-              height: 1.5rem;
-              border: 1.5px solid $orange;
-              cursor: pointer;
-              &:hover{
+            justify-content: space-between;
+            .reply-author{
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              img{
+                border-radius:50%;
+                width: 1.5rem;
+                height: 1.5rem;
                 border: 1.5px solid $blue;
+                cursor: pointer;
+                &:hover{
+                  border: 1.5px solid $orange;
+                }
+              }
+              a{
+                text-decoration: none;
+                color: $darkgrey;
+                margin-left: .5rem;
+                font-size: 1rem;
+                font-weight: 500;
+                &:hover{
+                  text-decoration: underline;
+                }
               }
             }
-            a{
-              text-decoration: none;
-              color: $darkgrey;
-              margin-left: .5rem;
-              font-size: 1rem;
-              font-weight: 500;
-              &:hover{
-                text-decoration: underline;
+            .reply-option{
+              button{
+                border: none;
+                background: none;
+                font-size: 1rem;
+                cursor: pointer;
+                margin-left: 1rem;
+                color: $darkgrey;
+                &:hover{
+                  text-decoration: underline;
+                }
               }
             }
           }

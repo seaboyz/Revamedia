@@ -52,6 +52,7 @@ public class AuthControllerTest {
         }
     }
 
+
     @Test
     public void registerTest(){
         UserRegisterDto userRegisterDto = new UserRegisterDto("kenn", "Password1!", "kenn", "str", "email@email.com");

@@ -8,6 +8,7 @@ package com.revature.Revamedia.entities;
 public class _SchemaName {
     private static final String publicSchema = "public";
 
+
     private static final String mainSchema = "public";
 
     /**

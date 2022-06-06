@@ -18,7 +18,7 @@ import static org.mockito.Mockito.when;
 
 @SpringBootTest
 public class UserServiceTest {
-    /*
+
     private UserService userService;
 
     @MockBean
@@ -94,5 +94,5 @@ public class UserServiceTest {
         assertNotEquals(userToUpdate, user);
     }
 
-     */
+
 }

@@ -12,6 +12,7 @@ import { CookieService } from 'ngx-cookie-service';
 export class AuthenticationService {
 
   public loggedIn = new BehaviorSubject<boolean>(this.checkLoginStatus());
+  loginUrl = 'http://localhost:8080/auth/login';
 
   constructor(private router: Router, private http: HttpClient, private cookieService: CookieService) { }
 
@@ -30,7 +31,7 @@ export class AuthenticationService {
       password: loginForm.value.password
     }
     //Post request to attempt to login the user
-    this.http.post('http://localhost:8080/auth/login', user, {
+    this.http.post(this.loginUrl, user, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
       }),
@@ -38,14 +39,6 @@ export class AuthenticationService {
     }).subscribe((response: any) => {
       //If login was successful store the user's info in session storage
       user = response;
-      sessionStorage.setItem('userid', response.userId.toString());
-      sessionStorage.setItem('username', response.username);
-      sessionStorage.setItem('email', response.email);
-      sessionStorage.setItem('firstname', response.firstName);
-      sessionStorage.setItem('lastname', response.lastName);
-      sessionStorage.setItem('phone', response.phone);
-
-
       this.loggedIn.next(true);
       sessionStorage.setItem('LoggedIn', '1');
       this.router.navigateByUrl('/home');

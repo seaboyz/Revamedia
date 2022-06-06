@@ -1,26 +1,56 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { AuthenticationService } from './authentication.service';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing'
 
-describe('AuthenticationService', () => {
+
+
+fdescribe('AuthenticationService', () => {
   let authService: AuthenticationService;
-  let httpSpy: { post: jasmine.Spy };
   let routerSpy: { navigateByUrl: jasmine.Spy };
-  /*
-  //creates a Spy (like a mock but can call actuall code if needed) named "HttpClient" that monitors all Post requests in methods
-  let HttpClientSpy: { post: jasmine.Spy } = jasmine.createSpyObj('HttpClient', ['post']);
-  */
+  let httpClient: HttpClient;
+  let httpController: HttpTestingController;
   beforeEach(() => {
-    httpSpy = jasmine.createSpyObj('HttpClient', ['post']);
-    routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl(/home)', 'navigateByUrl(/login)']);
+    routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl']);
+    let store: any = {};
+    const mockSessionStorage = {
+      getItem: (key: string): string => {
+        return key in store ? store[key] : null;
+      },
+      setItem: (key: string, value: string) => {
+        store[key] = `${value}`;
+      },
+      removeItem: (key: string) => {
+        delete store[key];
+      },
+      clear: () => {
+        store = {};
+      }
+    };
+
+    spyOn(sessionStorage, 'getItem')
+      .and.callFake(mockSessionStorage.getItem);
+
+    spyOn(sessionStorage, 'setItem')
+      .and.callFake(mockSessionStorage.setItem);
+
+    spyOn(sessionStorage, 'removeItem')
+      .and.callFake(mockSessionStorage.removeItem);
+
+
     TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
       providers: [AuthenticationService,
-        { provide: HttpClient, userValue: httpSpy }
+        { provide: Router, useValue: routerSpy },
       ],
 
     });
     authService = TestBed.inject(AuthenticationService);
+    httpClient = TestBed.inject(HttpClient);
+    httpController = TestBed.inject(HttpTestingController);
+
 
   });
 
@@ -28,15 +58,58 @@ describe('AuthenticationService', () => {
     expect(authService).toBeTruthy();
   });
 
-  it('checkLoginStatus returns true when logged in', () => {
+  it('checkLoginStatusReturns true when loginCookie is equal to 1', () => {
+    sessionStorage.setItem('LoggedIn', '1');
+    let result = authService.checkLoginStatus();
+    expect(result).toBeTrue;
+  });
+
+  it('checkLoginStatusReturns false when loginCookie is not equal to 1', () => {
+    let result = authService.checkLoginStatus();
+    expect(result).toBeFalse;
+  });
+
+  it('Login should navigate to homepage if successful', () => {
     const testForm = <NgForm>{
       value: {
         username: "shady",
         password: "Password1!"
       }
     };
+    const user = {
+      username: "shady",
+      password: "Passowrd1!"
+    }
+    authService.login(testForm);
+    const request = httpController.expectOne(authService.loginUrl);
+    request.flush(user);
+    expect(routerSpy.navigateByUrl).toHaveBeenCalledWith('/home');
 
-    expect(authService.loggedIn.value).toEqual(true);
+
+  });
+
+  it('Login should print error if there is an error ', () => {
+    const testForm = <NgForm>{
+      value: {
+        username: "",
+        password: ""
+      }
+    };
+
+    authService.login(testForm)
 
   })
+
+
+  it('Logout should delete the user cookie and session storage', () => {
+    authService.logout();
+    expect(authService.loggedIn).toBeFalse;
+    expect(sessionStorage.removeItem).toHaveBeenCalledWith('LoggedIn');
+  });
+
+  it('Logout should navigate to login', () => {
+    authService.logout();
+    expect(routerSpy.navigateByUrl).toHaveBeenCalledWith('/login');
+  });
+
 });

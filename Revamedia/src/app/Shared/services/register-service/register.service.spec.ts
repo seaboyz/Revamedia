@@ -32,7 +32,7 @@ describe('RegisterService', () => {
     let body: object;
     let options: object;
 
-    beforeEach( () => {
+    beforeEach(() => {
       body = {
         username: 'username',
         password: 'password',
@@ -48,7 +48,7 @@ describe('RegisterService', () => {
       };
     });
 
-    fit("Should create and return an observable", () => {
+    it("Should create and return an observable", () => {
       let returnedObservable: Observable<any> = registerService.createUser(body, options);
 
       expect(returnedObservable).toBeInstanceOf(Observable);

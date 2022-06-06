@@ -48,7 +48,6 @@ public class AuthService {
         else {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
-
     }
 
     /**

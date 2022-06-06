@@ -42,7 +42,10 @@ public class RevamediaApplication {
                 UserMessagesService userMessagesService = context.getBean(UserMessagesService.class);
                 UserFollowsService userFollowsService = context.getBean(UserFollowsService.class);
 
-                // KYLE
+        }
+}
+
+/*                // KYLE
                 User kyle = new User();
                 kyle.setFirstName("Kyle");
                 kyle.setLastName("Plummer");
@@ -140,6 +143,7 @@ public class RevamediaApplication {
 //                userService.update(leo);
         }
 }
+
 
 // // User user1 = new User();
 // // user1.setFirstName("Brandon");
@@ -298,3 +302,5 @@ public class RevamediaApplication {
 
 // }
 // }
+
+ */

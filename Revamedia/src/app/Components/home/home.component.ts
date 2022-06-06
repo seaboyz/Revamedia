@@ -39,50 +39,51 @@ export class HomeComponent implements OnInit {
     // this.getAllComments();
     this.getGifs('funny');
     this.posts = [];
-    this.getCurrentUserData();
-    // this.userService.getCurrentUser().subscribe({
-    //   next: response => {
-    //     this.user = response;
+    //this.getCurrentUserData();
+    this.userService.getCurrentUser().subscribe({
+      next: response => {
+        this.user = response;
 
-    //     let f: any;
-    //     this.posts = [];
-    //     for(f of response.following) {
-    //       this.posts.push(f.followedId.postsOwned);
-    //     }
-    //     this.posts = this.posts.flat();
-    //     //b.date.getTime() - a.date.getTime();
+        let f: any;
+        this.posts = [];
+        for(f of response.following) {
+          this.posts.push(f.followedId.postsOwned);
+        }
+        this.posts = this.posts.flat();
+        //b.date.getTime() - a.date.getTime();
 
-    //   },
-    //   error: err => {
-    //     console.error(err);
-    //   }
-    // });
+      },
+      error: err => {
+        console.error(err);
+      }
+    });
+    this.openingAnimation();
   }
 
   // GET CURRENT USER
-  public getCurrentUserData(){
-    this.userService.getUser().subscribe(
-      (response: any) => {
-        this.user = response;
-        let userPosts = [];
-        userPosts = response?.postsOwned;
-        let followingPost = [];
-        for(let f of response?.following) {
-          followingPost = f?.followedId?.postsOwned;
-        }
-        this.posts = followingPost.concat(userPosts);
-        // for(let p of response?.postsOwned){
-        //   this.posts.push(p);
-        //   this.posts = this.posts.flat();
-        // }
-        this.openingAnimation();
-        // console.log(this.posts);
-      },
-      (error: HttpErrorResponse) => {
-        console.log(error.message)
-      }
-    );
-  }
+  // public getCurrentUserData(){
+  //   this.userService.getUser().subscribe(
+  //     (response: any) => {
+  //       this.user = response;
+  //       let userPosts = [];
+  //       userPosts = response?.postsOwned;
+  //       let followingPost = [];
+  //       for(let f of response?.following) {
+  //         followingPost = f?.followedId?.postsOwned;
+  //       }
+  //       this.posts = followingPost.concat(userPosts);
+  //       // for(let p of response?.postsOwned){
+  //       //   this.posts.push(p);
+  //       //   this.posts = this.posts.flat();
+  //       // }
+  //       //this.openingAnimation();
+  //       // console.log(this.posts);
+  //     },
+  //     (error: HttpErrorResponse) => {
+  //       console.log(error.message)
+  //     }
+  //   );
+  // }
 
   // // Back End Work
   public 
@@ -167,7 +168,7 @@ export class HomeComponent implements OnInit {
       (response: any) => {
         // console.log(response);
         // console.log(commentForm.value);
-        this.getCurrentUserData();
+        //this.getCurrentUserData();
         this.addComment = false;
       },
       (error: HttpErrorResponse) => {
@@ -181,7 +182,7 @@ export class HomeComponent implements OnInit {
   public onEditComment(commentForm: NgForm): void{
     this.CommentService.updateComment(commentForm.value).subscribe(
       (response: any) => {
-        this.getCurrentUserData();
+        //this.getCurrentUserData();
         this.closeModal('edit', 'comment-modal');
       },
       (error: HttpErrorResponse) => {
@@ -194,7 +195,7 @@ export class HomeComponent implements OnInit {
     this.CommentService.deleteComment(id).subscribe(
       (response: any) => {
         //console.log(response);
-        this.getCurrentUserData();
+        //this.getCurrentUserData();
         this.closeModal('delete', 'comment-modal');
       },
       (error: HttpErrorResponse) => {
@@ -224,7 +225,7 @@ export class HomeComponent implements OnInit {
       (response: any) => {
         // console.log(response);
         // console.log(replyForm.value);
-        this.getCurrentUserData();
+        //this.getCurrentUserData();
         this.addReply = false;
       },
       (error: HttpErrorResponse) => {
@@ -241,7 +242,7 @@ export class HomeComponent implements OnInit {
     this.CommentService.updateReply(message, replyId).subscribe(
       (response: any) => {
         // console.log(response);
-        this.getCurrentUserData();
+        //this.getCurrentUserData();
         this.closeModal('edit', 'reply-modal');
       },
       (error: HttpErrorResponse) => {
@@ -256,7 +257,7 @@ export class HomeComponent implements OnInit {
     this.CommentService.deleteReply(id).subscribe(
       (response: any) => {
         // console.log(response);
-        this.getCurrentUserData();
+        //this.getCurrentUserData();
         this.closeModal('delete', 'reply-modal');
       },
       (error: HttpErrorResponse) => {
@@ -276,7 +277,7 @@ export class HomeComponent implements OnInit {
   public faFaceGrinTongueSquint = faFaceGrinTongueSquint; //icon
 
   // hide Comments
-  public viewComments = false;
+  public viewComments = true;
   public toggleHideComments(): void {
     this.viewComments = !this.viewComments;
   }

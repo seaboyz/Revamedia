@@ -63,7 +63,7 @@ public class AuthService {
                 HttpHeaders headers= new HttpHeaders();
                 headers.add("Set-Cookie", "user_session="+ headerValue +"; Max-Age=86400; Path=/;");
                 //If the give password matches hashed password in DB t
-                return ResponseEntity.ok().headers(headers).build();
+                return new ResponseEntity<>(jwt.verify(headerValue), headers, HttpStatus.OK);
             } else {
                 //throw new UnauthorizedUserException("Unauthorized!");
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();

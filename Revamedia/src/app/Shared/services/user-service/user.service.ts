@@ -13,7 +13,7 @@ export class UserService {
 
   constructor(private http:HttpClient, private userPostsService:UserPostsService) {
     this.userSubject = new BehaviorSubject<any>(this.user);
-    this.getUserById(1).subscribe((response: any) => {
+    this.getUserById(sessionStorage.getItem('userId')).subscribe((response: any) => {
       console.log("1: ", response.body);
       this.user = response.body;
       console.log("userservice: ", this.user);
@@ -84,7 +84,7 @@ export class UserService {
   }
 
   public getUser() : Observable<any> {
-    return this.http.get<any>(`${this.userURL}/1`);
+    return this.http.get<any>(`${this.userURL}/5`);
   }
 
   public updateUser(user: any, id: number) : Observable<any> {

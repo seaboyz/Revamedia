@@ -49,6 +49,7 @@ export class SettingsComponent implements OnInit {
     )
   }
 
+
   // ICONS
   public faSun = faSun;
   public faMoon = faMoon;

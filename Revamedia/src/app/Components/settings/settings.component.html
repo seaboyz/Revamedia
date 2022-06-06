@@ -90,22 +90,54 @@
     <h3>Update Account</h3>
     <span (click)="closeModal('edit')">x</span>
   </div>
-  <form #updateUser="ngForm" (ngSubmit)="onUpdateUser(updateUser, editUser?.userId)">
+  <form #updateUser="ngForm" (ngSubmit)="onUpdateUser(updateUser, editUser?.userId)" ngNativeValidate>
     <div class="user-settings-row">
       <h5>First Name</h5>
-      <input ngModel="{{ editUser?.firstName }}" type="text" name="firstName" id="first_name" placeholder="First Name...">
+      <input
+        ngModel="{{ editUser?.firstName }}"
+        type="text"
+        name="firstName"
+        required
+        title="Letters Only"
+        pattern="([a-zA-ZÀ-ÿ][-,a-z. ']+[ ]*)+"
+        id="first_name"
+        placeholder="First Name...">
     </div>
     <div class="user-settings-row">
       <h5>Last Name</h5>
-      <input ngModel="{{ editUser?.lastName }}" type="text" name="lastName" id="last_name" placeholder="Last Name...">
+      <input
+        ngModel="{{ editUser?.lastName }}"
+        type="text"
+        required
+        name="lastName"
+        title="Letters Only"
+        pattern="([a-zA-ZÀ-ÿ][-,a-z. ']+[ ]*)+"
+        id="last_name"
+        placeholder="Last Name...">
     </div>
     <div class="user-settings-row">
       <h5>Username</h5>
-      <input ngModel="{{ editUser?.username }}" type="text" name="username" id="username" placeholder="Username...">
+      <input
+        ngModel="{{ editUser?.username }}"
+        type="text"
+        name="username"
+        required
+        title="Letters, numbers and special characters"
+        pattern="^(?=[a-zA-Z0-9._]{2,20}$)(?!.*[_.]{2})[^_.].*[^_.]$"
+        id="username"
+        placeholder="Username...">
     </div>
     <div class="user-settings-row">
       <h5>Email</h5>
-      <input ngModel="{{ editUser?.email }}" type="email" name="email" id="email" placeholder="Email...">
+      <input
+        ngModel="{{ editUser?.email }}"
+        type="email"
+        required
+        title="Valid Email"
+        pattern="^((?![\.!@#$%^&*()-_=+])[\w/-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$"
+        name="email"
+        id="email"
+        placeholder="Email...">
     </div>
     <div class="user-settings-row">
       <h5>Profile Pic</h5>

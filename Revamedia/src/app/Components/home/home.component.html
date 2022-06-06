@@ -1,6 +1,6 @@
-<div class="home-page">
+<div class="home-page" id="home-page">
   <!-- Page title Start -->
-  <div class="page-title">
+  <div class="page-title" id="page-title">
     <div class="card">
       <h3>Revamedia</h3>
       <div class="page-subTitle">
@@ -16,7 +16,7 @@
   <!-- Page title End -->
 
   <!-- main feed start -->
-  <div class="main">
+  <div class="main" id="main">
 
       <!-- post start -->
       <div class="post-data" *ngFor="let p of posts">
@@ -71,10 +71,10 @@
         <span (click)="toggleHideComments()" *ngIf="p?.comments.length !== 0" id="viewComments">{{viewComments ? 'Hide Comments' : 'View Comments' }}</span>
 
         <!-- ADD COMMENT -->
-        <div class="add-comment" *ngIf="addComment">
+        <div class="add-comment" *ngIf="addComment" id="addCommentReplyForm">
           <div class="add-comment-header">
             <h5>Add Comment</h5>
-            <button title="Close" (click)="closeAddComment()">X</button>
+            <button title="Close" (click)="closeAddComment()" id="closeModal">X</button>
           </div>
           <form #commentForm="ngForm" (ngSubmit)="onAddComment(commentForm)" id="add-comment-form">
             <input type="hidden" name="post_id" ngModel="{{ p?.postId }}">
@@ -111,7 +111,7 @@
                 <img routerLink="/profile" routerLinkActive="active" src="https://avatars.githubusercontent.com/u/77355023?v=4" alt="User">
                 <a routerLink="/profile" routerLinkActive="active" title="View Profile" >leobarrientos02</a>
               </div>
-              <div class="comment-option">
+              <div class="comment-option" id="comment-option">
                 <button (click)="openModal('edit', 'comment-modal', comment)" >Edit</button>
                 <button (click)="openModal('delete', 'comment-modal', comment)" >Delete</button>
               </div>
@@ -130,7 +130,7 @@
             <div class="add-reply" *ngIf="addReply" id="addCommentReplyForm">
               <div class="add-reply-header">
                 <h5>Add Reply</h5>
-                <button title="Close" (click)="closeAddReply()">X</button>
+                <button title="Close" (click)="closeAddReply()" id="closeModal">X</button>
               </div>
               <form #replyForm="ngForm" (ngSubmit)="onAddReply(replyForm)" id="add-reply-form">
                 <input type="hidden" name="comment_id" ngModel="{{ comment?.commentId }}" >
@@ -168,7 +168,7 @@
                   <img routerLink="/profile" routerLinkActive="active" src="https://avatars.githubusercontent.com/u/77355023?v=4" alt="User">
                   <a routerLink="/profile" routerLinkActive="active" title="View Profile" >leobarrientos02</a>
                 </div>
-                <div class="reply-option">
+                <div class="reply-option" id="reply-option">
                   <button (click)="openModal('edit', 'reply-modal', reply)" >Edit</button>
                   <button (click)="openModal('delete', 'reply-modal', reply)" >Delete</button>
                 </div>

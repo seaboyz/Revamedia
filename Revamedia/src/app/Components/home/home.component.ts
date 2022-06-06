@@ -9,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
 import { UserService } from 'src/app/Shared/services/user-service/user.service';
 import { GiphyService } from 'src/app/Shared/services/giphy-service/giphy.service';
 import { ThisReceiver } from '@angular/compiler';
+import { AnimationService } from 'src/app/Shared/services/animation/animation.service';
 
 @Component({
   selector: 'app-home',
@@ -29,11 +30,9 @@ export class HomeComponent implements OnInit {
   public comment: any;
 
   // Variables Used In Home Component
-  public currentDate = new Date();
-
   public totalLikes: number = 0;
 
-  constructor(public CommentService: CommentService, private userPostsService: UserPostsService, private http: HttpClient, public userService: UserService, public gifService: GiphyService) { }
+  constructor(public CommentService: CommentService, private userPostsService: UserPostsService, private http: HttpClient, public userService: UserService, public gifService: GiphyService, public animationService: AnimationService) { }
 
 
   ngOnInit(): void {
@@ -41,6 +40,7 @@ export class HomeComponent implements OnInit {
     this.getGifs('funny');
     this.posts = [];
     this.getCurrentUserData();
+    this.openingAnimation();
     // this.userService.getCurrentUser().subscribe({
     //   next: response => {
     //     this.user = response;
@@ -371,5 +371,12 @@ export class HomeComponent implements OnInit {
   public selectedGiphy = "";
   public selectGiphy(url: any){
     this.selectedGiphy = url;
+  }
+
+  // ANIMATION
+  public openingAnimation() {
+    const anim = this.animationService;
+    const main = '#main';
+    anim.fadeIn(main, 0.3, 0, 0.7);
   }
 }

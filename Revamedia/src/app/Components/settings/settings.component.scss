@@ -22,7 +22,7 @@ $darkgrey: rgb(61,66,74);
       color: $darkgrey;
     }
     span{
-      font-size: .9rem;
+      font-size: 1rem;
     }
     border-bottom: .7px solid $lightgrey;
     padding-bottom: .5rem;
@@ -47,6 +47,7 @@ $darkgrey: rgb(61,66,74);
         font-size: 2rem;
         color: $darkgrey;
         text-decoration: underline;
+        margin-bottom: 1rem;
       }
 
       .user-settings-row{
@@ -56,31 +57,19 @@ $darkgrey: rgb(61,66,74);
         align-items: center;
         justify-content: space-between;
         border-bottom: 1px solid $lightgrey;
-        padding: .75rem 0;
+        border-top: 1px solid $lightgrey;
+        padding: 1rem 0;
         h5{
-          font-size: 1.2rem;
+          font-size: 1.5rem;
           color: $darkgrey;
         }
         span{
           font-size: 1.3rem;
         }
         img{
-          width: 2.5rem;
-          height: 2.5rem;
+          width: 3rem;
+          height: 3rem;
           border-radius: 50%;
-        }
-      }
-      .user-settings-title{
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        padding: 1rem 0;
-        h3{
-          font-size: 1.5rem;
-          font-weight: 700;
-          color: $blue;
         }
         button{
           border: none;
@@ -170,7 +159,6 @@ $darkgrey: rgb(61,66,74);
   }
 }
 
-
 // BLACKOUT SCREEN CSS START
 .screen{
   position: fixed;
@@ -255,7 +243,7 @@ $darkgrey: rgb(61,66,74);
         border-radius: 50%;
       }
       input{
-        width: 45%;
+        width: 60%;
         border: none;
         outline: none;
         padding: .3rem;
@@ -267,6 +255,37 @@ $darkgrey: rgb(61,66,74);
           border: 1.2px solid $blue;
         }
       }
+      .password{
+        width: 60%;
+        display: flex;
+        flex-direction: column;
+        align-items:flex-end;
+        input{
+          width: 100%;
+          border: none;
+          outline: none;
+          padding: .3rem;
+          font-size: 1.1rem;
+          color: $darkgrey;
+          border: 1.2px solid $grey;
+          border-radius: 4px;
+          &:focus{
+            border: 1.2px solid $blue;
+          }
+        }
+        p{
+          cursor: pointer;
+          font-size: .9rem;
+          color: $darkgrey;
+          &:hover{
+            color: $blue;
+          }
+        }
+      }
+    }
+    h6{
+      font-size: 1.3rem;
+      font-weight: normal;
     }
     .post-submit{
       margin-top: 1rem;

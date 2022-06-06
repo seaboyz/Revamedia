@@ -21,8 +21,32 @@ $darkgrey: rgb(61,66,74);
       font-weight: bold;
       color: $darkgrey;
     }
-    span{
-      font-size: .9rem;
+    .user{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      img{
+        width: 1.25rem;
+        height: 1.25rem;
+        border-radius: 50%;
+        border: 1px solid $orange;
+        cursor: pointer;
+        &:hover{
+          border: 1px solid $blue;
+        }
+      }
+      span{
+        display: flex;
+        flex-direction: row;
+        p{
+          font-size: 1rem;
+          cursor: pointer;
+          &:hover{
+            text-decoration: underline;
+          }
+        }
+        font-size: 1rem;
+      }
     }
     border-bottom: .7px solid $lightgrey;
     padding-bottom: .5rem;
@@ -30,11 +54,15 @@ $darkgrey: rgb(61,66,74);
   //TITLE END
   .profile{
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
     // Profile header start
     .profile-header{
       margin: 1rem 0;
-      width: 100%;
+      width: 90%;
       display: flex;
       flex-direction: row;
       align-items: center;
@@ -69,8 +97,8 @@ $darkgrey: rgb(61,66,74);
           outline: none;
           background: $blue;
           color: black;
-          font-size: 1.1rem;
-          padding: .25rem .75rem;
+          font-size: 1.3rem;
+          padding: .2rem 1rem;
           border-radius: 4px;
           cursor: pointer;
           transition: all .3s ease-in-out;
@@ -105,9 +133,9 @@ $darkgrey: rgb(61,66,74);
     // USERS POSTS START
     .users-post{
       margin: 1rem 0;
-      width: 100%;
+      width: 90%;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(3,1fr);
       grid-column-gap: 3rem;
       grid-row-gap: 3rem;
 
@@ -141,7 +169,7 @@ $darkgrey: rgb(61,66,74);
   opacity: 0;
   width: 100vw;
   height: 100vh;
-  transition: all .4s ease-in-out;
+  transition: all .6s ease-in-out;
 }
 
 .modal{
@@ -150,7 +178,7 @@ $darkgrey: rgb(61,66,74);
   top: -100%;
   right: -100%;
   transform: scale(0);
-  transition: all .4s ease-in-out;
+  transition: all .6s ease-in-out;
   background-color: white;
   border-right: 3px solid $orange;
   border-left: 3px solid $orange;
@@ -289,7 +317,6 @@ $darkgrey: rgb(61,66,74);
 
     .profile{
       width: 100%;
-
       // Profile header start
       .profile-header{
         padding: .5rem;
@@ -318,8 +345,8 @@ $darkgrey: rgb(61,66,74);
       // Profile header end
 
       // Posts title start
-      #profile-posts-title{
-        font-size: 2rem;
+      .profile-posts-title{
+        font-size: 1.5rem;
         width: 100%;
         text-align: center;
       }
@@ -327,12 +354,12 @@ $darkgrey: rgb(61,66,74);
 
       // USERS POSTS START
       .users-post{
-        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        display: grid;
+        grid-template-columns: repeat(1,1fr);
         grid-column-gap: 2rem;
-        grid-row-gap: 2rem;
+        grid-row-gap: 3rem;
       }
       // USERS POSTS END
-
     }
   }
 
@@ -362,5 +389,47 @@ $darkgrey: rgb(61,66,74);
         }
       }
     }
+  }
+}
+
+.noFollowing, .noFollowers {
+  h4{
+    font-size: 1.3rem;
+    color: $darkgrey;
+  }
+}
+
+.noPost{
+  width: 60%;
+  padding: 4rem 2rem;
+  border-radius: 8px;
+  background-color: #FBAB7E;
+  background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
+  box-shadow: rgba(0, 0, 0, 0.075) 0px 3px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  h1{
+    font-size: 3rem;
+    color: white;
+  }
+  p{
+    font-size: 1.5rem;
+    color: white;
+    font-weight: bold;
+  }
+  span{
+    margin-top:1rem;
+    font-size: 1rem;
+    color: $darkgrey;
+  }
+}
+@media screen and (max-width: 800px) {
+  .noPost{
+    width: 80%;
+    margin: 1rem 0;
+    border-radius: 8px;
+    text-align: center;
   }
 }

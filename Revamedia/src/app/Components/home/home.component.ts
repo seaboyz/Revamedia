@@ -35,14 +35,14 @@ export class HomeComponent implements OnInit {
         }
         this.posts = this.posts.flat();
         //b.date.getTime() - a.date.getTime();
-        
+
       },
       error: err => {
         console.error(err);
       }
     });
   }
-  
+
 
   // Variables Used In Home Component
   public user: any;
@@ -98,9 +98,9 @@ export class HomeComponent implements OnInit {
     p.userId = this.user.userId;
 
     this.totalLikes = this.userService.userLikesPost(p);
-  }
-    
-  
+  })
+}
+
   // Get All Comments
   public getAllComments(): void{
     this.CommentService.getAllComments().subscribe(
@@ -112,43 +112,6 @@ export class HomeComponent implements OnInit {
       }
     )
   }
-
-
-     // get all comments for given post
-
-        // console.log(data.body.comments);
-        // console.log(data.body.comments[0]);
-        // this.comments = data.body.comments;
-
-        // for (var cur of this.comments) {
-        //   console.log(cur);
-        // }
-
-
-    // get all users -> get all owned posts
-
-    // this.userPostsService.getUsers().subscribe((data) => {
-
-    //   this.users = data.body;
-    //   console.log("all users:");
-    //   console.log(this.users);
-
-    //   // loop through all users
-    //   for (var user of this.users) {
-    //     // loop through all owned posts for each user
-    //     for (var post of user.postsOwned)
-    //       // add post to post array
-    //       this.posts.push(post)
-    //   }
-    //   console.log("all posts:");
-    //   console.log(this.posts);
-
-
-    //   //for (var follow of this.currentuser.following)
-    //       //getuser
-
-    // });
-
 
   // Front End Work
   public faHeart = faHeart; //icon

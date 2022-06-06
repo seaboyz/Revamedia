@@ -1,6 +1,4 @@
-*.properties
 HELP.md
-target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
@@ -48,6 +46,5 @@ buildNumber.properties
 .target/
 .idea/
 *.class
-*.iml
 *.properties
 node_modules/

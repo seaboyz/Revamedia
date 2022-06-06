@@ -29,6 +29,11 @@ $darkgrey: rgb(61,66,74);
       color: white;
     }
   }
+  #comment-option,#reply-option{
+    button{
+      color: white;
+    }
+  }
   #setBackgroundColor{
     transition: all 0.4s ease-in-out;
     background-color: rgb(31, 31, 31);
@@ -84,6 +89,10 @@ $darkgrey: rgb(61,66,74);
     background-color: rgb(31, 31, 31);
     color: white;
     border: 1px solid $lightgrey;
+    #closeModal{
+      background: none;
+      color: white;
+    }
     h5{
       color: white;
     }

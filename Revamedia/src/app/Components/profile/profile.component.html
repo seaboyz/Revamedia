@@ -3,7 +3,11 @@
   <div class="page-title" id="page-title">
     <h3>Revamedia</h3>
     <div class="page-subTitle">
-      <span>Profile</span>
+      <div class="user">
+        <img *ngIf="user?.profilePicture !== ''" src="{{user?.profilePicture}}" alt="{{ user?.username }}"  routerLink="/profile" routerLinkActive="active">
+        <img *ngIf="user?.profilePicture === ''" src="https://randomuser.me/api/portraits/lego/1.jpg" alt="No Pic" routerLink="/profile" routerLinkActive="active">
+        <span><p>{{ user?.username }}</p>'s Profile</span>
+      </div>
     </div>
   </div>
   <!-- Page title End -->
@@ -12,35 +16,31 @@
   <div class="profile">
     <div class="profile-header" id="setBackgroundColor">
       <div class="left-card">
-        <img src="https://avatars.githubusercontent.com/u/77355023?v=4" alt="User">
-        <h5>leobarrientos02</h5>
+        <img *ngIf="user?.profilePicture !== ''" src="{{user?.profilePicture}}" alt="{{ user?.username }}">
+        <img *ngIf="user?.profilePicture === ''" src="https://randomuser.me/api/portraits/lego/1.jpg" alt="No Pic">
+        <h5>{{ user?.username }}</h5>
       </div>
 
       <div class="right-card">
         <button routerLink="/messages" routerLinkActive="active">Message</button>
-        <h5 (click)="openModal('followers', data)">1 Follower</h5>
-        <h5 (click)="openModal('following', data)">1 Following</h5>
+        <h5 (click)="openModal('followers', user)">{{ user?.followers.length }} Follower</h5>
+        <h5 (click)="openModal('following', user)">{{ user?.following.length }} Following</h5>
       </div>
     </div>
 
-    <h4 class="profile-posts-title" id="setBackgroundColor">Posts</h4>
+    <h4 class="profile-posts-title" id="setBackgroundColor">{{ user?.username }}'s Posts</h4>
     <div class="users-post">
-      <div class="post">
-        <img src="https://images.theconversation.com/files/453091/original/file-20220318-23-2ehppm.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=900.0&fit=crop" alt="User">
-      </div>
-      <div class="post">
-        <img src="https://images.theconversation.com/files/453091/original/file-20220318-23-2ehppm.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=900.0&fit=crop" alt="User">
-      </div>
-      <div class="post">
-        <img src="https://images.theconversation.com/files/453091/original/file-20220318-23-2ehppm.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=900.0&fit=crop" alt="User">
-      </div>
-      <div class="post">
-        <img src="https://images.theconversation.com/files/453091/original/file-20220318-23-2ehppm.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=900.0&fit=crop" alt="User">
-      </div>
-      <div class="post">
-        <img src="https://images.theconversation.com/files/453091/original/file-20220318-23-2ehppm.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=900.0&fit=crop" alt="User">
+      <div class="post" *ngFor="let post of user?.postsOwned">
+        <img src="{{ post?.image }}" alt="POST">
       </div>
     </div>
+
+    <!-- NO POST AVAILABLE START-->
+    <div class="noPost" *ngIf="user?.postsOwned.length === 0">
+      <h1>No Post</h1>
+      <p>Seems like there are no posts available to show.</p>
+    </div>
+    <!-- NO POST AVAILABLE END-->
   </div>
   <!-- PROFILE END -->
 </div>
@@ -56,7 +56,7 @@
     <span (click)="closeModal('followers')">x</span>
   </div>
   <div class="modal-body">
-    <div class="follower">
+    <div class="follower" *ngIf="user?.followers.length > 0">
       <div class="follower-data">
         <img src="https://avatars.githubusercontent.com/u/77355023?v=4" alt="Name" routerLink="/profile" routerLinkActive="active">
         <h5 routerLink="/profile" routerLinkActive="active">leobarrientos02</h5>
@@ -65,6 +65,9 @@
         <button id="unfollow">Unfollow</button>
         <button>Follow Back</button>
       </div>
+    </div>
+    <div class="noFollowers" *ngIf="user?.followers.length == 0">
+      <h4>Nobody is following you.</h4>
     </div>
   </div>
 </div>
@@ -77,7 +80,7 @@
     <span (click)="closeModal('following')">x</span>
   </div>
   <div class="modal-body">
-    <div class="following">
+    <div class="following"  *ngIf="user?.following.length > 0">
       <div class="following-data">
         <img src="https://avatars.githubusercontent.com/u/77355023?v=4" alt="Name" routerLink="/profile" routerLinkActive="active">
         <h5 routerLink="/profile" routerLinkActive="active">leobarrientos02</h5>
@@ -85,6 +88,9 @@
       <div class="follow-option">
         <button id="unfollow">Unfollow</button>
       </div>
+    </div>
+    <div class="noFollowing" *ngIf="user?.following.length == 0">
+      <h4>You don't follow anyone.</h4>
     </div>
   </div>
 </div>

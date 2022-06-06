@@ -5,6 +5,7 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { NgForm } from '@angular/forms';
 import { AuthenticationService } from "../../Shared/services/auth-service/authentication.service";
 import { FireAuthService } from "src/app/Shared/services/fire-auth-service/fire-auth.service";
+import { Router } from "@angular/router";
 
 
 @Component({
@@ -15,7 +16,7 @@ import { FireAuthService } from "src/app/Shared/services/fire-auth-service/fire-
 export class LoginComponent implements OnInit
 {
 
-  constructor(public auth: FireAuthService, ) { }
+  constructor(public auth: FireAuthService, public router: Router) { }
 
   ngOnInit(): void
   {
@@ -25,6 +26,7 @@ export class LoginComponent implements OnInit
   public TEMPLogIn(loginForm: NgForm)
   {
     this.auth.login(loginForm.value.username, loginForm.value.password)
+      .then(() => this.router.navigateByUrl('home'))
   }
 
   // Front End Work

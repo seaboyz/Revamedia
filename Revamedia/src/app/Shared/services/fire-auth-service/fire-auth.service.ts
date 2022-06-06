@@ -44,7 +44,7 @@ export class FireAuthService
 
   login(email: string, password: string)
   {
-    signInWithEmailAndPassword(this.auth, email, password)
+    return signInWithEmailAndPassword(this.auth, email, password)
   }
 
   logout()

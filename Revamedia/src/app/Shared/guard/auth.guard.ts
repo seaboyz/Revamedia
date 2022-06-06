@@ -3,31 +3,35 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTr
 import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 import { AuthenticationService } from '../services/auth-service/authentication.service';
+import { FireAuthService } from "../services/fire-auth-service/fire-auth.service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class AuthGuard implements CanActivate
+{
 
   constructor(
-    private authService: AuthenticationService,
+    private authService: FireAuthService,
     private router: Router
-  ){}
+  ) { }
 
   canActivate(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree
+  {
     return this.authService.loggedIn
-    .pipe(
-      take(1),
-      map((loggedIn: boolean) => {
-        if (!loggedIn){
-          this.router.navigate(['/login']);  // {4}
-          return false;
-        }
-        return true;
-      })
-    )
+      .pipe(
+        take(1),
+        map((loggedIn: boolean) =>
+        {
+          if (!loggedIn) {
+            this.router.navigate(['/login']);  // {4}
+            return false;
+          }
+          return true;
+        })
+      )
   }
 
 }

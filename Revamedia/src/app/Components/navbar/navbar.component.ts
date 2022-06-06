@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 // Icons
 import { faHome, faEnvelope, faUserGear, faCalendarDays, faUsers, faDoorOpen } from '@fortawesome/free-solid-svg-icons';
-import {AuthenticationService} from "../../Shared/services/auth-service/authentication.service";
+import { FireAuthService } from "src/app/Shared/services/fire-auth-service/fire-auth.service";
+import { AuthenticationService } from "../../Shared/services/auth-service/authentication.service";
 
 
 @Component({
@@ -9,15 +10,18 @@ import {AuthenticationService} from "../../Shared/services/auth-service/authenti
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit
+{
 
 
-  constructor(public auth: AuthenticationService) { }
+  constructor(public auth: FireAuthService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void
+  {
   }
 
-  public LogOut(){
+  public LogOut()
+  {
     this.auth.logout();
   }
 

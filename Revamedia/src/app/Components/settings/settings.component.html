@@ -30,32 +30,32 @@
       <h4>User Settings</h4>
       <div class="user-settings-title">
         <h3>Edit Account</h3>
-        <button (click)="openModal('edit', user)">Edit</button>
+        <button (click)="openModal('edit', editUser)">Edit</button>
       </div>
       <div class="user-settings-row" style="border-top:1px solid rgb(230,229,222);">
         <h5>First Name</h5>
-        <span>Leonel</span>
+        <span>{{ user?.firstName }}</span>
       </div>
       <div class="user-settings-row">
         <h5>Last Name</h5>
-        <span>Barrientos</span>
+        <span>{{ user?.lastName }}</span>
       </div>
       <div class="user-settings-row">
         <h5>Username</h5>
-        <span>leobarrientos02</span>
+        <span>{{user?.username}}</span>
       </div>
       <div class="user-settings-row">
         <h5>Email</h5>
-        <span>leo@gmail.com</span>
+        <span>{{user?.email}}</span>
       </div>
-      <div class="user-settings-row">
+      <div class="user-settings-row" style="border:none;">
         <h5>Profile Pic</h5>
-        <img src="https://avatars.githubusercontent.com/u/77355023?v=4" alt="User">
+        <img src="{{ user?.profilePicture }}" alt="{{user?.username}}">
       </div>
-      <div class="user-settings-title">
+      <!-- <div class="user-settings-title">
         <h3>Delete Account</h3>
-        <button id="deleteBtn" (click)="openModal('delete', user)">Delete</button>
-      </div>
+        <button id="deleteBtn" (click)="openModal('delete', deleteUser)">Delete</button>
+      </div> -->
     </div>
 
   </div>
@@ -67,14 +67,14 @@
 <div class="screen" id="screen"></div>
 <!-- BLACKOUTSCREEN END-->
 
-
-<!-- DELETE ACCOUNT FORM START -->
-<div class="modal" id="delete-account-modal">
+<!-- EDIT POST FORM START -->
+<div class="modal" id="add-post-modal">
   <div class="form-header">
-    <h3>Delete Account</h3>
-    <span (click)="closeModal('delete')">x</span>
+    <h3>Create new post</h3>
+    <span>x</span>
   </div>
   <form>
+    <h6>{{ deleteUser?.firstName }} {{ deleteUser?.lastName }}</h6>
     <h2>Are you sure you want to delete your account?</h2>
     <div class="post-submit">
       <button id="deleteBtn">Delete</button>
@@ -89,33 +89,81 @@
     <h3>Update Account</h3>
     <span (click)="closeModal('edit')">x</span>
   </div>
-  <form>
+  <form #updateUser="ngForm" (ngSubmit)="onUpdateUser(updateUser, editUser?.userId)" ngNativeValidate>
     <div class="user-settings-row">
       <h5>First Name</h5>
-      <input type="text" name="first_name" id="first_name" placeholder="First Name">
+      <input
+        ngModel="{{ editUser?.firstName }}"
+        type="text"
+        name="firstName"
+        required
+        title="Letters Only"
+        pattern="([a-zA-ZÀ-ÿ][-,a-z. ']+[ ]*)+"
+        id="first_name"
+        placeholder="First Name...">
     </div>
     <div class="user-settings-row">
       <h5>Last Name</h5>
-      <input type="text" name="last_name" id="last_name" placeholder="Last Name">
+      <input
+        ngModel="{{ editUser?.lastName }}"
+        type="text"
+        required
+        name="lastName"
+        title="Letters Only"
+        pattern="([a-zA-ZÀ-ÿ][-,a-z. ']+[ ]*)+"
+        id="last_name"
+        placeholder="Last Name...">
     </div>
     <div class="user-settings-row">
       <h5>Username</h5>
-      <input type="text" name="username" id="username" placeholder="Username...">
+      <input
+        ngModel="{{ editUser?.username }}"
+        type="text"
+        name="username"
+        required
+        title="Letters, numbers and special characters"
+        pattern="^(?=[a-zA-Z0-9._]{2,20}$)(?!.*[_.]{2})[^_.].*[^_.]$"
+        id="username"
+        placeholder="Username...">
     </div>
     <div class="user-settings-row">
       <h5>Email</h5>
-      <input type="email" name="email" id="email" placeholder="Email">
+      <input
+        ngModel="{{ editUser?.email }}"
+        type="email"
+        required
+        title="Valid Email"
+        pattern="^[a-zA-Z0-9!$]{3,12}@[a-zA-Z0-9]{3,12}.[a-z]{2,3}$"
+        name="email"
+        id="email"
+        placeholder="Email...">
     </div>
     <div class="user-settings-row">
       <h5>Profile Pic</h5>
-      <input type="url" name="profile_pic" id="profile_pic" placeholder="Image URL">
+      <input ngModel="{{ editUser?.profilePicture }}" type="url" name="profilePicture" id="profile_pic" placeholder="Image Url...">
     </div>
     <div class="user-settings-row">
       <h5>Password</h5>
-      <input type="password" name="password" id="password" placeholder="Password">
+      <div class="password">
+        <input
+          ngModel
+          [type]="showPassword ? 'text' : 'password'"
+          name="password"
+          id="password"
+          placeholder="Update Password..."
+          title="Min 8 characters, at least 1 uppercase letter, 1 lowercase, 1 number and 1 special character"
+          pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+          required>
+        <p (click)="toggleShowPassword()">
+          <fa-icon *ngIf="showPassword === false" [icon]="faEye"></fa-icon>
+          <fa-icon *ngIf="showPassword === true" [icon]="faEyeSlash"></fa-icon>
+          {{showPassword ? 'Hide Password' : 'Show Password' }}
+        </p>
+      </div>
     </div>
+
     <div class="post-submit">
-      <button>Update</button>
+      <button>Create Post</button>
     </div>
   </form>
 </div>

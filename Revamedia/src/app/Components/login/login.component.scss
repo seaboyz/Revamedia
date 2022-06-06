@@ -19,9 +19,8 @@ $darkgrey: rgb(61, 66, 74);
 
     h1 {
       font-size: 1.5rem;
-      font-weight: bold;
-      color: #F26925;
-      text-align: center;
+      font-weight: 500;
+      color: $darkgrey;
     }
   }
 
@@ -35,7 +34,7 @@ $darkgrey: rgb(61, 66, 74);
     border-radius: 10px;
     padding: 2rem;
 
-    .invalid {
+    #invalid {
       display: none;
       font-size: 1.23rem;
       color: rgba(224, 31, 31, 0.951);
@@ -49,6 +48,7 @@ $darkgrey: rgb(61, 66, 74);
       width: 100%;
       text-align: center;
     }
+
     // INVALID TEXT
     .invalid{
       width: 100%;
@@ -58,7 +58,7 @@ $darkgrey: rgb(61, 66, 74);
       color: rgb(193, 0, 0);
       font-weight: 600;
     }
-    
+
     form{
       margin: .5rem 0;
       border-top: solid 1px $lightgrey;

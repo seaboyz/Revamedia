@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -23,14 +24,18 @@ export class AuthenticationService {
       return false;
     }
   }
+
+  authUrl: string = environment.apiBaseUrl + "/auth/login";
   public login(loginForm: NgForm) {
 
     let user = {
       username: loginForm.value.username,
       password: loginForm.value.password
     }
+
     //Post request to attempt to login the user
-    this.http.post('http://localhost:8080/auth/login', user, {
+
+    this.http.post(this.authUrl, user, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
       }),

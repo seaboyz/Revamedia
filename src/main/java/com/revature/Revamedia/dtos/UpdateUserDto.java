@@ -21,15 +21,21 @@ public class UpdateUserDto {
     @Email(message = "Not a valid email")
     private String email;
 
+    @NotEmpty(message = "Password can't be empty")
+    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$",
+            message = "Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character")
+    private String password;
+
     public UpdateUserDto() {
     }
 
-    public UpdateUserDto(String username, String profilePicture, String firstName, String lastName, String email) {
+    public UpdateUserDto(String username, String profilePicture, String firstName, String lastName, String email, String password) {
         this.username = username;
         this.profilePicture = profilePicture;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.password = password;
     }
 
     public String getUsername() {
@@ -70,5 +76,13 @@ public class UpdateUserDto {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

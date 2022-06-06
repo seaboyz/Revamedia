@@ -7,6 +7,7 @@ import com.revature.Revamedia.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
@@ -18,9 +19,13 @@ public class UserController {
     //Initialize Services
     private final UserService userService;
 
+    BCryptPasswordEncoder encoder;
+
+
     //Autowire Services
     @Autowired
     public UserController(UserService userService) {
+        this.encoder =  new BCryptPasswordEncoder(10);
         this.userService = userService;
     }
 
@@ -45,7 +50,10 @@ public class UserController {
         user.setEmail(dto.getEmail());
         user.setFirstName(dto.getFirstName());
         user.setLastName(dto.getLastName());
+        user.setPassword(encoder.encode(dto.getPassword()));
         return new ResponseEntity<>(userService.update(user), HttpStatus.OK);
     }
-
+    public void setEncoder(BCryptPasswordEncoder encoder) {
+        this.encoder = encoder;
+    }
 }

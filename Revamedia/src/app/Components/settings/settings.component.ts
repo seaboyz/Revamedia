@@ -25,7 +25,7 @@ export class SettingsComponent implements OnInit {
 
   // GET CURRENT USER
   public getCurrentUserData(){
-    this.userService.getUser(1).subscribe(
+    this.userService.getUser(2).subscribe(
       (response: any) => {
         this.user = response;
         console.log(this.user);
@@ -65,7 +65,6 @@ export class SettingsComponent implements OnInit {
   }
   // DARK THEME
 
-  // SHOW PASSWORD
   // Show Password
   public showPassword = false;
   public toggleShowPassword() {

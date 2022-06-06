@@ -320,10 +320,11 @@ $darkgrey: rgb(61,66,74);
               display: flex;
               flex-direction: row;
               input{
-                width: 80%;
+                border-radius: 2px;
+                width: 100%;
                 font-size: 1rem;
                 color: $darkgrey;
-                padding: .2rem;
+                padding: .3rem;
                 border: none;
                 border: 1px solid $grey;
                 outline: none;
@@ -348,15 +349,18 @@ $darkgrey: rgb(61,66,74);
               color: $blue;
               margin-top: .5rem;
             }
-            .gifs,.stickers{
+            .gifs{
               margin: .5rem 0;
               width: 100%;
+              height: 40vh;
+              overflow-y: auto;
               display: grid;
               grid-template-columns: repeat(4, 1fr);
-              grid-template-rows: repeat(3, 1fr);
-              grid-column-gap: .5rem;
-              grid-row-gap: .5rem;
-              .gif,.sticker{
+              grid-row-gap: 1rem;
+              .gif{
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 img{
                   object-fit: cover;
                   width: 6rem;
@@ -367,6 +371,7 @@ $darkgrey: rgb(61,66,74);
                   &:hover{
                     border: 2px solid $orange;
                   }
+
                 }
               }
             }
@@ -391,10 +396,10 @@ $darkgrey: rgb(61,66,74);
         .add-comment{
           Form{
             .reactions{
-              .gifs, .stickers{
+              .gifs{
                 grid-template-columns: repeat(3, 1fr);
                 grid-template-rows: repeat(4, 1fr);
-                .gif,.sticker{
+                .gif{
                   img{
                     object-fit: cover;
                     width: 5rem;
@@ -437,56 +442,47 @@ $darkgrey: rgb(61,66,74);
         .comment{
           border-bottom: 1px solid $lightgrey;
           padding-bottom: .5rem;
-          .comment-author{
+          .comment-title{
+            width: 100%;
             display: flex;
             flex-direction: row;
             align-items: center;
-            img{
-              border-radius:50%;
-              width: 1.5rem;
-              height: 1.5rem;
-              border: 1.5px solid $blue;
-              cursor: pointer;
-              &:hover{
-                border: 1.5px solid $orange;
-              }
-            }
-            a{
-              text-decoration: none;
-              color: $darkgrey;
-              margin-left: .5rem;
-              font-size: 1rem;
-              font-weight: 500;
-              &:hover{
-                text-decoration: underline;
-              }
-            }
-          }
-          .comment-options{
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            #icon{
-              color: $darkgrey;
-              font-size: 1.5rem;
-              cursor: pointer;
-            }
-            ul{
-              position: absolute;
-              transform:translate(80%, 28%);
-              list-style: none;
-              background-color: $lightgrey;
-              border-radius: 3px;
-              li{
-                background-color: $lightgrey;
-                margin: .75rem 0;
-                width: 100%;
-                padding: .25rem;
-                text-align: center;
-                color: #000;
+            justify-content: space-between;
+            .comment-author{
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              img{
+                border-radius:50%;
+                width: 1.5rem;
+                height: 1.5rem;
+                border: 1.5px solid $blue;
                 cursor: pointer;
                 &:hover{
-                  background-color: $grey;
+                  border: 1.5px solid $orange;
+                }
+              }
+              a{
+                text-decoration: none;
+                color: $darkgrey;
+                margin-left: .5rem;
+                font-size: 1rem;
+                font-weight: 500;
+                &:hover{
+                  text-decoration: underline;
+                }
+              }
+            }
+            .comment-option{
+              button{
+                border: none;
+                background: none;
+                font-size: 1rem;
+                cursor: pointer;
+                margin-left: 1rem;
+                color: $darkgrey;
+                &:hover{
+                  text-decoration: underline;
                 }
               }
             }
@@ -568,17 +564,18 @@ $darkgrey: rgb(61,66,74);
                 display: flex;
                 flex-direction: column;
                 span{
-                  font-size: 1.7rem;
+                  font-size: 1.5rem;
                 }
                 .search{
                   width: 100%;
                   display: flex;
                   flex-direction: row;
                   input{
-                    width: 80%;
+                    border-radius: 2px;
+                    width: 100%;
                     font-size: 1rem;
                     color: $darkgrey;
-                    padding: .2rem;
+                    padding: .3rem;
                     border: none;
                     border: 1px solid $grey;
                     outline: none;
@@ -603,15 +600,18 @@ $darkgrey: rgb(61,66,74);
                   color: $blue;
                   margin-top: .5rem;
                 }
-                .gifs, .stickers{
+                .gifs{
                   margin: .5rem 0;
                   width: 100%;
+                  height: 40vh;
+                  overflow-y: auto;
                   display: grid;
                   grid-template-columns: repeat(4, 1fr);
-                  grid-template-rows: repeat(3, 1fr);
-                  grid-column-gap: .5rem;
-                  grid-row-gap: .5rem;
-                  .gif,.sticker{
+                  grid-row-gap: 1rem;
+                  .gif{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                     img{
                       object-fit: cover;
                       width: 6rem;
@@ -622,12 +622,7 @@ $darkgrey: rgb(61,66,74);
                       &:hover{
                         border: 2px solid $orange;
                       }
-                    }
-                    @media screen and (max-width: 800px){
-                      img{
-                        width: 5rem;
-                        height: 5rem;
-                      }
+
                     }
                   }
                 }
@@ -652,10 +647,10 @@ $darkgrey: rgb(61,66,74);
             .add-reply{
               Form{
                 .reactions{
-                  .gifs, .stickers{
+                  .gifs{
                     grid-template-columns: repeat(3, 1fr);
                     grid-template-rows: repeat(4, 1fr);
-                    .gif,.sticker{
+                    .gif{
                       img{
                         object-fit: cover;
                         width: 4rem;
@@ -761,7 +756,7 @@ $darkgrey: rgb(61,66,74);
     margin-left: 10%;
     .main{
       .post-data{
-        max-width: 90%;
+        width: 90%;
         margin: 2rem 0;
       }
     }
@@ -902,7 +897,6 @@ $darkgrey: rgb(61,66,74);
         width: 100%;
         resize: none;
         overflow: auto;
-        height: 30vh;
         font-size: 1rem;
         padding: .5rem;
         color: $darkgrey;

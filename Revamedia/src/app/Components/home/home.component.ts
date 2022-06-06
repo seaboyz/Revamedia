@@ -39,7 +39,6 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     // this.getAllComments();
     this.getGifs('funny');
-    this.getStickers('funny');
     this.posts = [];
     this.getCurrentUserData();
     // this.userService.getCurrentUser().subscribe({
@@ -242,6 +241,7 @@ export class HomeComponent implements OnInit {
   }
 
   public editComment: any;
+  public deleteComment: any;
   public openModal(modalType: string, id: string, object: any) {
     // Screen
     const screen = document.getElementById('screen');
@@ -257,6 +257,7 @@ export class HomeComponent implements OnInit {
     if (modalType === "delete") {
       this.postsOptionsClicked = false;
       this.commentOptionsClicked = false;
+      this.deleteComment = object;
     }
   }
 
@@ -268,62 +269,44 @@ export class HomeComponent implements OnInit {
     const form = document.getElementById(`${modalType}-${post}`);
     form?.classList.remove('openModal');
   }
-    // gifs
-    public gifs: any[] = [];
-    public getGifs(search: string): void {
-      this.gifService.getGIFS(search).subscribe(
-        (response: any) => {
-          this.gifs = response.data;
-          // console.log(this.gifs);
-        },
-        (error: HttpErrorResponse) => {
-          console.log(error.message)
-        }
-      )
-    }
-
-    public searchGiphy(){
-      const search = document.getElementById(`giphy-search-comment`) as HTMLInputElement;
-      let query = search?.value;
-      let cleanQuery = query.trim();
-      let cleanQuery2 = cleanQuery.replace(" ", "+");
-      this.getGifs(cleanQuery2);
-      this.getStickers(cleanQuery2);
-      if(query === ""){
-        this.getGifs("happy");
-        this.getStickers("happy");
+  // gifs
+  public gifs: any[] = [];
+  public getGifs(search: string): void {
+    this.gifService.getGIFS(search).subscribe(
+      (response: any) => {
+        this.gifs = response.data;
+        // console.log(this.gifs);
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error.message)
       }
-    }
+    )
+  }
 
-    public searchGiphyForReply(){
-      const search = document.getElementById(`giphy-search-reply`) as HTMLInputElement;
-      let query = search?.value;
-      let cleanQuery = query.trim();
-      let cleanQuery2 = cleanQuery.replace(" ", "+");
-      this.getGifs(cleanQuery2);
-      this.getStickers(cleanQuery2);
-      if(query === ""){
-        this.getGifs("happy");
-        this.getStickers("happy");
-      }
+  public searchGiphy(){
+    const search = document.getElementById(`giphy-search-comment`) as HTMLInputElement;
+    let query = search?.value;
+    let cleanQuery = query.trim();
+    let cleanQuery2 = cleanQuery.replace(" ", "+");
+    this.getGifs(cleanQuery2);
+    if(query === ""){
+      this.getGifs("happy");
     }
+  }
 
-    public selectedGiphy = "";
-    public selectGiphy(url: any){
-      this.selectedGiphy = url;
+  public searchGiphyForReply(){
+    const search = document.getElementById(`giphy-search-reply`) as HTMLInputElement;
+    let query = search?.value;
+    let cleanQuery = query.trim();
+    let cleanQuery2 = cleanQuery.replace(" ", "+");
+    this.getGifs(cleanQuery2);
+    if(query === ""){
+      this.getGifs("happy");
     }
+  }
 
-    // stickers
-    public stickers: any[] = [];
-    public getStickers(search: string): void {
-      this.gifService.getStickers(search).subscribe(
-        (response: any) => {
-          this.stickers = response.data;
-          // console.log(this.stickers);
-        },
-        (error: HttpErrorResponse) => {
-          console.log(error.message)
-        }
-      )
-    }
+  public selectedGiphy = "";
+  public selectGiphy(url: any){
+    this.selectedGiphy = url;
+  }
 }

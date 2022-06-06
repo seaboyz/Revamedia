@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -12,7 +13,7 @@ import { CookieService } from 'ngx-cookie-service';
 export class AuthenticationService {
 
   public loggedIn = new BehaviorSubject<boolean>(this.checkLoginStatus());
-  loginUrl = 'http://localhost:8080/auth/login';
+
 
   constructor(private router: Router, private http: HttpClient, private cookieService: CookieService) { }
 
@@ -24,14 +25,18 @@ export class AuthenticationService {
       return false;
     }
   }
+
+  authUrl: string = environment.apiBaseUrl + "/auth/login";
   public login(loginForm: NgForm) {
 
     let user = {
       username: loginForm.value.username,
       password: loginForm.value.password
     }
+
     //Post request to attempt to login the user
-    this.http.post(this.loginUrl, user, {
+
+    this.http.post(this.authUrl, user, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
       }),
@@ -41,11 +46,13 @@ export class AuthenticationService {
       user = response;
       this.loggedIn.next(true);
       sessionStorage.setItem('LoggedIn', '1');
+      this.loggedIn.next(true);
       this.router.navigateByUrl('/home');
     }, (error: HttpErrorResponse) => {
       document.getElementById('invalid')!.style.display = "flex";
       console.log(error);
     })
+
   }
 
   public logout() {

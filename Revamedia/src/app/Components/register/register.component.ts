@@ -59,11 +59,12 @@ export class RegisterComponent implements OnInit
       })
     }
 
-    this.auth.register(this.email, this.password)
-      .then(data =>
-        this.router.navigateByUrl('/login'))
-      // todo: error handling
-      .catch(error => console.log(error))
+    this.auth.register(this.email, this.username, this.fName, this.lName, this.password)
+      .then(_ => this.router.navigateByUrl('/login'))
+      .catch(error =>
+      {
+        alert(error.message)
+      })
   }
 
   checkInput(data: string)

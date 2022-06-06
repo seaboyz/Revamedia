@@ -2,9 +2,7 @@ package com.revature.Revamedia.beans.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
 import com.revature.Revamedia.beans.services.AuthService;
-import com.revature.Revamedia.beans.services.JsonWebToken;
 import com.revature.Revamedia.dtos.AuthDto;
 import com.revature.Revamedia.dtos.UserRegisterDto;
 import org.junit.jupiter.api.Test;
@@ -16,8 +14,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;

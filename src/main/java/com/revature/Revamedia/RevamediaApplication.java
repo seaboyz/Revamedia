@@ -5,15 +5,18 @@
  */
 package com.revature.Revamedia;
 
-import com.revature.Revamedia.beans.services.*;
-import com.revature.Revamedia.entities.User;
-import com.revature.Revamedia.entities.UserPosts;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
-import java.sql.Date;
-import java.sql.Timestamp;
+import com.revature.Revamedia.beans.services.UserCommentsService;
+import com.revature.Revamedia.beans.services.UserConversationsService;
+import com.revature.Revamedia.beans.services.UserEventsService;
+import com.revature.Revamedia.beans.services.UserGroupsService;
+import com.revature.Revamedia.beans.services.UserMessagesService;
+import com.revature.Revamedia.beans.services.UserPostsService;
+import com.revature.Revamedia.beans.services.UserRepliesService;
+import com.revature.Revamedia.beans.services.UserService;
 
 @SpringBootApplication(scanBasePackages = "com.revature.Revamedia.beans")
 public class RevamediaApplication {

@@ -1,20 +1,6 @@
 package com.revature.Revamedia.beans.services;
 
-import com.revature.Revamedia.beans.repositories.UserRepository;
-import com.revature.Revamedia.dtos.UserServiceDto;
-import com.revature.Revamedia.dtos.ViewAllUserDto;
-import com.revature.Revamedia.entities.User;
-
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.ResponseEntity;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
 
 @SpringBootTest
 public class UserServiceTest {

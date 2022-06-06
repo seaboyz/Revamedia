@@ -1,12 +1,12 @@
 package com.revature.Revamedia.beans.services;
 
-import com.revature.Revamedia.beans.repositories.UserGroupsRepository;
-import com.revature.Revamedia.entities.User;
-import com.revature.Revamedia.entities.UserGroups;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.revature.Revamedia.beans.repositories.UserGroupsRepository;
+import com.revature.Revamedia.entities.UserGroups;
 
 @Service
 public class UserGroupsService {

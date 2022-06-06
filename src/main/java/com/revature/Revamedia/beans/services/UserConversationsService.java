@@ -1,12 +1,12 @@
 package com.revature.Revamedia.beans.services;
 
-import com.revature.Revamedia.beans.repositories.UserConversationsRepository;
-import com.revature.Revamedia.entities.UserConversations;
-import com.revature.Revamedia.entities.UserMessages;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.revature.Revamedia.beans.repositories.UserConversationsRepository;
+import com.revature.Revamedia.entities.UserConversations;
 
 @Service
 public class UserConversationsService {

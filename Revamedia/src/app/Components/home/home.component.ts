@@ -85,7 +85,8 @@ export class HomeComponent implements OnInit {
   }
 
   // // Back End Work
-  public likePost(currentPost: any): void {
+  public 
+  (currentPost: any): void {
     this.userPostsService.updatePostLikes(this.postToLike).subscribe(
       (data) => {
         // console.log(data.body.likes.length);
@@ -134,6 +135,7 @@ export class HomeComponent implements OnInit {
 
   // //   // this.userPostsService.getUsers().subscribe((data) => {
 
+
   // //   //   this.users = data.body;
   // //   //   console.log("all users:");
   // //   //   console.log(this.users);
@@ -175,6 +177,7 @@ export class HomeComponent implements OnInit {
   } // ADD COMMENT END
 
   // EDIT COMMENT
+
   public onEditComment(commentForm: NgForm): void{
     this.CommentService.updateComment(commentForm.value).subscribe(
       (response: any) => {
@@ -199,7 +202,21 @@ export class HomeComponent implements OnInit {
       }
     )
   }
+
   // DELETE REPLY END
+
+
+  likePost(currentPost: any): void {
+    let p = {
+      userId: 0,
+      postId: 0,
+    }
+    p.postId = currentPost.postId;
+    p.userId = this.user.userId;
+
+    this.totalLikes = this.userService.userLikesPost(p);
+  }
+
 
   // Add REPLY
   public onAddReply(replyForm: NgForm): void{

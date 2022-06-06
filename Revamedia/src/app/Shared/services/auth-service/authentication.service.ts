@@ -52,6 +52,7 @@ export class AuthenticationService {
       document.getElementById('invalid')!.style.display = "flex";
       console.log(error);
     })
+
   }
 
   public logout() {

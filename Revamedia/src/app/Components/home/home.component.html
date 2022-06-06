@@ -51,13 +51,9 @@
                     >
                   </fa-icon>
                    <span>{{ p?.likes?.length }} likes</span>
-
                 </div>
                 <div class="comment">
-                  <span (click)="openAddComment()">
-                    <fa-icon id="commentIcon" title="Comment" [icon]="faComment" size="lg"></fa-icon>
-                    Comment
-                  </span>
+                  <fa-icon id="commentIcon" (click)="openAddComment()" title="Comment" [icon]="faComment" size="lg"></fa-icon>
                 </div>
               </div>
               <div class="bookmark">
@@ -89,7 +85,7 @@
               </div>
               <span id="reaction-title">
                 <fa-icon [icon]="faFaceGrinTongueSquint"></fa-icon>
-                gifs (Choose one)
+                gifs
               </span>
               <div class="gifs">
                 <div class="gif" *ngFor="let gif of gifs">
@@ -145,7 +141,7 @@
                   </div>
                   <span id="reaction-title">
                     <fa-icon [icon]="faFaceGrinTongueSquint"></fa-icon>
-                    gifs (Choose one)
+                    gifs
                   </span>
                   <div class="gifs">
                     <div class="gif" *ngFor="let gif of gifs">
@@ -263,8 +259,6 @@
   </form>
 </div>
 <!-- ADD POST FORM END -->
-
-
 
 <!-- Edit COMMENT FORM START -->
 <div class="modal" id="edit-comment-modal">

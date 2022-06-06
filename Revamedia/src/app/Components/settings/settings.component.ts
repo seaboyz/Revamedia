@@ -17,7 +17,7 @@ export class SettingsComponent implements OnInit {
   ngOnInit(): void {
     this.getCurrentUserData();
   }
-
+  
   // Back end work
   public user: any;
   public editUser: any; // Used for edit modal
@@ -50,6 +50,7 @@ export class SettingsComponent implements OnInit {
   }
 
 
+
   // ICONS
   public faSun = faSun;
   public faMoon = faMoon;
@@ -63,6 +64,7 @@ export class SettingsComponent implements OnInit {
     document.body.classList.toggle('darkMode');
     this.darkTheme = !this.darkTheme;
   }
+  
   // DARK THEME
 
   // Show Password

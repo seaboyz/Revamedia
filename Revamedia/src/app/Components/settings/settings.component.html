@@ -67,12 +67,11 @@
 <div class="screen" id="screen"></div>
 <!-- BLACKOUTSCREEN END-->
 
-
-<!-- DELETE ACCOUNT FORM START -->
-<div class="modal" id="delete-account-modal">
+<!-- EDIT POST FORM START -->
+<div class="modal" id="add-post-modal">
   <div class="form-header">
-    <h3>Delete Account</h3>
-    <span (click)="closeModal('delete')">x</span>
+    <h3>Create new post</h3>
+    <span>x</span>
   </div>
   <form>
     <h6>{{ deleteUser?.firstName }} {{ deleteUser?.lastName }}</h6>
@@ -164,8 +163,9 @@
     </div>
 
     <div class="post-submit">
-      <button>Update</button>
+      <button>Create Post</button>
     </div>
   </form>
 </div>
 <!-- EDIT ACCOUNT FORM END -->
+

@@ -63,16 +63,30 @@ export class HomeComponent implements OnInit {
   public totalLikes : number = 0;
 
   // Back End Work
-  public onAddComment(commentForm: NgForm): void{
-    this.CommentService.addComment(commentForm.value).subscribe(
+  public getCommentById(id: number){
+    this.CommentService.getCommentById(id).subscribe(
       (response: any) => {
-        console.log(response);
+        this.comment = response.data;
+        console.log(this.comment);
       },
       (error: HttpErrorResponse) => {
         console.log(error.message)
       }
     )
   }
+
+  public onAddComment(commentForm: NgForm): void{
+    this.CommentService.addComment(commentForm.value).subscribe(
+      (response: any) => {
+        console.log(response);
+        this.getCommentById(response.data.commentId);
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error.message)
+      }
+    )
+  }
+
   public onEditComment(commentForm: NgForm): void{
     this.CommentService.updateComment(commentForm.value).subscribe(
       (response: any) => {
@@ -84,23 +98,6 @@ export class HomeComponent implements OnInit {
     )
   }
 
-  likePost(currentPost: any): void {
-
-    this.userPostsService.updatePostLikes(this.postToLike).subscribe((data) => {
-        console.log(data.body.likes.length);
-        this.totalLikes = data.body.likes.length;
-
-    let p = {
-      userId: 0,
-      postId: 0,
-    }
-    p.postId = currentPost.postId;
-    p.userId = this.user.userId;
-
-    this.totalLikes = this.userService.userLikesPost(p);
-  }
-    
-  
   // Get All Comments
   public getAllComments(): void{
     this.CommentService.getAllComments().subscribe(
@@ -112,6 +109,20 @@ export class HomeComponent implements OnInit {
       }
     )
   }
+
+  likePost(currentPost: any): void {
+    let p = {
+      userId: 0,
+      postId: 0,
+    }
+    p.postId = currentPost.postId;
+    p.userId = this.user.userId;
+
+    this.totalLikes = this.userService.userLikesPost(p);
+  }
+    
+  
+
 
 
      // get all comments for given post

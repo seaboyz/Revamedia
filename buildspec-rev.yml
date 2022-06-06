@@ -12,11 +12,11 @@ phases:
       # s3://[ bucket containing the secret files (i.e. hibernate.properties) ]
       #- aws s3 cp s3://revtech-secret-bucket/hibernate.properties src/main/resources/hibernate.properties
       - node -v
-      - aws s3 cp s3://revamedia-secret-bucket/application.properties src/main/resources/application.properties
+      - aws s3 cp s3://220328-p3-revamedia-secret/application.properties src/main/resources/application.properties
       # - ls -al
       # - ls -al src/main/resources/
       # s3://[ s3 bucket name ]/*
-      - aws s3 rm "s3://revamedia-ui/" --recursive
+      - aws s3 rm "s3://220328-revamedia-ui/" --recursive
   build:
     commands:
       - echo ============================build================================
@@ -36,7 +36,7 @@ phases:
       # - ls -al target/
       # - ls -al dist/rev-tech
       - cd Revamedia/dist/revamedia # move to the location of the ui build artifacts
-      - aws s3 cp "./" "s3://revamedia-ui/" --recursive # copying all files in location to the s3 bucket
+      - aws s3 cp "./" "s3://220328-revamedia-ui/" --recursive # copying all files in location to the s3 bucket
       - cd ../../..
       - mv target/Revamedia-*.*.*.war ROOT.war
 artifacts:

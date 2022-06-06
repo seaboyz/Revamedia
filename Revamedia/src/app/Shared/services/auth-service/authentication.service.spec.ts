@@ -81,7 +81,7 @@ fdescribe('AuthenticationService', () => {
       password: "Passowrd1!"
     }
     authService.login(testForm);
-    const request = httpController.expectOne(authService.loginUrl);
+    const request = httpController.expectOne(authService.authUrl);
     request.flush(user);
     expect(routerSpy.navigateByUrl).toHaveBeenCalledWith('/home');
 

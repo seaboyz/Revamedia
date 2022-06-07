@@ -5,12 +5,11 @@
  */
 package com.revature.Revamedia.beans.controllers;
 
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
-import javax.persistence.EntityNotFoundException;
-
+import com.revature.Revamedia.beans.services.UserPostsService;
+import com.revature.Revamedia.beans.services.UserService;
+import com.revature.Revamedia.dtos.UpdatePostLikesDto;
+import com.revature.Revamedia.entities.User;
+import com.revature.Revamedia.entities.UserPosts;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,11 +21,9 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import com.revature.Revamedia.beans.services.UserPostsService;
-import com.revature.Revamedia.beans.services.UserService;
-import com.revature.Revamedia.dtos.UpdatePostLikesDto;
-import com.revature.Revamedia.entities.User;
-import com.revature.Revamedia.entities.UserPosts;
+import javax.persistence.EntityNotFoundException;
+
+import static org.mockito.Mockito.*;
 
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)

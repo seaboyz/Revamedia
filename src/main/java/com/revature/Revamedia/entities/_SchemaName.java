@@ -9,13 +9,11 @@ public class _SchemaName {
     private static final String publicSchema = "public";
 
 
-    private static final String mainSchema = "kenneth";
-    private static final String mainSchema2 = "my_schema";
-    private static final String diegoSchema = "diego";
+    private static final String mainSchema = "public";
 
     /**
      *  Variable to change schemas for database.
      */
-    public static final String schemaName = publicSchema;
+    public static final String schemaName = mainSchema;
 
 }

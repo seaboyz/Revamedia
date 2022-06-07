@@ -1,14 +1,15 @@
 package com.revature.Revamedia.beans.services;
 
-import java.util.List;
-
-import javax.validation.Valid;
-
+import com.revature.Revamedia.beans.repositories.UserRepository;
+import com.revature.Revamedia.dtos.AuthDto;
+import com.revature.Revamedia.entities.User;
+import com.revature.Revamedia.entities.UserComments;
+import com.revature.Revamedia.exceptions.UnauthorizedUserException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.revature.Revamedia.beans.repositories.UserRepository;
-import com.revature.Revamedia.entities.User;
+import javax.validation.Valid;
+import java.util.List;
 
 @Service
 public class UserService {
@@ -40,7 +41,5 @@ public class UserService {
     }
 
     public boolean existsByUsername(String username){return userRepository.existsUserByUsername(username);}
-
-
 
 }

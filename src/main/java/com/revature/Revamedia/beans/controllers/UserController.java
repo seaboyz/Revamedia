@@ -1,18 +1,17 @@
 package com.revature.Revamedia.beans.controllers;
 
-import java.util.List;
-
+import com.revature.Revamedia.beans.services.UserService;
+import com.revature.Revamedia.dtos.AuthDto;
+import com.revature.Revamedia.dtos.UpdateUserDto;
+import com.revature.Revamedia.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.*;
 
-import com.revature.Revamedia.beans.services.UserService;
-import com.revature.Revamedia.entities.User;
+import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/user", produces = "application/json")
@@ -20,9 +19,13 @@ public class UserController {
     //Initialize Services
     private final UserService userService;
 
+    BCryptPasswordEncoder encoder;
+
+
     //Autowire Services
     @Autowired
     public UserController(UserService userService) {
+        this.encoder =  new BCryptPasswordEncoder(10);
         this.userService = userService;
     }
 
@@ -37,5 +40,20 @@ public class UserController {
     @GetMapping("/{id}")
     public ResponseEntity<User> user (@PathVariable Integer id){
         return new ResponseEntity<>(userService.getUserById(id), HttpStatus.ACCEPTED);
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<User> updateUser(@PathVariable Integer id, @RequestBody UpdateUserDto dto){
+        User user = userService.getUserById(id);
+        user.setUsername(dto.getUsername());
+        user.setProfilePicture(dto.getProfilePicture());
+        user.setEmail(dto.getEmail());
+        user.setFirstName(dto.getFirstName());
+        user.setLastName(dto.getLastName());
+        user.setPassword(encoder.encode(dto.getPassword()));
+        return new ResponseEntity<>(userService.update(user), HttpStatus.OK);
+    }
+    public void setEncoder(BCryptPasswordEncoder encoder) {
+        this.encoder = encoder;
     }
 }

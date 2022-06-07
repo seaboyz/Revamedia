@@ -7,5 +7,5 @@ import com.revature.Revamedia.entities.UserComments;
 
 @Repository
 public interface UserCommentsRepository extends JpaRepository<UserComments, Integer> {
-
+    void deleteById(Integer id);
 }

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, retry, throwError, catchError } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -8,12 +9,12 @@ import { Observable, retry, throwError, catchError } from 'rxjs';
 })
 export class RegisterService {
 
-  baseUrl: string = "http://localhost:8080/auth/register";
+  registerUrl: string = environment.apiBaseUrl + "/auth/register";
 
   constructor(private http : HttpClient) { }
   createUser(body: object, options: object): Observable<any> {
-    console.log("Post: ", this.baseUrl, body, options)
-    return this.http.post<any>(this.baseUrl ,  JSON.stringify(body), options)
+    console.log("Post: ", this.registerUrl, body, options)
+    return this.http.post<any>(this.registerUrl ,  JSON.stringify(body), options)
       .pipe(
         retry(3),
         catchError(this.errorHandler)

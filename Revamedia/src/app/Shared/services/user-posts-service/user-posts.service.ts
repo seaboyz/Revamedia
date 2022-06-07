@@ -11,9 +11,7 @@ export class UserPostsService {
 
   constructor(private http: HttpClient) { }
 
-  public getAllPosts(): Observable<any> {
-    return this.http.get<any[]>(`${this.userPostURL}/getAllPosts`);
-  }
+  //update post function sends put requests and updates
 
   public getPostById(id: Number): Observable<any> {
     return this.http.get<any>(`${this.userPostURL}/${id}`)
@@ -25,10 +23,6 @@ export class UserPostsService {
 
   public updatePost(post: any): Observable<any> {
     return this.http.put<any>(`${this.userPostURL}/updatePost`, post);
-  }
-
-  public deletePost(post: any): Observable<any> {
-    return this.http.delete<any>(`${this.userPostURL}`, post);
   }
 
   //array of posts

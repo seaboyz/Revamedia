@@ -15,7 +15,7 @@ export class GiphyService {
 
   public getGIFS(search: string): Observable<any[]> {
     return this.http.get<any[]>(
-      `${this.apiBaseUrl}gifs/search?q=${search}&api_key=${environment.apiKey}&limit=12`)
+      `${this.apiBaseUrl}gifs/search?q=${search}&api_key=${environment.apiKey}&limit=24`)
   }
 
   public getStickers(search: string): Observable<any[]> {

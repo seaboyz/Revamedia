@@ -30,4 +30,5 @@ public class UserRepliesService {
     public List<UserReplies> getAllReplies() {
         return userRepliesRepository.findAll();
     }
+    public void delete(UserReplies reply){ userRepliesRepository.delete(reply);}
 }

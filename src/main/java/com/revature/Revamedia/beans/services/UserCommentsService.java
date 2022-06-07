@@ -32,4 +32,6 @@ public class UserCommentsService {
     public List<UserComments> getAllComment() {
         return userCommentsRepository.findAll();
     }
+
+    public void delete(UserComments comment) { userCommentsRepository.delete(comment);}
 }

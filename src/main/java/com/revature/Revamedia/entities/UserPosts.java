@@ -27,16 +27,16 @@ public class UserPosts implements Serializable {
     @Column(name = "post_id")
     private Integer postId;
 
-    @JsonBackReference
+//    @JsonBackReference ??
     @ManyToOne()
     @JoinColumn(name = "owner_id", referencedColumnName = "user_id")
     private User ownerId;
 
-    @JsonManagedReference
+//    @JsonManagedReference() ??
     @OneToMany(mappedBy = "postId", cascade = CascadeType.ALL)
     private List<UserComments> comments;
 
-    @JsonBackReference
+    @JsonBackReference(value = "groupId")
     @ManyToOne
     @JoinColumn(name = "group_id")
     private UserGroups groupId;

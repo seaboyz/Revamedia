@@ -46,11 +46,11 @@ public class User implements Serializable {
     @Column(name = "date_created")
     private Timestamp dateCreated;
 
-    @JsonManagedReference
+    //@JsonManagedReference
     @OneToMany(mappedBy = "followedId", cascade = CascadeType.ALL)
     private Set<UserFollows> followers;
 
-    @JsonManagedReference
+    //@JsonManagedReference
     @OneToMany(mappedBy = "followerId", cascade = CascadeType.ALL)
     private Set<UserFollows> following;
 
@@ -79,7 +79,7 @@ public class User implements Serializable {
     )
     private Set<UserGroups> groupsJoined;
 
-    @JsonManagedReference
+    @JsonManagedReference(value = "groupOwned")
     @OneToMany(mappedBy = "ownerId", cascade = CascadeType.ALL)
     private Set<UserGroups> groupsOwned;
 
@@ -92,7 +92,7 @@ public class User implements Serializable {
     )
     private Set<UserEvents> eventsJoined;
 
-    @JsonManagedReference
+    @JsonManagedReference(value = "eventsOwned")
     @OneToMany(mappedBy = "ownerId", cascade = CascadeType.ALL)
     private Set<UserEvents> eventsOwned;
 

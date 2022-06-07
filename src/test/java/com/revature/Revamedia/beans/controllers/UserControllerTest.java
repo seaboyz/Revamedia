@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.Revamedia.beans.services.UserService;
+import com.revature.Revamedia.dtos.UpdateUserDto;
 import com.revature.Revamedia.dtos.ViewAllUserDto;
 import com.revature.Revamedia.entities.User;
 import org.junit.jupiter.api.Test;
@@ -19,14 +20,12 @@ import org.springframework.test.web.servlet.MvcResult;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
@@ -65,15 +64,18 @@ public class UserControllerTest {
             //String content = mapper.writeValueAsString(users);
             MvcResult result = this.mockMvc.perform(get("/user/allUsers").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andReturn();
             System.out.println(result.getResponse().getContentAsString());
-            List<User> returnedUsers = mapper.readValue(result.getResponse().getContentAsString(), new TypeReference<List<User>>(){});
-            //List<User> returnedUsers1 = mapper.convertValue(returnedUsers, new List<User>[]);
-            assertEquals(returnedUsers, users.toString());
+            String jsonResponse = result.getResponse().getContentAsString();
+            //json ended up in testing memory location, change to string to test actual value.
+//            List<User> returnedUsers = mapper.readValue(result.getResponse().getContentAsString(), new TypeReference<List<User>>(){});
+            String userJson = mapper.writeValueAsString(users);
+
+            assertEquals(jsonResponse, userJson);
     }
 
     @Test
     public void getUserByIdTest() throws Exception {
         //arrange
-        /*
+
         Integer id = 1;
         HttpHeaders httpHeaders = new HttpHeaders();
         ResponseEntity<User> responseEntity = ResponseEntity.ok().headers(httpHeaders).build();
@@ -82,11 +84,28 @@ public class UserControllerTest {
         ObjectMapper mapper = new ObjectMapper();
         //act
         String content = mapper.writeValueAsString(id);
-        this.mockMvc.perform(post("/user/{id}").contentType(MediaType.APPLICATION_JSON).content(content)).andExpect(status().isOk());
+        this.mockMvc.perform(get("/user/" + id).contentType(MediaType.APPLICATION_JSON).content(content)).andExpect(status().isAccepted());
         //assert
+    }
 
+    @Test
+    public void updateUserByIdTest() throws Exception {
+        /*
+        //arrange
+        Integer id = 1;
 
-         */
+        UpdateUserDto updatedUser = new UpdateUserDto();
+        HttpHeaders httpHeaders = new HttpHeaders();
+        ResponseEntity<User> responseEntity = ResponseEntity.ok().headers(httpHeaders).build();
+        User user = responseEntity.getBody();
+        when(userServiceMock.getUserById(id)).thenReturn(user);
+        when(userServiceMock.update(updatedUser)).thenReturn(user);
+        ObjectMapper mapper = new ObjectMapper();
+        //act
+        String content = mapper.writeValueAsString(updatedUser);
+        this.mockMvc.perform(put("/user/update/" + id + updatedUser).contentType(MediaType.APPLICATION_JSON).content(content)).andExpect(status().isAccepted());
+        //assert
+        */
 
     }
 }

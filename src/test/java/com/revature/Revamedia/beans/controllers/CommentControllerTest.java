@@ -20,6 +20,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import com.revature.Revamedia.beans.services.UserCommentsService;
 import com.revature.Revamedia.entities.UserComments;
 
+/**
+* @Author: Qiang Gao
+*/
 @WebMvcTest(CommentController.class)
 public class CommentControllerTest {
 
@@ -40,6 +43,7 @@ public class CommentControllerTest {
 
         this.mockMvc.perform(get("/comment/1")).andExpect(status().isOk());
 
+        // ? should thorw exception or return null
         this.mockMvc.perform(get("/comment/2")).andExpect(status().isNotFound());
 
     }

@@ -142,28 +142,8 @@
       <h5>Profile Pic</h5>
       <input ngModel="{{ editUser?.profilePicture }}" type="url" name="profilePicture" id="profile_pic" placeholder="Image Url...">
     </div>
-    <div class="user-settings-row">
-      <h5>Password</h5>
-      <div class="password">
-        <input
-          ngModel
-          [type]="showPassword ? 'text' : 'password'"
-          name="password"
-          id="password"
-          placeholder="Update Password..."
-          title="Min 8 characters, at least 1 uppercase letter, 1 lowercase, 1 number and 1 special character"
-          pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
-          required>
-        <p (click)="toggleShowPassword()">
-          <fa-icon *ngIf="showPassword === false" [icon]="faEye"></fa-icon>
-          <fa-icon *ngIf="showPassword === true" [icon]="faEyeSlash"></fa-icon>
-          {{showPassword ? 'Hide Password' : 'Show Password' }}
-        </p>
-      </div>
-    </div>
-
     <div class="post-submit">
-      <button>Create Post</button>
+      <button>Update Account</button>
     </div>
   </form>
 </div>

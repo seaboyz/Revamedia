@@ -52,8 +52,9 @@
                   </fa-icon>
                    <span>{{ p?.likes?.length }} likes</span>
                 </div>
-                <div class="comment">
-                  <fa-icon id="commentIcon" (click)="openAddComment()" title="Comment" [icon]="faComment" size="lg"></fa-icon>
+                <div class="comment" (click)="toggleComments()">
+                  <fa-icon id="commentIcon" title="Comment" [icon]="faComment" size="lg"></fa-icon>
+                  <span>Comment</span>
                 </div>
               </div>
               <div class="bookmark">

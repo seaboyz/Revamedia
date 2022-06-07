@@ -40,6 +40,7 @@ export class HomeComponent implements OnInit {
     this.getGifs('funny');
     this.posts = [];
     this.getCurrentUserData();
+    this.openingAnimation();
     // this.userService.getCurrentUser().subscribe({
     //   next: response => {
     //     this.user = response;
@@ -75,7 +76,6 @@ export class HomeComponent implements OnInit {
         //   this.posts.push(p);
         //   this.posts = this.posts.flat();
         // }
-        this.openingAnimation();
         // console.log(this.posts);
       },
       (error: HttpErrorResponse) => {
@@ -85,7 +85,7 @@ export class HomeComponent implements OnInit {
   }
 
   // // Back End Work
-  public 
+  public
   (currentPost: any): void {
     this.userPostsService.updatePostLikes(this.postToLike).subscribe(
       (data) => {
@@ -289,6 +289,9 @@ export class HomeComponent implements OnInit {
   public closeAddComment(): void {
     this.addComment = false;
   }
+  public toggleComments():void{
+    this.addComment = !this.addComment;
+  }
 
   public fileName(event: any, target: string): void {
     var fileNames: any[] = event.target.files;
@@ -405,6 +408,6 @@ export class HomeComponent implements OnInit {
   public openingAnimation() {
     const anim = this.animationService;
     const main = '#main';
-    anim.fadeIn(main, 0.5, 0, 0);
+    anim.fadeIn(main, 0.7, 0, 0.6);
   }
 }

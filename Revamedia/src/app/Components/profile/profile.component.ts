@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { AnimationService } from 'src/app/Shared/services/animation/animation.service';
 import { UserService } from 'src/app/Shared/services/user-service/user.service';
 
 @Component({
@@ -9,10 +10,11 @@ import { UserService } from 'src/app/Shared/services/user-service/user.service';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, public animationService: AnimationService) { }
 
   ngOnInit(): void {
     this.getCurrentUserData();
+    this.openingAnimation();
   }
 
   // User data
@@ -50,5 +52,12 @@ export class ProfileComponent implements OnInit {
     // Modal
     const modal = document.getElementById(`${modalType}-modal`);
     modal?.classList.remove('openModal');
+  }
+
+  // ANIMATION
+  public openingAnimation() {
+    const anim = this.animationService;
+    const main = '#profile';
+    anim.fadeIn(main, 0.7, 0, 0.6);
   }
 }

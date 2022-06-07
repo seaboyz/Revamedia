@@ -4,15 +4,19 @@
     <div class="card">
       <h3>Revamedia</h3>
       <div class="page-subTitle">
-        <span>Main Feed</span>
+        <div class="user">
+          <img *ngIf="user?.profilePicture !== ''" src="{{user?.profilePicture}}" alt="{{ user?.username }}"  routerLink="/profile" routerLinkActive="active">
+          <img *ngIf="user?.profilePicture === ''" src="https://randomuser.me/api/portraits/lego/1.jpg" alt="No Pic" routerLink="/profile" routerLinkActive="active">
+          <span><p routerLink="/profile" routerLinkActive="active">{{ user?.username }}</p>'s Feed</span>
+        </div>
       </div>
     </div>
-    <button (click)="openModal('add', post)">Add Post</button>
+    <button (click)="openModal('add','post-modal', user)">Add Post</button>
   </div>
   <!-- Page title End -->
 
   <!-- main feed start -->
-  <div class="main">
+  <div class="main" id="main">
 
       <!-- post start -->
       <div class="post-data" *ngFor="let p of posts">
@@ -20,40 +24,36 @@
         <div class="post">
           <div class="post-title" id="setBackgroundColor">
             <div class="post-author">
-              <img routerLink="/profile" routerLinkActive="active" src="https://avatars.githubusercontent.com/u/77355023?v=4" alt="User">
-              <a routerLink="/profile" routerLinkActive="active">leobarrientos02</a>
+              <img *ngIf="user?.profilePicture !== ''" src="{{user?.profilePicture}}" alt="{{ user?.username }}"  routerLink="/profile" routerLinkActive="active">
+              <img *ngIf="user?.profilePicture === ''" src="https://randomuser.me/api/portraits/lego/1.jpg" alt="No Pic" routerLink="/profile" routerLinkActive="active">
+              <a routerLink="/profile" routerLinkActive="active">{{ user?.username }}</a>
             </div>
             <div class="post-options">
               <fa-icon (click)="togglePostsOptions()" id="icon" [icon]="faEllipsis"></fa-icon>
               <ul *ngIf="postsOptionsClicked" id="postOptionMenu">
-                <li (click)="openModal('edit', post)">Edit Post</li>
-                <li  (click)="openModal('delete', post)">Delete Post</li>
+                <li (click)="openModal('edit','post-modal', p)">Edit Post</li>
+                <li  (click)="openModal('delete', 'post-modal', p)">Delete Post</li>
               </ul>
             </div>
           </div>
           <div class="post-body">
-            <img src="https://images.theconversation.com/files/453091/original/file-20220318-23-2ehppm.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=900.0&fit=crop" alt="User">
+            <img src="{{ p?.image }}" alt="{{p?.image}}">
             <div class="post-description" id="setBackgroundColor">
-              <p><a routerLink="/profile" routerLinkActive="active">leobarrientos02</a>{{p.message}}</p>
+              <p><a routerLink="/profile" routerLinkActive="active">{{ user?.username }}</a>{{p?.message}}</p>
             </div>
             <div class="post-options" id="setBackgroundColor">
               <div class="container">
-                <div class="likes">
+                <div class="likes" (click)="likePost(p)">
                   <fa-icon
                     [icon]="faHeart"
                     size="lg"
-                    [ngClass]="[totalLikes < 1 ? 'NoLike' : 'OneLike']"
-                    (click)="likePost(p)"
+                    [ngClass]="[p?.likes?.length < 1 ? 'NoLike' : 'OneLike']"
                     >
                   </fa-icon>
-                   <span>{{p.likes.length}}</span>
-                      
+                   <span>{{ p?.likes?.length }} likes</span>
                 </div>
                 <div class="comment">
-                  <span (click)="openAddComment()">
-                    <fa-icon id="commentIcon" title="Comment" [icon]="faComment" size="lg"></fa-icon>
-                    Comment
-                  </span>
+                  <fa-icon id="commentIcon" (click)="openAddComment()" title="Comment" [icon]="faComment" size="lg"></fa-icon>
                 </div>
               </div>
               <div class="bookmark">
@@ -63,61 +63,58 @@
           </div>
         </div>
 
-        <!-- ADD COMMENT START -->
+        <span *ngIf="p?.comments.length === 0">No Comments</span>
+        <span (click)="toggleHideComments()" *ngIf="p?.comments.length !== 0" id="viewComments">{{viewComments ? 'Hide Comments' : 'View Comments' }}</span>
+
+        <!-- ADD COMMENT -->
         <div class="add-comment" *ngIf="addComment" id="addCommentReplyForm">
           <div class="add-comment-header">
             <h5>Add Comment</h5>
-            <button title="Close" id="closeBtn" (click)="closeAddComment()">X</button>
+            <button title="Close" (click)="closeAddComment()" id="closeModal">X</button>
           </div>
-          <form #addCommentForm="ngForm" (ngSubmit)="onAddComment(addCommentForm)" ngNativeValidate id="add-comment-form">
-            <input type="hidden" name="dateCreated" ngModel="{{currentDate}}">
-            <textarea ngModel name="message" id="comment" rows="5"></textarea>
+          <form #commentForm="ngForm" (ngSubmit)="onAddComment(commentForm)" id="add-comment-form">
+            <input type="hidden" name="post_id" ngModel="{{ p?.postId }}">
+            <input type="hidden" name="owner_id" ngModel="{{ user?.userId }}">
+            <textarea name="message" id="comment" rows="4" ngModel></textarea>
+            <button>Add Comment</button>
             <div class="reactions">
               <span>Reactions</span>
               <div class="search">
-                <input type="text" id="giphy-search-comment" placeholder="Search GIPHY">
-                <span (click)="searchGiphy()">Search</span>
+                <input type="text" id="giphy-search-reply" placeholder="Search GIPHY">
+                <span (click)="searchGiphyForReply()">Search</span>
               </div>
               <span id="reaction-title">
                 <fa-icon [icon]="faFaceGrinTongueSquint"></fa-icon>
-                gifs (Choose one)
+                gifs
               </span>
               <div class="gifs">
                 <div class="gif" *ngFor="let gif of gifs">
                   <img (click)="selectGiphy(gif.images.downsized.url)" src="{{ gif.images.downsized.url }}" alt="{{ gif.title }}">
                 </div>
-
-                <input type="hidden" name="giphyUrl" ngModel="{{selectedGiphy}}">
-              </div>
-              <span id="reaction-title">
-                <fa-icon [icon]="faFaceGrinStars"></fa-icon>
-                Stickers (Choose one)
-              </span>
-              <div class="stickers">
-                <div class="sticker" *ngFor="let sticker of stickers">
-                  <img (click)="selectGiphy(sticker.images.downsized.url)" src="{{ sticker.images.downsized.url }}" alt="{{ sticker.title }}">
-                </div>
                 <input type="hidden" name="giphyUrl" ngModel="{{selectedGiphy}}">
               </div>
             </div>
-            <button>Comment</button>
           </form>
         </div>
-        <!-- ADD COMMENT END -->
+        <!-- ADD COMMENT END-->
 
-        <span (click)="toggleHideComments()" id="viewComments">{{hideComments ? 'Hide Comments' : 'View Comments' }}</span>
-
-        <div class="post-comments-section" *ngIf="hideComments" id="commentSection">
+        <div class="post-comments-section" *ngIf="p?.comments.length > 0 && viewComments == true" id="commentSection">
           <!-- comments start -->
           <h5>Comments</h5>
-          <div class="comment">
-            <div class="comment-author">
-              <img routerLink="/profile" routerLinkActive="active" src="https://avatars.githubusercontent.com/u/77355023?v=4" alt="User">
-              <a routerLink="/profile" routerLinkActive="active" title="View Profile" >leobarrientos02</a>
+          <div class="comment" *ngFor="let comment of p?.comments">
+            <div class="comment-title">
+              <div class="comment-author">
+                <img routerLink="/profile" routerLinkActive="active" src="https://avatars.githubusercontent.com/u/77355023?v=4" alt="User">
+                <a routerLink="/profile" routerLinkActive="active" title="View Profile" >leobarrientos02</a>
+              </div>
+              <div class="comment-option" id="comment-option">
+                <button (click)="openModal('edit', 'comment-modal', comment)" >Edit</button>
+                <button (click)="openModal('delete', 'comment-modal', comment)" >Delete</button>
+              </div>
             </div>
             <div class="comment-content">
-              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi provident omnis, fugiat quas fuga vero harum beatae quibusdam doloremque sequi voluptates laboriosam hic id modi nisi quo fugit expedita sit!</p>
-              <img src="https://cdn.discordapp.com/attachments/959893537355350073/969003426094661692/76289-1650787315-1611918496.png" alt="Comment">
+              <p>{{ comment?.message }}</p>
+              <img *ngIf="comment?.giphyUrl !== ''" src="{{ comment?.giphyUrl }}" alt="Attached Image">
             </div>
 
             <div class="reply-card">
@@ -129,10 +126,13 @@
             <div class="add-reply" *ngIf="addReply" id="addCommentReplyForm">
               <div class="add-reply-header">
                 <h5>Add Reply</h5>
-                <button title="Close" (click)="closeAddReply()">X</button>
+                <button title="Close" (click)="closeAddReply()" id="closeModal">X</button>
               </div>
-              <form id="add-reply-form">
-                <textarea name="comment" id="comment" rows="5"></textarea>
+              <form #replyForm="ngForm" (ngSubmit)="onAddReply(replyForm)" id="add-reply-form">
+                <input type="hidden" name="comment_id" ngModel="{{ comment?.commentId }}" >
+                <input type="hidden" name="owner_id" ngModel="{{ user?.userId }}">
+                <textarea ngModel name="message" id="comment" rows="4"></textarea>
+                <button>Reply</button>
                 <div class="reactions">
                   <span>Reactions</span>
                   <div class="search">
@@ -141,80 +141,78 @@
                   </div>
                   <span id="reaction-title">
                     <fa-icon [icon]="faFaceGrinTongueSquint"></fa-icon>
-                    gifs (Choose one)
+                    gifs
                   </span>
                   <div class="gifs">
                     <div class="gif" *ngFor="let gif of gifs">
-                      <img (click)="selectGiphy(gif.images.downsized.url)" src="{{ gif.images.downsized.url }}" alt="{{ gif.title }}">
-                    </div>
-
-                    <input type="hidden" name="giphyUrl" ngModel="{{selectedGiphy}}">
-                  </div>
-                  <span id="reaction-title">
-                    <fa-icon [icon]="faFaceGrinStars"></fa-icon>
-                    Stickers (Choose one)
-                  </span>
-                  <div class="stickers">
-                    <div class="sticker" *ngFor="let sticker of stickers">
-                      <img (click)="selectGiphy(sticker.images.downsized.url)" src="{{ sticker.images.downsized.url }}" alt="{{ sticker.title }}">
+                      <img
+                        (click)="selectGiphy(gif.images.downsized.url)"
+                        src="{{ gif.images.downsized.url }}"
+                        alt="{{ gif.title }}">
                     </div>
                     <input type="hidden" name="giphyUrl" ngModel="{{selectedGiphy}}">
                   </div>
                 </div>
-                <button>Reply</button>
               </form>
             </div>
             <!-- ADD REPLY END-->
 
             <!-- Replies Start -->
-            <div class="reply">
-              <div class="reply-author">
-                <img routerLink="/profile" routerLinkActive="active" src="https://avatars.githubusercontent.com/u/77355023?v=4" alt="User">
-                <a routerLink="/profile" routerLinkActive="active" title="View Profile" >leobarrientos02</a>
+            <div class="reply" *ngFor="let reply of comment?.replies">
+              <div class="reply-title">
+                <div class="reply-author">
+                  <img routerLink="/profile" routerLinkActive="active" src="https://avatars.githubusercontent.com/u/77355023?v=4" alt="User">
+                  <a routerLink="/profile" routerLinkActive="active" title="View Profile" >leobarrientos02</a>
+                </div>
+                <div class="reply-option" id="reply-option">
+                  <button (click)="openModal('edit', 'reply-modal', reply)" >Edit</button>
+                  <button (click)="openModal('delete', 'reply-modal', reply)" >Delete</button>
+                </div>
               </div>
               <div class="reply-content">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, fuga, eaque eos alias laboriosam quis sapiente, illum provident accusantium odio minima aspernatur nihil deleniti? Dicta odit tempore aspernatur cum quis!</p>
-                <img src="https://media3.giphy.com/media/3EuAsjZDUJefK/giphy.gif?cid=ecf05e47baab3e1b6e1451e393cae03f17f5fd0f114af892&rid=giphy.gif&ct=g" alt="reply">
+                <p>{{ reply?.message }}</p>
+                <img src="{{ reply?.giphyUrl }}" *ngIf="reply?.giphyUrl !== null" alt="Attached Image">
               </div>
             </div>
             <!-- Replies End -->
 
           </div>
         </div>
-      </div>
-      <!-- post end -->
 
+      </div>
+    <!-- post end -->
+
+      <!-- NO POST AVAILABLE START-->
+      <div class="noPost" *ngIf="user?.postsOwned.length == 0">
+        <h1>No Post</h1>
+        <p>Seems like there are no posts available to show</p>
+        <p>Sorry for the inconvience.</p>
+        <span>Be the first to make a post.</span>
+      </div>
+      <!-- NO POST AVAILABLE END-->
   </div>
   <!-- main feed end -->
-
 </div>
 
 
 
-<!-- BLACKOUTSCREEN START-->
+<!-- BLACKOUTSCREEN -->
 <div class="screen" id="screen"></div>
-<!-- BLACKOUTSCREEN END-->
-
 <!-- ADD POST FORM START -->
 <div class="modal" id="add-post-modal">
   <div class="form-header">
     <h3>Create new post</h3>
-    <span (click)="closeModal('add')">x</span>
+    <span (click)="closeModal('add', 'post-modal')">x</span>
   </div>
-  <form>
+  <form  #addPostForm="ngForm" (ngSubmit)="addPost(addPostForm)">
     <div class="form-data">
-      <h4>Add Image or Video</h4>
-      <div class="file-input">
-        <input type="file" id="file" class="file" (change)="addPostFileName($event)">
-        <label for="file">
-          Select File
-        </label>
-        <p class="file-name" id="add-post-fileName"></p>
-      </div>
+      <h4>Add Image or Youtube Link</h4>
+      <input type="text" name="image" id="image" placeholder="ImageUrl or Youtube Link">
     </div>
     <div class="form-data">
+      <input type="hidden" name="userId" ngModel="{{ post?.userId }}">
       <h4>Write a caption</h4>
-      <textarea name="message" placeholder="Write a caption..."></textarea>
+      <textarea name="message" placeholder="Write a caption..." rows="8"></textarea>
     </div>
     <div class="post-submit">
       <button>Create Post</button>
@@ -227,22 +225,16 @@
 <div class="modal" id="edit-post-modal">
   <div class="form-header">
     <h3>Edit post</h3>
-    <span (click)="closeModal('edit')">x</span>
+    <span (click)="closeModal('edit', 'post-modal')">x</span>
   </div>
   <form>
     <div class="form-data">
       <h4>Edit Image or Video</h4>
-      <div class="file-input">
-        <input type="file" id="file" class="file">
-        <label for="file">
-          Select File
-        </label>
-        <p class="file-name" id="edit-post-fileName"></p>
-      </div>
+      <input type="text" ngModel="{{ editPost?.image }}" name="image" id="image" placeholder="ImageUrl or Youtube Link">
     </div>
     <div class="form-data">
       <h4>Edit caption</h4>
-      <textarea name="message" placeholder="Write a caption..."></textarea>
+      <textarea name="message" placeholder="Write a caption..." ngModel="{{ editPost?.message }}" rows="8"></textarea>
     </div>
     <div class="post-submit">
       <button>Update Post</button>
@@ -255,13 +247,92 @@
 <div class="modal" id="delete-post-modal">
   <div class="form-header">
     <h3>Delete post</h3>
-    <span (click)="closeModal('delete')">x</span>
+    <span (click)="closeModal('delete', 'post-modal')">x</span>
   </div>
   <form>
     <h2>Are you sure you want to delete this post?</h2>
+    <span style="font-size: .8rem;">{{ deletePost?.message }}</span>
+    <img style="width:8rem;height: 8rem; object-fit:cover;" src="{{ deletePost?.image }}" alt="Image">
     <div class="post-submit">
       <button id="deleteBtn">Delete Post</button>
     </div>
   </form>
 </div>
-<!-- DELETE POST FORM END -->
+<!-- ADD POST FORM END -->
+
+<!-- Edit COMMENT FORM START -->
+<div class="modal" id="edit-comment-modal">
+  <div class="form-header">
+    <h3>Edit comment</h3>
+    <span (click)="closeModal('edit', 'comment-modal')">x</span>
+  </div>
+  <form #editCommentForm="ngForm" (ngSubmit)="onEditComment(editCommentForm)">
+    <input type="hidden" name="comment_id" ngModel="{{ editComment?.commentId }}">
+    <div class="form-data">
+      <textarea ngModel="{{ editComment?.message }}" name="message" rows="4"></textarea>
+    </div>
+    <div class="post-submit">
+      <button>Update comment</button>
+    </div>
+  </form>
+</div>
+<!-- Edit COMMENT FORM END -->
+
+<!-- delete COMMENT FORM START -->
+<div class="modal" id="delete-comment-modal">
+  <div class="form-header">
+    <h3>Delete comment</h3>
+    <span (click)="closeModal('delete',  'comment-modal')">x</span>
+  </div>
+  <form (ngSubmit)="onDeleteComment(deleteComment?.commentId)">
+    <h2>Are you sure you want to delete this comment?</h2>
+    <span style="font-size: .8rem;">{{ deleteComment?.message }}</span>
+    <div class="post-submit">
+      <button id="deleteBtn">Delete comment</button>
+    </div>
+  </form>
+</div>
+<!-- delete COMMENT FORM END -->
+
+
+<!-- Edit reply FORM START -->
+<div class="modal" id="edit-reply-modal">
+  <div class="form-header">
+    <h3>Edit Reply</h3>
+    <span (click)="closeModal('edit', 'reply-modal')">x</span>
+  </div>
+  <form #editReplyForm="ngForm" (ngSubmit)="onEditReply(editReplyForm)">
+    <input type="hidden" name="reply_id" ngModel="{{ editReply?.replyId }}">
+    <div class="form-data">
+      <textarea ngModel="{{ editReply?.message }}" name="message" rows="4"></textarea>
+    </div>
+    <div class="post-submit">
+      <button>Update Reply</button>
+    </div>
+  </form>
+</div>
+<!-- Edit COMMENT FORM END -->
+
+<!-- delete COMMENT FORM START -->
+<div class="modal" id="delete-reply-modal">
+  <div class="form-header">
+    <h3>Delete reply</h3>
+    <span (click)="closeModal('delete',  'reply-modal')">x</span>
+  </div>
+  <form (ngSubmit)="onDeleteReply(deleteReply?.replyId)">
+    <h2>Are you sure you want to delete this reply?</h2>
+    <span style="font-size: .8rem;">{{ deleteReply?.message }}</span>
+    <div class="post-submit">
+      <button id="deleteBtn">Delete comment</button>
+    </div>
+  </form>
+</div>
+<!-- delete COMMENT FORM END -->
+
+<!-- <div class="file-input">
+  <input type="file" id="file" class="file" (change)="fileName($event, 'edit-post')">
+  <label for="file">
+    Select File
+  </label>
+  <p class="file-name" id="edit-post-fileName"></p>
+</div> -->

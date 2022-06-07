@@ -39,7 +39,6 @@ export class UserService {
       console.log(data.body);
       num = data.body.userPosts.likes.length;
       this.setCurrentUser(data.body.user);
-    
   });
     return num
   }
@@ -59,7 +58,7 @@ export class UserService {
         // this.conversations = new HashSet<>();
 
    //     this.likedPosts = new ArrayList<>();
-  //1. when user logs in- 
+  //1. when user logs in-
   //2.you store their user id in local storage.
   //3. call method to get user information.
   //4. set user information into user
@@ -82,6 +81,14 @@ export class UserService {
   getUserById(id: any) : Observable<any> {
     console.log("test");
     return this.http.get<any>(`${this.userURL}/` + id, {observe : `response`})
+  }
+
+  public getUser() : Observable<any> {
+    return this.http.get<any>(`${this.userURL}/1`);
+  }
+
+  public updateUser(user: any, id: number) : Observable<any> {
+    return this.http.put<any>(`${this.userURL}/update/${id}`, user);
   }
 
 }

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -23,36 +24,40 @@ export class AuthenticationService {
       return false;
     }
   }
+
+  authUrl: string = environment.apiBaseUrl + "/auth/login";
   public login(loginForm: NgForm) {
 
     let user = {
       username: loginForm.value.username,
       password: loginForm.value.password
     }
+
     //Post request to attempt to login the user
-    this.http.post('http://localhost:8080/auth/login', user, {
+
+    this.http.post(this.authUrl, user, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
       }),
       'withCredentials': true
     }).subscribe((response: any) => {
       //If login was successful store the user's info in session storage
-      user = response;
-      sessionStorage.setItem('userid', response.userId.toString());
-      sessionStorage.setItem('username', response.username);
-      sessionStorage.setItem('email', response.email);
-      sessionStorage.setItem('firstname', response.firstName);
-      sessionStorage.setItem('lastname', response.lastName);
-      sessionStorage.setItem('phone', response.phone);
+      // user = response;
+      // sessionStorage.setItem('userid', response.userId.toString());
+      // sessionStorage.setItem('username', response.username);
+      // sessionStorage.setItem('email', response.email);
+      // sessionStorage.setItem('firstname', response.firstName);
+      // sessionStorage.setItem('lastname', response.lastName);
+      // sessionStorage.setItem('phone', response.phone);
 
-
-      this.loggedIn.next(true);
       sessionStorage.setItem('LoggedIn', '1');
+      this.loggedIn.next(true);
       this.router.navigateByUrl('/home');
     }, (error: HttpErrorResponse) => {
       document.getElementById('invalid')!.style.display = "flex";
       console.log(error);
     })
+
   }
 
   public logout() {

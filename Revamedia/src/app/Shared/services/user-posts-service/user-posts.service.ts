@@ -12,15 +12,15 @@ export class UserPostsService {
   //array of posts
   //behavior value of inital value of array of posts
 
-  //update post function sends put requests and updates 
+  //update post function sends put requests and updates
 
 
 
   updatePostLikes(updatePostLikesDto: any) : Observable<any> {
 
-    
+
     return this.http.put<any>(`${this.userPostURL}/likes`, updatePostLikesDto, {observe : `response`})
-    
+
   }
 
 

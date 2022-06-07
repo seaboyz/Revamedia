@@ -6,7 +6,7 @@
 
     <groupId>org.revature</groupId>
     <artifactId>Revamedia</artifactId>
-    <version>0.1.0</version>
+    <version>0.2.0</version>
     <packaging>war</packaging>
     <name>Revamedia</name>
     <description>P3 Project</description>

@@ -83,7 +83,7 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "ownerId", cascade = CascadeType.ALL)
     private Set<UserGroups> groupsOwned;
 
-    @JsonIgnoreProperties("usersJoined")
+    @JsonIgnoreProperties
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "users_in_events",

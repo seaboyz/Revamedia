@@ -47,7 +47,6 @@ $darkgrey: rgb(61,66,74);
         font-size: 2rem;
         color: $darkgrey;
         text-decoration: underline;
-        margin-bottom: 1rem;
       }
 
       .user-settings-row{
@@ -57,19 +56,31 @@ $darkgrey: rgb(61,66,74);
         align-items: center;
         justify-content: space-between;
         border-bottom: 1px solid $lightgrey;
-        border-top: 1px solid $lightgrey;
-        padding: 1rem 0;
+        padding: .75rem 0;
         h5{
-          font-size: 1.5rem;
+          font-size: 1.2rem;
           color: $darkgrey;
         }
         span{
           font-size: 1.3rem;
         }
         img{
-          width: 3rem;
-          height: 3rem;
+          width: 2.5rem;
+          height: 2.5rem;
           border-radius: 50%;
+        }
+      }
+      .user-settings-title{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 0;
+        h3{
+          font-size: 1.5rem;
+          font-weight: 700;
+          color: $blue;
         }
         button{
           border: none;
@@ -158,6 +169,7 @@ $darkgrey: rgb(61,66,74);
     margin-left: 10%;
   }
 }
+
 
 // BLACKOUT SCREEN CSS START
 .screen{

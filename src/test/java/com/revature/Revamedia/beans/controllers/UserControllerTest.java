@@ -1,11 +1,12 @@
 package com.revature.Revamedia.beans.controllers;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.revature.Revamedia.beans.services.UserService;
-import com.revature.Revamedia.dtos.ViewAllUserDto;
-import com.revature.Revamedia.entities.User;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import org.junit.jupiter.api.Disabled;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -15,13 +16,10 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.revature.Revamedia.beans.services.UserService;
+import com.revature.Revamedia.dtos.ViewAllUserDto;
+import com.revature.Revamedia.entities.User;
 
 /**
  * @Author: Chenxi Zhu
@@ -37,8 +35,6 @@ public class UserControllerTest {
     public UserControllerTest(@Autowired MockMvc mockMvc) {
         this.mockMvc = mockMvc;
     }
-
-    @Disabled
 
     @Test
     public void getAllUsersTest() {
@@ -64,7 +60,6 @@ public class UserControllerTest {
         }
     }
 
-    @Disabled
     @Test
     public void getUserByIdTest() {
         //arrange
@@ -98,7 +93,7 @@ public class UserControllerTest {
         when(userServiceMock.getUserById(1)).thenReturn(user);
 
         // ? should response with status 200 or 202
-        this.mockMvc.perform(get("/user/1")).andExpect(status().isOk());
+        this.mockMvc.perform(get("/user/1")).andExpect(status().isAccepted());
     }
 
 }

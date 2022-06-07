@@ -23,7 +23,7 @@ public class UserGroups {
     @Column(name = "group_id")
     private Integer groupId;
 
-    @JsonBackReference(value = "groupOwned")
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User ownerId;
@@ -35,7 +35,7 @@ public class UserGroups {
     @ManyToMany(mappedBy = "groupsJoined")
     private Set<User> usersJoined;
 
-    @JsonManagedReference(value = "groupId")
+    @JsonManagedReference
     @OneToMany(mappedBy = "groupId", cascade = CascadeType.ALL)
     private Set<UserPosts> posts;
 

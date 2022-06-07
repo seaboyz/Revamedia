@@ -22,7 +22,7 @@ public class UserEvents implements Serializable {
     @Column(name = "event_id")
     private Integer eventId;
 
-    @JsonBackReference(value="eventsOwned")
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User ownerId;

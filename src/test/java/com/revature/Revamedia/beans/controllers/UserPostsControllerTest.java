@@ -8,7 +8,6 @@ package com.revature.Revamedia.beans.controllers;
 import com.revature.Revamedia.beans.services.UserPostsService;
 import com.revature.Revamedia.beans.services.UserService;
 import com.revature.Revamedia.dtos.UpdatePostLikesDto;
-import com.revature.Revamedia.dtos.UserPostsDto;
 import com.revature.Revamedia.entities.User;
 import com.revature.Revamedia.entities.UserPosts;
 import org.junit.jupiter.api.Assertions;
@@ -57,9 +56,7 @@ public class UserPostsControllerTest {
 
         when(userPostsService.updatePostLikes(dto)).thenReturn(userPosts);
 
-
         ResponseEntity returnedResponse = userPostsController.updatePostLikes(dto);
-
 
         Assertions.assertEquals(responseEntity, returnedResponse);
         verify(userPostsService, times(1)).updatePostLikes(dto);
@@ -72,10 +69,10 @@ public class UserPostsControllerTest {
 
         when(userPostsService.updatePostLikes(dto)).thenThrow(new EntityNotFoundException("No post exists"));
 
-//        ResponseEntity returnedResponse = userPostsController.updatePostLikes(dto);
-//
-//        Assertions.assertEquals(responseEntity, returnedResponse);
-//        verify(userPostsService, times(1)).updatePostLikes(dto);
+        ResponseEntity returnedResponse = userPostsController.updatePostLikes(dto);
+
+        Assertions.assertEquals(responseEntity, returnedResponse);
+        verify(userPostsService, times(1)).updatePostLikes(dto);
     }
 
     @Test

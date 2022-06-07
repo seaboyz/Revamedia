@@ -1,11 +1,11 @@
 package com.revature.Revamedia.beans.services;
 
-import com.revature.Revamedia.beans.repositories.UserRepliesRepository;
-import com.revature.Revamedia.entities.User;
-import com.revature.Revamedia.entities.UserReplies;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.revature.Revamedia.beans.repositories.UserRepliesRepository;
+import com.revature.Revamedia.entities.UserReplies;
 
 @Service
 public class UserRepliesService {

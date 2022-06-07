@@ -1,12 +1,12 @@
 package com.revature.Revamedia.beans.services;
 
-import com.revature.Revamedia.beans.repositories.UserEventsRepository;
-import com.revature.Revamedia.entities.User;
-import com.revature.Revamedia.entities.UserEvents;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.revature.Revamedia.beans.repositories.UserEventsRepository;
+import com.revature.Revamedia.entities.UserEvents;
 
 @Service
 public class UserEventsService {

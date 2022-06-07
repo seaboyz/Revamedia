@@ -6,8 +6,6 @@
 
 package com.revature.Revamedia.dtos;
 
-import com.revature.Revamedia.entities.UserPosts;
-
 public class UpdatePostLikesDto {
     private Integer userId;
     private Integer postId;

@@ -18,7 +18,7 @@ describe('RegisterService', () => {
     });
     registerService = TestBed.inject(RegisterService);
 
-    baseUrl = registerService.baseUrl;
+    baseUrl = registerService.registerUrl;
   });
 
   // Smoke test

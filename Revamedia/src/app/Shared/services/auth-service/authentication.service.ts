@@ -44,13 +44,12 @@ export class AuthenticationService {
     }).subscribe((response: any) => {
       //If login was successful store the user's info in session storage
       user = response;
-      this.loggedIn.next(true);
       sessionStorage.setItem('LoggedIn', '1');
       this.loggedIn.next(true);
       this.router.navigateByUrl('/home');
     }, (error: HttpErrorResponse) => {
       document.getElementById('invalid')!.style.display = "flex";
-      console.log(error);
+      //console.log(error);
     })
 
   }

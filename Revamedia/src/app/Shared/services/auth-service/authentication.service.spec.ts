@@ -12,6 +12,7 @@ fdescribe('AuthenticationService', () => {
   let routerSpy: { navigateByUrl: jasmine.Spy };
   let httpClient: HttpClient;
   let httpController: HttpTestingController;
+  let error: HttpErrorResponse;
   beforeEach(() => {
     routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl']);
     let store: any = {};
@@ -29,7 +30,7 @@ fdescribe('AuthenticationService', () => {
         store = {};
       }
     };
-
+    spyOn(window.console, 'log');
     spyOn(sessionStorage, 'getItem')
       .and.callFake(mockSessionStorage.getItem);
 
@@ -79,24 +80,36 @@ fdescribe('AuthenticationService', () => {
     const user = {
       username: "shady",
       password: "Passowrd1!"
-    }
+    };
     authService.login(testForm);
     const request = httpController.expectOne(authService.authUrl);
     request.flush(user);
+    expect(authService.loggedIn).toBeTrue;
+    expect(sessionStorage.setItem).toHaveBeenCalledWith('LoggedIn', '1');
     expect(routerSpy.navigateByUrl).toHaveBeenCalledWith('/home');
 
 
   });
 
-  it('Login should print error if there is an error ', () => {
+  it('Login should not navigate to home page if there was an error ', () => {
     const testForm = <NgForm>{
       value: {
         username: "",
         password: ""
       }
     };
+    const user = {
+      username: "",
+      password: ""
+    };
+    authService.login(testForm);
+    const request = httpController.expectOne(authService.authUrl);
+    request.flush(null, { headers: {}, status: 404, statusText: "F in chat" });
+    expect(authService.loggedIn).toBeFalse;
+    expect(sessionStorage.setItem).not.toHaveBeenCalled;
+    expect(routerSpy.navigateByUrl).not.toHaveBeenCalled;
+    authService.login(testForm);
 
-    authService.login(testForm)
 
   })
 
